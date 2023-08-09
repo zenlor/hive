@@ -1,0 +1,7 @@
+[marrano-bot]
+src.git = "https://github.com/moolite/bot"
+fetch.github = "moolite/bot"
+
+[tfenv]
+src.git = "https://github.com/tfutils/tfenv"
+fetch.github = "tfutils/tfenv"

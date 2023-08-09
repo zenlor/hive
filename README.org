@@ -1,0 +1,28 @@
+* Nix Hive
+
+#+BEGIN_QUOTE
+cultivate the bees in hexagonal cells
+#+END_QUOTE
+
+
+** Beekeeping procedures
+
+*** Pollinate the environment
+
+#+begin_src shell
+direnv allow
+#+end_src
+
+*** maintain hives
+
+#+begin_src shell
+colmena deploy something something
+#+end_src
+
+** URLs
+
+- https://github.com/divnix/std
+- https://github.com/divnix/hive
+- https://github.com/GTrunSec/std-ext
+- https://github.com/GTrunSec/hive
+- https://github.com/truelecter/hive

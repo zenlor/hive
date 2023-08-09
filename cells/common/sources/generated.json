@@ -1,0 +1,42 @@
+{
+    "marrano-bot": {
+        "cargoLocks": null,
+        "date": "2023-03-22",
+        "extract": null,
+        "name": "marrano-bot",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "moolite",
+            "repo": "bot",
+            "rev": "5438411f04eb1d02aafe8b06a2b906bd37f13218",
+            "sha256": "sha256-8lUreZteJs9bKIbyKeO+8s/f60W8kov1Hw8dDC7GxcA=",
+            "type": "github"
+        },
+        "version": "5438411f04eb1d02aafe8b06a2b906bd37f13218"
+    },
+    "tfenv": {
+        "cargoLocks": null,
+        "date": "2022-10-01",
+        "extract": null,
+        "name": "tfenv",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "tfutils",
+            "repo": "tfenv",
+            "rev": "1ccfddb22005b34eacaf06a9c33f58f14e816ec9",
+            "sha256": "sha256-UNvLJQB47IRcNZpoUGXTW2g63ApijnIB3oUb7Zu4lUY=",
+            "type": "github"
+        },
+        "version": "1ccfddb22005b34eacaf06a9c33f58f14e816ec9"
+    }
+}
