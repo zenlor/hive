@@ -1,4 +1,3 @@
-{ ... }:
 {
   nix.settings.connect-timeout = 5;
   nix.settings.experimental-features = [
@@ -6,7 +5,7 @@
     "flakes"
   ];
 
-  nix.settings.log-lines = lib.mkDefault 25;
+  nix.settings.log-lines = lib.mkDefault 5;
 
   # keep disk clean
   nix.settings.max-free = lib.mkDefault (1000 * 1000 * 1000);

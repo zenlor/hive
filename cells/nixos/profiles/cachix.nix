@@ -1,6 +1,4 @@
-{ inputs
-, cell
-}: {
+{
   nix.settings = {
     extra-trusted-substituters = [
       "https://cache.garnix.io"

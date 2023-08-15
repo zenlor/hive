@@ -1,23 +1,37 @@
 { inputs
 , cell
-, ...
 }:
 let
-  system = "x86_64-linux";
+  inherit (inputs)
+    cells
+    ;
 in
 {
-  imports = [ ];
-  bee = {
-    system = system;
-    home = inputs.home;
-    pkgs = import inputs.nixos {
-      inherit system;
-      config.allowUnfree = true;
+  frenz = {
+    imports = [
+      cells.nixos.profiles.core
+      cells.nixos.profiles.networking
+      cells.nixos.profiles.openssh
+      cells.nixos.profiles.cachix
+      cells.nixos.profiles.users
+      cells.nixos.profiles.home
+      cells.nixos.profiles.marrano-bot
 
-      overlays = with inputs.cells.common.overlays; [
-        common-packages
-        latest-overrides
-      ];
+      ./_hardware.nix
+      ./_services.nix
+    ];
+
+    bee = {
+      system = "x86_64-linux";
+      home = inputs.home-manager;
+      pkgs = import inputs.nixos {
+        inherit (inputs.nixpkgs) system;
+        config.allowUnfree = true;
+        overlays = with cells.packages.overlays; [
+          common-packages
+          latest-overrides
+        ];
+      };
     };
 
     # OVH boots using grub
@@ -35,7 +49,6 @@ in
       };
     };
 
-
     security = {
       protectKernelImage = true;
       rtkit.enable = true;
@@ -43,9 +56,9 @@ in
     };
 
     networking.hostId = "cda31f1b";
-
     networking.useDHCP = true;
     networking.hostName = "frenz";
+    networking.nameservers = [ "1.1.1.1" "1.0.0.1" ];
 
     networking.firewall = {
       enable = true;
@@ -54,20 +67,11 @@ in
       allowPing = false;
     };
 
-    services.resolved = {
-      enable = true;
-      dnssec = "allow-downgrade";
-      domains = [ "~." ];
-      fallbackDns = [ "1.1.1.1" "1.0.0.1" ];
-      extraConfig = ''
-        DNSOverTLS=yes
-      '';
-    };
+    # for some reason fails most of the times
+    services.resolved.enable = false;
 
     # VPS needs quemu guest agent
     environment.systemPackages = with inputs.nixpkgs; [ qemu-utils ];
     services.qemuGuest.enable = true;
-
-    system.stateVersion = "23.05";
   };
 }

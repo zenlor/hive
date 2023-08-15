@@ -1,8 +1,5 @@
 { inputs
-, pkgs
-, suites
-, profiles
-, ...
+, cell
 }: {
   services.transmission = {
     enable = true;

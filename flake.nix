@@ -1,17 +1,29 @@
 {
   description = "nixos bee hive";
 
+  # nixos && nixpkgs && home-manager
   inputs = {
-    nixpkgs.follows = "nixpkgs-unstable";
+    nixos-23-05.url = "github:nixos/nixpkgs/release-23.05";
+    home-23-05.url = "github:nix-community/home-manager/release-23.05";
+
+    nixos.follows = "nixos-23-05";
+    home.follows = "home-23-05";
+
+    nixpkgs.follows = "nixpkgs-stable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-23.05-darwin";
-    nixpkgs-unfree.url = "github:numtide/nixpkgs-unfree";
-    nixpkgs-unfree.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
-    home-manager = {
-      url = "github:nix-community/home-manager";
+    nixpkgs-unfree = {
+      url = "github:numtide/nixpkgs-unfree";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+  };
+
+  inputs = {
+    home-manager = {
+      url = "github:nix-community/home-manager/release-23.05";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     darwin = {
@@ -65,7 +77,6 @@
 
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nixos-generators = {
@@ -97,6 +108,15 @@
 
     ragenix = {
       url = "github:yaxitech/ragenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    marrano-bot = {
+      type = "github";
+      owner = "moolite";
+      repo = "bot";
+      ref = "nix-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -123,28 +143,20 @@
         cellBlocks = with std.blockTypes // hive.blockTypes; [
           # Repo utilities
           (devshells "shells")
-          (functions "formatter")
-          (functions "lib")
 
           # Packages
           (installables "packages")
 
           # Overlays
+          (functions "lib")
+          (functions "modules")
+          (functions "profiles")
           (functions "overlays")
+          (pkgs "overrides")
 
-          # Modules
-          (functions "commonModules")
-          (functions "nixosModules")
-          (functions "darwinModules")
-          (functions "homeModules")
-          (functions "devshellModules")
-
-          # Profiles
-          (functions "commonProfiles")
-          (functions "nixosProfiles")
-          (functions "darwinProfiles")
+          # nixos
+          (functions "hardwareProfiles")
           (functions "homeProfiles")
-          (functions "devshellProfiles")
 
           # Configurations
           colmenaConfigurations

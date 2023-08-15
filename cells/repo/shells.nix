@@ -2,33 +2,33 @@
 , cell
 }:
 let
-  l = nixpkgs.lib // builtins;
+  # inherit (inputs)
+  #   nixpkgs
+  #   std
+  #   std-data-collection
+  #   ;
+  # inherit (latest)
+  #   nvfetcher
+  #   cachix
+  #   ;
+  # inherit (inputs.std)
+  #   lib
+  #   ;
+
+  l = inputs.nixpkgs.lib // builtins;
 
   latest = import inputs.nixpkgs-unstable {
     inherit (inputs.nixpkgs) system;
     config.allowUnfree = true;
   };
 
-  inherit (inputs)
-    nixpkgs
-    std
-    std-data-collection
-    ;
-  inherit (latest)
-    nvfetcher
-    cachix
-    ;
-  inherit (inputs.std)
-    lib
-    ;
-
   withCategory = category: attrset: attrset // { inherit category; };
 in
-l.mapAttrs (_: lib.dev.mkShell) {
+l.mapAttrs (_: inputs.std.lib.dev.mkShell) {
   default = { ... }: {
     name = "Apis Mellifera";
 
-    nixago = with std-data-collection.data.configs; [
+    nixago = with inputs.std-data-collection.data.configs; [
       # treefmt
       # lefthook
       # editorconfig
@@ -36,11 +36,32 @@ l.mapAttrs (_: lib.dev.mkShell) {
     ];
 
     imports = [ ];
+
     commands = [
       (withCategory "hexagon" { package = inputs.nixpkgs.writedisk; })
       (withCategory "hexagon" { package = inputs.home-manager.packages.home-manager; })
-      (withCategory "hexagon" { package = inputs.disko.packages.disko; })
       (withCategory "hexagon" { package = inputs.colmena.packages.colmena; })
+
+      ## ragenix, secrets management
+      (withCategory "hexagon" {
+        package = inputs.ragenix.packages.ragenix;
+      })
+      (withCategory "hexagon" {
+        name = "ragenix-rekey";
+        help = "rekey secrets";
+        command = ''
+          ragenix --rules cells/nixos/secrets/secrets.nix --rekey
+        '';
+      })
+      (withCategory "hexagon" {
+        name = "ragenix-json";
+        help = "check json output for secrets/secrets.nix";
+        command = ''
+          nix --extra-experimental-features nix-command eval -f cells/nixos/secrets/secrets.nix --json
+        '';
+      })
+
+      # nixos-generate, iso creation
       (withCategory "hexagon" { package = inputs.nixos-generators.packages.nixos-generate; })
       (withCategory "hexagon" {
         name = "build-larva";
@@ -62,7 +83,7 @@ l.mapAttrs (_: lib.dev.mkShell) {
         name = "update-cell-sources";
         help = "update cell package sources using nvfetcher";
         command = ''
-          ${nvfetcher}/bin/nvfetcher -t \
+          ${inputs.nvfetcher}/bin/nvfetcher -t \
             -o "cells/common/sources/" \
             -c "cells/common/sources/nvfetcher.toml" \
             $@
@@ -73,7 +94,9 @@ l.mapAttrs (_: lib.dev.mkShell) {
         # TODO
         name = "update-secrets";
         help = "update ragenix secrets";
-        command = '' echo "todo!"'';
+        command = ''
+          echo ragenix rekey
+        '';
       })
     ];
   };
