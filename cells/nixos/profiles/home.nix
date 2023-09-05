@@ -28,10 +28,6 @@ in
             src = pkgs.fishPlugins.fzf-fish.src;
           }
           {
-            name = "grc";
-            src = pkgs.fishPlugins.grc.src;
-          }
-          {
             name = "hydro";
             src = pkgs.fishPlugins.hydro.src;
           }

@@ -4,6 +4,20 @@
 cultivate the bees in hexagonal cells
 #+END_QUOTE
 
+#+begin_src
+              \     /
+          \    o ^ o    /
+            \ (     ) /
+ ____________(%%%%%%%)____________
+(     /   /  )%%%%%%%(  \   \     )
+(___/___/__/           \__\___\___)
+   (     /  /(%%%%%%%)\  \     )
+    (__/___/ (%%%%%%%) \___\__)
+            /(       )\
+          /   (%%%%%)   \
+               (%%%)
+                 !
+#+end_src
 
 ** Beekeeping procedures
 
@@ -16,7 +30,7 @@ direnv allow
 *** maintain hives
 
 #+begin_src shell
-colmena deploy something something
+colmena apply --on @tag
 #+end_src
 
 ** URLs
