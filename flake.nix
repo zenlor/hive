@@ -112,10 +112,7 @@
     };
 
     marrano-bot = {
-      type = "github";
-      owner = "moolite";
-      repo = "bot";
-      ref = "nix-flake";
+      url = "github:moolite/bot";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
