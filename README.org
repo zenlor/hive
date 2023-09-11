@@ -27,7 +27,7 @@ cultivate the bees in hexagonal cells
 direnv allow
 #+end_src
 
-*** maintain hives
+*** maintain the hive
 
 #+begin_src shell
 colmena apply --on @tag

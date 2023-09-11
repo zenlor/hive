@@ -10,7 +10,7 @@ in
 {
   horus = { pkgs, ... }: {
     imports = [
-      # nixos-wsl.nixosModules.wsl
+      nixos-wsl.nixosModules.wsl
 
       cells.nixos.profiles.core
       # cells.nixos.profiles.networking
@@ -31,36 +31,35 @@ in
       };
     };
 
-    # wsl = {
-    #   enable = true;
-    #   nativeSystemd = true;
+    wsl = {
+      enable = true;
+      nativeSystemd = true;
 
-    #   boot = {
-    #     command = "";
-    #     systemd = true;
-    #   };
+      boot = {
+        command = "";
+        systemd = true;
+      };
 
-    #   interop = {
-    #     enabled = true;
-    #     appendWindowsPath = false;
-    #   };
+      interop = {
+        enabled = true;
+        appendWindowsPath = false;
+      };
 
-    #   network = {
-    #     generateHosts = true;
-    #     generateResolvConf = true;
-    #     hostname = "weasel";
-    #   };
+      networking = {
+        generateHosts = true;
+        generateResolvConf = true;
+        hostname = "horus";
+      };
 
-    #   automount = {
-    #     enabled = true;
-    #     root = "/mnt";
-    #   };
+      automount = {
+        enabled = true;
+        root = "/mnt";
+      };
 
-    #   user = {
-    #     default = "lor";
-    #   };
-    # };
-    #
+      user = {
+        default = "lor";
+      };
+    };
 
     # FIXME this is to let the check work
     boot.loader.grub.devices = [ "/dev/none" ];
