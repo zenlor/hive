@@ -8,7 +8,7 @@ let
     ;
 in
 {
-  weasel = { pkgs, ... }: {
+  horus = { pkgs, ... }: {
     imports = [
       # nixos-wsl.nixosModules.wsl
 
