@@ -8,14 +8,14 @@ let
     ;
 in
 {
-  horus = { pkgs, ... }: {
+  horus = { pkgs, lib, ... }: {
     imports = [
       nixos-wsl.nixosModules.wsl
 
       cells.nixos.profiles.core
-      # cells.nixos.profiles.networking
-      # cells.nixos.profiles.openssh
       cells.nixos.profiles.cachix
+      cells.nixos.profiles.users
+      cells.nixos.profiles.home
     ];
 
     bee = {
@@ -35,39 +35,23 @@ in
       enable = true;
       nativeSystemd = true;
 
-      boot = {
-        command = "";
-        systemd = true;
-      };
+      wslConf = {
+        automount.enabled = true;
+        boot.systemd = true;
 
-      interop = {
-        enabled = true;
-        appendWindowsPath = false;
-      };
+        interop = {
+          enabled = true;
+          appendWindowsPath = false;
+        };
 
-      networking = {
-        generateHosts = true;
-        generateResolvConf = true;
-        hostname = "horus";
-      };
+        network = {
+          generateHosts = true;
+          generateResolvConf = true;
+          hostname = "horus";
+        };
 
-      automount = {
-        enabled = true;
-        root = "/mnt";
-      };
-
-      user = {
-        default = "lor";
+        user.default = lib.mkForce "lor";
       };
     };
-
-    # FIXME this is to let the check work
-    boot.loader.grub.devices = [ "/dev/none" ];
-    fileSystems."/" =
-      {
-        device = "/dev/disk/by-uuid/737459fa-eab9-4d8f-9a14-c8c32d403c08";
-        fsType = "btrfs";
-        options = [ "subvol=root" ];
-      };
   };
 }
