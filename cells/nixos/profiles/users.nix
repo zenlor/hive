@@ -20,7 +20,7 @@ in
 {
   programs.fish = {
     enable = true;
-    useBabelfish = true;
+    useBabelfish = lib.mkDefault true;
     interactiveShellInit = ''
       fish_vi_key_bindings
     '';

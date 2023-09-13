@@ -16,6 +16,7 @@ in
       cells.nixos.profiles.cachix
       cells.nixos.profiles.users
       cells.nixos.profiles.home
+      cells.nixos.profiles.wsl
     ];
 
     bee = {
