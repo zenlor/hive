@@ -2,26 +2,23 @@
 , cell
 }:
 let
-  # inherit (inputs)
-  #   nixpkgs
-  #   std
-  #   std-data-collection
-  #   ;
-  # inherit (latest)
-  #   nvfetcher
-  #   cachix
-  #   ;
-  # inherit (inputs.std)
-  #   lib
-  #   ;
-
-  l = inputs.nixpkgs.lib // builtins;
-
-  latest = import inputs.nixpkgs-unstable {
+  nixpkgs = import inputs.nixpkgs {
+    inherit (inputs.nixpkgs) system;
+    config.allowUnfree = true;
+  };
+  nixpkgs-unstable = import inputs.nixpkgs-unstable {
+    inherit (inputs.nixpkgs) system;
+    config = {
+      allowUnfree = true;
+      allowBroken = true;
+    };
+  };
+  nixpkgs-previous = import inputs.nixpkgs-previous {
     inherit (inputs.nixpkgs) system;
     config.allowUnfree = true;
   };
 
+  l = inputs.nixpkgs.lib // builtins;
   withCategory = category: attrset: attrset // { inherit category; };
 in
 l.mapAttrs (_: inputs.std.lib.dev.mkShell) {
@@ -79,13 +76,14 @@ l.mapAttrs (_: inputs.std.lib.dev.mkShell) {
         '';
       })
 
+      (withCategory "infra" { package = nixpkgs-previous.nvfetcher; })
       (withCategory "infra" {
         name = "update-cell-sources";
         help = "update cell package sources using nvfetcher";
         command = ''
-          ${inputs.nvfetcher}/bin/nvfetcher -t \
-            -o "cells/common/sources/" \
-            -c "cells/common/sources/nvfetcher.toml" \
+          ${nixpkgs-previous.nvfetcher}/bin/nvfetcher -t \
+            -o "cells/packages/sources/" \
+            -c "cells/packages/sources/nvfetcher.toml" \
             $@
         '';
       })

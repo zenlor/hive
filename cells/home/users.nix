@@ -1,19 +1,19 @@
-{ inputs, cell }:
-let
-  inherit (inputs)
-    nixpkgs
-    std
-    haumea
-    ;
-in
+{ inputs
+, cell
+}:
 {
   darwin = { };
   nixos = {
-    lor = { pkgs, ... }: {
+    lor = { ... }: {
       home-manager.users.lor = _: {
-        imports = with userProfiles;
-          [ minimal devel ]
-          ++ modulesImportables;
+        imports = with cell.profiles; [
+          doom
+          neovim
+          git
+          shell.fish
+          shell.zsh
+          shell.tmux
+        ];
       };
     };
   };

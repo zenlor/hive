@@ -2,33 +2,40 @@
 , cell
 }:
 let
-  inherit (inputs) haumea nixpkgs;
-  l = nixpkgs.lib // builtins;
-  hosts = cell.nixosConfigurations;
-  overrides = {
-    malware = {
-      deployment.targetPort = 2222;
-    };
-  };
+  inherit (inputs)
+    haumea
+    ;
 in
-l.mapAttrs
-  (
-    name: value:
-      value
-      // (
-        l.recursiveUpdate
-          {
-            deployment = {
-              targetHost = name;
-              targetPort = 22;
-              targetUser = "lor";
-            };
-          }
-          (
-            if overrides ? "${name}"
-            then overrides."${name}"
-            else { }
-          )
-      )
-  )
-  hosts
+{
+  frenz = {
+    networking.hostName = "frenz";
+    deployment = {
+      tags = [ "frenz" "vps" "remote" ];
+      # allowLocalDeployment = true;
+      targetHost = "frenz.click";
+      buildOnTarget = true;
+    };
+    imports = [ cell.nixosConfigurations.frenz ];
+  };
+
+  nasferatu = {
+    networking.hostName = "nasferatu";
+    deployment = {
+      tags = [ "nas" "nasferatu" "local" ];
+      allowLocalDeployment = true;
+      targetHost = "192.168.1.1";
+      buildOnTarget = true;
+    };
+    imports = [ cell.nixosConfigurations.nasferatu ];
+  };
+
+  horus = {
+    networking.hostName = "horus";
+    deployment = {
+      tags = [ "wsl" "horus" "local" ];
+      allowLocalDeployment = true;
+      targetHost = null;
+    };
+    imports = [ cell.nixosConfigurations.horus ];
+  };
+}

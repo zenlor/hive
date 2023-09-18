@@ -1,7 +1,31 @@
-[marrano-bot]
-src.git = "https://github.com/moolite/bot"
-fetch.github = "moolite/bot"
+# [marrano-bot]
+# fetch.github = "moolite/bot"
+# src.github = "moolite/bot"
 
 [tfenv]
+fetch.git = "https://github.com/tfutils/tfenv"
 src.git = "https://github.com/tfutils/tfenv"
-fetch.github = "tfutils/tfenv"
+
+[sfz-prompt]
+fetch.git = "https://github.com/zenlor/sfz-prompt.zsh"
+src.git = "https://github.com/zenlor/sfz-prompt.zsh"
+
+[F-Sy-H]
+fetch.git = "https://github.com/z-shell/F-Sy-H"
+src.git = "https://github.com/z-shell/F-Sy-H"
+
+[H-S-MW]
+fetch.git = "https://github.com/z-shell/H-S-MW"
+src.git = "https://github.com/z-shell/H-S-MW"
+
+[zsh-autopair]
+fetch.git = "https://github.com/hlissner/zsh-autopair"
+src.git = "https://github.com/hlissner/zsh-autopair"
+
+[zsh-jq]
+fetch.git = "https://github.com/reegnz/jq-zsh-plugin"
+src.git = "https://github.com/reegnz/jq-zsh-plugin"
+
+[zsh-nix-shell]
+fetch.git = "https://github.com/chisui/zsh-nix-shell"
+src.git = "https://github.com/chisui/zsh-nix-shell"

@@ -3,13 +3,8 @@
 
   # nixos && nixpkgs && home-manager
   inputs = {
-    nixos-23-05.url = "github:nixos/nixpkgs/release-23.05";
-    home-23-05.url = "github:nix-community/home-manager/release-23.05";
-
-    nixos.follows = "nixos-23-05";
-    home.follows = "home-23-05";
-
     nixpkgs.follows = "nixpkgs-stable";
+    nixpkgs-previous.url = "github:nixos/nixpkgs/nixos-22.05";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-23.05-darwin";
@@ -42,9 +37,6 @@
     hive = {
       url = "github:divnix/hive";
       inputs.colmena.follows = "colmena";
-      inputs.disko.follows = "disko";
-      inputs.home-manager.follows = "home-manager";
-      inputs.nixos-generators.follows = "nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.paisano.follows = "paisano";
     };
@@ -70,11 +62,6 @@
       inputs.stable.follows = "nixpkgs-stable";
     };
 
-    disko = {
-      url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware";
     };
@@ -86,11 +73,6 @@
 
     devshell = {
       url = "github:numtide/devshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nvfetcher = {
-      url = "github:berberman/nvfetcher";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -108,6 +90,11 @@
 
     ragenix = {
       url = "github:yaxitech/ragenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    doom-emacs = {
+      url = "github:nix-community/nix-doom-emacs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -150,6 +137,11 @@
           (functions "profiles")
           (functions "overlays")
           (pkgs "overrides")
+
+          # suites/collections
+          (functions "darwinSuites")
+          (functions "nixosSuites")
+          (functions "homeSuites")
 
           # nixos
           (functions "hardwareProfiles")
