@@ -12,13 +12,18 @@ in
     cell.profiles.networking
     cell.profiles.openssh
     cell.profiles.cachix
-    cell.profiles.users
     cell.profiles.home
+    cell.profiles.torrent
 
     ./_hardware.nix
     ./_users.nix
-    ./_zfs-mounts.nix
     ./_samba.nix
+    ./_services.nix
+    ./_torrents.nix
+    ./_zfs-mounts.nix
+
+    cells.home.users.nixos.lor-server
+    cells.home.users.nixos.root
   ];
 
   config.bee = {

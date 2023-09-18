@@ -1,5 +1,7 @@
-{ inputs
-, cell
+{ lib
+, modulesPath
+, config
+, ...
 }: {
   services.transmission = {
     enable = true;
@@ -10,7 +12,7 @@
       download-dir = "/media/warez/downloads";
       rpc-bind-address = "0.0.0.0";
       rpc-host-whitelist = "*";
-      rpc-whitelist-enabled = true;
+      rpc-whitelist-enabled = lib.mkForce true;
       rpc-whitelist = "127.0.0.1,192.168.*.*,10.*.*.*";
       preallocation = 1;
       incomplete-dir-enabled = false;

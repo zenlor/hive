@@ -1,12 +1,3 @@
-#+title: Zenlor configuration
-#+email: lorenzo@frenzart.com
-#+author: Lorenzo Giuliani
-
-
-* Setup base environment
-
-** prelude
-#+begin_src emacs-lisp
 ;;; config.el -*- lexical-binding: t; -*-
 (defvar xdg-data (getenv "XDG_DATA_HOME"))
 (defvar xdg-bin (getenv "XDG_BIN_HOME"))
@@ -24,50 +15,30 @@
 (add-to-list 'exec-path (getenv "HOME") "/.local/bin")
 (add-to-list 'exec-path (getenv "HOME") "/.luarocks/bin")
 
-#+end_src
 
-** UI
-
-*** theme
-#+begin_src emacs-lisp
+;; theme
 (setq doom-theme 'doom-gruvbox)
 
-#+end_src
 
-*** font
-#+begin_src emacs-lisp
+;; font
 (setq doom-font (font-spec :family "Iosevka" :size 20)
-      doom-variable-pitch-font (font-spec :family "Iosevka Aile")
       doom-unicode-font (font-spec :family "Iosevka")
       doom-big-font (font-spec :family "Iosevka" :size 28))
-#+end_src
 
-** eglot
-
-Setup eglot lsp servers
-
-#+begin_src emacs-lisp
+;; eglot
 (with-eval-after-load 'eglot
   (add-to-list 'eglot-server-programs
                '(terraform-mode . ("terraform-ls" "serve"))
                '(nix-mode . ("rnix-lsp"))))
-#+end_src
 
-** evil
 
-Use global substitution by default, reverse using the ~g~ setting
-
-#+begin_src emacs-lisp
+;; enable global substitutions
 (setq evil-ex-substitute-global t)
-#+end_src
 
-** Keybindings
 
-*** navigation
-
-Use ~URLH~ for sexp navigation, ~C-h/j/k/l~ for window navigation
-
-#+begin_src emacs-lisp
+;;
+;; Keybindings
+;;
 (map! ;; sexp navigation
       :nv "U" 'backward-up-list
       :nv "R" 'down-list
@@ -79,10 +50,8 @@ Use ~URLH~ for sexp navigation, ~C-h/j/k/l~ for window navigation
       :n "C-j"   #'evil-window-down
       :n "C-k"   #'evil-window-up
       :n "C-l"   #'evil-window-right)
-#+end_src
 
-*** clojure
-#+begin_src emacs-lisp
+;;; clojure
 (map! (:after clojure-mode
        :localleader
        (:map clojure-mode-map
@@ -91,4 +60,3 @@ Use ~URLH~ for sexp navigation, ~C-h/j/k/l~ for window navigation
              "s" #'cider-scratch
              "b" #'cider-load-buffer
              "B" #'cider-load-buffer-and-switch-to-repl-buffer)))
-#+end_src

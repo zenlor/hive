@@ -2,6 +2,9 @@
 , pkgs
 , ...
 }: {
+  boot.supportedFilesystems = [ "zfs" "xfs" ];
+  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+
   boot.zfs.extraPools = [ "tank" ];
   services.zfs = {
     trim.enable = true;

@@ -1,15 +1,32 @@
 { inputs
 , cell
 }: {
+  base = { ... }: {
+    imports = with cell.profiles; [
+      core
+      shell.core
+      shell.zsh
+      shell.ssh
+      shell.fzf
+      shell.tmux
+      git
+      neovim
+    ];
+  };
   workstation = { ... }: {
     imports = with cell.profiles; [
       shell.fish
-      shell.zsh
-      shell.tmux
-      shell.nvim
+      shell.direnv
+      shell.exa
+      shell.z-lua
       doom
-      git
-      ssh
+    ];
+  };
+  server = { ... }: {
+    imports = with cell.profiles; [
+      shell.fish
+      shell.exa
+      neovim
     ];
   };
 }

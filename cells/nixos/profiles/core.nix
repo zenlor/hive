@@ -93,8 +93,8 @@ in
 
     variables = {
       # vim as default editor
-      EDITOR = "neovim";
-      VISUAL = "neovim";
+      EDITOR = "nvim";
+      VISUAL = "nvim";
 
       # Use custom `less` colors for `man` pages.
       LESS_TERMCAP_md = "$(tput bold 2> /dev/null; tput setaf 2 2> /dev/null)";
@@ -144,5 +144,26 @@ in
         inputs' = lib.filterAttrs (n: _: !(builtins.elem n [ "cells" "self" "nixpkgs" ])) inputs;
       in
       lib.mapAttrs (_: v: { flake = v; }) inputs';
+  };
+
+  # shells
+  programs.zsh.enable = true;
+  programs.fish.enable = true;
+
+  # motd
+  programs.rust-motd = {
+    enable = true;
+    enableMotdInSSHD = true;
+    settings = {
+      global = {
+        progress_full_character = "=";
+        progress_empty_character = "-";
+        progress_prefix = "[";
+        progress_suffix = "]";
+      };
+      uptime.prefix = "up";
+      filesystems.root = "/";
+      fail_2_ban.jails = [ "sshd" ];
+    };
   };
 }

@@ -3,20 +3,15 @@
 }:
 let
   inherit (inputs)
-    pkgs
+    nixpkgs
     ;
 in
 {
-
-  programs.direnv.enableZshIntegration = true;
-  programs.keychain.enableZshIntegration = true;
-  programs.z-lua.enableZshIntegration = true;
-
   programs.zsh = {
     enable = true;
 
     dotDir = ".config/zsh";
-    history.path = "${xdg.dataHome}/zsh/zsh_history";
+    history.path = "~/.local/share/zsh/zsh_history";
 
     autocd = true;
     enableVteIntegration = true;
@@ -24,18 +19,6 @@ in
     enableCompletion = true;
     historySubstringSearch.enable = true;
     history.share = true;
-
-    shellAliases = {
-      d = "direnv";
-      g = "git";
-      jc = "journalctl";
-      md = "mkdir -p";
-      n = "nix";
-      rd = "rmdir";
-      sc = "systemctl";
-      "_" = "sudo ";
-      vim = "nvim";
-    };
 
     shellGlobalAliases = {
       "..." = "../..";
@@ -112,14 +95,15 @@ in
       EDITOR = "vim";
     };
 
-    plugins = with pkgs; [
-      zsh-vi-mode
-      zsh-history
-      zsh-fzf-tab
-      zsh-autopair
-      zsh-fast-syntax-highlighting
-      fzf-zsh
-      iay
-    ];
   };
+
+  home.packages = with nixpkgs; [
+    zsh-vi-mode
+    zsh-history
+    zsh-fzf-tab
+    zsh-autopair
+    zsh-fast-syntax-highlighting
+    fzf-zsh
+    iay
+  ];
 }
