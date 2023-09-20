@@ -3,6 +3,7 @@
     enable = true;
     compression = true;
     serverAliveInterval = 60;
+    includes = [ "local" ];
   };
 
   programs.keychain = {
