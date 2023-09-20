@@ -25,12 +25,16 @@ in
         src = nixpkgs.fishPlugins.fzf-fish.src;
       }
       {
-        name = "hydro";
-        src = nixpkgs.fishPlugins.hydro.src;
+        name = "pure";
+        src = nixpkgs.fishPlugins.pure.src;
       }
       {
         name = "z";
         src = nixpkgs.fishPlugins.z.src;
+      }
+      {
+        name = "pisces";
+        src = nixpkgs.fishPlugins.pisces.src;
       }
     ];
   };
