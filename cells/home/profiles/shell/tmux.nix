@@ -37,6 +37,9 @@ in
 
     # UI
     extraConfig = ''
+      # aggressively renumber windows
+      set -g renumber-windows on
+
       set -g set-titles on
 
       set -g status-left-length 32
