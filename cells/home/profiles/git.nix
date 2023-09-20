@@ -7,6 +7,7 @@ in
 {
   home.packages = with nixpkgs; [
     difftastic
+    ghq
   ];
 
   programs.git = {
@@ -31,6 +32,7 @@ in
       co = "checkout";
       st = "status";
       l = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --abbrev-commit";
+      cl = "!ghq get";
     };
 
     extraConfig = {
@@ -49,6 +51,8 @@ in
       help.autocorrect = 50;
 
       log.decorate = "short";
+
+      ghq.root = "~/lib/src";
     };
   };
 

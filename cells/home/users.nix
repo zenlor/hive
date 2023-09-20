@@ -1,7 +1,7 @@
 { inputs, cell }:
 let
   stateVersion = "23.05";
-  lor-pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAro0xekMDD0/bEXWVlEfKU/OFqBEsTHIDJRR50OhlJ6";
+  lor-pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPEjb3xZe7wZ7JezbXApLdLhMeTnO2c2J8FJrpr7nWCr";
 in
 {
   nixos = {
