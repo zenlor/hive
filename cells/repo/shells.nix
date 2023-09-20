@@ -25,6 +25,10 @@ l.mapAttrs (_: inputs.std.lib.dev.mkShell) {
   default = { ... }: {
     name = "Apis Mellifera";
 
+    packages = with inputs.nixpkgs; [
+      rnix-lsp
+    ];
+
     nixago = with inputs.std-data-collection.data.configs; [
       # treefmt
       # lefthook
