@@ -37,6 +37,8 @@ in
     };
   };
 
+  config.time.timeZone = "Europe/Amsterdam";
+
   # OVH boots using grub
   config.boot.loader = {
     efi = {

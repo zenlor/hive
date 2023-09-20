@@ -39,6 +39,8 @@ in
     };
   };
 
+  config.time.timeZone = "Europe/Amsterdam";
+
   config.security = {
     protectKernelImage = true;
     rtkit.enable = true;

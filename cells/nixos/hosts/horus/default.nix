@@ -39,6 +39,8 @@ in
     wsl = inputs.nixos-wsl;
   };
 
+  config.time.timeZone = "Europe/Rome";
+
   config.wsl = {
     enable = true;
     nativeSystemd = true;
