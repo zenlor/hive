@@ -3,7 +3,7 @@
 }:
 let
   inherit (inputs)
-    pkgs
+    nixpkgs
     ;
 in
 {
@@ -13,11 +13,11 @@ in
     vimAlias = true;
     vimdiffAlias = true;
     extraPackages = [
-      pkgs.shfmt
-      pkgs.fzf
+      nixpkgs.shfmt
+      nixpkgs.fzf
     ];
 
-    plugins = with pkgs.vimPlugins; [
+    plugins = with nixpkgs.vimPlugins; [
       # FIXME: use newer plugins or move to lazy (mainly for mini.nvim)
       nvim-lspconfig
 
@@ -50,6 +50,6 @@ in
       terminus
     ];
 
-    extraLuaConfig = builtins.readFile ./neovim.lua;
+    extraLuaConfig = builtins.readFile ./neovim.d/init.lua;
   };
 }

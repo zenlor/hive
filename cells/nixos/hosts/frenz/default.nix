@@ -9,16 +9,19 @@ let
 in
 {
   imports = [
-    cell.profiles.core
-    cell.profiles.networking
-    cell.profiles.openssh
     cell.profiles.cachix
-    cell.profiles.users
+    cell.profiles.core
     cell.profiles.home
     cell.profiles.marrano-bot
+    cell.profiles.networking
+    cell.profiles.openssh
+    cell.profiles.shell
 
     ./_hardware.nix
     ./_services.nix
+
+    cells.home.users.nixos.lor-server
+    cells.home.users.nixos.root
   ];
 
   config.bee = {

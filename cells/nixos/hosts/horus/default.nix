@@ -17,9 +17,12 @@ in
 
     cell.profiles.core
     cell.profiles.cachix
-    cell.profiles.users
     cell.profiles.home
+    cell.profiles.shell
     cell.profiles.wsl
+
+    cells.home.users.nixos.lor
+    cells.home.users.nixos.root
   ];
 
   config.bee = {
@@ -33,11 +36,14 @@ in
         latest-overrides
       ];
     };
+    wsl = inputs.nixos-wsl;
   };
 
   config.wsl = {
     enable = true;
     nativeSystemd = true;
+
+    defaultUser = lib.mkForce "lor";
 
     wslConf = {
       automount.enabled = true;
@@ -57,4 +63,9 @@ in
       user.default = lib.mkForce "lor";
     };
   };
+
+  # fix wsl default user
+  config.users.users.lor.uid = 1000;
+
+  config.hardware.opengl.enable = true;
 }

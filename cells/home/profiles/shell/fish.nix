@@ -2,35 +2,35 @@
 , cell
 }:
 let
-  pkgs = inputs.nixpkgs;
+  inherit (inputs)
+    nixpkgs
+    ;
 in
 {
-  programs.direnv.enableFishIntegration = true;
-  programs.keychain.enableFishIntegration = true;
-  programs.z-lua.enableFishIntegration = true;
-
   programs.fish = {
-    enable = true;
     enable = true;
     interactiveShellInit = ''
       set fish_greeting
+      if test "$TMUX" = ""
+        tmux attach; or tmux
+      end
     '';
     plugins = [
       {
         name = "done";
-        src = pkgs.fishPlugins.done.src;
+        src = nixpkgs.fishPlugins.done.src;
       }
       {
         name = "fzf";
-        src = pkgs.fishPlugins.fzf-fish.src;
+        src = nixpkgs.fishPlugins.fzf-fish.src;
       }
       {
         name = "hydro";
-        src = pkgs.fishPlugins.hydro.src;
+        src = nixpkgs.fishPlugins.hydro.src;
       }
       {
         name = "z";
-        src = pkgs.fishPlugins.z.src;
+        src = nixpkgs.fishPlugins.z.src;
       }
     ];
   };
