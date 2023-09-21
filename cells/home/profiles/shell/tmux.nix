@@ -52,10 +52,14 @@ in
       set -g window-status-format "#[bg=colour0]  #I #W "
       set -g window-status-current-format "#[fg=colour8,bg=colour16,bold]░ #I #W "
       set -g status-right "#[nobold]░▒ #(hostname -s) · #(date +'%m%d|%H%M')"
+
+      # keybindings
+      ## pane splitting.
+      bind v split-window -h -c "#{pane_current_path}"
+      bind b split-window -v -c "#{pane_current_path}"
     '';
 
     plugins = with nixpkgs; [
-      tmuxPlugins.cpu
       tmuxPlugins.tmux-fzf
     ];
   };
