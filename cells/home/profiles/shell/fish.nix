@@ -25,10 +25,6 @@ in
         src = nixpkgs.fishPlugins.fzf-fish.src;
       }
       {
-        name = "pure";
-        src = nixpkgs.fishPlugins.pure.src;
-      }
-      {
         name = "z";
         src = nixpkgs.fishPlugins.z.src;
       }

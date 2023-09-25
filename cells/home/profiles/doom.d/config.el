@@ -29,7 +29,7 @@
 (with-eval-after-load 'eglot
   (add-to-list 'eglot-server-programs
                '(terraform-mode . ("terraform-ls" "serve"))
-               '(nix-mode . ("rnix-lsp"))))
+               '(nix-mode . ("nixd" "rnix-lsp"))))
 
 
 ;; enable global substitutions

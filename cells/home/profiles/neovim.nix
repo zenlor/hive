@@ -4,7 +4,11 @@
 let
   inherit (inputs)
     nixpkgs
+    nixpkgs-unstable
     ;
+  unstable = import nixpkgs-unstable {
+    inherit (nixpkgs) system;
+  };
 in
 {
   programs.neovim = {
@@ -17,7 +21,7 @@ in
       nixpkgs.fzf
     ];
 
-    plugins = with nixpkgs.vimPlugins; [
+    plugins = with unstable.vimPlugins; [
       # FIXME: use newer plugins or move to lazy (mainly for mini.nvim)
       nvim-lspconfig
 

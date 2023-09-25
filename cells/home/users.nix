@@ -29,7 +29,7 @@ in
             "libvirtd"
           ];
 
-        shell = pkgs.fish;
+        shell = pkgs.zsh;
 
         openssh.authorizedKeys.keys = [ lor-pubkey ];
       };

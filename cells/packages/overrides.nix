@@ -12,7 +12,6 @@ in
     (latest)
     rnix-lsp
     nil
-    terraform
     terraform-ls
     statix
     nixUnstable

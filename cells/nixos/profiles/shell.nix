@@ -21,13 +21,9 @@ in
     '';
   };
 
-  # Prefer nix-index to command-not-found
+  # command-not-found and friends are useless
   programs.command-not-found.enable = false;
-  programs.nix-index = {
-    enable = true;
-    enableZshIntegration = true;
-    enableFishIntegration = true;
-  };
+  programs.nix-index.enable = false;
 
   users.defaultUserShell = nixpkgs.zsh;
 

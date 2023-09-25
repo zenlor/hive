@@ -24,7 +24,6 @@
   };
   server = { ... }: {
     imports = with cell.profiles; [
-      shell.fish
       shell.exa
       neovim
     ];

@@ -39,14 +39,14 @@ require'mini.comment'.setup{}
 require'mini.completion'.setup{}
 require'mini.cursorword'.setup{}
 require'mini.fuzzy'.setup{}
-require'mini.hipatterns'.setup({
-    highlighters = {
-        fixme = { pattern = 'FIXME', group = 'MiniHipatternsFixme' },
-        hack  = { pattern = 'HACK',  group = 'MiniHipatternsHack'  },
-        todo  = { pattern = 'TODO',  group = 'MiniHipatternsTodo'  },
-        note  = { pattern = 'NOTE',  group = 'MiniHipatternsNote'  },
-    }
-})
+-- require'mini.hipatterns'.setup({
+--     highlighters = {
+--         fixme = { pattern = 'FIXME', group = 'MiniHipatternsFixme' },
+--         hack  = { pattern = 'HACK',  group = 'MiniHipatternsHack'  },
+--         todo  = { pattern = 'TODO',  group = 'MiniHipatternsTodo'  },
+--         note  = { pattern = 'NOTE',  group = 'MiniHipatternsNote'  },
+--     }
+-- })
 require'mini.pairs'.setup{}
 require'mini.statusline'.setup{
     set_vim_settings = true,

@@ -10,6 +10,7 @@ in
 
     clock24 = true;
     keyMode = "vi";
+    customPaneNavigationAndResize = true;
 
     # muscle-memory is bad
     prefix = "C-a";
@@ -54,6 +55,7 @@ in
       set -g status-right "#[nobold]░▒ #(hostname -s) · #(date +'%m%d|%H%M')"
 
       # keybindings
+      bind-key a last-window
       ## pane splitting.
       bind v split-window -h -c "#{pane_current_path}"
       bind b split-window -v -c "#{pane_current_path}"

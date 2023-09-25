@@ -35,7 +35,6 @@ in
       git
       bottom
       jq
-      nix-index
       nmap
       ripgrep
       tmux
