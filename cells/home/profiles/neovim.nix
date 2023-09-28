@@ -16,9 +16,10 @@ in
     defaultEditor = true;
     vimAlias = true;
     vimdiffAlias = true;
-    extraPackages = [
-      nixpkgs.shfmt
-      nixpkgs.fzf
+    extraPackages = with unstable;[
+      shfmt
+      fzf
+      neovim-remote
     ];
 
     plugins = with unstable.vimPlugins; [
@@ -28,8 +29,11 @@ in
       mini-nvim
 
       # tpope
-      vim-fugitive
       vim-vinegar
+
+      # lazygit
+      plenary-nvim
+      lazygit-nvim
 
       # languages
       vim-nix
@@ -45,6 +49,7 @@ in
           tree-sitter-rust
           tree-sitter-go
           tree-sitter-hcl
+          tree-sitter-lua
         ]
       ))
 

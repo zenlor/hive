@@ -3,8 +3,13 @@
 }:
 let
   inherit (inputs)
+    nixpkgs-unstable
     nixpkgs
     ;
+  unstable = import nixpkgs-unstable {
+    inherit (nixpkgs) system;
+  };
+
   stateVersion = "23.05";
 in
 {
@@ -12,8 +17,9 @@ in
 
   home.stateVersion = stateVersion;
 
-  home.packages = with nixpkgs; [
+  home.packages = with unstable;[
     elinks
+    lazygit
   ];
 
   home.sessionVariables = {

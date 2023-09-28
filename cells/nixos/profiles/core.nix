@@ -23,33 +23,34 @@ in
   environment = {
     # Selection of sysadmin tools that can come in handy
     systemPackages = with pkgs; [
+      bat
       binutils
+      bottom
       coreutils
       curl
-      direnv
       delta
-      bat
-      thefuck
+      direnv
       dnsutils
+      entr
       fd
-      git
-      bottom
-      jq
-      nmap
-      ripgrep
-      tmux
-      whois
-      zsh
-      fish
-      neovim
       file
+      fish
+      git
       gnused
-      lsof
+      iftop
+      jq
       lnav
       lsd
-      iftop
+      lsof
       ncdu
+      neovim
+      nmap
+      ripgrep
+      thefuck
+      tmux
+      whois
       xh
+      zsh
     ];
 
     shellAliases =
