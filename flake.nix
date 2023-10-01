@@ -171,16 +171,16 @@
       # Modules
       {
         commonModules = std.pick self [ "common" "commonModules" ];
-        nixosModules = std.pick self [ "nixos" "nixosModules" ];
+        nixosModules = std.pick self [ "nixos" "modules" ];
         darwinModules = std.pick self [ "darwin" "darwinModules" ];
-        homeModules = std.pick self [ "home" "homeModules" ];
+        homeModules = std.pick self [ "home" "modules" ];
       }
       # Profiles
       {
         commonProfiles = hive.pick self [ "common" "commonProfiles" ];
-        nixosProfiles = hive.pick self [ "nixos" "nixosProfiles" ];
-        darwinProfiles = hive.pick self [ "darwin" "darwinProfiles" ];
-        homeProfiles = hive.pick self [ "home" "homeProfiles" ];
+        nixosProfiles = hive.pick self [ "nixos" "profiles" ];
+        darwinProfiles = hive.pick self [ "darwin" "profiles" ];
+        homeProfiles = hive.pick self [ "home" "profiles" ];
         devshellProfiles = hive.pick self [ "devshell" "devshellProfiles" ];
       }
       # Configurations

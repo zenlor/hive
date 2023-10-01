@@ -18,8 +18,6 @@ in
   home.stateVersion = stateVersion;
 
   home.packages = with unstable;[
-    elinks
-    lazygit
   ];
 
   home.sessionVariables = {

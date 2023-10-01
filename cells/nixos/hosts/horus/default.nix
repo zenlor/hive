@@ -17,6 +17,7 @@ in
 
     cell.profiles.core
     cell.profiles.cachix
+    cell.profiles.development
     cell.profiles.home
     cell.profiles.shell
     cell.profiles.wsl

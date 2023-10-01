@@ -11,7 +11,7 @@ in
     enable = true;
 
     dotDir = ".config/zsh";
-    history.path = "~/.local/share/zsh/zsh_history";
+    history.path = ".local/share/zsh/zsh_history";
 
     autocd = true;
     enableVteIntegration = true;
@@ -44,8 +44,6 @@ in
       fi
 
       export GPG_TTY=$(tty)
-
-      autopair-init
 
       # case insensitive matching for lower-case letters
       zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
@@ -85,8 +83,6 @@ in
         # PROMPT="$(iay -zm)" # miminal variant
       }
       add-zsh-hook precmd _iay_prompt
-
-      FAST_HIGHLIGHT[use_brackets]=1
     '';
 
     localVariables = {

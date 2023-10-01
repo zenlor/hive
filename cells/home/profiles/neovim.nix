@@ -31,9 +31,8 @@ in
       # tpope
       vim-vinegar
 
-      # lazygit
-      plenary-nvim
-      lazygit-nvim
+      # git
+      neogit
 
       # languages
       vim-nix

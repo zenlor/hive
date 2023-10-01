@@ -2,13 +2,10 @@
 -- vim: expandtab tabstop=4
 
 --[[
-        LazyGit
+        neogit
 --]]
-vim.g.lazygit_floating_window_winblend = 0 -- transparency of floating window
-vim.g.lazygit_floating_window_scaling_factor = 0.9 -- scaling factor for floating window
-vim.g.lazygit_floating_window_border_chars = {'╭','─', '╮', '│', '╯','─', '╰', '│'} -- customize lazygit popup window border characters
-vim.g.lazygit_floating_window_use_plenary = 1 -- use plenary.nvim to manage floating window if available
-vim.g.lazygit_use_neovim_remote = 1 -- fallback to 0 if neovim-remote is not installed
+
+require'neogit'.setup({})
 
 --[[
     ___  __   ___  ___  __    ___ ___  ___  __
@@ -17,10 +14,15 @@ vim.g.lazygit_use_neovim_remote = 1 -- fallback to 0 if neovim-remote is not ins
 
 --]]
 require'nvim-treesitter.configs'.setup {
+    auto_install = true,
+    parser_install_dir = "~/.local/state/nvim/parsers",
     highlight = {
         enable = true,
         additional_vim_regex_highliting = false,
-    }
+    },
+    indent = {
+        enable = true
+    },
 }
 
 --[[
@@ -38,7 +40,7 @@ require'mini.basics'.setup{
     },
 }
 require'mini.base16'.setup{
-    palette = require'mini.base16'.mini_palette('#112641', '#e2e98f', 75),
+    palette = require'mini.base16'.mini_palette('#1e1e1e', '#e2e98f', 75),
     use_cterm = true,
     plugins = { default = true },
 }
@@ -47,14 +49,7 @@ require'mini.comment'.setup{}
 require'mini.completion'.setup{}
 require'mini.cursorword'.setup{}
 require'mini.fuzzy'.setup{}
--- require'mini.hipatterns'.setup({
---     highlighters = {
---         fixme = { pattern = 'FIXME', group = 'MiniHipatternsFixme' },
---         hack  = { pattern = 'HACK',  group = 'MiniHipatternsHack'  },
---         todo  = { pattern = 'TODO',  group = 'MiniHipatternsTodo'  },
---         note  = { pattern = 'NOTE',  group = 'MiniHipatternsNote'  },
---     }
--- })
+require'mini.hipatterns'.setup{}
 require'mini.pairs'.setup{}
 require'mini.statusline'.setup{
     set_vim_settings = true,
@@ -170,9 +165,11 @@ vim.keymap.set('n', 'Y', 'y$')
 vim.keymap.set('v', '>', '>gv')
 vim.keymap.set('v', '<', '<gv')
 -- fzf
-vim.keymap.set('n', '<Leader><space>', '<cmd>Files<cr>')
+vim.keymap.set('n', '<Leader><space>', '<cmd>GitFiles<cr>')
 vim.keymap.set('n', '<Leader>bb', '<cmd>Buffers<cr>')
 vim.keymap.set('n', '<Leader>fr', '<cmd>History<cr>')
+-- neogit poor-man's magit
+vim.keymap.set('n', '<Leader>gg', '<cmd>Neogit<cr>')
 
 --[[
     |  | \_/
