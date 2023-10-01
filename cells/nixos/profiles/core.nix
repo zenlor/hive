@@ -31,6 +31,7 @@ in
       delta
       direnv
       dnsutils
+      elinks
       entr
       fd
       file
@@ -44,6 +45,7 @@ in
       lsof
       ncdu
       neovim
+      nnn
       nmap
       ripgrep
       thefuck

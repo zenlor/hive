@@ -78,10 +78,13 @@ in
         443
         8343
         8081
-
-        548 # netatalk
+        5357 # wsdd
+        548  # netatalk
       ];
-      allowedUDPPorts = [ 51820 ];
+      allowedUDPPorts = [
+        51820
+        3702 # wsdd
+      ];
       allowPing = true;
     };
 
