@@ -7,6 +7,9 @@
     "....." = "cd ../../../..";
     "......" = "cd ../../../../..";
 
+    # emacs
+    e = "emacsclient -n";
+
     # nix
     n = "nix";
     nepl = "nix repl '<nixpkgs>'";

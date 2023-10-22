@@ -14,6 +14,14 @@ in
       if test "$TMUX" = ""
         tmux attach; or tmux
       end
+
+      function fish_title
+          if [ $_ = 'fish' ]
+              echo (prompt_pwd)
+          else
+              echo $_
+          end
+      end
     '';
     plugins = [
       {

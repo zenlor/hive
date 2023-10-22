@@ -18,6 +18,8 @@ in
   home.packages = with nixpkgs; [
     (nerdfonts.override { fonts = [ "Iosevka" ]; })
     iosevka
+    fira
+    fira-code
 
     # base dependencies
     git

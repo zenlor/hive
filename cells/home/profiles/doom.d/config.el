@@ -21,9 +21,13 @@
 
 
 ;; font
-(setq doom-font (font-spec :family "Iosevka" :size 20)
-      doom-unicode-font (font-spec :family "Iosevka")
-      doom-big-font (font-spec :family "Iosevka" :size 28))
+;; (setq doom-font (font-spec :family "Iosevka" :size 20)
+;;       doom-unicode-font (font-spec :family "Iosevka")
+;;       doom-big-font (font-spec :family "Iosevka" :size 28))
+(setq doom-font (font-spec :family "Fira Code" :size 20)
+      doom-variable-font (font-spec :family "Fira Sans")
+      doom-unicode-font (font-spec :family "Fira Code")
+      doom-big-font (font-spec :family "Fira Code" :size 30))
 
 ;; eglot
 (with-eval-after-load 'eglot

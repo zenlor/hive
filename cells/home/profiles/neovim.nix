@@ -39,8 +39,12 @@ in
       vim-go
       vim-terraform
 
+      lsp-format-nvim
+
       (nvim-treesitter.withPlugins (
         plugins: with plugins; [
+          tree-sitter-c
+          tree-sitter-cpp
           tree-sitter-nix
           tree-sitter-python
           tree-sitter-clojure
