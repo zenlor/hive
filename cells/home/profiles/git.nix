@@ -22,10 +22,10 @@ in
 
     ignores = [
       ".dir-locals.el"
-      ".envrc"
       ".DS_Store"
       ".lsp"
       ".clj-kondo"
+      ".direnv"
     ];
 
     aliases = {
