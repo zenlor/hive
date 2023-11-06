@@ -26,35 +26,12 @@ in
       # FIXME: use newer plugins or move to lazy (mainly for mini.nvim)
       nvim-lspconfig
 
-      mini-nvim
-
-      # tpope
-      vim-vinegar
-
-      # git
       neogit
+
+      mini-nvim
 
       # languages
       vim-nix
-      vim-go
-      vim-terraform
-
-      lsp-format-nvim
-
-      (nvim-treesitter.withPlugins (
-        plugins: with plugins; [
-          tree-sitter-c
-          tree-sitter-cpp
-          tree-sitter-nix
-          tree-sitter-python
-          tree-sitter-clojure
-          tree-sitter-zig
-          tree-sitter-rust
-          tree-sitter-go
-          tree-sitter-hcl
-          tree-sitter-lua
-        ]
-      ))
 
       # ux
       fzf-vim

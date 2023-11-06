@@ -93,13 +93,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    emacs-overlay.url = "github:nix-community/emacs-overlay";
-    doom-emacs = {
-      url = "github:nix-community/nix-doom-emacs";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.emacs-overlay.follows = "emacs-overlay";
-    };
-
     marrano-bot = {
       url = "github:moolite/bot";
       inputs.nixpkgs.follows = "nixpkgs";

@@ -2,19 +2,10 @@
 let
   inherit (inputs)
     nixpkgs
-    ;
-  inherit (nixpkgs)
-    lib
+    home-manager
     ;
 in
 {
-  imports = [ inputs.doom-emacs.hmModule ];
-
-  programs.doom-emacs = {
-    enable = true;
-    doomPrivateDir = ./doom.d;
-  };
-
   home.packages = with nixpkgs; [
     (nerdfonts.override { fonts = [ "Iosevka" ]; })
     iosevka
@@ -41,5 +32,21 @@ in
     libvterm
 
     emacs-all-the-icons-fonts
+
+    emacs29
   ];
+
+  xdg.enable = true;
+
+  home.sessionPath = [
+    "$HOME/.config/emacs/bin"
+    "$HOME/.config/doom/bin"
+  ];
+
+  xdg.configFile = {
+    "doom" = {
+      source = ./doom.d;
+      recursive = true;
+    };
+  };
 }

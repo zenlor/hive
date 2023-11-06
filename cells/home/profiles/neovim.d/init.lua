@@ -2,30 +2,6 @@
 -- vim: expandtab tabstop=4
 
 --[[
-        neogit
---]]
-
-require'neogit'.setup({})
-
---[[
-    ___  __   ___  ___  __    ___ ___  ___  __
-     |  |__) |__  |__  /__` |  |   |  |__  |__)
-     |  |  \ |___ |___ .__/ |  |   |  |___ |  \
-
---]]
-require'nvim-treesitter.configs'.setup {
-    auto_install = false,
-    parser_install_dir = "~/.local/state/nvim/parsers",
-    highlight = {
-        enable = true,
-        additional_vim_regex_highliting = false,
-    },
-    indent = {
-        enable = true
-    },
-}
-
---[[
 
      |\/| | |\ | |  |\ | \  / |  |\/|
      |  | | | \| | .| \|  \/  |  |  |
@@ -45,9 +21,10 @@ require'mini.base16'.setup{
     plugins = { default = true },
 }
 require'mini.bracketed'.setup{}
+require'mini.clue'.setup{}
 require'mini.comment'.setup{}
 require'mini.completion'.setup{}
-require'mini.cursorword'.setup{}
+require'mini.files'.setup{}
 require'mini.fuzzy'.setup{}
 require'mini.hipatterns'.setup{}
 require'mini.pairs'.setup{}
@@ -59,9 +36,6 @@ require'mini.tabline'.setup{
     show_icons = true,
 }
 require'mini.trailspace'.setup{}
-
--- require'mini.files'.setup{}
--- vim.keymap.set('n', '-', function() MiniFiles.open() end)
 
 --[[
           __   __   __   __        ___    __
@@ -114,36 +88,43 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 
+--
+-- NeoGIT
+--
+require'neogit'.setup()
 
---[[
-          ___                 __
-    |__/ |__  \ /  |\/|  /\  |__)
-    |  \ |___  |   |  | /~~\ |
+--
+-- Keymaps
+--
+vim.g.mapleader = ' ' -- space as <leader>
 
---]]
+vim.keymap.set('n', '<leader>.', function() if not MiniFiles.close() then MiniFiles.open() end end)
 
--- Doom-like keybindings
+-- -- Doom-like keybindings
 vim.keymap.set('n', '<Leader>bs', '<cmd>w<cr>')
--- window movement
+-- -- window movement
 vim.keymap.set('n', '<C-h>', '<C-w>h')
 vim.keymap.set('n', '<C-j>', '<C-w>j')
 vim.keymap.set('n', '<C-k>', '<C-w>k')
 vim.keymap.set('n', '<C-l>', '<C-w>l')
--- fixes
+-- -- fixes
 vim.keymap.set('n', '<esc><esc>', '<cmd>nohl<cr>')
 vim.keymap.set('n', 'Y', 'y$')
 vim.keymap.set('v', '>', '>gv')
 vim.keymap.set('v', '<', '<gv')
--- fzf
+-- -- fzf
 vim.keymap.set('n', '<Leader><space>', '<cmd>GitFiles<cr>')
 vim.keymap.set('n', '<Leader>bb', '<cmd>Buffers<cr>')
 vim.keymap.set('n', '<Leader>fr', '<cmd>History<cr>')
--- neogit poor-man's magit
+-- -- neogit poor-man's magit
 vim.keymap.set('n', '<Leader>gg', '<cmd>Neogit<cr>')
 
---[[
-    |  | \_/
-    \__/ / \
-
---]]
+--
+-- UI Options
+--
 vim.o.listchars = 'nbsp:☠,tab:│ ,trail:-,extends:>,precedes:<,nbsp:+'
+
+--
+-- Settings
+--
+vim.g.editorconfig = true
