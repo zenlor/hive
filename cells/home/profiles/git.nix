@@ -47,11 +47,7 @@ in
       commit.gpgsign = true;
       gpg.format = "ssh";
       gpg.ssh.allowedSignersFile = "~/.ssh/allowed-signers";
-
       help.autocorrect = 50;
-
-      log.decorate = "short";
-
       ghq.root = "~/lib/src";
     };
   };

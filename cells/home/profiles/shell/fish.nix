@@ -40,6 +40,14 @@ in
         name = "pisces";
         src = nixpkgs.fishPlugins.pisces.src;
       }
+      {
+        name = "sponge";
+        src = nixpkgs.fishPlugins.sponge.src;
+      }
+      {
+        name = "forgit";
+        src = nixpkgs.fishPlugins.forgit.src;
+      }
     ];
   };
 }
