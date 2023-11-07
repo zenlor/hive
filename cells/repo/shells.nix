@@ -39,7 +39,6 @@ l.mapAttrs (_: inputs.std.lib.dev.mkShell) {
     imports = [ ];
 
     commands = [
-      (withCategory "hexagon" { package = inputs.nixpkgs.writedisk; })
       (withCategory "hexagon" { package = inputs.home-manager.packages.home-manager; })
       (withCategory "hexagon" { package = inputs.colmena.packages.colmena; })
 

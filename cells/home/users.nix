@@ -1,8 +1,42 @@
 { inputs, cell }:
 let
+  lgiuliani-pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII4awgnF6oRSD0DYJzY7+NWrbIUGTKG8DSk7ogtLEGOb";
   lor-pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPEjb3xZe7wZ7JezbXApLdLhMeTnO2c2J8FJrpr7nWCr";
 in
 {
+  darwin = {
+    lgiuliani = {pkgs, ...}: {
+      home-manager.users.lgiuliani = _: {
+        imports = with cell.homeSuites; [
+          base
+          workstation
+        ];
+
+        programs.git.extraConfig = {
+          user = {
+            email = "lgiuliani@malwarebytes.com";
+            name = "Lorenzo Giuliani";
+            signingKey = "key::${lgiuliani-pubkey}";
+          };
+        };
+
+        programs.keychain = {
+          agents = [ "ssh" ];
+          keys = [
+            "id_ed25519"
+          ];
+        };
+
+        home.file = {
+          ".ssh/allowed-signers" = {
+            text = ''
+              lgiuliani@malwarebytes.com ${lgiuliani-pubkey}
+            '';
+          };
+        };
+      };
+    };
+  };
   nixos = {
     lor-server = { pkgs, ... }: {
       home-manager.users.lor = _: {
