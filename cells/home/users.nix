@@ -10,6 +10,12 @@ in
         imports = with cell.homeSuites; [
           base
           workstation
+          sre
+        ];
+
+        home.sessionPath = [
+          "/opt/homebrew/bin"
+          "$HOME/lib/bin"
         ];
 
         programs.git.extraConfig = {

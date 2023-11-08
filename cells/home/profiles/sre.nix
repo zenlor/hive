@@ -11,7 +11,7 @@ let
   };
 in
 {
-  home.packages = with nixpkgs-unstable;[
+  home.packages = with unstable;[
     awscli2        # the worst official aws cli
     k9s            # nicer kubectl
     pre-commit     # overengineered frameworks for simple things :facepalm:

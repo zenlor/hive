@@ -10,8 +10,7 @@ in
   programs.zsh = {
     enable = true;
 
-    dotDir = ".config/zsh";
-    history.path = ".local/share/zsh/zsh_history";
+    dotDir = "/.config/zsh";
 
     autocd = true;
     enableVteIntegration = true;
