@@ -9,6 +9,7 @@
       shell.ssh
       shell.fzf
       shell.tmux
+      # shell.carapace // only in 23.11+/unstable
       git
       neovim
     ];

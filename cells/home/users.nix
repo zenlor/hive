@@ -23,7 +23,12 @@ in
         programs.keychain = {
           agents = [ "ssh" ];
           keys = [
+            "id_mwb"
+            "id_mac"
             "id_ed25519"
+            "id_rsa"
+            "id_nas"
+            "malwarebytes"
           ];
         };
 
