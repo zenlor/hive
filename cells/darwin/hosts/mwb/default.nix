@@ -8,7 +8,7 @@ let
 in
 {
   imports = [
-    # cell.profiles.core
+    cell.profiles.core
     inputs.home-manager.darwinModules.home-manager
     cells.home.users.darwin.lgiuliani
   ];

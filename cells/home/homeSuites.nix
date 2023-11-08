@@ -29,4 +29,9 @@
       neovim
     ];
   };
+  sre = { ... }: {
+    imports = with cell.profiles; [
+      sre
+    ];
+  };
 }

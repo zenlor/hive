@@ -79,8 +79,8 @@ in
 
       autoload -Uz add-zsh-hook
       _iay_prompt() {
-        PROMPT="$(iay -z)"    # regular variant
-        # PROMPT="$(iay -zm)" # miminal variant
+        # PROMPT="$(iay -z)"    # regular variant
+        PROMPT="$(iay -zm)" # miminal variant
       }
       add-zsh-hook precmd _iay_prompt
     '';
