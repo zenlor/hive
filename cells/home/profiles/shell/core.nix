@@ -40,5 +40,8 @@
     uup = "systemctl --user start";
     udn = "systemctl --user stop";
     jtl = "journalctl";
+
+    # ls
+    l = "ls";
   };
 }
