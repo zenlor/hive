@@ -43,7 +43,8 @@ colmena apply --on @tag
 
 ** Cheat sheet
 
+- fancy menu ~std~
 - apply the current host configuration: ~colmena apply-local --node nixos-horus
   --sudo~
 - apply an host: ~colmena apply -v --build-on-target --on nixos-nasferatu~
-
+- apply on darwin: ~nix run nix-darwin -- switch --flake .#darwin-mwb --show-trace~
