@@ -36,7 +36,9 @@ l.mapAttrs (_: inputs.std.lib.dev.mkShell) {
       # (conform { data = { inherit (inputs) cells; }; })
     ];
 
-    imports = [ ];
+    imports = [
+      inputs.std.std.devshellProfiles.default
+    ];
 
     commands = [
       (withCategory "hexagon" { package = inputs.home-manager.packages.home-manager; })

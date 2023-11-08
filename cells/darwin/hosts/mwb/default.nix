@@ -5,9 +5,13 @@ let
   inherit (inputs)
     cells
     ;
-  system = "aarch64-darwin";
 in
 {
+  imports = [
+    # cell.profiles.core
+    inputs.home-manager.darwinModules.home-manager
+    cells.home.users.darwin.lgiuliani
+  ];
 
   config.bee = {
     system = "aarch64-darwin";
@@ -16,5 +20,11 @@ in
       inherit (inputs.nixpkgs) system;
       config.allowUnfree = true;
     };
+    darwin = inputs.darwin;
   };
+
+  config.services.nix-daemon.enable = true;
+
+  # https://github.com/nix-community/home-manager/issues/4026
+  config.users.users.lgiuliani.home = "/Users/lgiuliani";
 }

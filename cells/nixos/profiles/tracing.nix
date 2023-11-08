@@ -1,11 +1,7 @@
 { inputs
 , cell
 }:
-let
-  inherit (inputs)
-    pkgs
-    ;
-in
+{ pkgs, config, ... }:
 {
   programs.bbc.enable = true;
   programs.sysdig.enable = !pkgs.stdenv.isAarch64;

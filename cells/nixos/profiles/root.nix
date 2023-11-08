@@ -1,7 +1,7 @@
 { inputs
 , cell
 }:
-{ pkgs, ... }:
+{ pkgs, age, ... }:
 {
   # Root password
   age.secrets.root-password.file = ../secrets/root.age;

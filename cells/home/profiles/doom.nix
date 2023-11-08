@@ -29,7 +29,7 @@ in
     aspellDicts.en-computers
     aspellDicts.en-science
 
-    libvterm
+    # libvterm
 
     emacs-all-the-icons-fonts
 

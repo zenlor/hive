@@ -4,6 +4,7 @@
 }:
 let
   inherit (inputs) haumea;
+  defaultAsRoot = _: mod: mod.default or mod;
 in
 if builtins.pathExists ./hosts
 then
@@ -11,6 +12,6 @@ then
   {
     src = ./hosts;
     inputs = { inherit inputs cell; };
-    transformer = haumea.lib.transformers.liftDefault;
+    transformer = defaultAsRoot; #haumea.lib.transformers.liftDefault;
   }
 else { }

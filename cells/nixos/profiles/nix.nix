@@ -1,3 +1,8 @@
+{inputs, ...}:
+let
+  inherit (inputs) nixpkgs;
+  lib = nixpkgs.lib;
+in
 {
   nix.settings.connect-timeout = 5;
   nix.settings.experimental-features = [

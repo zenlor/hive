@@ -17,3 +17,5 @@ treefmt.toml
 # nixago-auto-created: mdbook-build-folder
 docs/build
 /.direnv
+/.local
+/result

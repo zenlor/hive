@@ -4,16 +4,10 @@
 let
   inherit (inputs)
     cells
+    nixpkgs
     ;
 in
 {
-  # hostname: "ITA-C02XL3VCJGH5"
-  #
-
-  import = [
-    cells.home.users.profiles.darwin.lgiuliani
-  ];
-
   # https://github.com/LnL7/nix-darwin/issues/158#issuecomment-974598670
   programs.zsh.enable = true;
   programs.zsh.shellInit = ''export OLD_NIX_PATH="$NIX_PATH";'';
@@ -32,7 +26,7 @@ in
   services.nix-daemon.enable = true;
 
   # core packages
-  packages = with pkgs; [
+  packages = with nixpkgs; [
     m-cli
     duti
   ];
@@ -53,7 +47,7 @@ in
 
     settings = {
       # Administrative users on Darwin are part of this group.
-      trusted-users = ["@admin"];
+      trusted-users = ["@admin" "@staff"];
     };
 
     configureBuildUsers = true;
@@ -72,7 +66,6 @@ in
       "homebrew/cask-drivers"
       "homebrew/cask-versions"
       "homebrew/cask-fonts"
-      "d12frosted/emacs-plus"
     ];
     brews = [
       "tfenv"
