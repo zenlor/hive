@@ -9,6 +9,7 @@ in
 {
   imports = [
     cell.profiles.core
+    cell.profiles.mwb
     inputs.home-manager.darwinModules.home-manager
     cells.home.users.darwin.lgiuliani
   ];
