@@ -43,5 +43,8 @@
 
     # ls
     l = "ls";
+
+    # tmux utf
+    tmux = "tmux -u";
   };
 }

@@ -18,6 +18,8 @@ in
     enableCompletion = true;
     historySubstringSearch.enable = true;
     history.share = true;
+    history.ignoreDups = true;
+    history.ignoreSpace = true;
 
     shellGlobalAliases = {
       "..." = "../..";
@@ -26,8 +28,6 @@ in
     };
 
     profileExtra = ''
-      [ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ] && source $HOME/.nix-profile/etc/profile.d/nix.sh
-
       if [ $TERM = tramp ]; then
               unset RPROMPT
               unset RPS1
@@ -39,7 +39,7 @@ in
 
     initExtra = ''
       if [ "$TMUX" = "" ]; then
-          tmux attach || tmux
+          tmux -u attach || tmux -u
       fi
 
       export GPG_TTY=$(tty)
@@ -76,18 +76,20 @@ in
       bindkey '^[[1;5D' backward-word                         # [Ctrl-LeftArrow] - move backward one word
       ##################################################################################################################
 
+      source ${nixpkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+
       autoload -Uz add-zsh-hook
       _iay_prompt() {
         # PROMPT="$(iay -z)"    # regular variant
         PROMPT="$(iay -zm)" # miminal variant
+        unset RPROMPT
       }
       add-zsh-hook precmd _iay_prompt
     '';
 
     localVariables = {
-      PROMPT_LEAN_TMUX = "™ ";
       CLICOLOR = "1";
-      EDITOR = "vim";
+      EDITOR = "nvim";
     };
 
   };

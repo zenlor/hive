@@ -67,9 +67,9 @@ in
         "bash"
       ];
       casks = [
+        "alacritty"
         "launchcontrol"
         "alt-tab"
-        "zoom"
         "temurin"
         "keybase"
         "font-iosevka"
