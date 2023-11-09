@@ -8,6 +8,7 @@ in
   home.packages = with nixpkgs; [
     difftastic
     ghq
+    git-stack
   ];
 
   programs.git = {
