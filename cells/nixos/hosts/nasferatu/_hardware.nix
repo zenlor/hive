@@ -47,5 +47,12 @@
 
   swapDevices = [ ];
 
+  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
+  # NAS shall consume less electricity
+  powerManagement = {
+    enable = true;
+    cpuFreqGovernor = "powersave";
+  };
 }

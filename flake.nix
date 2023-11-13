@@ -32,6 +32,12 @@
       inputs.nixago.follows = "nixago";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.paisano.follows = "paisano";
+      inputs.paisano-tui.follows = "fast-paisano-tui";
+    };
+
+    fast-paisano-tui = {
+      url = "github:Pegasust/tui/fast-nix-build";
+      flake = false;
     };
 
     hive = {
