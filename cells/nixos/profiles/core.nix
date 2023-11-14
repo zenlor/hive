@@ -165,7 +165,6 @@ in
       };
       uptime.prefix = "up";
       filesystems.root = "/";
-      fail_2_ban.jails = [ "sshd" ];
     };
   };
 }
