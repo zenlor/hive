@@ -14,9 +14,12 @@ in
         ];
 
         home.sessionPath = [
-          "/opt/homebrew/bin"
-          "$HOME/lib/bin"
+          "/opt/homebrew/bin" # homebrew
+          "$HOME/lib/bin"     # usual place where scripts live
+          "$HOME/.rd/bin"     # rancher desktop
         ];
+
+        programs.tmux.shell = "${pkgs.fish}/bin/fish";
 
         programs.git.extraConfig = {
           user = {
