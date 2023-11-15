@@ -35,14 +35,15 @@ in
               unsetopt zle
               unsetopt rcs  # Inhibit loading of further config files
       fi
-    '';
 
-    initExtra = ''
       if [ "$TMUX" = "" ]; then
           tmux -u -2 attach || tmux -2 -u
       fi
 
       export GPG_TTY=$(tty)
+    '';
+
+    initExtra = ''
 
       # case insensitive matching for lower-case letters
       zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
@@ -53,7 +54,12 @@ in
       ekill() { emacsclient --eval '(kill-emacs)'; }
 
       source ${nixpkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+      # fix zsh-vi-mode overwriting fzf
+      function zvm_after_init() {
+        zvm_bindkey viins '^R' fzf-history-widget
+      }
 
+      unset RPS1 # this is set somewhere in osx ... looking for the offender...
       autoload -Uz add-zsh-hook
       _iay_prompt() {
         # PROMPT="$(${nixpkgs.iay}/bin/iay -zm)" # regular variant

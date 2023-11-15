@@ -19,8 +19,6 @@ in
           "$HOME/.rd/bin"     # rancher desktop
         ];
 
-        programs.tmux.shell = "${pkgs.fish}/bin/fish";
-
         programs.git.extraConfig = {
           user = {
             email = "lgiuliani@malwarebytes.com";
