@@ -12,7 +12,7 @@ in
     interactiveShellInit = ''
       set fish_greeting
       if test "$TMUX" = ""
-        tmux attach; or tmux
+        tmux -u -2 attach; or tmux -u -2
       end
 
       function fish_title

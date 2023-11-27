@@ -39,6 +39,9 @@
 ;; enable global substitutions
 (setq evil-ex-substitute-global t)
 
+;; relative fringe numbers
+(setq display-line-numbers-type 'relative)
+
 
 ;;
 ;; Keybindings

@@ -16,7 +16,7 @@ require'mini.basics'.setup{
     },
 }
 require'mini.base16'.setup{
-    palette = require'mini.base16'.mini_palette('#1e1e1e', '#e2e98f', 75),
+    palette = require'mini.base16'.mini_palette('#1d1f21', '#e2e98f', 75),
     use_cterm = true,
     plugins = { default = true },
 }
@@ -26,7 +26,14 @@ require'mini.comment'.setup{}
 require'mini.completion'.setup{}
 require'mini.files'.setup{}
 require'mini.fuzzy'.setup{}
-require'mini.hipatterns'.setup{}
+require'mini.hipatterns'.setup{
+  highlighters = {
+    fixme = { pattern = 'FIXME', group = 'MiniHipatternsFixme' },
+    hack  = { pattern = 'HACK',  group = 'MiniHipatternsHack' },
+    todo  = { pattern = 'TODO',  group = 'MiniHipatternsTodo' },
+    note  = { pattern = 'NOTE',  group = 'MiniHipatternsNote' },
+  }
+}
 require'mini.pairs'.setup{}
 require'mini.statusline'.setup{
     set_vim_settings = true,
@@ -128,3 +135,5 @@ vim.o.listchars = 'nbsp:☠,tab:│ ,trail:-,extends:>,precedes:<,nbsp:+'
 -- Settings
 --
 vim.g.editorconfig = true
+vim.o.autochdir = true
+vim.o.relativenumber = true
