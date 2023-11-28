@@ -25,13 +25,17 @@ in
     plugins = with unstable.vimPlugins; [
       # FIXME: use newer plugins or move to lazy (mainly for mini.nvim)
       nvim-lspconfig
+      # FIXME archived from the author, switch to nvimtools/none-ls when available
+      null-ls-nvim
 
       neogit
-
       mini-nvim
 
       # languages
       vim-nix
+
+      # language support
+      formatter-nvim
 
       # ux
       fzf-vim
