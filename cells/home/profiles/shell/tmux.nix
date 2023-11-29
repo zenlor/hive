@@ -36,6 +36,9 @@ in
     # Plugins
     sensibleOnTop = true;
 
+    # escape time for my sanity
+    escapeTime = 10;
+
     # UI
     extraConfig = ''
       # fix that terminal

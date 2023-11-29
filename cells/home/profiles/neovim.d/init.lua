@@ -28,8 +28,8 @@ require'mini.completion'.setup{
     auto_setup = true,
   },
   mappings = {
-    force_twostep = '<C-Space>'
-    force_fallback = '<A-Space>'
+    force_twostep = '<C-Space>',
+    force_fallback = '<A-Space>',
   },
   set_vim_settings = true,
 }
