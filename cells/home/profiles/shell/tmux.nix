@@ -42,7 +42,7 @@ in
     # UI
     extraConfig = ''
       # fix that terminal
-      set-option -g default-terminal "screen-256color"
+      set-option -g default-terminal "tmux-256color"
 
       # aggressively renumber windows
       set -g renumber-windows on
