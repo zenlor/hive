@@ -3,7 +3,7 @@
     enable = true;
     CSIuSupport = true;
     settings = {
-      env.TERM = "xterm-256color";
+      # env.TERM = "xterm-256color";
       window.decorations = "full";
       font.size = 12.0;
       cursor.style = "Beam";
