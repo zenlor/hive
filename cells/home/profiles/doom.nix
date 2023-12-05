@@ -29,8 +29,6 @@ in
     aspellDicts.en-computers
     aspellDicts.en-science
 
-    # libvterm
-
     emacs-all-the-icons-fonts
 
     emacs29

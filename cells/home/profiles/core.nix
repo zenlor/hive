@@ -10,7 +10,7 @@ let
     inherit (nixpkgs) system;
   };
 
-  stateVersion = "23.05";
+  stateVersion = "23.11";
 in
 {
   xdg.enable = true;

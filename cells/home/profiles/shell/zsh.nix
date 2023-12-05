@@ -77,7 +77,6 @@ in
 
   home.packages = with nixpkgs; [
     zsh-vi-mode
-    zsh-fzf-tab
     zsh-autopair
     zsh-fast-syntax-highlighting
     iay

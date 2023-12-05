@@ -9,7 +9,7 @@ in
 {
   config.bee = {
     system = "x86_64-linux";
-    pkgs = import inputs.nixos-23-05 {
+    pkgs = import inputs.nixos-23-11 {
       inherit (inputs.nixpkgs) system;
     };
   };
@@ -18,5 +18,5 @@ in
     profiles.bootstrap
   ];
 
-  config.system.stateVersion = "23.05";
+  config.system.stateVersion = "23.11";
 }

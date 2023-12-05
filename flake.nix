@@ -4,10 +4,10 @@
   # nixos && nixpkgs && home-manager
   inputs = {
     nixpkgs.follows = "nixpkgs-stable";
-    nixpkgs-previous.url = "github:nixos/nixpkgs/nixos-22.05";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.05";
+    nixpkgs-previous.url = "github:nixos/nixpkgs/nixos-22.11";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-23.05-darwin";
+    nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-23.11-darwin";
 
     nixpkgs-unfree = {
       url = "github:numtide/nixpkgs-unfree";
@@ -17,7 +17,7 @@
 
   inputs = {
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.05";
+      url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

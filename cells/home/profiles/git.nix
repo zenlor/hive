@@ -55,7 +55,7 @@ in
 
   programs.gh = {
     enable = true;
-    enableGitCredentialHelper = true;
+    gitCredentialHelper = { enable = true; };
     extensions = [
       nixpkgs.gh-eco
     ];
