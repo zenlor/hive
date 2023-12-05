@@ -28,6 +28,35 @@ in
       # FIXME archived from the author, switch to nvimtools/none-ls when available
       null-ls-nvim
 
+      # treesitter
+      nvim-treesitter-textobjects
+      nvim-treesitter-textsubjects
+      nvim-treesitter-refactor
+
+      nvim-treesitter.withAllGrammars
+      #
+      # (with nvim-treesitter-parsers; [
+      #   fennel
+      #   fish
+      #   gitcommit git_rebase git_config
+      #   go
+      #   html
+      #   ini
+      #   javascript
+      #   json
+      #   lua
+      #   nix
+      #   org
+      #   python
+      #   sql
+      #   toml
+      #   ungrammar
+      #   vim
+      #   xml
+      #   yaml
+      #   zig
+      # ])
+
       neogit
       mini-nvim
 
