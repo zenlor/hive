@@ -66,7 +66,7 @@ in
   config.networking = {
     hostName = "pad";
     search = [ "local" ];
-    useDHCP = lib.mkDefault true;
+    useDHCP = lib.mkForce false;
 
     firewall = {
       enable = true;
@@ -80,6 +80,7 @@ in
 
     hostId = "AAFE4A7E";
   };
+  config.services.resolved.enable = lib.mkForce false;
 
   config.networking.networkmanager.enable = true;
 
