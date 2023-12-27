@@ -38,4 +38,14 @@ in
     };
     imports = [ cell.nixosConfigurations.horus ];
   };
+
+  pad = {
+    networking.hostName = "pad";
+    deployment = {
+      tags = [ "thinkpad" "local" ];
+      allowLocalDeployment = true;
+      targetHost = null;
+    };
+    imports = [ cell.nixosConfigurations.pad ];
+  };
 }

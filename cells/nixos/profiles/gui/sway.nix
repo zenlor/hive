@@ -13,20 +13,11 @@ in
   environment = {
     systemPackages = with pkgs; [
       sway
-      thunderbird
       mako
       wl-clipboard
       shotman
-      alacritty
     ];
   };
-
-  security.polkit.enable = true;
-  hardware.opengl.enable = true;
-
-  sound.enable = true;
-  config.pulseaudio = true;
-  hardware.pulseaudio.enable = true;
 
   wayland.windowManager.sway = {
     enable = true;
