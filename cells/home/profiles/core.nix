@@ -18,6 +18,8 @@ in
   home.stateVersion = stateVersion;
 
   home.packages = with unstable;[
+    jq ijq
+    gitui
   ];
 
   home.sessionVariables = {
