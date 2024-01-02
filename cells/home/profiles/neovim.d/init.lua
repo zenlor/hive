@@ -118,7 +118,7 @@ require'nvim-treesitter.configs'.setup {
   },
   highlight = {
     enable = true,
-    additional_vim_regex_highlighting = false,
+    additional_vim_regex_highlighting = true,
   },
   refactor = {
     navigation = {
@@ -132,7 +132,7 @@ require'nvim-treesitter.configs'.setup {
         goto_previous_usage = "<a-#>",
       },
     },
-    highlight_current_scope = { enable = true },
+    highlight_current_scope = { enable = false },
     smart_rename = {
       enable = true,
       -- Assign keymaps to false to disable them, e.g. `smart_rename = false`.

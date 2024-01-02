@@ -69,7 +69,6 @@ in
       casks = [
         "alacritty"
         "launchcontrol"
-        "alt-tab"
         "temurin"
         "keybase"
         "font-iosevka"
