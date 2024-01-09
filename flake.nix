@@ -1,195 +1,270 @@
 {
   description = "nixos bee hive";
 
-  # nixos && nixpkgs && home-manager
+  outputs = inputs @ { self, ... }:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" ];
+      imports = [
+        inputs.nixos-flake.flakeModule
+        inputs.flake-root.flakeModule
+      ];
+
+      perSystem =
+        { config
+        , inputs'
+        , pkgs
+        , system
+        , ...
+        }:
+        let
+          pkgs = import inputs.nixpkgs {
+            inherit system;
+            overlays = [
+              inputs.devshell.overlays.default
+              inputs.ragenix.overlays.default
+            ];
+          };
+        in
+          {
+            devShells = {
+              default = pkgs.devshell.mkShell {
+                packages = with pkgs; [
+                  nixd
+                  age
+                ];
+                commands = [
+                  { package = pkgs.alejandra; }
+                  { package = pkgs.colmena; }
+                  { package = pkgs.ragenix; }
+                ];
+              };
+            };
+          };
+
+      flake =
+        let
+          stateVersion = "23.11";
+          darwinStateVersion = 4;
+          homeStateVersion = "23.11";
+
+          overlays = [
+            inputs.ragenix.overlays.default
+          ];
+        in
+          {
+            # Configurations for Linux (NixOS) machines
+            nixosConfigurations = {
+              horus = self.nixos-flake.lib.mkLinuxSystem {
+                nixpkgs.hostPlatform = "x86_64-linux";
+                nixpkgs.system = "x86_64-linux";
+                nixpkgs.overlays = overlays;
+                imports = [
+                  inputs.nixos-wsl.nixosModules.wsl
+                  inputs.ragenix.nixosModules.default
+                  inputs.home-manager.nixosModules.default
+
+                  self.nixosModules.core
+
+                  ./profiles/horus
+
+                  self.nixosModules.home-manager
+                  self.homeModules.suites.workstation
+                ];
+              } // {
+                deployment = {
+                  targetHost = null;
+                  allowLocalDeployment = true;
+                };
+              };
+              pad = self.nixos-flake.lib.mkLinuxSystem {
+                nixpkgs.hostPlatform = "x86_64-linux";
+                nixpkgs.system = "x86_64-linux";
+                nixpkgs.overlays = overlays;
+                imports = [
+                  inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x280
+                  inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
+                  inputs.ragenix.nixosModules.default
+                  inputs.home-manager.nixosModules.default
+
+                  self.nixosModules.core
+                  self.nixosModules.laptop
+
+                  ./profiles/pad
+
+                  self.nixosModules.home-manager
+                  self.homeModules.suites.workstation
+                ];
+              } // {
+                deployment = {
+                  targetHost = null;
+                  allowLocalDeployment = true;
+                };
+              };
+
+              nasferatu = self.nixos-flake.lib.mkLinuxSystem {
+                nixpkgs.hostPlatform = "x86_64-linux";
+                nixpkgs.system = "x86_64-linux";
+                nixpkgs.overlays = overlays;
+                imports = [
+                  inputs.nixos-hardware.nixosModules.common-cpu-amd
+                  inputs.nixos-hardware.nixosModules.common-gpu-amd
+                  inputs.nixos-hardware.nixosModules.common-pc-ssd
+                  inputs.ragenix.nixosModules.default
+                  inputs.home-manager.nixosModules.default
+
+                  self.nixosModules.core
+                  self.nixosModules.networking
+                  self.nixosModules.openssh
+
+                  ./profiles/nasferatu
+
+                  self.nixosModules.home-manager
+                  self.homeModules.suites.server
+                ];
+              } // {
+                deployment = {
+                  targetHost = "192.168.1.1";
+                  allowLocalDeployment = true;
+                };
+              };
+
+              frenz = self.nixos-flake.lib.mkLinuxSystem {
+                nixpkgs.hostPlatform = "x86_64-linux";
+                nixpkgs.system = "x86_64-linux";
+                nixpkgs.overlays = overlays;
+                imports = [
+                  inputs.nixos-hardware.nixosModules.common-cpu-intel
+                  inputs.nixos-hardware.nixosModules.common-gpu-intel
+                  inputs.nixos-hardware.nixosModules.common-pc-ssd
+                  inputs.ragenix.nixosModules.default
+
+                  self.nixosModules.core
+                  self.nixosModules.services.marrano-bot
+
+                  ./profiles/frenz
+
+                  self.nixosModules.home-manager
+                  self.homeModules.suites.server
+                ];
+              } // {
+                deployment = {
+                  targetHost = "frenz.click";
+                  allowLocalDeployment = true;
+                };
+              };
+
+              pprint-a = self.nixos-flake.lib.mkLinuxSystem {
+                nixpkgs.hostPlatform = "aarch64-linux";
+                nixpkgs.system = "aarch64-linux";
+                nixpkgs.overlays = overlays;
+                imports = [
+                  inputs.nixos-hardware.nixosModules.raspberry-pi-4
+
+                  self.nixosModules.core
+
+                  ./profiles/pprint
+                ];
+              } // {
+                deployment = {
+                  targetHost = null; # "192.168.1.10";
+                  allowLocalDeployment = true;
+                };
+              };
+            };
+
+            # Configurations for macOS machines
+            darwinConfigurations = {
+              macbook = self.nixos-flake.lib.mkMacosSystem {
+                nixpkgs.hostPlatform = "aarch64-darwin";
+                imports = [
+                  self.nixosModules.core
+                  self.nixosModules.darwin
+
+                  ./profiles/macbook
+
+                  self.darwinModules_.home-manager
+                  {
+                    home-manager.users.lor = {
+                      imports = [
+                        self.homeModules.core
+                        self.homeModules.darwin
+                      ];
+                      home.stateVersion = homeStateVersion;
+                    };
+                  }
+                ];
+
+              };
+            };
+
+            nixosModules = inputs.haumea.lib.load {
+              src = ./nixos;
+              inputs = {
+                inherit inputs;
+                inherit stateVersion;
+              };
+              transformer = inputs.haumea.lib.transformers.liftDefault;
+            };
+
+            homeModules = inputs.haumea.lib.load {
+              src = ./home;
+              inputs = {
+                inherit inputs;
+                inherit stateVersion;
+              };
+              transformer = inputs.haumea.lib.transformers.liftDefault;
+            };
+
+            colmena = {
+              meta = {
+                description = "void-space hive";
+                nodeNixpkgs = builtins.mapAttrs (name: value: value._module.specialArgs) self.nixosConfigurations;
+                nodeSpecialArgs = builtins.mapAttrs (name: value: value._module.specialArgs) self.nixosConfigurations;
+              };
+            }// builtins.mapAttrs(name: value: { imports = value._module.args.modules; }) self.nixosConfigurations;
+          };
+    };
+
   inputs = {
-    nixpkgs.follows = "nixpkgs-stable";
-    nixpkgs-previous.url = "github:nixos/nixpkgs/nixos-22.11";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-23.11-darwin";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
-    nixpkgs-unfree = {
-      url = "github:numtide/nixpkgs-unfree";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
+    nix-darwin.url = "github:LnL7/nix-darwin";
+
+    nixpkgs-unfree.url = "github:numtide/nixpkgs-unfree";
+
+    home-manager.url = "github:nix-community/home-manager/release-23.11";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    flake-root.url = "github:srid/flake-root";
+
+    nixos-flake.url = "github:srid/nixos-flake";
+
+    nur.url = "github:nix-community/NUR";
+
+    haumea.url = "github:nix-community/haumea?ref=v0.2.2";
+    haumea.inputs.nixpkgs.follows = "nixpkgs";
+
+    colmena.url = "github:zhaofengli/colmena";
+    colmena.inputs.nixpkgs.follows = "nixpkgs";
+    colmena.inputs.stable.follows = "nixpkgs";
+
+    devshell.url = "github:numtide/devshell";
+    devshell.inputs.nixpkgs.follows = "nixpkgs";
+
+    flake-utils.url = "github:numtide/flake-utils";
+
+    nixos-wsl.url = "github:nix-community/NixOS-WSL";
+    nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
+    nixos-wsl.inputs.flake-utils.follows = "flake-utils";
+
+    ragenix.url = "github:yaxitech/ragenix";
+    ragenix.inputs.nixpkgs.follows = "nixpkgs";
+
+    marrano-bot.url = "github:moolite/bot";
+    marrano-bot.inputs.nixpkgs.follows = "nixpkgs";
   };
-
-  inputs = {
-    home-manager = {
-      url = "github:nix-community/home-manager/release-23.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    darwin = {
-      url = "github:LnL7/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs-darwin";
-    };
-
-    std = {
-      url = "github:divnix/std";
-      inputs.devshell.follows = "devshell";
-      inputs.nixago.follows = "nixago";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.paisano.follows = "paisano";
-      inputs.paisano-tui.follows = "fast-paisano-tui";
-    };
-
-    fast-paisano-tui = {
-      url = "github:Pegasust/tui/fast-nix-build";
-      flake = false;
-    };
-
-    hive = {
-      url = "github:divnix/hive";
-      inputs.colmena.follows = "colmena";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.paisano.follows = "paisano";
-    };
-
-    haumea = {
-      url = "github:nix-community/haumea?ref=v0.2.2";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nixago = {
-      url = "github:nix-community/nixago";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    paisano = {
-      url = "github:paisano-nix/core";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    colmena = {
-      url = "github:zhaofengli/colmena";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.stable.follows = "nixpkgs-stable";
-    };
-
-    nixos-hardware = {
-      url = "github:NixOS/nixos-hardware";
-    };
-
-    nixos-generators = {
-      url = "github:nix-community/nixos-generators";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    devshell = {
-      url = "github:numtide/devshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    flake-utils = {
-      url = "github:numtide/flake-utils";
-    };
-
-    nixos-wsl = {
-      url = "github:nix-community/NixOS-WSL";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-      };
-    };
-
-    ragenix = {
-      url = "github:yaxitech/ragenix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    marrano-bot = {
-      url = "github:moolite/bot";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-  };
-
-  outputs =
-    { self
-    , std
-    , hive
-    , haumea
-    , ...
-    } @ inputs:
-    std.growOn
-      {
-        inherit inputs;
-
-        systems = [
-          "aarch64-darwin"
-          "aarch64-linux"
-          "x86_64-darwin"
-          "x86_64-linux"
-        ];
-
-        cellsFrom = ./cells;
-
-        cellBlocks = with std.blockTypes // hive.blockTypes; [
-          # Repo utilities
-          (devshells "shells")
-
-          # Packages
-          (installables "packages")
-
-          # Overlays
-          (functions "lib")
-          (functions "modules")
-          (functions "profiles")
-          (functions "overlays")
-          (pkgs "overrides")
-
-          # suites/collections
-          (functions "darwinSuites")
-          (functions "nixosSuites")
-          (functions "homeSuites")
-
-          # nixos
-          (functions "hardwareProfiles")
-          (functions "homeProfiles")
-          (functions "users")
-
-          # Configurations
-          colmenaConfigurations
-          homeConfigurations
-          nixosConfigurations
-          darwinConfigurations
-        ];
-      }
-      # Utilities
-      {
-        # Run `nix develop` to enter the devshell
-        devShells = hive.harvest self [ "repo" "shells" ];
-        packages = hive.harvest inputs.self [
-          [ "common" "packages" ]
-        ];
-
-        # Useful functions
-        lib = hive.pick self [ "common" "lib" ];
-      }
-      # Modules
-      {
-        commonModules = std.pick self [ "common" "commonModules" ];
-        nixosModules = std.pick self [ "nixos" "modules" ];
-        darwinModules = std.pick self [ "darwin" "darwinModules" ];
-        homeModules = std.pick self [ "home" "modules" ];
-      }
-      # Profiles
-      {
-        commonProfiles = hive.pick self [ "common" "commonProfiles" ];
-        nixosProfiles = hive.pick self [ "nixos" "profiles" ];
-        darwinProfiles = hive.pick self [ "darwin" "profiles" ];
-        homeProfiles = hive.pick self [ "home" "profiles" ];
-        devshellProfiles = hive.pick self [ "devshell" "devshellProfiles" ];
-      }
-      # Configurations
-      {
-        colmenaHive = hive.collect self "colmenaConfigurations";
-        darwinConfigurations = hive.collect self "darwinConfigurations";
-        diskoConfigurations = hive.collect self "diskoConfigurations";
-        homeConfigurations = hive.collect self "homeConfigurations";
-        nixosConfigurations = hive.collect self "nixosConfigurations";
-      };
 
   nixConfig = {
     extra-trusted-substituters = [
