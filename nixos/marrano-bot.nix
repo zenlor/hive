@@ -1,5 +1,5 @@
-{...}: { lib, ...}:
-{
+{ ... }:
+{ lib, ... }: {
   age.secrets.marrano-bot.file = ../secrets/marrano-bot.age;
 
   services.marrano-bot = {

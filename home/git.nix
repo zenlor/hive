@@ -1,11 +1,6 @@
-{...}:
-{ pkgs, ... }:
-{
-  home.packages = with pkgs; [
-    difftastic
-    ghq
-    git-stack
-  ];
+{ ... }:
+{ pkgs, ... }: {
+  home.packages = with pkgs; [ difftastic ghq git-stack ];
 
   programs.git = {
     enable = true;
@@ -17,18 +12,13 @@
       display = "side-by-side-show-both";
     };
 
-    ignores = [
-      ".dir-locals.el"
-      ".DS_Store"
-      ".lsp"
-      ".clj-kondo"
-      ".direnv"
-    ];
+    ignores = [ ".dir-locals.el" ".DS_Store" ".lsp" ".clj-kondo" ".direnv" ];
 
     aliases = {
       co = "checkout";
       st = "status";
-      l = "log --date=format:'%a %b %e, %Y' --pretty=format:'%C(yellow)%h%C(reset) %s %C(cyan)%cd%C(reset) %C(blue)%an%C(reset) %C(green)%d%C(reset)' --graph";
+      l =
+        "log --date=format:'%a %b %e, %Y' --pretty=format:'%C(yellow)%h%C(reset) %s %C(cyan)%cd%C(reset) %C(blue)%an%C(reset) %C(green)%d%C(reset)' --graph";
       cl = "!ghq get";
     };
 
@@ -52,8 +42,6 @@
   programs.gh = {
     enable = true;
     gitCredentialHelper = { enable = true; };
-    extensions = [
-      pkgs.gh-eco
-    ];
+    extensions = [ pkgs.gh-eco ];
   };
 }

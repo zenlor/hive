@@ -1,6 +1,5 @@
 { super, root, inputs, stateVersion, ... }:
-{ ... }:
-{
+{ ... }: {
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;

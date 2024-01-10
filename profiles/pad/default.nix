@@ -1,8 +1,5 @@
-{ config, lib, pkgs, ... }:
-{
-  imports = [
-    ./_hardware_configuration.nix
-  ];
+{ config, lib, pkgs, ... }: {
+  imports = [ ./_hardware_configuration.nix ];
 
   system.stateVersion = "23.11";
 
@@ -35,11 +32,8 @@
 
     firewall = {
       enable = true;
-      allowedTCPPorts = [
-        22
-      ];
-      allowedUDPPorts = [
-      ];
+      allowedTCPPorts = [ 22 ];
+      allowedUDPPorts = [ ];
       allowPing = true;
     };
 

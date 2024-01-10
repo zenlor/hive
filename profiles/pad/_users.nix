@@ -1,7 +1,1 @@
-{ config
-, pkgs
-, ... }:
-{
-
-
-}
+{ config, pkgs, ... }: { }

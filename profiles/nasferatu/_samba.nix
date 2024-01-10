@@ -1,4 +1,4 @@
-{...}: {
+{ ... }: {
   services.samba = {
     enable = true;
     openFirewall = true;
@@ -99,9 +99,7 @@
     };
   };
 
-  services.samba-wsdd = {
-    enable = true;
-  };
+  services.samba-wsdd = { enable = true; };
 
   # MacOS TimeMachine
   services.netatalk.settings = {

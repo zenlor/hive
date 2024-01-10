@@ -1,9 +1,7 @@
-{ super, inputs, ...}:
-{ pkgs, lib, ...}:
-let
-  GB = 1024 * 1024 * 1024;
-in
-{
+{ super, inputs, ... }:
+{ pkgs, lib, ... }:
+let GB = 1024 * 1024 * 1024;
+in {
   imports = [
     super.networking
     super.openssh
@@ -57,8 +55,8 @@ in
     myip = "dig +short myip.opendns.com @208.67.222.222 2>&1";
 
     mn = ''
-          manix "" | grep '^# ' | sed 's/^# \(.*\) (.*/\1/;s/ (.*//;s/^# //' | sk --preview="manix '{}'" | xargs manix
-        '';
+      manix "" | grep '^# ' | sed 's/^# \(.*\) (.*/\1/;s/ (.*//;s/^# //' | sk --preview="manix '{}'" | xargs manix
+    '';
     top = "btm";
 
     mkdir = "mkdir -pv";
@@ -68,7 +66,7 @@ in
     ll = "ls -l";
     la = "ls -la";
 
-    path = "printf \\\"%b\\\\n\\\" \\\"\\\${PATH//:/\\\\\\n}\\\"";
+    path = ''printf \"%b\\n\" \"\''${PATH//:/\\\n}\"'';
     tm = "tmux new-session -A -s main";
 
     issh = "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null";
@@ -111,11 +109,6 @@ in
     options = "--delete-older-than 7d";
   };
 
-  nix.settings.nixPath = [
-    "nixpkgs=flake:nixos"
-    "home-manager=flake:home"
-  ];
-
   # cachix
   nix.settings.extra-trusted-substituters = [
     "https://cache.garnix.io"
@@ -141,7 +134,6 @@ in
     "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
     "numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE="
   ];
-
 
   # motd
   programs.rust-motd = {

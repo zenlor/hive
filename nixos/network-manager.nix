@@ -1,5 +1,5 @@
-{ ... }: { ... }:
-{
+{ ... }:
+{ ... }: {
   environment = {
     etc = {
       "NetworkManager/conf.d/wifi_rand_mac.conf" = {

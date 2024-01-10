@@ -1,6 +1,5 @@
 { ... }:
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   programs.tmux = {
     enable = true;
 
@@ -63,8 +62,6 @@
       bind b split-window -v -c "#{pane_current_path}"
     '';
 
-    plugins = with pkgs; [
-      tmuxPlugins.tmux-fzf
-    ];
+    plugins = with pkgs; [ tmuxPlugins.tmux-fzf ];
   };
 }

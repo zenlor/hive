@@ -1,45 +1,64 @@
-* Nix Hive
-
-#+BEGIN_QUOTE
-cultivate the bees in hexagonal cells
-#+END_QUOTE
+* nix void spaceport
 
 #+begin_src
-              \     /
-          \    o ^ o    /
-            \ (     ) /
- ____________(%%%%%%%)____________
-(     /   /  )%%%%%%%(  \   \     )
-(___/___/__/           \__\___\___)
-   (     /  /(%%%%%%%)\  \     )
-    (__/___/ (%%%%%%%) \___\__)
-            /(       )\
-          /   (%%%%%)   \
-               (%%%)
-                 !
+├───darwinConfigurations: unknown
+├───devShell
+│   ├───aarch64-darwin: development environment 'shell'
+│   ├───aarch64-linux: development environment 'shell'
+│   ├───x86_64-darwin: development environment 'shell'
+│   └───x86_64-linux: development environment 'shell'
+├───homeModules: unknown
+├───nixosConfigurations
+│   ├───frenz: NixOS configuration
+│   ├───horus: NixOS configuration
+│   ├───nasferatu: NixOS configuration
+│   └───pad: NixOS configuration
+└───nixosModules
+    ├───core: NixOS module
+    ├───gui: NixOS module
+    ├───laptop: NixOS module
+    ├───marrano-bot: NixOS module
+    ├───network-manager: NixOS module
+    ├───networking: NixOS module
+    ├───openssh: NixOS module
+    ├───secrets: NixOS module
+    ├───torrent: NixOS module
+    ├───users: NixOS module
+    └───wsl: NixOS module
 #+end_src
 
-** Beekeeping procedures
+** launch procedures
 
-*** Pollinate the environment
+*** voidship preflight
 
 #+begin_src shell
-direnv allow
+deploy \
+    --remote-build \
+    --dry-activate \
+    --keep-results \
+    .#<host>
 #+end_src
 
-*** maintain the hive
+*** voidship launch
 
 #+begin_src shell
-colmena apply --on @tag
+deploy \
+    --remote-build \
+    .#<host>
 #+end_src
 
 ** URLs
 
-- https://github.com/divnix/std
-- https://github.com/divnix/hive
-- https://github.com/GTrunSec/std-ext
-- https://github.com/GTrunSec/hive
-- https://github.com/truelecter/hive
+- [[/LnL7/nix-darwin]]
+- [[/nix-community/NixOS-WSL]]
+- [[/nix-community/haumea]]
+- [[/nix-community/home-manager]]
+- [[/nix-community/nix-direnv]]
+- [[/numtide/devshell]]
+- [[/numtide/flake-utils]]
+- [[/numtide/treefmt-nix]]
+- [[/serokell/deploy-rs]]
+- [[/yaxitech/ragenix]]
 
 ** Cheat sheet
 
@@ -48,3 +67,13 @@ colmena apply --on @tag
   --sudo~
 - apply an host: ~colmena apply -v --build-on-target --on nixos-nasferatu~
 - apply on darwin: ~nix run nix-darwin -- switch --flake .#darwin-mwb --show-trace~
+
+- ~deploy-rs~ to remotely deploy hosts
+- ~nix flake show~ look at the outputs
+
+** No more ~divnix/hive~?
+
+As it stands the hive is simply over-shadowing most of the simplicity of nix
+flakes, a good alternative is to use Haumea to load lazy derivations and include
+them in the submodules, it's not as /clean/ but but the tracebacks are greatly
+simplified.

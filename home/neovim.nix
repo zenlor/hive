@@ -1,16 +1,11 @@
-{...}:
-{ pkgs, ... }:
-{
+{ ... }:
+{ pkgs, ... }: {
   programs.neovim = {
     enable = true;
     defaultEditor = true;
     vimAlias = true;
     vimdiffAlias = true;
-    extraPackages = with pkgs;[
-      shfmt
-      fzf
-      neovim-remote
-    ];
+    extraPackages = with pkgs; [ shfmt fzf neovim-remote ];
 
     plugins = with pkgs.vimPlugins; [
       # FIXME: use newer plugins or move to lazy (mainly for mini.nvim)

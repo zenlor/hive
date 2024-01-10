@@ -1,6 +1,4 @@
 {
   # https://github.com/rsteube/carapace-bin
-  programs.carapace = {
-    enable = true;
-  };
+  programs.carapace = { enable = true; };
 }

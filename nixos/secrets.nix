@@ -1,11 +1,10 @@
-{...}:
-{
+{ ... }: {
   users = {
     lor = ../secrets/users/lor.age;
     root = ../secrets/users/root.age;
   };
   wireguard = {
-    allowedIPs = ["10.69.0.0/24"];
+    allowedIPs = [ "10.69.0.0/24" ];
     endpoint = "frenz.click:51820";
 
     # hosts
@@ -31,7 +30,5 @@
     };
   };
 
-  services = {
-    marrano-bot = ../secrets/services/marrano-bot.age;
-  };
+  services = { marrano-bot = ../secrets/services/marrano-bot.age; };
 }

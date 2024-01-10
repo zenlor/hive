@@ -1,43 +1,33 @@
-{ lib
-, modulesPath
-, config
-, ...
-}: {
-  imports =
-    [
-      (modulesPath + "/profiles/qemu-guest.nix")
-    ];
+{ lib, modulesPath, config, ... }: {
+  imports = [ (modulesPath + "/profiles/qemu-guest.nix") ];
 
-  boot.initrd.availableKernelModules = [ "ata_piix" "uhci_hcd" "virtio_pci" "virtio_scsi" ];
+  boot.initrd.availableKernelModules =
+    [ "ata_piix" "uhci_hcd" "virtio_pci" "virtio_scsi" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    {
-      device = "/dev/disk/by-uuid/737459fa-eab9-4d8f-9a14-c8c32d403c08";
-      fsType = "btrfs";
-      options = [ "subvol=root" ];
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/737459fa-eab9-4d8f-9a14-c8c32d403c08";
+    fsType = "btrfs";
+    options = [ "subvol=root" ];
+  };
 
-  fileSystems."/home" =
-    {
-      device = "/dev/disk/by-uuid/737459fa-eab9-4d8f-9a14-c8c32d403c08";
-      fsType = "btrfs";
-      options = [ "subvol=home" ];
-    };
+  fileSystems."/home" = {
+    device = "/dev/disk/by-uuid/737459fa-eab9-4d8f-9a14-c8c32d403c08";
+    fsType = "btrfs";
+    options = [ "subvol=home" ];
+  };
 
-  fileSystems."/boot" =
-    {
-      device = "/dev/disk/by-uuid/81fc59db-9456-4338-be05-6187435b288a";
-      fsType = "ext4";
-    };
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/81fc59db-9456-4338-be05-6187435b288a";
+    fsType = "ext4";
+  };
 
-  fileSystems."/boot/efi" =
-    {
-      device = "/dev/disk/by-uuid/E1E1-EA39";
-      fsType = "vfat";
-    };
+  fileSystems."/boot/efi" = {
+    device = "/dev/disk/by-uuid/E1E1-EA39";
+    fsType = "vfat";
+  };
 
   swapDevices = [ ];
 

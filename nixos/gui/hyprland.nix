@@ -1,11 +1,6 @@
 { ... }:
-{ pkgs, ... }:
-{
-  environment = {
-    systemPackages = with pkgs; [
-      wl-clipboard
-    ];
-  };
+{ pkgs, ... }: {
+  environment = { systemPackages = with pkgs; [ wl-clipboard ]; };
 
   programs.hyprland = {
     enable = true;

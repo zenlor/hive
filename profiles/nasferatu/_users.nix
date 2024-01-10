@@ -1,10 +1,6 @@
-{...}: {
+{ ... }: {
   users = {
-    groups = {
-      share = {
-        gid = 10000;
-      };
-    };
+    groups = { share = { gid = 10000; }; };
 
     users = {
       share = {

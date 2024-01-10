@@ -1,6 +1,5 @@
 { root, ... }:
-{ config, pkgs, lib, ... }:
-{
+{ config, pkgs, lib, ... }: {
   age.secrets.lor-password.file = root.secrets.users.lor;
 
   users.users.lor = {

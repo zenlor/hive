@@ -1,8 +1,4 @@
-{ lib
-, modulesPath
-, config
-, ...
-}: {
+{ lib, modulesPath, config, ... }: {
   services.transmission = {
     enable = true;
     group = "share";

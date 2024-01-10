@@ -1,15 +1,7 @@
-{ lib
-, modulesPath
-, config
-, pkgs
-, ...
-}: let
-  secrets = import ../../nixos/secrets.nix {};
+{ lib, modulesPath, config, pkgs, ... }:
+let secrets = import ../../nixos/secrets.nix { };
 in {
-  imports = [
-    ./_hardware.nix
-    ./_services.nix
-  ];
+  imports = [ ./_hardware.nix ./_services.nix ];
 
   time.timeZone = "Europe/Amsterdam";
 
@@ -66,25 +58,24 @@ in {
     privateKeyFile = config.age.secrets.wireguard-key.path;
 
     postSetup = ''
-            ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -s 10.69.0.0/24 -o enp0s3 -j MASQUERADE
-          '';
+      ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -s 10.69.0.0/24 -o enp0s3 -j MASQUERADE
+    '';
     postShutdown = ''
-            ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s 10.69.0.0/24 -o enp0s3 -j MASQUERADE
-          '';
-
+      ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s 10.69.0.0/24 -o enp0s3 -j MASQUERADE
+    '';
 
     peers = [
       {
         publicKey = secrets.wireguard.nasferatu.pub;
-        allowedIPs = ["10.69.0.2/32"];
+        allowedIPs = [ "10.69.0.2/32" ];
       }
       {
         publicKey = secrets.wireguard.pad.pub;
-        allowedIPs = ["10.69.0.3/32"];
+        allowedIPs = [ "10.69.0.3/32" ];
       }
       {
         publicKey = secrets.wireguard.horus.pub;
-        allowedIPs = ["10.69.0.4/32"];
+        allowedIPs = [ "10.69.0.4/32" ];
       }
     ];
   };

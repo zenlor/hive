@@ -12,7 +12,6 @@
   programs.geary.enable = true;
   programs.file-roller.enable = true;
 
-
   services.gnome = {
     sushi.enable = true;
     tracker.enable = true;

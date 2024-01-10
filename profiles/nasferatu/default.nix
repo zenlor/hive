@@ -17,9 +17,7 @@
   };
 
   boot.loader = {
-    efi = {
-      efiSysMountPoint = "/boot";
-    };
+    efi = { efiSysMountPoint = "/boot"; };
     systemd-boot = {
       enable = true;
       configurationLimit = 5;
@@ -48,7 +46,7 @@
         8343
         8081
         5357 # wsdd
-        548  # netatalk
+        548 # netatalk
       ];
       allowedUDPPorts = [
         51820

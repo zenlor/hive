@@ -1,6 +1,5 @@
 { ... }:
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   home.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "Iosevka" ]; })
     iosevka
@@ -29,10 +28,7 @@
     emacs29
   ];
 
-  home.sessionPath = [
-    "$HOME/.config/emacs/bin"
-    "$HOME/.config/doom/bin"
-  ];
+  home.sessionPath = [ "$HOME/.config/emacs/bin" "$HOME/.config/doom/bin" ];
 
   xdg.configFile = {
     "doom" = {

@@ -1,9 +1,7 @@
 { ... }:
 { lib, pkgs, ... }:
-let
-  inherit (lib) mkDefault mkForce;
-in
-{
+let inherit (lib) mkDefault mkForce;
+in {
   networking.firewall.allowPing = mkDefault false;
   networking.firewall.logRefusedConnections = mkDefault false;
 

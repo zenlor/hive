@@ -1,13 +1,7 @@
 { ... }:
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   environment = {
-    systemPackages = with pkgs; [
-      sway
-      mako
-      wl-clipboard
-      shotman
-    ];
+    systemPackages = with pkgs; [ sway mako wl-clipboard shotman ];
   };
 
   wayland.windowManager.sway = {
@@ -15,11 +9,7 @@
     config = rec {
       modifier = "Mod4"; # super
       terminal = "alacritty";
-      output = {
-        "Virtual-1" = {
-          mode = "1920x1080@60Hz";
-        };
-      };
+      output = { "Virtual-1" = { mode = "1920x1080@60Hz"; }; };
     };
     extraConfig = ''
       bindsym Print               exec shotman -c output

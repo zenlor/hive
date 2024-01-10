@@ -1,12 +1,6 @@
 { ... }:
-{ pkgs, ... }:
-{
-  environment = {
-    systemPackages = with pkgs; [
-      thunderbird
-      alacritty
-    ];
-  };
+{ pkgs, ... }: {
+  environment = { systemPackages = with pkgs; [ thunderbird alacritty ]; };
 
   security.polkit.enable = true;
   hardware.opengl.enable = true;

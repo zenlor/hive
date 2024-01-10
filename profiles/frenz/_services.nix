@@ -1,12 +1,5 @@
-{ config
-, lib
-, pkgs
-, ...
-}:
-{
-  environment.systemPackages = [
-    pkgs.caddy
-  ];
+{ config, lib, pkgs, ... }: {
+  environment.systemPackages = [ pkgs.caddy ];
 
   services.caddy = {
     enable = true;
