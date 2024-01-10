@@ -45,9 +45,6 @@
     };
   };
 
-  services.marrano-bot = {
-    enable = true;
-    hostName = "bot.marrani.lol";
-    logLevel = "debug";
-  };
+  # services.marrano-bot.hostName = "bot.marrani.lol";
+  # services.marrano-bot.logLevel = "debug";
 }

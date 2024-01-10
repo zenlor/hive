@@ -105,8 +105,9 @@ in
   nix.settings.min-free = lib.mkDefault (5 * GB);
 
   # Improve nix store disk usage
-  nix.settings.gc = {
+  nix.gc = {
     automatic = true;
+    dates = "weekly";
     options = "--delete-older-than 7d";
   };
 

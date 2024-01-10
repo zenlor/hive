@@ -1,7 +1,4 @@
-{ config
-, pkgs
-, ...
-}: {
+{...}: {
   services.unbound = {
     enable = true;
     settings = {

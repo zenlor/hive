@@ -1,229 +1,222 @@
 {
   description = "nixos bee hive";
 
-  outputs = inputs @ { self, ... }:
-    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+  outputs =
+    inputs @ { self
+    , flake-parts
+    , ...
+    }:
+    flake-parts.lib.mkFlake { inherit inputs; } ({ self
+      , withSystem
+                                                 , flake-parts-lib
+                                                 , ...
+                                                 }: {
       systems = [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" ];
       imports = [
-        inputs.nixos-flake.flakeModule
-        inputs.flake-root.flakeModule
+        inputs.devshell.flakeModule
       ];
 
-      perSystem =
-        { config
-        , inputs'
-        , pkgs
-        , system
-        , ...
-        }:
-        let
-          pkgs = import inputs.nixpkgs {
-            inherit system;
-            overlays = [
-              inputs.devshell.overlays.default
-              inputs.ragenix.overlays.default
-            ];
-          };
-        in
-          {
-            devShells = {
-              default = pkgs.devshell.mkShell {
-                packages = with pkgs; [
-                  nixd
-                  age
-                ];
-                commands = [
-                  { package = pkgs.alejandra; }
-                  { package = pkgs.colmena; }
-                  { package = pkgs.ragenix; }
-                ];
-              };
-            };
-          };
-
-      flake =
-        let
-          stateVersion = "23.11";
-          darwinStateVersion = 4;
-          homeStateVersion = "23.11";
-
-          overlays = [
-            inputs.ragenix.overlays.default
+      perSystem = { config, pkgs, system, ... }: {
+        devshells.default = {
+          env = [ ];
+          commands = [
+            { package = pkgs.colmena; }
+            { package = pkgs.nixd; }
+            { package = pkgs.nixpkgs-fmt; }
+            { package = inputs.ragenix.packages.${system}.ragenix; }
           ];
-        in
-          {
-            # Configurations for Linux (NixOS) machines
-            nixosConfigurations = {
-              horus = self.nixos-flake.lib.mkLinuxSystem {
-                nixpkgs.hostPlatform = "x86_64-linux";
-                nixpkgs.system = "x86_64-linux";
-                nixpkgs.overlays = overlays;
-                imports = [
-                  inputs.nixos-wsl.nixosModules.wsl
-                  inputs.ragenix.nixosModules.default
-                  inputs.home-manager.nixosModules.default
+          packages = [ ];
+        };
+      };
 
-                  self.nixosModules.core
+      flake.nixosConfigurations = {
+        horus = withSystem "x86_64-linux" (ctx @ { config
+                                           , inputs'
+                                           , system
+                                           , ...
+                                           }:
+          inputs.nixpkgs.lib.nixosSystem {
+            inherit system;
+            modules = [
+              inputs.nixos-wsl.nixosModules.wsl
+              inputs.ragenix.nixosModules.default
+              inputs.home-manager.nixosModules.default
 
-                  ./profiles/horus
+              self.nixosModules.core
 
-                  self.nixosModules.home-manager
-                  self.homeModules.suites.workstation
-                ];
-              } // {
-                deployment = {
-                  targetHost = null;
-                  allowLocalDeployment = true;
-                };
-              };
-              pad = self.nixos-flake.lib.mkLinuxSystem {
-                nixpkgs.hostPlatform = "x86_64-linux";
-                nixpkgs.system = "x86_64-linux";
-                nixpkgs.overlays = overlays;
-                imports = [
-                  inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x280
-                  inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
-                  inputs.ragenix.nixosModules.default
-                  inputs.home-manager.nixosModules.default
+              ./profiles/horus
 
-                  self.nixosModules.core
-                  self.nixosModules.laptop
-
-                  ./profiles/pad
-
-                  self.nixosModules.home-manager
-                  self.homeModules.suites.workstation
-                ];
-              } // {
-                deployment = {
-                  targetHost = null;
-                  allowLocalDeployment = true;
-                };
-              };
-
-              nasferatu = self.nixos-flake.lib.mkLinuxSystem {
-                nixpkgs.hostPlatform = "x86_64-linux";
-                nixpkgs.system = "x86_64-linux";
-                nixpkgs.overlays = overlays;
-                imports = [
-                  inputs.nixos-hardware.nixosModules.common-cpu-amd
-                  inputs.nixos-hardware.nixosModules.common-gpu-amd
-                  inputs.nixos-hardware.nixosModules.common-pc-ssd
-                  inputs.ragenix.nixosModules.default
-                  inputs.home-manager.nixosModules.default
-
-                  self.nixosModules.core
-                  self.nixosModules.networking
-                  self.nixosModules.openssh
-
-                  ./profiles/nasferatu
-
-                  self.nixosModules.home-manager
-                  self.homeModules.suites.server
-                ];
-              } // {
-                deployment = {
-                  targetHost = "192.168.1.1";
-                  allowLocalDeployment = true;
-                };
-              };
-
-              frenz = self.nixos-flake.lib.mkLinuxSystem {
-                nixpkgs.hostPlatform = "x86_64-linux";
-                nixpkgs.system = "x86_64-linux";
-                nixpkgs.overlays = overlays;
-                imports = [
-                  inputs.nixos-hardware.nixosModules.common-cpu-intel
-                  inputs.nixos-hardware.nixosModules.common-gpu-intel
-                  inputs.nixos-hardware.nixosModules.common-pc-ssd
-                  inputs.ragenix.nixosModules.default
-
-                  self.nixosModules.core
-                  self.nixosModules.services.marrano-bot
-
-                  ./profiles/frenz
-
-                  self.nixosModules.home-manager
-                  self.homeModules.suites.server
-                ];
-              } // {
-                deployment = {
-                  targetHost = "frenz.click";
-                  allowLocalDeployment = true;
-                };
-              };
-
-              pprint-a = self.nixos-flake.lib.mkLinuxSystem {
-                nixpkgs.hostPlatform = "aarch64-linux";
-                nixpkgs.system = "aarch64-linux";
-                nixpkgs.overlays = overlays;
-                imports = [
-                  inputs.nixos-hardware.nixosModules.raspberry-pi-4
-
-                  self.nixosModules.core
-
-                  ./profiles/pprint
-                ];
-              } // {
-                deployment = {
-                  targetHost = null; # "192.168.1.10";
-                  allowLocalDeployment = true;
-                };
-              };
+              self.homeModules.suites.workstation
+            ];
+          }) // {
+            deployment = {
+              targetHost = null;
+              allowLocalDeployment = true;
             };
-
-            # Configurations for macOS machines
-            darwinConfigurations = {
-              macbook = self.nixos-flake.lib.mkMacosSystem {
-                nixpkgs.hostPlatform = "aarch64-darwin";
-                imports = [
-                  self.nixosModules.core
-                  self.nixosModules.darwin
-
-                  ./profiles/macbook
-
-                  self.darwinModules_.home-manager
-                  {
-                    home-manager.users.lor = {
-                      imports = [
-                        self.homeModules.core
-                        self.homeModules.darwin
-                      ];
-                      home.stateVersion = homeStateVersion;
-                    };
-                  }
-                ];
-
-              };
-            };
-
-            nixosModules = inputs.haumea.lib.load {
-              src = ./nixos;
-              inputs = {
-                inherit inputs;
-                inherit stateVersion;
-              };
-              transformer = inputs.haumea.lib.transformers.liftDefault;
-            };
-
-            homeModules = inputs.haumea.lib.load {
-              src = ./home;
-              inputs = {
-                inherit inputs;
-                inherit stateVersion;
-              };
-              transformer = inputs.haumea.lib.transformers.liftDefault;
-            };
-
-            colmena = {
-              meta = {
-                description = "void-space hive";
-                nodeNixpkgs = builtins.mapAttrs (name: value: value._module.specialArgs) self.nixosConfigurations;
-                nodeSpecialArgs = builtins.mapAttrs (name: value: value._module.specialArgs) self.nixosConfigurations;
-              };
-            }// builtins.mapAttrs(name: value: { imports = value._module.args.modules; }) self.nixosConfigurations;
           };
-    };
+
+        pad = withSystem "x86_64-linux" (ctx @ { config
+                                         , inputs'
+                                           , system
+                                         , ...
+                                         }:
+          inputs.nixpkgs.lib.nixosSystem {
+            inherit system;
+            modules = [
+              inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x280
+              inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
+              inputs.ragenix.nixosModules.default
+              inputs.home-manager.nixosModules.default
+
+              self.nixosModules.core
+              self.nixosModules.laptop
+
+              ./profiles/pad
+
+              self.homeModules.suites.workstation
+            ];
+          }) // {
+            deployment = {
+              targetHost = null;
+              allowLocalDeployment = true;
+            };
+          };
+
+        nasferatu = withSystem "x86_64-linux" (ctx @ { config
+                                               , inputs'
+                                               , system
+                                               , ...
+                                               }:
+          inputs.nixpkgs.lib.nixosSystem {
+            inherit system;
+            modules = [
+              inputs.nixos-hardware.nixosModules.common-cpu-amd
+              inputs.nixos-hardware.nixosModules.common-gpu-amd
+              inputs.nixos-hardware.nixosModules.common-pc-ssd
+              inputs.ragenix.nixosModules.default
+              inputs.home-manager.nixosModules.default
+
+              self.nixosModules.core
+              self.nixosModules.networking
+              self.nixosModules.openssh
+              self.nixosModules.torrent
+
+              ./profiles/nasferatu
+
+              self.homeModules.suites.server
+            ];
+          }) // {
+            deployment = {
+              targetHost = "192.168.1.1";
+              allowLocalDeployment = true;
+            };
+          };
+
+        frenz = withSystem "x86_64-linux" (ctx @ { config
+                                           , inputs'
+                                             , system
+                                           , ...
+                                           }:
+          inputs.nixpkgs.lib.nixosSystem {
+            inherit system;
+            modules = [
+              inputs.nixos-hardware.nixosModules.common-cpu-intel
+              inputs.nixos-hardware.nixosModules.common-gpu-intel
+              inputs.nixos-hardware.nixosModules.common-pc-ssd
+              inputs.ragenix.nixosModules.default
+              inputs.home-manager.nixosModules.default
+
+              self.nixosModules.core
+
+              # inputs.marrano-bot.nixosModules.default
+              # self.nixosModules.marrano-bot
+
+              ./profiles/frenz
+
+              self.homeModules.suites.server
+            ];
+          }) // {
+            deployment = {
+              targetHost = "frenz.click";
+              allowLocalDeployment = true;
+            };
+          };
+
+        # pprint = withSystem "aarch64-linux" (ctx @ { config
+        #                                      , inputs'
+        #                                        , system
+        #                                      , ...
+        #                                      }:
+        #   inputs.nixpkgs.lib.nixosSystem {
+        #     inherit system;
+        #     modules = [
+        #       inputs.nixos-hardware.nixosModules.raspberry-pi-4
+        #       inputs.ragenix.nixosModules.default
+        #
+        #       self.nixosModules.core
+        #
+        #       ./profiles/pprint
+        #     ];
+        #   }) // {
+        #     deployment = {
+        #       targetHost = null; # "192.168.1.10";
+        #       allowLocalDeployment = true;
+        #     };
+        #   };
+      };
+      # Configurations for macOS machines
+      # darwinConfigurations = {
+      #   macbook = self.nixos-flake.lib.mkMacosSystem {
+      #     nixpkgs.hostPlatform = "aarch64-darwin";
+      #     imports = [
+      #       self.nixosModules.core
+      #       self.nixosModules.darwin
+
+      #       ./profiles/macbook
+
+      #       self.darwinModules_.home-manager
+      #       {
+      #         home-manager.users.lor = {
+      #           imports = [
+      #             self.homeModules.core
+      #             self.homeModules.darwin
+      #           ];
+      #           home.stateVersion = homeStateVersion;
+      #         };
+      #       }
+      #     ];
+
+      #   };
+      # };
+
+      flake.nixosModules = inputs.haumea.lib.load {
+        src = ./nixos;
+        inputs = {
+          inherit inputs;
+          stateVersion = "23.11";
+        };
+        transformer = inputs.haumea.lib.transformers.liftDefault;
+      };
+
+      flake.homeModules = inputs.haumea.lib.load {
+        src = ./home;
+        inputs = {
+          inherit inputs;
+          stateVersion = "23.11";
+        };
+        transformer = inputs.haumea.lib.transformers.liftDefault;
+      };
+
+      flake.colmena =
+        {
+          meta = {
+            description = "void-space hive";
+            nodeNixpkgs = builtins.mapAttrs (name: value: value._module.specialArgs) self.nixosConfigurations;
+            nodeSpecialArgs = builtins.mapAttrs (name: value: value._module.specialArgs) self.nixosConfigurations;
+          };
+        }
+        // builtins.mapAttrs (name: value: { imports = value._module.args.modules; }) self.nixosConfigurations;
+    });
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
@@ -237,7 +230,6 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     flake-parts.url = "github:hercules-ci/flake-parts";
-    flake-root.url = "github:srid/flake-root";
 
     nixos-flake.url = "github:srid/nixos-flake";
 

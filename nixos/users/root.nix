@@ -4,9 +4,9 @@
   # Root password
   age.secrets.root-password.file = root.secrets.users.lor;
   users.users.root = {
-    description = "Toor";
+    description = lib.mkForce "Toor";
     extraGroups = [ "networkmanager" "wheel" ];
-    passwordFile = lib.mkDefault config.age.secrets.root-password.path;
+    hashedPasswordFile = lib.mkDefault config.age.secrets.root-password.path;
     shell = lib.mkForce pkgs.zsh;
   };
 }

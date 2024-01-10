@@ -12,7 +12,7 @@
         root.shell.core
         root.shell.fish
         root.shell.tmux
-        root.shell.neovim
+        root.neovim
       ];
       home.stateVersion = "${stateVersion}";
     };

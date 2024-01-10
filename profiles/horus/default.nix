@@ -1,7 +1,4 @@
-{ config
-, lib
-, ...
-}:
+{ config, lib, ... }:
 let
   secrets = import ../../nixos/secrets.nix {};
 in {
@@ -27,7 +24,7 @@ in {
 
       network = {
         generateHosts = true;
-        generateResolvConf = true;
+        generateResolvConf = false; # using systemd-resolvd
         hostname = "horus";
       };
 

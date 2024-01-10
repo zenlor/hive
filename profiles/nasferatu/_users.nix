@@ -1,7 +1,4 @@
-{ config
-, pkgs
-, ...
-}: {
+{...}: {
   users = {
     groups = {
       share = {

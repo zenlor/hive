@@ -1,23 +1,5 @@
-{ inputs
-, cell
-}:
-let
-  inherit (inputs)
-    cells
-    ;
-in
-{
+{ config, lib, ... }: {
   imports = [
-    cell.profiles.cachix
-    cell.profiles.core
-    cell.profiles.home
-    cell.profiles.networking
-    cell.profiles.openssh
-    cell.profiles.torrent
-
-    cells.home.users.nixos.lor-server
-    cells.home.users.nixos.root
-
     ./_hardware.nix
     ./_samba.nix
     ./_services.nix
@@ -26,24 +8,15 @@ in
     ./_zfs-mounts.nix
   ];
 
-  config.bee = {
-    system = "x86_64-linux";
-    home = inputs.home-manager;
-    pkgs = import inputs.nixpkgs {
-      inherit (inputs.nixpkgs) system;
-      config.allowUnfree = true;
-    };
-  };
+  time.timeZone = "Europe/Amsterdam";
 
-  config.time.timeZone = "Europe/Amsterdam";
-
-  config.security = {
+  security = {
     protectKernelImage = true;
     rtkit.enable = true;
     sudo.wheelNeedsPassword = false;
   };
 
-  config.boot.loader = {
+  boot.loader = {
     efi = {
       efiSysMountPoint = "/boot";
     };
@@ -52,10 +25,10 @@ in
       configurationLimit = 5;
     };
   };
-  config.systemd.enableEmergencyMode = false;
-  config.boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  systemd.enableEmergencyMode = false;
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
-  config.networking = {
+  networking = {
     hostName = "nasferatu";
     search = [ "local" ];
     useDHCP = false;
@@ -87,7 +60,7 @@ in
     hostId = "45FE4A70";
   };
 
-  config.services.resolved = {
+  services.resolved = {
     enable = true;
     dnssec = "allow-downgrade";
     domains = [ "~." ];

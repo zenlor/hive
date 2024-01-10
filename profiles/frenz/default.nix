@@ -1,9 +1,10 @@
 { lib
 , modulesPath
 , config
+, pkgs
 , ...
 }: let
-  wireguard-secrets = import ../../secrets/wireguard.nix;
+  secrets = import ../../nixos/secrets.nix {};
 in {
   imports = [
     ./_hardware.nix
@@ -38,24 +39,22 @@ in {
   networking.hostName = "frenz";
   networking.nameservers = [ "1.1.1.1" "1.0.0.1" ];
 
-  networking.firewall = {
-    enable = true;
-    allowedTCPPorts = [ 22 80 443 ];
-    allowPing = false;
-  };
+  networking.firewall.enable = true;
+  networking.firewall.allowedTCPPorts = [ 22 80 443 ];
+  networking.firewall.allowPing = false;
 
   # for some reason fails most of the times
   services.resolved.enable = false;
 
   # VPS needs quemu guest agent
-  environment.systemPackages = with inputs.nixpkgs; [ qemu-utils ];
+  environment.systemPackages = [ pkgs.qemu-utils ];
   services.qemuGuest.enable = true;
 
   # wireguard
-  age.secrets.wireguard-key.file = wireguard-secrets.frenz.key;
+  age.secrets.wireguard-key.file = secrets.wireguard.frenz.key;
 
   networking.firewall.allowedUDPPorts = [ 51820 ];
-  networking.firewall.nat = {
+  networking.nat = {
     enable = true;
     externalInterface = "enp0s3";
     internalInterfaces = [ "wg0" ];
@@ -76,15 +75,15 @@ in {
 
     peers = [
       {
-        publicKey = wireguard-secrets.nasferatu.pk;
+        publicKey = secrets.wireguard.nasferatu.pub;
         allowedIPs = ["10.69.0.2/32"];
       }
       {
-        publicKey = wireguard-secrets.pad.pk;
+        publicKey = secrets.wireguard.pad.pub;
         allowedIPs = ["10.69.0.3/32"];
       }
       {
-        publicKey = wireguard-secrets.horus.pk;
+        publicKey = secrets.wireguard.horus.pub;
         allowedIPs = ["10.69.0.4/32"];
       }
     ];
