@@ -1,6 +1,7 @@
 { lib, modulesPath, config, pkgs, ... }:
 let secrets = import ../../nixos/secrets.nix { };
 in {
+
   imports = [ ./_hardware.nix ./_services.nix ];
 
   time.timeZone = "Europe/Amsterdam";
@@ -32,7 +33,7 @@ in {
   networking.nameservers = [ "1.1.1.1" "1.0.0.1" ];
 
   networking.firewall.enable = true;
-  networking.firewall.allowedTCPPorts = [ 22 80 443 ];
+  networking.firewall.allowedTCPPorts = [ 22 80 443 25565 35565 ];
   networking.firewall.allowPing = false;
 
   # for some reason fails most of the times

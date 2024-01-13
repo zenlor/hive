@@ -1,6 +1,9 @@
-{ ... }:
+{ inputs, ... }:
 { lib, ... }: {
-  age.secrets.marrano-bot.file = ../secrets/marrano-bot.age;
+
+  nixpkgs.overlays = [ inputs.marrano-bot.overlays.default ];
+
+  age.secrets.marrano-bot.file = ../secrets/services/marrano-bot.age;
 
   services.marrano-bot = {
     enable = lib.mkDefault true;

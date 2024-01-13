@@ -1,4 +1,5 @@
 { config, lib, pkgs, ... }: {
+
   imports = [ ./_hardware_configuration.nix ];
 
   system.stateVersion = "23.11";
