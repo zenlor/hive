@@ -3,6 +3,8 @@
   programs.tmux = {
     enable = true;
 
+    terminal = "tmux-256colors";
+
     clock24 = true;
     keyMode = "vi";
     customPaneNavigationAndResize = true;
@@ -36,9 +38,6 @@
 
     # UI
     extraConfig = ''
-      # fix that terminal
-      set-option -g default-terminal "tmux-256color"
-
       # aggressively renumber windows
       set -g renumber-windows on
 
