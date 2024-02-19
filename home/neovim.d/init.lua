@@ -144,6 +144,19 @@ require'nvim-treesitter.configs'.setup {
 }
 
 --
+-- none-ls.nvim
+--
+local null_ls = require'null-ls'
+null_ls.setup({
+  sources = {
+    null_ls.builtins.formatting.gofmt,
+    null_ls.builtins.formatting.goimports,
+    null_ls.builtins.formatting.jq,
+    null_ls.builtins.completion.spell,
+  }
+})
+
+--
 -- Keymaps
 --
 vim.g.mapleader = ' ' -- space as <leader>

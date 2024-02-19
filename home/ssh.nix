@@ -6,5 +6,12 @@
     includes = [ "local" ];
   };
 
-  programs.keychain = { enable = true; };
+  programs.keychain = {
+    enable = true;
+    keys = [
+      "id_ecdsa"
+      "id_ed25519"
+      "id_rsa"
+    ];
+  };
 }

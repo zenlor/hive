@@ -160,7 +160,7 @@ in {
 
   programs.fish = {
     enable = true;
-    useBabelfish = lib.mkDefault true;
+    useBabelfish = lib.mkDefault false;
     interactiveShellInit = ''
       fish_vi_key_bindings
     '';

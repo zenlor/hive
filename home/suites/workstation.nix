@@ -16,6 +16,9 @@
         root.shell.z-lua
         root.shell.fzf
 
+        root.git
+        root.ssh
+
         root.doom
         root.neovim
       ];

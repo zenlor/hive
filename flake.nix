@@ -51,6 +51,7 @@
               inputs.home-manager.nixosModules.default
 
               self.nixosModules.core
+              self.nixosModules.docker
 
               ./profiles/horus
 
@@ -153,6 +154,14 @@
           };
         };
 
+        homeConfigurations = {
+          lor = {
+            modules = [
+              self.homeModules.suites.workstation
+            ];
+          };
+        };
+
         nixosModules = inputs.haumea.lib.load {
           src = ./nixos;
           inputs = {
@@ -181,16 +190,21 @@
         #   imports = value._module.args.modules;
         # }) (self.nixosConfigurations);
 
-        colmena = {
+        colmena = let
+          conf = self.nixosConfigurations;
+        in {
           meta = {
             description = "my personal machines";
             # This can be overriden by node nixpkgs
             nixpkgs = import inputs.nixpkgs { system = "x86_64-linux"; };
-            nodeNixpkgs = builtins.mapAttrs (name: value: value.pkgs)
-              self.nixosConfigurations;
+            nodeNixpkgs =
+              builtins.mapAttrs (name: value: value.pkgs) conf;
             nodeSpecialArgs =
-              builtins.mapAttrs (name: value: value._module.specialArgs)
-              self.nixosConfigurations;
+              builtins.mapAttrs (name: value: value._module.specialArgs) conf;
+          };
+          defaults.deployment = {
+            buildOnTarget = true;
+            allowLocalDeployment = true;
           };
           nasferatu = {
             deployment = {
@@ -222,9 +236,9 @@
               targetHost = null;
             };
           };
-        } // builtins.mapAttrs
-          (name: value: { imports = value._module.args.modules; })
-          self.nixosConfigurations;
+        } // builtins.mapAttrs (name: value: {
+          imports = value._module.args.modules;
+        }) conf;
       };
 
   inputs = {

@@ -8,10 +8,11 @@
     extraPackages = with pkgs; [ shfmt fzf neovim-remote ];
 
     plugins = with pkgs.vimPlugins; [
-      # FIXME: use newer plugins or move to lazy (mainly for mini.nvim)
       nvim-lspconfig
-      # FIXME archived from the author, switch to nvimtools/none-ls when available
-      null-ls-nvim
+
+      # format on save
+      plenary-nvim
+      none-ls-nvim
 
       # treesitter
       nvim-treesitter-textobjects
@@ -47,9 +48,6 @@
 
       # languages
       vim-nix
-
-      # language support
-      formatter-nvim
 
       # ux
       fzf-vim
