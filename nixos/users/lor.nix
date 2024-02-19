@@ -14,4 +14,7 @@
     ];
   };
   home-manager.users.lor.programs.git.extraConfig.user.signingkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPEjb3xZe7wZ7JezbXApLdLhMeTnO2c2J8FJrpr7nWCr";
+
+  home-manager.users.lor.programs.git.userName = "Lorenzo Giuliani";
+  home-manager.users.lor.programs.git.userEmail = "lorenzo@frenzart.com";
 }
