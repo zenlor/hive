@@ -46,8 +46,9 @@
         443
         8343
         8081
+        8989 # sonarr
         5357 # wsdd
-        548 # netatalk
+        548  # netatalk
       ];
       allowedUDPPorts = [
         51820
