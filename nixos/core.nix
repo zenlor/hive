@@ -2,14 +2,6 @@
 { pkgs, lib, ... }:
 let GB = 1024 * 1024 * 1024;
 in {
-  imports = [
-    super.networking
-    super.openssh
-
-    super.users.lor
-    super.users.root
-  ];
-
   # Selection of sysadmin tools that can come in handy
   environment.systemPackages = with pkgs; [
     bat
@@ -165,10 +157,6 @@ in {
       fish_vi_key_bindings
     '';
   };
-
-  # command-not-found and friends are useless
-  programs.command-not-found.enable = false;
-  programs.nix-index.enable = false;
 
   users.defaultUserShell = pkgs.zsh;
 

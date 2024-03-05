@@ -3,146 +3,160 @@
 
   outputs = inputs@{ self, flake-utils, nixpkgs, ... }:
 
-    flake-utils.lib.eachDefaultSystem (system:
-      let
-        pkgs = import nixpkgs {
-          inherit system;
-          overlays = [ inputs.devshell.overlays.default ];
-        };
-      in {
-        devShells.default = pkgs.devshell.mkShell {
-          name = "shell";
-          env = [ ];
-          commands = [
-            {
-              category = "ops";
-              package = inputs.ragenix.packages.${system}.ragenix;
-              help = "manage secrets";
-            }
-            {
-              category = "ops";
-              package = pkgs.colmena;
-            }
-            {
-              category = "dev";
-              package = pkgs.nixd;
-            }
-            {
-              category = "dev";
-              package = pkgs.nixpkgs-fmt;
-            }
-            {
-              category = "dev";
-              package = pkgs.nixfmt;
-            }
+    flake-utils.lib.eachDefaultSystem
+      (system:
+        let
+          pkgs = import nixpkgs {
+            inherit system;
+            overlays = [ inputs.devshell.overlays.default ];
+          };
+        in
+        {
+          devShells.default = pkgs.devshell.mkShell {
+            name = "shell";
+            env = [ ];
+            commands = [
+              {
+                category = "ops";
+                package = pkgs.deploy-rs;
+                name = "deploy";
+              }
+              {
+                category = "ops";
+                package = inputs.ragenix.packages.${system}.ragenix;
+                help = "manage secrets";
+              }
+              {
+                category = "dev";
+                package = pkgs.nixd;
+              }
+              {
+                category = "dev";
+                package = pkgs.nixpkgs-fmt;
+              }
+              {
+                category = "dev";
+                package = pkgs.nixfmt;
+              }
+            ];
+            packages = [ ];
+          };
+
+          formatter = pkgs.nixpkgs-fmt;
+        }) // {
+
+      nixosConfigurations = {
+        horus = inputs.nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            inputs.nixos-wsl.nixosModules.wsl
+            inputs.ragenix.nixosModules.default
+            inputs.home-manager.nixosModules.default
+
+            self.nixosModules.core
+            self.nixosModules.networking
+            self.nixosModules.openssh
+            self.nixosModules.users.lor
+            self.nixosModules.users.root
+
+            ./profiles/horus
+
+            self.homeModules.suites.workstation
           ];
-          packages = [ ];
         };
 
-        formatter = pkgs.nixpkgs-fmt;
-      }) // {
+        pad = inputs.nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x280
+            inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
+            inputs.ragenix.nixosModules.default
+            inputs.home-manager.nixosModules.default
 
-        nixosConfigurations = {
-          horus = inputs.nixpkgs.lib.nixosSystem {
-            system = "x86_64-linux";
-            modules = [
-              inputs.nixos-wsl.nixosModules.wsl
-              inputs.ragenix.nixosModules.default
-              inputs.home-manager.nixosModules.default
+            self.nixosModules.core
+            self.nixosModules.networking
+            self.nixosModules.openssh
+            self.nixosModules.users.lor
+            self.nixosModules.users.root
+            self.nixosModules.laptop
 
-              self.nixosModules.core
-              self.nixosModules.docker
+            ./profiles/pad
 
-              ./profiles/horus
-
-              self.homeModules.suites.workstation
-            ];
-          };
-
-          pad = inputs.nixpkgs.lib.nixosSystem {
-            system = "x86_64-linux";
-            extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
-            modules = [
-              inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x280
-              inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
-              inputs.ragenix.nixosModules.default
-              inputs.home-manager.nixosModules.default
-
-              self.nixosModules.core
-              self.nixosModules.laptop
-
-              ./profiles/pad
-
-              self.homeModules.suites.workstation
-            ];
-          };
-
-          nasferatu = inputs.nixpkgs.lib.nixosSystem {
-            system = "x86_64-linux";
-            extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
-            modules = [
-              inputs.nixos-hardware.nixosModules.common-cpu-amd
-              inputs.nixos-hardware.nixosModules.common-gpu-amd
-              inputs.nixos-hardware.nixosModules.common-pc-ssd
-              inputs.ragenix.nixosModules.default
-              inputs.home-manager.nixosModules.default
-
-              self.nixosModules.core
-              self.nixosModules.networking
-              self.nixosModules.openssh
-              self.nixosModules.torrent
-
-              ./profiles/nasferatu
-
-              self.homeModules.suites.server
-            ];
-          };
-
-          frenz = inputs.nixpkgs.lib.nixosSystem {
-            system = "x86_64-linux";
-            extraModules = [ inputs.colmena.nixosModules.deploymentOptions ];
-            modules = [
-              inputs.nixos-hardware.nixosModules.common-cpu-intel
-              inputs.nixos-hardware.nixosModules.common-gpu-intel
-              inputs.nixos-hardware.nixosModules.common-pc-ssd
-              inputs.ragenix.nixosModules.default
-              inputs.home-manager.nixosModules.default
-
-              self.nixosModules.core
-
-              inputs.marrano-bot.nixosModules.default
-              self.nixosModules.marrano-bot
-
-              ./profiles/frenz
-
-              self.homeModules.suites.server
-            ];
-          };
-
-          # pprint = inputs.nixpkgs.lib.nixosSystem {
-          #     system = "aarch64-linux";
-          #     modules = [
-          #       inputs.nixos-hardware.nixosModules.raspberry-pi-4
-          #       inputs.ragenix.nixosModules.default
-          #
-          #       self.nixosModules.core
-          #
-          #       ./profiles/pprint
-          #     ];
-          #   };
+            self.homeModules.suites.workstation
+          ];
         };
 
-        # Configurations for macOS machines
-        darwinConfigurations = {
-          macbook = inputs.nix-darwin.lib.darwinSystem {
-            system = "aarch64-darwin";
-            imports = [
-              self.nixosModules.core
-              self.nixosModules.darwin
+        nasferatu = inputs.nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            inputs.nixos-hardware.nixosModules.common-cpu-amd
+            inputs.nixos-hardware.nixosModules.common-gpu-amd
+            inputs.nixos-hardware.nixosModules.common-pc-ssd
+            inputs.ragenix.nixosModules.default
+            inputs.home-manager.nixosModules.default
 
-              ./profiles/macbook
+            self.nixosModules.core
+            self.nixosModules.networking
+            self.nixosModules.openssh
+            self.nixosModules.torrent
+            self.nixosModules.users.lor
+            self.nixosModules.users.root
 
-              inputs.home-manager.darwinModules.home-manager
+            ./profiles/nasferatu
+
+            self.homeModules.suites.server
+          ];
+        };
+
+        frenz = inputs.nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            inputs.nixos-hardware.nixosModules.common-cpu-intel
+            inputs.nixos-hardware.nixosModules.common-gpu-intel
+            inputs.nixos-hardware.nixosModules.common-pc-ssd
+            inputs.ragenix.nixosModules.default
+            inputs.home-manager.nixosModules.default
+
+            self.nixosModules.core
+            self.nixosModules.networking
+            self.nixosModules.openssh
+            self.nixosModules.users.lor
+            self.nixosModules.users.root
+
+            # inputs.marrano-bot.nixosModules.default
+            # self.nixosModules.marrano-bot
+
+            ./profiles/frenz
+
+            self.homeModules.suites.server
+          ];
+        };
+
+        # pprint = inputs.nixpkgs.lib.nixosSystem {
+        #     system = "aarch64-linux";
+        #     modules = [
+        #       inputs.nixos-hardware.nixosModules.raspberry-pi-4
+        #       inputs.ragenix.nixosModules.default
+        #
+        #       self.nixosModules.core
+        #
+        #       ./profiles/pprint
+        #     ];
+        #   };
+      };
+
+      # Configurations for macOS machines
+      darwinConfigurations = {
+        macbook = inputs.nix-darwin.lib.darwinSystem {
+          system = "aarch64-darwin";
+          modules = [
+            inputs.ragenix.darwinModules.default
+
+            self.nixosModules.core
+
+            ./profiles/macbook
+
+            inputs.home-manager.darwinModules.home-manager
               {
                 home-manager.users.lor = {
                   imports = [ self.homeModules.core self.homeModules.darwin ];
