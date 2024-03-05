@@ -1,4 +1,1 @@
-vim.g.mapLeader = " "
-
-require("lazy").setup({
-})
+require("config.lazy")

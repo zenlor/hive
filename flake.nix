@@ -150,24 +150,17 @@
             modules = [
               inputs.ragenix.darwinModules.default
 
-              self.nixosModules.core
-
               ./profiles/macbook
 
               inputs.home-manager.darwinModules.home-manager
-              {
-                home-manager.users.lor = {
-                  imports = [ self.homeModules.core self.homeModules.darwin ];
-                  home.stateVersion = "23.11";
-                };
-              }
+              self.homeModules.suites.darwin
             ];
 
           };
         };
 
-        homeConfigurations = {
-          lor = { modules = [ self.homeModules.suites.workstation ]; };
+        homeConfigurations.lor = {
+          modules = [ self.homeModules.suites.workstation ];
         };
 
         nixosModules = inputs.haumea.lib.load {
@@ -203,7 +196,10 @@
           meta = {
             description = "my personal machines";
             # This can be overriden by node nixpkgs
-            nixpkgs = import inputs.nixpkgs { system = "x86_64-linux"; };
+            nixpkgs = import inputs.nixpkgs {
+              system = "x86_64-linux";
+              stateVersion = "23.11";
+            };
             nodeNixpkgs = builtins.mapAttrs (name: value: value.pkgs) conf;
             nodeSpecialArgs =
               builtins.mapAttrs (name: value: value._module.specialArgs) conf;
@@ -251,6 +247,7 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     nix-darwin.url = "github:LnL7/nix-darwin";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
     nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";

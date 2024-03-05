@@ -49,7 +49,7 @@
       autoUpdate = true;
       upgrade = true;
     };
-    taps = [ "homebrew/cask" "homebrew/cask-versions" "homebrew/cask-fonts" ];
+    taps = [ "homebrew/cask-versions" "homebrew/cask-fonts" ];
     brews = [ "tfenv" "saml2aws" "bash" ];
     casks = [ "alacritty" "launchcontrol" "temurin" "keybase" "font-iosevka" ];
   };
