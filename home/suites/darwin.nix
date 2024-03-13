@@ -22,4 +22,5 @@
     root.doom
     root.neovim
   ];
+
 }
