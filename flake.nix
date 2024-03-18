@@ -8,6 +8,7 @@
         pkgs = import nixpkgs {
           inherit system;
           overlays = [ inputs.devshell.overlays.default ];
+          allowUnfree = true;
         };
       in {
         devShells.default = pkgs.devshell.mkShell {
@@ -205,6 +206,7 @@
             nixpkgs = import inputs.nixpkgs {
               system = "x86_64-linux";
               stateVersion = "23.11";
+              allowUnfree = true;
             };
             nodeNixpkgs = builtins.mapAttrs (name: value: value.pkgs) conf;
             nodeSpecialArgs =

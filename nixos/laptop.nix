@@ -1,4 +1,4 @@
 { super, ... }:
 { ... }: {
-  imports = [ super.gui.core super.gui.gnome super.network-manager ];
+  imports = [ super.gui.core super.gui.gnome super.gui.software super.network-manager ];
 }

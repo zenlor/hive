@@ -1,5 +1,7 @@
 { config, lib, pkgs, ... }: {
 
+  nixpkgs.config.allowUnfree = true;
+
   imports = [ ./_hardware_configuration.nix ];
 
   system.stateVersion = "23.11";

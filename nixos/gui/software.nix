@@ -1,6 +1,6 @@
 {...}:
-{pkgs, ...}: {
-  packages = with pkgs; rec [
+{pkgs, ...}: {  
+  environment.systemPackages = with pkgs; [
     telegram-desktop
     firefox
   ];
