@@ -36,6 +36,10 @@
               category = "dev";
               package = pkgs.nixfmt;
             }
+            {
+              category = "ops";
+              package = pkgs.colmena;
+            }
           ];
           packages = [ ];
         };

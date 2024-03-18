@@ -32,6 +32,7 @@ in {
     whois
     xh
     zsh
+    zig
   ];
 
   environment.shellAliases = {

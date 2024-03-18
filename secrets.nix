@@ -7,8 +7,10 @@ let
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOthdftwPv6orliN61tTzcSC89L1uvHdT4d8+ErXlndt";
   horus =
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAly76ldEsrk0wikYNe1NDqdQLo8K7EkbfDL3LUl4XqL";
+  pad = 
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFqg48dF7t3LV4qsliz1r59wP53TtCdhcfO5+XJ6lJ+M";
 
-  all = [ lor frenz nasferatu horus ];
+  all = [ lor frenz nasferatu horus pad ];
 in
 {
   # wireguard
