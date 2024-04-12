@@ -14,6 +14,9 @@
 
     plugins = with pkgs.vimPlugins; [
       mini-nvim
+      telescope
+      telescope-undo
+      which-key-nvim
     ];
 
     extraLuaConfig = ''
@@ -33,13 +36,24 @@
         header = " /\\_/\\\n( o.o )\ > ^ <",
         footer = "~~ % ~~",
       })
+      require("mini.fuzzy").setup({})
 
-      vim.o.colorscheme = "minischeme"
+      require("telescope").setup({
+        extensions = { undo = {}, },
+      })
+      require("telescope").load_extension("undo")
+
+      require("which-key").setup({})
+
+      vim.o.background = "dark"
+      vim.cmd.colorscheme = "minischeme"
+
+      vim.o.leader = "<space>"
+
+      vim.keymap.set("bb", "<leader>u", "<cmd>Telescope buffers<cr>")
+      vim.keymap.set("bs", "<leader>u", "<cmd>w<cr>")
+      vim.keymap.set("n", "<leader>u", "<cmd>Telescope undo<cr>")
     '';
   };
-
-  xdg.configFile."nvim/after".source = ./neovim.d/after;
-  xdg.configFile."nvim/lua".source = ./neovim.d/lua;
-  xdg.configFile."nvim/init.lua".source = ./neovim.d/init.lua;
 }
 
