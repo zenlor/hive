@@ -1,3 +1,43 @@
+--
+-- install mini.nvim
+--
+local path_package = vim.fn.stdpath('data') .. '/site'
+local mini_path = path_package .. '/pack/deps/start/mini.nvim'
+if not vim.loop.fs_stat(mini_path) then
+  vim.cmd('echo "Installing `mini.nvim`" | redraw')
+  local clone_cmd = {
+    'git', 'clone', '--filter=blob:none',
+    'https://github.com/echasnovski/mini.nvim', mini_path
+  }
+  vim.fn.system(clone_cmd)
+  vim.cmd('packadd mini.nvim | helptags ALL')
+end
+
+--
+-- mini.deps setup
+--
+local miniDeps = require("mini.deps")
+miniDeps.setup({
+  path = { package = path_package }
+})
+local function InstallDependencies(packages)
+  for _,package in ipairs(packages) do
+    miniDeps.add(package)
+  end
+end
+
+InstallDependencies({
+  "nvim-lua/plenary.nvim",
+  "folke/which-key.nvim",
+  "nvim-telescope/telescope.nvim",
+
+  "nvim-treesitter/nvim-treesitter",
+  "ahmedkhalf/project.nvim",
+})
+
+--
+-- configuration
+--
 require"project_nvim".setup{
   manual_mode = true,
   detection_methods = {"lsp","pattern"},
@@ -63,26 +103,27 @@ require"mini.tabline".setup{}
 require"mini.hipatterns".setup{}
 require"mini.indentscope".setup{}
 require"mini.map".setup{}
+require"mini.notify".setup{}
 require"mini.starter".setup{}
 require"mini.statusline".setup{}
-require'mini.base16'.setup{
+require('mini.base16').setup{
   palette = {
-    base00 = '#112641',
-    base01 = '#3a475e',
-    base02 = '#606b81',
-    base03 = '#8691a7',
-    base04 = '#d5dc81',
-    base05 = '#e2e98f',
-    base06 = '#eff69c',
-    base07 = '#fcffaa',
-    base08 = '#ffcfa0',
-    base09 = '#cc7e46',
-    base0A = '#46a436',
-    base0B = '#9ff895',
-    base0C = '#ca6ecf',
-    base0D = '#42f7ff',
-    base0E = '#ffc4ff',
-    base0F = '#00a5c5',
+    base00 = "#1d2021",
+    base01 = "#3c3836",
+    base02 = "#504945",
+    base03 = "#665c54",
+    base04 = "#bdae93",
+    base05 = "#d5c4a1",
+    base06 = "#ebdbb2",
+    base07 = "#fbf1c7",
+    base08 = "#fb4934",
+    base09 = "#fe8019",
+    base0A = "#fabd2f",
+    base0B = "#b8bb26",
+    base0C = "#8ec07c",
+    base0D = "#83a598",
+    base0E = "#d3869b",
+    base0F = "#d65d0e",
   },
   use_cterm = true,
   plugins = {
@@ -112,6 +153,8 @@ end
 local telescope = require("telescope.builtin")
 
 wk.register({
+  ["<esc><esc>"] = {"<cmd>nohl<cr>", "remove search hilight"},
+
   ["<leader>"] = {
 
     ["<space>"] = "ignore?",
@@ -133,7 +176,7 @@ wk.register({
     b = {
       name = "+buffer",
       b = {telescope.buffers, "buffers"},
-      k = {"<cmd>Bwipeout<cr>", "kill"},
+      k = {"<cmd>bwipeout<cr>", "kill"},
       K = {"<cmd>bufdo :Bwipeout<cr>", "kill all"},
       n = {"<cmd>bnext<cr>", "next"},
       p = {"<cmd>bprev<cr>", "prev"},

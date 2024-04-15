@@ -33,7 +33,18 @@ in {
     xh
     zsh
     zig
+
+    # manpages, you never know when they are useful
+    man-pages
+    man-pages-posix
   ];
+
+  documentation.dev.enable = true;
+  documentation.man = {
+    generateCaches = true;
+    man-db.enable = false;
+    mandoc.enable = true;
+  };
 
   environment.shellAliases = {
     # quick cd

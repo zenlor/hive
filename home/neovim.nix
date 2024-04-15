@@ -12,14 +12,6 @@
       # Telescope
       ripgrep
     ];
-
-    plugins = with pkgs.vimPlugins; [
-      mini-nvim
-      which-key-nvim
-      telescope-nvim
-      project-nvim
-      nvim-treesitter
-    ];
   };
 
   # xdg.configFile."nvim/after".source = ./neovim.d/after;
