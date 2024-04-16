@@ -1,21 +1,20 @@
---
--- install mini.nvim
---
-local path_package = vim.fn.stdpath('data') .. '/site'
-local mini_path = path_package .. '/pack/deps/start/mini.nvim'
-if not vim.loop.fs_stat(mini_path) then
-  vim.cmd('echo "Installing `mini.nvim`" | redraw')
-  local clone_cmd = {
-    'git', 'clone', '--filter=blob:none',
-    'https://github.com/echasnovski/mini.nvim', mini_path
-  }
-  vim.fn.system(clone_cmd)
-  vim.cmd('packadd mini.nvim | helptags ALL')
+do
+  -- Put this at the top of 'init.lua'
+  local path_package = vim.fn.stdpath('data') .. '/site'
+  local mini_path = path_package .. '/pack/deps/start/mini.nvim'
+  if not vim.loop.fs_stat(mini_path) then
+    vim.cmd('echo "Installing `mini.nvim`" | redraw')
+    local clone_cmd = {
+      'git', 'clone', '--filter=blob:none',
+      -- Uncomment next line to use 'stable' branch
+      -- '--branch', 'stable',
+      'https://github.com/echasnovski/mini.nvim', miniPath
+    }
+    vim.fn.system(clone_cmd)
+    vim.cmd('packadd mini.nvim | helptags ALL')
+  end
 end
 
---
--- mini.deps setup
---
 local miniDeps = require("mini.deps")
 miniDeps.setup({
   path = { package = path_package }
@@ -25,19 +24,14 @@ local function InstallDependencies(packages)
     miniDeps.add(package)
   end
 end
-
 InstallDependencies({
   "nvim-lua/plenary.nvim",
   "folke/which-key.nvim",
   "nvim-telescope/telescope.nvim",
-
   "nvim-treesitter/nvim-treesitter",
   "ahmedkhalf/project.nvim",
 })
 
---
--- configuration
---
 require"project_nvim".setup{
   manual_mode = true,
   detection_methods = {"lsp","pattern"},
@@ -82,6 +76,7 @@ require"mini.basics".setup{
 require"mini.ai".setup{}
 require"mini.align".setup{}
 require"mini.bracketed".setup{}
+require"mini.bufremove".setup{}
 require"mini.files".setup{}
 require"mini.fuzzy".setup{}
 require"mini.jump2d".setup{}
@@ -147,10 +142,20 @@ local wk = require("which-key")
 local MiniFiles = require("mini.files")
 local function minifilesToggle(...)
   if not MiniFiles.close() then
-    MiniFiles.open(...)
+    local current_dir = vim.fn.expand("%:p:h", true)
+    MiniFiles.open(current_dir)
   end
 end
 local telescope = require("telescope.builtin")
+local bufremove = require("mini.bufremove")
+
+local function bufwipeoutAll()
+  for _, n in ipairs(vim.api.nvim_list_bufs()) do
+    bufremove.wipeout(n)
+  end
+
+  MiniStarter.open()
+end
 
 wk.register({
   ["<esc><esc>"] = {"<cmd>nohl<cr>", "remove search hilight"},
@@ -176,10 +181,12 @@ wk.register({
     b = {
       name = "+buffer",
       b = {telescope.buffers, "buffers"},
-      k = {"<cmd>bwipeout<cr>", "kill"},
-      K = {"<cmd>bufdo :Bwipeout<cr>", "kill all"},
+      k = {bufremove.wipeout, "kill"},
+      K = {bufwipeoutAll, "kill all"},
       n = {"<cmd>bnext<cr>", "next"},
       p = {"<cmd>bprev<cr>", "prev"},
+      s = {"<cmd>w<cr>", "write"},
+      S = {"<cmd>bufdo :w<cr>", "write"},
     },
     s = {
       name = "+search",
@@ -192,6 +199,9 @@ wk.register({
     },
     l = {
       name = "+lsp",
+      f = {vim.lsp.buf.format(), "format"},
+      R = {vim.lsp.buf.rename(), "rename"},
+
       r = {telescope.lsp_references, "references"},
       s = {telescope.lsp_document_symbols, "symbols"},
     },
