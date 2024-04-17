@@ -126,8 +126,8 @@
               self.nixosModules.users.lor
               self.nixosModules.users.root
 
-              # inputs.marrano-bot.nixosModules.default
-              # self.nixosModules.marrano-bot
+              inputs.marrano-bot.nixosModules.default
+              self.nixosModules.marrano-bot
 
               ./profiles/frenz
 
