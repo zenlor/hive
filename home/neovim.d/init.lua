@@ -8,7 +8,7 @@ do
       'git', 'clone', '--filter=blob:none',
       -- Uncomment next line to use 'stable' branch
       -- '--branch', 'stable',
-      'https://github.com/echasnovski/mini.nvim', miniPath
+      'https://github.com/echasnovski/mini.nvim', mini_path
     }
     vim.fn.system(clone_cmd)
     vim.cmd('packadd mini.nvim | helptags ALL')
@@ -25,12 +25,20 @@ local function InstallDependencies(packages)
   end
 end
 InstallDependencies({
+  "neovim/nvim-lspconfig",
   "nvim-lua/plenary.nvim",
   "folke/which-key.nvim",
   "nvim-telescope/telescope.nvim",
   "nvim-treesitter/nvim-treesitter",
   "ahmedkhalf/project.nvim",
 })
+
+--[[ LSP ]]--
+do
+  lspconfig = require("lspconfig")
+
+  lspconfig.lemminx.setup{}
+end
 
 require"project_nvim".setup{
   manual_mode = true,
