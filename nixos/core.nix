@@ -4,6 +4,13 @@ let GB = 1024 * 1024 * 1024;
 in {
   # Selection of sysadmin tools that can come in handy
   environment.systemPackages = with pkgs; [
+
+    # hardware
+    usbutils
+    pciutils
+    psutils
+
+    # general purpose programs
     bat
     bottom
     curl
