@@ -8,6 +8,7 @@
 
     extraPackages = with pkgs; [
       neovim-remote
+      nnn
 
       # Telescope
       ripgrep
