@@ -1,4 +1,8 @@
 { config, pkgs, ... }: {
+
+  nix.extraOptions = ''
+    extra-experimental-features = flakes nix-command
+  '';
   # https://github.com/nix-community/home-manager/issues/4026
   users.users.lorenzo.home = "/Users/lorenzo";
 
@@ -51,7 +55,7 @@
     };
     taps = [ "homebrew/cask-versions" "homebrew/cask-fonts" ];
     brews = [ "tfenv" "saml2aws" "bash" ];
-    casks = [ "alacritty" "launchcontrol" "temurin" "keybase" "font-iosevka" ];
+    casks = [ "launchcontrol" "keybase" "font-iosevka" ];
   };
 
   fonts.fontDir.enable = true;
