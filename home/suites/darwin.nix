@@ -21,6 +21,7 @@
 
     root.doom
     root.neovim
-  ];
 
+    root.gui.alacritty
+  ];
 }

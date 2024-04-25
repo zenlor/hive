@@ -55,7 +55,7 @@
     };
     taps = [ "homebrew/cask-versions" "homebrew/cask-fonts" ];
     brews = [ "tfenv" "saml2aws" "bash" ];
-    casks = [ "launchcontrol" "keybase" "font-iosevka" ];
+    casks = [ "wezterm" "launchcontrol" "keybase" "font-iosevka" ];
   };
 
   fonts.fontDir.enable = true;

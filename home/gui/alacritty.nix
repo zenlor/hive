@@ -1,7 +1,6 @@
 {
-  alacritty.programs.alacritty = {
+  config.programs.alacritty = {
     enable = true;
-    CSIuSupport = true;
     settings = {
       # env.TERM = "xterm-256color";
       window.decorations = "full";
@@ -41,5 +40,27 @@
         };
       };
     };
+  };
+
+  config.programs.wezterm = {
+    enable = true;
+    # ~/.config/wezterm/wezterm.lua
+    extraConfig = ''
+      local wezterm = require 'wezterm'
+      local config = {}
+
+      -- font
+      config.font = wezterm.font 'Iosevka'
+      config.font_size = 16
+
+      -- color scheme
+      config.color_scheme = "Gruvbox dark, medium (base16)"
+
+      -- misc UI
+      config.enable_tab_bar = false
+
+      return config
+    '';
+    colorSchemes = {};
   };
 }
