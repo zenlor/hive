@@ -22,6 +22,6 @@
     root.doom
     root.neovim
 
-    root.gui.alacritty
+    root.gui.terminal
   ];
 }

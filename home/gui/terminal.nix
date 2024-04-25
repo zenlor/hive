@@ -59,6 +59,14 @@
       -- misc UI
       config.enable_tab_bar = false
 
+      -- bell
+      config.audible_bell = "Disabled"
+      config.visual_bell = {
+        fade_in_duration_ms = 75,
+        fade_out_duration_ms = 75,
+        target = "CursorColor",
+      }
+
       return config
     '';
     colorSchemes = {};
