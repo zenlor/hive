@@ -3,7 +3,7 @@
 
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
-  home-manager.users.lgiuliani.imports = [
+  home-manager.users.lorenzo.imports = [
     root.core
     inputs.nur.hmModules.nur
 

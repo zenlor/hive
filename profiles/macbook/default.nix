@@ -1,6 +1,6 @@
 { config, pkgs, ... }: {
   # https://github.com/nix-community/home-manager/issues/4026
-  users.users.lgiuliani.home = "/Users/lgiuliani";
+  users.users.lorenzo.home = "/Users/lorenzo";
 
   # https://github.com/LnL7/nix-darwin/issues/158#issuecomment-974598670
   programs.zsh.enable = true;

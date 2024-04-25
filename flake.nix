@@ -160,7 +160,7 @@
               self.homeModules.suites.darwin
 
               inputs.home-manager.darwinModules.home-manager
-              self.nixosModules.users.lgiuliani
+              self.nixosModules.users.lorenzo
             ];
 
           };
