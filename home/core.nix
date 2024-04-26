@@ -1,8 +1,17 @@
 { super, ... }:
 { pkgs, ... }: {
-  imports = with super; [ cli.bat cli.bottom ];
+  imports = with super; [
+    cli.bat
+    cli.bottom
+  ];
 
-  home.packages = with pkgs; [ jq ijq gitui ];
+  home.packages = with pkgs; [
+    jq
+    ijq
+    gitui
+    lazygit
+    k9s
+  ];
 
   home.sessionVariables = {
     GOPATH = "$HOME/lib";
