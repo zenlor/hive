@@ -54,8 +54,23 @@
       upgrade = true;
     };
     taps = [ "homebrew/cask-versions" "homebrew/cask-fonts" ];
-    brews = [ "tfenv" "saml2aws" "bash" ];
-    casks = [ "wezterm" "launchcontrol" "keybase" "font-iosevka" ];
+    brews = [
+      "tfenv"
+      "saml2aws"
+      "bash"
+      "ollama"
+    ];
+    casks = [
+      "utm"
+      "wezterm"
+      "launchcontrol"
+      "keybase"
+      "font-437-plus"
+      "font-iosevka"
+      "font-iosevka-aile"
+      "font-iosevka-nerd-font"
+      "jan"
+    ];
   };
 
   fonts.fontDir.enable = true;
