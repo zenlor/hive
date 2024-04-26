@@ -21,11 +21,8 @@
 
 
 ;; font
-;; (setq doom-font (font-spec :family "Iosevka" :size 20)
-;;       doom-unicode-font (font-spec :family "Iosevka")
-;;       doom-big-font (font-spec :family "Iosevka" :size 28))
 (setq doom-font (font-spec :family "Iosevka" :size 18)
-      doom-variable-font (font-spec :family "Iosevka Alie")
+      doom-variable-font (font-spec :family "Iosevka Aile")
       doom-unicode-font (font-spec :family "Iosevka")
       doom-big-font (font-spec :family "Iosevka" :size 24))
 
@@ -34,7 +31,6 @@
   (add-to-list 'eglot-server-programs
                '(terraform-mode . ("terraform-ls" "serve"))
                '(nix-mode . ("nixd"))))
-
 
 ;; enable global substitutions
 (setq evil-ex-substitute-global t)
