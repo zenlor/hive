@@ -205,14 +205,14 @@ wk.register({
 
   ["<leader>"] = {
 
-    ["<space>"] = "ignore?",
+    ["<space>"] = {telescope.find_files, "find files"},
     ["/"] = {telescope.live_grep, "grep"},
-    ["."] = {},
+    ["."] = {MinifilesToggle, "file explorer"},
     [":"] = {telescope.planets, "planets"},
+    [","] = {telescope.resume, "repeat telescope"},
     h = {telescope.help_tags, "help tags"},
     j = {telescope.jumplist, "jumplist"},
     p = {telescope.registers, "yank registers"},
-    [","] = {telescope.resume, "repeat telescope"},
 
     f = {
       name = "+file",
@@ -238,20 +238,20 @@ wk.register({
     },
     c = {
       name = "+code",
-      f = {telescope.quickfix, "quickfix"},
+      q = {telescope.quickfix, "quickfix"},
       h = {telescope.quickfixhistory, "quickfix history"},
     },
     l = {
       name = "+lsp",
-      f = {vim.lsp.buf.format(), "format"},
-      R = {vim.lsp.buf.rename(), "rename"},
+      f = {vim.lsp.buf.format, "format"},
+      r = {vim.lsp.buf.rename, "rename"},
 
-      r = {telescope.lsp_references, "references"},
+      e = {telescope.lsp_references, "references"},
       s = {telescope.lsp_document_symbols, "symbols"},
     },
     o = {
       name = "+open",
-      m = {function() vim.notify("umme!", vim.log.levels.WARN) end, "toggle mini.map"},
+      m = {function() vim.notify("FixME!", vim.log.levels.WARN) end, "toggle mini.map"},
       p = {require"telescope".extensions.projects.projects, "find projects"},
     },
     w = {
