@@ -11,6 +11,7 @@
     gitui
     lazygit
     k9s
+    neofetch
   ];
 
   home.sessionVariables = {

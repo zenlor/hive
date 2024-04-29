@@ -45,6 +45,9 @@
     configureBuildUsers = true;
   };
 
+  # enable touch id for sudo
+  security.pam.enableSudoTouchIdAuth = true;
+
   homebrew = {
     enable = true;
     brewPrefix = "/opt/homebrew/bin";
