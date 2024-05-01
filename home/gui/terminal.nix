@@ -69,6 +69,6 @@
 
       return config
     '';
-    colorSchemes = {};
+    colorSchemes = { };
   };
 }

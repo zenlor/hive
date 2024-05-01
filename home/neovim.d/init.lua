@@ -38,6 +38,9 @@ do
   lspconfig = require("lspconfig")
 
   lspconfig.lemminx.setup{}
+  lspconfig.gopls.setup{}
+  lspconfig.zls.setup{}
+  lspconfig.nixd.setup{}
 end
 
 require"project_nvim".setup{

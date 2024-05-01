@@ -26,6 +26,10 @@
     emacs-all-the-icons-fonts
 
     emacs29
+
+    # compiled modules
+    emacsPackages.parinfer-rust-mode
+    emacsPackages.vterm
   ];
 
   home.sessionPath = [ "$HOME/.config/emacs/bin" "$HOME/.config/doom/bin" ];

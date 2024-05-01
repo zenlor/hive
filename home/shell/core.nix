@@ -48,9 +48,5 @@
     tmux = "tmux -u";
   };
 
-  home.sessionPath = [
-    "$HOME/.local/bin"
-    "$HOME/lib/bin"
-    "$HOME/.rd/bin"
-  ];
+  home.sessionPath = [ "$HOME/.local/bin" "$HOME/lib/bin" "$HOME/.rd/bin" ];
 }

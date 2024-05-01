@@ -25,5 +25,5 @@
     root.gui.terminal
   ];
 
-  home-manager.users.lorenzo.programs.keychain.keys = ["id_ed25519"];
+  home-manager.users.lorenzo.programs.keychain.keys = [ "id_ed25519" ];
 }

@@ -1,6 +1,5 @@
 { config, lib, pkgs, ... }:
-let
-  secrets = import ../../nixos/secrets.nix {}; 
+let secrets = import ../../nixos/secrets.nix { };
 in {
 
   age.secrets.wireguard-key.file = secrets.wireguard.nasferatu.key;

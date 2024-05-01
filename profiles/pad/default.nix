@@ -2,10 +2,7 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  imports = [
-    ./_hardware_configuration.nix 
-    ./_wireguard.nix
-  ];
+  imports = [ ./_hardware_configuration.nix ./_wireguard.nix ];
 
   system.stateVersion = "23.11";
 

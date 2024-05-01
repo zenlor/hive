@@ -57,12 +57,7 @@
       upgrade = true;
     };
     taps = [ "homebrew/cask-versions" "homebrew/cask-fonts" ];
-    brews = [
-      "tfenv"
-      "saml2aws"
-      "bash"
-      "ollama"
-    ];
+    brews = [ "tfenv" "saml2aws" "bash" "ollama" ];
     casks = [
       "utm"
       "wezterm"

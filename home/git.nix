@@ -44,7 +44,5 @@
     gitCredentialHelper = { enable = true; };
     extensions = [ pkgs.gh-eco ];
   };
-  programs.lazygit = {
-    enable = true;
-  };
+  programs.lazygit = { enable = true; };
 }

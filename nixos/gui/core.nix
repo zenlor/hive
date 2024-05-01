@@ -16,9 +16,7 @@
   };
 
   # basic terminal emulator
-  environment.systemPackages = with pkgs; [
-    alacritty
-  ];
+  environment.systemPackages = with pkgs; [ alacritty ];
 
   # fonts
   fonts = {
