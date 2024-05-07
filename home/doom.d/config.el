@@ -21,10 +21,10 @@
 
 
 ;; font
-(setq doom-font (font-spec :family "Iosevka" :size 18)
+(setq doom-font (font-spec :family "Iosevka" :size 16)
       doom-variable-font (font-spec :family "Iosevka Aile")
       doom-unicode-font (font-spec :family "Iosevka")
-      doom-big-font (font-spec :family "Iosevka" :size 24))
+      doom-big-font (font-spec :family "Iosevka" :size 22))
 
 ;; eglot
 (with-eval-after-load 'eglot
