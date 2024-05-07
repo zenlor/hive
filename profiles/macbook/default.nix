@@ -3,8 +3,6 @@
   nix.extraOptions = ''
     extra-experimental-features = flakes nix-command
   '';
-  # https://github.com/nix-community/home-manager/issues/4026
-  users.users.lorenzo.home = "/Users/lorenzo";
 
   # https://github.com/LnL7/nix-darwin/issues/158#issuecomment-974598670
   programs.zsh.enable = true;
@@ -57,7 +55,12 @@
       upgrade = true;
     };
     taps = [ "homebrew/cask-versions" "homebrew/cask-fonts" ];
-    brews = [ "tfenv" "saml2aws" "bash" "ollama" ];
+    brews = [
+      "tfenv"
+      "saml2aws"
+      "bash"
+      "ollama"
+    ];
     casks = [
       "utm"
       "wezterm"
@@ -72,4 +75,13 @@
   };
 
   fonts.fontDir.enable = true;
+
+  # https://github.com/nix-community/home-manager/issues/4026
+  # fish shell setup
+  programs.fish.enable = true;
+  environment.shells = [pkgs.fish];
+  users.users.lorenzo = {
+    home = "/Users/lorenzo";
+    shell = pkgs.fish;
+  };
 }
