@@ -13,8 +13,9 @@
         root.shell.tmux
         root.shell.direnv
         root.shell.exa
-        root.shell.z-lua
+        root.shell.zoxide
         root.shell.fzf
+        root.shell.nushell
 
         root.git
         root.ssh
