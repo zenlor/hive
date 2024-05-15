@@ -28,5 +28,5 @@
   programs.gphoto2.enable = true;
 
   # boxes might break
-  environment.systemPackages = with pkgs; [ gnome.gnome-boxes ];
+  environment.systemPackages = with pkgs; [ gnome.gnome-boxes gnome.gnome-tweaks ];
 }

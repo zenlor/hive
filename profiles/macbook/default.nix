@@ -79,12 +79,10 @@
   # https://github.com/nix-community/home-manager/issues/4026
   # fish shell setup
   programs.fish.enable = true;
-
   environment.shells = [
     pkgs.zsh
     pkgs.fish
   ];
-
   users.users.lorenzo = {
     home = "/Users/lorenzo";
     shell = pkgs.fish;
