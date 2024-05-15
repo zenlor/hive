@@ -81,7 +81,8 @@
   programs.fish.enable = true;
 
   environment.shells = [
-    pkgs.zsh pkgs.fish
+    pkgs.zsh
+    pkgs.fish
   ];
 
   users.users.lorenzo = {

@@ -11,7 +11,8 @@ let
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFqg48dF7t3LV4qsliz1r59wP53TtCdhcfO5+XJ6lJ+M";
 
   all = [ lor frenz nasferatu horus pad ];
-in {
+in
+{
   # wireguard
   "secrets/wireguard/wg-frenz.age".publicKeys = [ lor frenz ];
   "secrets/wireguard/wg-nasferatu.age".publicKeys = [ lor nasferatu ];
