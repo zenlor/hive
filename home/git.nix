@@ -20,6 +20,7 @@
       l =
         "log --date=format:'%a %b %e, %Y' --pretty=format:'%C(yellow)%h%C(reset) %s %C(cyan)%cd%C(reset) %C(blue)%an%C(reset) %C(green)%d%C(reset)' --graph";
       cl = "!ghq get";
+      z = "!lazygit";
     };
 
     extraConfig = {
@@ -44,5 +45,19 @@
     gitCredentialHelper = { enable = true; };
     extensions = [ pkgs.gh-eco ];
   };
-  programs.lazygit = { enable = true; };
+
+  programs.lazygit = {
+    enable = true;
+    settings = {
+      os.editPreset = "nvim";
+      gui.nerdFontsVersion = "3";
+      git = {
+        branchLogCmd = "git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium --oneline {{branchName}} --";
+        commitPrefix = {
+          pattern = "^\\w+\\/(\\w+-\\w+).*";
+          replace = "[$1]";
+        };
+      };
+    };
+  };
 }
