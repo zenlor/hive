@@ -17,7 +17,16 @@
 
 
 ;; theme
-(setq doom-theme 'doom-gruvbox)
+(setq doom-theme 'doom-one-dark)
+(setq doom-theme-dark 'doom-one-dark)
+(setq doom-theme-light 'doom-one-light)
+
+(defun theme-toggle-light
+  (if (= doom-theme doom-theme-dark)
+    ((setq doom-theme doom-theme-light)
+     (load-theme doom-theme-light t))
+    ((setq doom-theme doom-theme-dark)
+     (load-theme doom-theme-dark t))))
 
 
 ;; font
@@ -38,10 +47,11 @@
 ;; relative fringe numbers
 (setq display-line-numbers-type 'relative)
 
-
 ;;
 ;; Keybindings
 ;;
+(map! :leader "t" ("L" #'theme-toggle-light))
+
 (map! ;; sexp navigation
       :nv "U" 'backward-up-list
       :nv "R" 'down-list
