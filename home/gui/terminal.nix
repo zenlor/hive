@@ -54,8 +54,8 @@
       config.font_size = 16
 
       -- color scheme
-      config.color_scheme = "Gruvbox dark, medium (base16)"
-
+      -- config.color_scheme = "Gruvbox dark, medium (base16)"
+      config.color_scheme = "OneDark (base16)"
       -- misc UI
       config.enable_tab_bar = false
 
