@@ -35,6 +35,7 @@ in {
   networking.firewall.enable = true;
   networking.firewall.allowedTCPPorts = [ 22 80 443 25565 35565 ];
   networking.firewall.allowPing = false;
+  networking.firewall.trustedInterfaces = [ "wg0" ];
 
   # for some reason fails most of the times
   services.resolved.enable = false;

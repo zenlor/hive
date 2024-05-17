@@ -40,4 +40,5 @@
 
   # services.marrano-bot.hostName = "bot.marrani.lol";
   # services.marrano-bot.logLevel = "debug";
+  services.marrano-bot.logLevel = "error";
 }

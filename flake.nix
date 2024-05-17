@@ -117,7 +117,6 @@
           system = "x86_64-linux";
           modules = [
             inputs.nixos-hardware.nixosModules.common-cpu-intel
-            inputs.nixos-hardware.nixosModules.common-gpu-intel
             inputs.nixos-hardware.nixosModules.common-pc-ssd
             inputs.ragenix.nixosModules.default
             inputs.home-manager.nixosModules.default
