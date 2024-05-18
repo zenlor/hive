@@ -17,16 +17,16 @@
 
 
 ;; theme
-(setq doom-theme 'doom-one-dark)
-(setq doom-theme-dark 'doom-one-dark)
+(setq doom-theme 'doom-one)
+(setq doom-theme-dark 'doom-one)
 (setq doom-theme-light 'doom-one-light)
 
-(defun theme-toggle-light
+(defun theme-toggle-light ()
   (if (= doom-theme doom-theme-dark)
-    ((setq doom-theme doom-theme-light)
-     (load-theme doom-theme-light t))
-    ((setq doom-theme doom-theme-dark)
-     (load-theme doom-theme-dark t))))
+      (do (setq doom-theme doom-theme-light)
+          (load-theme doom-theme-light t))
+    (do (setq doom-theme doom-theme-dark)
+        (load-theme doom-theme-dark t))))
 
 
 ;; font
@@ -53,16 +53,16 @@
 (map! :leader "t" ("L" #'theme-toggle-light))
 
 (map! ;; sexp navigation
-      :nv "U" 'backward-up-list
-      :nv "R" 'down-list
-      :nv "L" 'sp-forward-sexp
-      :nv "H" 'sp-backward-sexp
+ :nv "U" 'backward-up-list
+ :nv "R" 'down-list
+ :nv "L" 'sp-forward-sexp
+ :nv "H" 'sp-backward-sexp
 
-      ;; Easier window navigation
-      :n "C-h"   #'evil-window-left
-      :n "C-j"   #'evil-window-down
-      :n "C-k"   #'evil-window-up
-      :n "C-l"   #'evil-window-right)
+ ;; Easier window navigation
+ :n "C-h"   #'evil-window-left
+ :n "C-j"   #'evil-window-down
+ :n "C-k"   #'evil-window-up
+ :n "C-l"   #'evil-window-right)
 
 ;;; clojure
 (map! (:after clojure-mode
