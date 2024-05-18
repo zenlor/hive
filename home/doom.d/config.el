@@ -18,16 +18,6 @@
 
 ;; theme
 (setq doom-theme 'doom-one)
-(setq doom-theme-dark 'doom-one)
-(setq doom-theme-light 'doom-one-light)
-
-(defun theme-toggle-light ()
-  (if (= doom-theme doom-theme-dark)
-      (do (setq doom-theme doom-theme-light)
-          (load-theme doom-theme-light t))
-    (do (setq doom-theme doom-theme-dark)
-        (load-theme doom-theme-dark t))))
-
 
 ;; font
 (setq doom-font (font-spec :family "Iosevka" :size 16)
@@ -50,8 +40,6 @@
 ;;
 ;; Keybindings
 ;;
-(map! :leader "t" ("L" #'theme-toggle-light))
-
 (map! ;; sexp navigation
  :nv "U" 'backward-up-list
  :nv "R" 'down-list
