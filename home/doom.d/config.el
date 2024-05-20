@@ -17,7 +17,12 @@
 
 
 ;; theme
-(setq doom-theme 'doom-one)
+;(setq doom-theme 'doom-tomorrow-night)
+(after! doom-ui
+        (setq! auto-dark-dark-theme 'doom-tomorrow-night
+               auto-dark-light-theme 'doom-tomorrow-day)
+        (auto-dark-mode 1))
+
 
 ;; font
 (setq doom-font (font-spec :family "Iosevka" :size 16)

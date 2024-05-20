@@ -51,11 +51,10 @@
 
       -- font
       config.font = wezterm.font 'Iosevka'
-      config.font_size = 16
+      config.font_size = 14
 
       -- color scheme
-      -- config.color_scheme = "Gruvbox dark, medium (base16)"
-      config.color_scheme = "OneDark (base16)"
+      config.color_scheme = "Snazzy (base16)"
       -- misc UI
       config.enable_tab_bar = false
 
@@ -66,6 +65,23 @@
         fade_out_duration_ms = 75,
         target = "CursorColor",
       }
+
+      local function scheme_for_appearance(appearance)
+        if appearance:find 'Dark' then
+          return 'Tomorrow Night'
+        else
+          return 'Tomorrow'
+        end
+      end
+      wezterm.on('window-config-reloaded', function(window, pane)
+        local overrides = window:get_config_overrides() or {}
+        local appearance = window:get_apearance()
+        local scheme = scheme_for_appearance(appearance)
+        if overrides.color_scheme ~= scheme then
+          overrides.color_scheme = scheme
+          window:set_config_overrides(overrides)
+        end
+      end)
 
       return config
     '';
