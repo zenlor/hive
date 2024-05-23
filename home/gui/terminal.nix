@@ -50,7 +50,7 @@
       local config = {}
 
       -- font
-      config.font = wezterm.font 'Iosevka'
+      config.font = wezterm.font 'Iosevka Term'
       config.font_size = 14
 
       -- color scheme
