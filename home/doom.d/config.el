@@ -19,8 +19,8 @@
 ;; theme
 ;(setq doom-theme 'doom-tomorrow-night)
 (after! doom-ui
-        (setq! auto-dark-dark-theme 'doom-tomorrow-night
-               auto-dark-light-theme 'doom-tomorrow-day)
+        (setq! auto-dark-dark-theme  'doom-oksolar-dark
+               auto-dark-light-theme 'doom-oksolar-light)
         (auto-dark-mode 1))
 
 
@@ -35,6 +35,12 @@
   (add-to-list 'eglot-server-programs
                '(terraform-mode . ("terraform-ls" "serve"))
                '(nix-mode . ("nixd"))))
+;; apheleia
+(after! apheleia
+        (setf (alist-get 'opentofu apheleia-formatters)
+              '("tofu" "fmt" "-"))
+        (setf (alist-get 'terraform-mode apheleia-mode-alist)
+              'opentofu))
 
 ;; enable global substitutions
 (setq evil-ex-substitute-global t)
