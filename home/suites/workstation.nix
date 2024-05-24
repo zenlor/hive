@@ -12,7 +12,7 @@
         root.shell.fish
         root.shell.tmux
         root.shell.direnv
-        root.shell.exa
+        root.shell.lsd
         root.shell.zoxide
         root.shell.fzf
         # root.shell.zsh

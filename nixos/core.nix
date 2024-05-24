@@ -10,18 +10,13 @@ in {
     pciutils
     psutils
 
-    # general purpose programs
-    bat
-    bottom
+    # general purpose rograms
     curl
-    delta
     direnv
     dnsutils
-    elinks
     entr
     fd
     file
-    fish
     git
     gnused
     iftop
@@ -31,14 +26,13 @@ in {
     lsof
     ncdu
     neovim
-    nnn
     nmap
+    nnn
     ripgrep
-    thefuck
     tmux
     whois
     xh
-    zsh
+    zenith
     zig
 
     # manpages, you never know when they are useful
@@ -68,7 +62,7 @@ in {
     mn = ''
       manix "" | grep '^# ' | sed 's/^# \(.*\) (.*/\1/;s/ (.*//;s/^# //' | sk --preview="manix '{}'" | xargs manix
     '';
-    top = "btm";
+    top = "zenith";
 
     mkdir = "mkdir -pv";
     cp = "cp -iv";
