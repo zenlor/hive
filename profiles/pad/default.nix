@@ -63,6 +63,19 @@
     };
   };
 
-  hardware.opengl.enable = true;
   services.flatpak.enable = true;
+
+  # Hardware Acceleration
+  hardware.opengl.enable = true;
+  services.hardware.bolt.enable = true;
+  hardware.nvidia = {
+    modesetting.enable = true;
+    prime = {
+      sync.allowExternalGpu = true;
+      offload.enable = true;
+      nvidiaBusId = "PCI:10:0:0";
+      intelBusId = "PCI:0:2:0";
+    };
+  };
+  services.xserver.videoDrivers = ["nvidia" ];
 }
