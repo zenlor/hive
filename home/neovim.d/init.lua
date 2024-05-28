@@ -31,7 +31,6 @@ InstallDependencies({
   "nvim-telescope/telescope.nvim",
   "nvim-treesitter/nvim-treesitter",
   "ahmedkhalf/project.nvim",
-  "f-person/auto-dark-mode.nvim",
 })
 
 --[[ LSP ]]--
@@ -115,45 +114,21 @@ require"mini.notify".setup{}
 require"mini.starter".setup{}
 require"mini.statusline".setup{}
 
-local palette_light = { -- https://github.com/RRethy/base16-nvim/blob/master/lua/colors/ayu-light.lua
-    base00 = '#fafafa', base01 = '#f3f4f5', base02 = '#f8f9fa', base03 = '#abb0b6',
-    base04 = '#828c99', base05 = '#5c6773', base06 = '#242936', base07 = '#1a1f29',
-    base08 = '#f07178', base09 = '#fa8d3e', base0A = '#f2ae49', base0B = '#86b300',
-    base0C = '#4cbf99', base0D = '#36a3d9', base0E = '#a37acc', base0F = '#e6ba7e'
+local palette = { -- https://github.com/RRethy/base16-nvim/blob/master/lua/colors/horizon-dark.lua
+  base00 = '#1c1e26', base01 = '#232530', base02 = '#2e303e', base03 = '#6f6f70',
+  base04 = '#9da0a2', base05 = '#cbced0', base06 = '#dcdfe4', base07 = '#e3e6ee',
+  base08 = '#e93c58', base09 = '#e58d7d', base0A = '#efb993', base0B = '#efaf8e',
+  base0C = '#24a8b4', base0D = '#df5273', base0E = '#b072d1', base0F = '#e4a382'
 }
-local palette_dark = { -- https://github.com/RRethy/base16-nvim/blob/master/lua/colors/ayu-dark.lua
-  base00 = '#0f1419', base01 = '#131721', base02 = '#272d38', base03 = '#3e4b59',
-  base04 = '#bfbdb6', base05 = '#e6e1cf', base06 = '#e6e1cf', base07 = '#f3f4f5',
-  base08 = '#f07178', base09 = '#ff8f40', base0A = '#ffb454', base0B = '#b8cc52',
-  base0C = '#95e6cb', base0D = '#59c2ff', base0E = '#d2a6ff', base0F = '#e6b673'
+vim.api.nvim_set_option('background', 'dark')
+require('mini.base16').setup{
+  palette = palette,
+  use_cterm = true,
+  plugins = {
+    default = true,
+    ['echasnovski/mini.nvim'] = true,
+  },
 }
-require"auto-dark-mode".setup({
-  update_interval = 1000,
-  set_dark_mode = function()
-    vim.api.nvim_set_option('background', 'dark')
-
-    require('mini.base16').setup{
-      palette = palette_dark,
-      use_cterm = true,
-      plugins = {
-        default = true,
-        ['echasnovski/mini.nvim'] = true,
-      },
-    }
-  end,
-  set_light_mode = function()
-    vim.api.nvim_set_option('background', 'light')
-
-    require('mini.base16').setup{
-      palette = palette_light,
-      use_cterm = true,
-      plugins = {
-        default = true,
-        ['echasnovski/mini.nvim'] = true,
-      },
-    }
-  end,
-})
 
 --[[
 -- nnn as file explorer
