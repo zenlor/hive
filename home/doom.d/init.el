@@ -22,7 +22,7 @@
 
        :completion
        ;;company           ; the ultimate code completion backend
-       ;;(company +childframe)
+       (company +childframe)
        ;;(corfu +orderless
        ;;       +icons
        ;;       +dabbrev
@@ -160,7 +160,14 @@
        ;;nim               ; python + lisp at the speed of c
        (nix +lsp)               ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
-       org               ; organize your plain life in plain text
+       ;;org               ; organize your plain life in plain text
+       (org +pretty
+            +present
+            +pandoc
+            +journal
+            +hugo
+            +roam2
+            +brain)
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional

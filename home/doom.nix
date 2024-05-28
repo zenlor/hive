@@ -30,6 +30,9 @@
     # compiled modules
     emacsPackages.parinfer-rust-mode
     emacsPackages.vterm
+
+    # org-mode exporter
+    pandoc
   ];
 
   home.sessionPath = [ "$HOME/.config/emacs/bin" "$HOME/.config/doom/bin" ];

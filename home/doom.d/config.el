@@ -15,6 +15,9 @@
 (add-to-list 'exec-path (getenv "HOME") "/.local/bin")
 (add-to-list 'exec-path (getenv "HOME") "/.luarocks/bin")
 
+;; keep ssh agent variables
+(after! doom-cli-env
+  (add-to-list 'doom-env-allow "^SSH_"))
 
 ;; theme
 ;(setq doom-theme 'doom-tomorrow-night)
