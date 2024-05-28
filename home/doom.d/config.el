@@ -22,8 +22,8 @@
 ;; theme
 ;(setq doom-theme 'doom-tomorrow-night)
 (after! doom-ui
-        (setq! auto-dark-dark-theme  'doom-oksolar-dark
-               auto-dark-light-theme 'doom-oksolar-light)
+        (setq! auto-dark-dark-theme  'doom-ayu-dark
+               auto-dark-light-theme 'doom-ayu-light)
         (auto-dark-mode 1))
 
 
