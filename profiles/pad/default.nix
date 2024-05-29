@@ -71,9 +71,9 @@
   hardware.nvidia = {
     modesetting.enable = true;
     prime = {
-      sync.allowExternalGpu = true;
+      allowExternalGpu = true;
       offload.enable = true;
-      nvidiaBusId = "PCI:10:0:0";
+      nvidiaBusId = "PCI:7:0:0";
       intelBusId = "PCI:0:2:0";
     };
   };
