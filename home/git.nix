@@ -15,6 +15,7 @@
     ignores = [ ".dir-locals.el" ".DS_Store" ".lsp" ".clj-kondo" ".direnv" ];
 
     aliases = {
+      fixup = ''!f() { TARGET=$(git rev-parse "$1"); git commit --fixup=$TARGET ''${@:2} && EDITOR=true git rebase -i --autostash --autosquash $TARGET^; }; f'';
       co = "checkout";
       st = "status";
       l =
