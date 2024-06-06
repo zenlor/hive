@@ -52,7 +52,6 @@
       "wezterm"
       "launchcontrol"
       "keybase"
-      "font-437-plus"
       "font-iosevka"
       "font-iosevka-aile"
       "font-iosevka-nerd-font"
