@@ -33,6 +33,9 @@
 
     # org-mode exporter
     pandoc
+
+    # ssh integration
+    pinentry-emacs
   ];
 
   home.sessionPath = [ "$HOME/.config/emacs/bin" "$HOME/.config/doom/bin" ];
