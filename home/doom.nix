@@ -1,6 +1,9 @@
 { ... }:
-{ pkgs, ... }: {
+{ pkgs, lib, ... }: {
   home.packages = with pkgs; [
+    emacs29
+    emacs-all-the-icons-fonts
+
     (nerdfonts.override { fonts = [ "Iosevka" ]; })
     iosevka
     fira
@@ -23,16 +26,11 @@
     aspellDicts.en-computers
     aspellDicts.en-science
 
-    emacs-all-the-icons-fonts
-
-    emacs29
-
-    # compiled modules
-    emacsPackages.parinfer-rust-mode
-    emacsPackages.vterm
 
     # org-mode exporter
     pandoc
+    # pdflatex
+    texlive.combined.scheme-basic
 
     # ssh integration
     pinentry-emacs

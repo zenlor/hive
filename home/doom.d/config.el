@@ -28,6 +28,9 @@
       doom-unicode-font (font-spec :family "Iosevka")
       doom-big-font (font-spec :family "Iosevka" :size 22))
 
+;; org
+(setq org-directory "~/Documents/notes")
+
 ;; eglot
 (with-eval-after-load 'eglot
   (add-to-list 'eglot-server-programs

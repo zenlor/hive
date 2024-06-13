@@ -166,7 +166,6 @@
             +pandoc
             +journal
             +hugo
-            +roam2
             +brain)
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
