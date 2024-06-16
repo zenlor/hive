@@ -29,6 +29,11 @@
       key = ../secrets/wireguard/wg-horus.age;
       pub = "JW02K/XfumFo4rtsEgQjgNCin2wNoxEiEQUQpm+ErzE=";
     };
+    deck = {
+      ip = "10.69.0.5";
+      key = ../secrets/wireguard/wg-deck.age;
+      pub = "lBWT6R8VZ75iDG1snAEHSL7gwJgHzYV83AxrppHUhUA=";
+    };
   };
 
   services = { marrano-bot = ../secrets/services/marrano-bot.age; };

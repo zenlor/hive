@@ -12,7 +12,7 @@ in {
     privateKeyFile = config.age.secrets.wireguard-key.path;
 
     peers = [{
-      publicKey = secrests.wireguard.frenz.pub;
+      publicKey = secrets.wireguard.frenz.pub;
       allowedIPs = secrets.wireguard.allowedIPs;
       endpoint = secrets.wireguard.endpoint;
       persistentKeepalive = 25;

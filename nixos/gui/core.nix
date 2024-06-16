@@ -34,12 +34,13 @@
       ubuntu_font_family
     ];
 
-    # fontconfig = {
-    #   defaultFonts = {
-    #     serif = [ "Ubuntu" ];
-    #     sansSerif = [ "Ubuntu" ];
-    #     monospace = [ "Ubuntu" ];
-    #   };
-    # };
+    fontconfig = {
+      defaultFonts = {
+        serif = [ "Noto" ];
+        sansSerif = [ "Noto" ];
+        monospace = [ "Iosevka" ];
+      };
+    };
+
   };
 }

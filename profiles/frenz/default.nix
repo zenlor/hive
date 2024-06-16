@@ -79,6 +79,10 @@ in {
         publicKey = secrets.wireguard.horus.pub;
         allowedIPs = [ "10.69.0.4/32" ];
       }
+      {
+        publicKey = secrets.wireguard.deck.pub;
+        allowedIPs = [ "10.69.0.5/32" ];
+      }
     ];
   };
 }

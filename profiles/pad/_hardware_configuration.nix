@@ -34,4 +34,61 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode =
     lib.mkDefault config.hardware.enableRedistributableFirmware;
+
+  # Laptop shall consume less electricity
+  powerManagement = {
+    enable = true;
+    cpuFreqGovernor = "powersave";
+  };
+
+  # Hardware Acceleration
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
+  services.hardware.bolt.enable = true;
+  hardware.nvidia = {
+
+    open = true;
+
+    # config.boot.kernelPackages.nvidiaPackages.nvidia_x11_vulkan_beta;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+
+    powerManagement = {
+      enable= false;
+      finegrained = false;
+    };
+
+    nvidiaSettings = true;
+
+    modesetting.enable = true;
+
+    prime = {
+      # offload.enable = true;
+      sync.enable = true;
+      allowExternalGpu = true;
+      nvidiaBusId = "PCI:7:0:0";
+      intelBusId = "PCI:0:2:0";
+    };
+  };
+  services.xserver.videoDrivers = ["intel" "nvidia"];
+
+  # hardware.bumblebee = {
+  #   enable = true;
+  #   connectDisplay = false;
+  #   driver = "nvidia";
+  # };
+  # programs.xwayland.enable = true;
+
+  # Wayland HiDPI settings
+  # services.dconf = {
+  #   enable = true;
+  #   profiles = {
+  #     user.database = {};
+  #     "org/gnome/mutter" = {
+  #       experimental-features=["scale-monitor-framebuffer"];
+  #     };
+  #   };
+  # };
 }

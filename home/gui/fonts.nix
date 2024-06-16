@@ -4,6 +4,9 @@
     corefonts
     open-fonts
     iosevka
+    iosevka-comfy-fixed
+    iosevka-aile
+    iosevka-etoile
     fira
     fira-go
     fira-mono

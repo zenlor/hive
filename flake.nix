@@ -192,7 +192,7 @@
         src = ./nixos;
         inputs = {
           inherit inputs;
-          stateVersion = "23.11";
+          stateVersion = "24.05";
         };
         transformer = inputs.haumea.lib.transformers.liftDefault;
       };
@@ -201,7 +201,7 @@
         src = ./home;
         inputs = {
           inherit inputs;
-          stateVersion = "23.11";
+          stateVersion = "24.05";
         };
         transformer = inputs.haumea.lib.transformers.liftDefault;
       };
@@ -224,8 +224,9 @@
             # This can be overriden by node nixpkgs
             nixpkgs = import inputs.nixpkgs {
               system = "x86_64-linux";
-              stateVersion = "23.11";
+              stateVersion = "24.05";
               allowUnfree = true;
+              allowBroken = true;
             };
             nodeNixpkgs = builtins.mapAttrs (name: value: value.pkgs) conf;
             nodeSpecialArgs =
@@ -271,7 +272,7 @@
     };
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     nix-darwin.url = "github:LnL7/nix-darwin";
@@ -281,7 +282,7 @@
     nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
     nixos-wsl.inputs.flake-utils.follows = "flake-utils";
 
-    home-manager.url = "github:nix-community/home-manager/release-23.11";
+    home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     nur.url =
