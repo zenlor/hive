@@ -23,10 +23,14 @@
 (setq doom-theme 'doom-horizon)
 
 ;; font
-(setq doom-font (font-spec :family "Iosevka" :size 14)
-      doom-variable-font (font-spec :family "Iosevka Aile")
-      doom-unicode-font (font-spec :family "Iosevka")
-      doom-big-font (font-spec :family "Iosevka" :size 22))
+(setq doom-font (font-spec :family "IBM Plex Mono" :size 13)
+      doom-variable-font (font-spec :family "IBM Plex Sans")
+      doom-unicode-font (font-spec :family "IBM Plex Mono")
+      doom-big-font (font-spec :family "IBM Plex Mono" :size 22))
+;(setq doom-font (font-spec :family "Iosevka" :size 14)
+;      doom-variable-font (font-spec :family "Iosevka Aile")
+;      doom-unicode-font (font-spec :family "Iosevka")
+;      doom-big-font (font-spec :family "Iosevka" :size 22))
 
 ;; org
 (setq org-directory "~/Documents/notes")
