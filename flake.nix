@@ -43,25 +43,8 @@
                 category = "ops";
                 package = pkgs.colmena;
               }
-              {
-                name = "nvidiaon";
-                category = "gui";
-                help = "terraform alias";
-                command = ''\
-                __NV_PRIME_RENDER_OFFLOAD=1 \
-                __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0 \
-                __GLX_VENDOR_LIBRARY_NAME=nvidia \
-                __VK_LAYER_NV_optimus=NVIDIA_only \
-                ${pkgs.glxinfo}/bin/glxinfo | grep vendor; echo OK!
-                '';
-              }
             ];
-            packages = [ pkgs.glxinfo ];
-            # shellAliases = {
-            #   whichgpu = "glxinfo | grep vendor";
-            #   nvidiaon =
-            #     "export __NV_PRIME_RENDER_OFFLOAD=1; export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0; export __GLX_VENDOR_LIBRARY_NAME=nvidia; export __VK_LAYER_NV_optimus=NVIDIA_only; glxinfo | grep vendor; echo OK!";
-            # };
+            packages = [ ];
           };
 
           formatter = pkgs.nixpkgs-fmt;
