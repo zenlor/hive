@@ -50,8 +50,8 @@
       local config = {}
 
       -- font
-      config.font = wezterm.font 'Iosevka Term'
-      config.font_size = 14
+      config.font = wezterm.font 'IBM Plex Mono'
+      config.font_size = 13
 
       -- color scheme
       config.color_scheme = "Horizon Dark (Gogh)"
