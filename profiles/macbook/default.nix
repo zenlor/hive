@@ -56,6 +56,7 @@
       "font-iosevka-aile"
       "font-iosevka-nerd-font"
       "jan"
+      "wireshark"
     ];
   };
 
