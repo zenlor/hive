@@ -10,6 +10,8 @@
       neovim-remote
       nnn
 
+      # lsp
+      ast-grep
       # Telescope
       ripgrep
     ];

@@ -38,10 +38,14 @@ InstallDependencies({
 do
   lspconfig = require("lspconfig")
 
-  lspconfig.lemminx.setup{}
-  lspconfig.gopls.setup{}
-  lspconfig.zls.setup{}
-  lspconfig.nixd.setup{}
+  lspconfig.gopls.setup{}         -- Go
+  lspconfig.lemminx.setup{}       -- XML
+  lspconfig.nixd.setup{}          -- Nix
+  lspconfig.terraformls.setup{}   -- terraform
+  lspconfig.tflint.setup{}        -- terraform
+  lspconfig.yamlls.setup{}        -- yaml
+  lspconfig.zls.setup{}           -- zig
+  lspconfig.ast_grep.setup{}      -- * multi-language https://ast-grep.github.io/
 end
 
 require"project_nvim".setup{

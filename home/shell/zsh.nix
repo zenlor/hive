@@ -6,8 +6,8 @@
     dotDir = "/.config/zsh";
 
     autocd = true;
+    autosuggestion.enable = true;
     enableVteIntegration = true;
-    enableAutosuggestions = false;
     enableCompletion = true;
     historySubstringSearch.enable = true;
     history.share = true;
