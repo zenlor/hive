@@ -60,8 +60,6 @@
     ];
   };
 
-  fonts.fontDir.enable = true;
-
   # https://github.com/LnL7/nix-darwin/issues/158#issuecomment-974598670
   programs.zsh.enable = true;
   programs.zsh.shellInit = ''export OLD_NIX_PATH="$NIX_PATH";'';

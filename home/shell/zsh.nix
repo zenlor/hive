@@ -12,6 +12,7 @@
     historySubstringSearch.enable = true;
     history.share = true;
     history.ignoreDups = true;
+    history.ignoreAllDups = true;
     history.ignoreSpace = true;
 
     shellGlobalAliases = {
@@ -54,9 +55,9 @@
 
       unset RPS1 # this is set somewhere in osx ... looking for the offender...
       autoload -Uz add-zsh-hook
+
       _iay_prompt() {
-        PROMPT="$(${pkgs.iay}/bin/iay -z)" # regular variant
-        # PROMPT="$(${pkgs.iay}/bin/iay -zm)"   # miminal variant
+        PROMPT="$(${pkgs.iay}/bin/iay -zm)"   # miminal variant
       }
       add-zsh-hook precmd _iay_prompt
     '';
@@ -66,16 +67,13 @@
       EDITOR = "nvim";
     };
 
-    syntaxHighlighting = {
-      enable = true;
-      # package = pkgs.zsh-fast-syntax-highlighting;
-      # fast-syntaxHighlighting is not supported
-    };
+    syntaxHighlighting.enable = true;
   };
 
   home.packages = with pkgs; [
     zsh-vi-mode
     zsh-autopair
+    zsh-completions
     iay
   ];
 }

@@ -51,7 +51,7 @@
 
       set -g status-left '#[fg=colour45,bg=colour8,bold] ❐ #S #[fg=colour8,bg=colour45,italics] #(whoami) #[fg=colour8,bg=colour45]░#[fg=colour45,bg=colour16]░'
       set -g window-status-format "#[bg=colour16]  #I #W "
-      set -g window-status-current-format "#[fg=colour8,bg=colour16,bold]░ #I #W "
+      set -g window-status-current-format "#[fg=colour12,bg=colour16,bold]░ #I #W "
       set -g status-right "#[fg=colour45,bg=colour8,nobold]░▒ #(hostname -s) · #(date +'%m%d|%H%M')"
 
       # keybindings
