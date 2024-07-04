@@ -46,6 +46,7 @@
     brews = [
       "saml2aws"
       "ollama"
+      "podman"
     ];
     casks = [
       "utm"
@@ -69,6 +70,9 @@
         NIX_PATH="$OLD_NIX_PATH"
       fi
       unset OLD_NIX_PATH
+    fi
+    if [ -d /opt/homebrew ]; then
+      eval "$(/opt/homebrew/bin/brew shellenv)"
     fi
   '';
 
