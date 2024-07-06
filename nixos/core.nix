@@ -180,4 +180,10 @@ in {
     viAlias = true;
     vimAlias = true;
   };
+
+  # journald
+  services.journald.extraConfig = ''
+    Compress=true
+    MaxRetentionSec=2week
+  '';
 }
