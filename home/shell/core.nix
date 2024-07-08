@@ -46,6 +46,9 @@
 
     # tmux utf
     tmux = "tmux -u";
+
+    # vim shall be neo
+    vim = "nvim";
   };
 
   home.sessionPath = [ "$HOME/.local/bin" "$HOME/lib/bin" "$HOME/.rd/bin" ];

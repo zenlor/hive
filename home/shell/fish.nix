@@ -15,6 +15,10 @@
               echo $_
           end
       end
+
+      set --universal pure_shorten_prompt_current_directory_length 2
+      set --universal pure_enable_single_line_prompt true
+      fish_vi_key_bindings
     '';
     plugins = [
       {
@@ -26,20 +30,12 @@
         src = pkgs.fishPlugins.fzf-fish.src;
       }
       {
-        name = "z";
-        src = pkgs.fishPlugins.z.src;
-      }
-      {
-        name = "pisces";
-        src = pkgs.fishPlugins.pisces.src;
-      }
-      {
         name = "sponge";
         src = pkgs.fishPlugins.sponge.src;
       }
       {
-        name = "forgit";
-        src = pkgs.fishPlugins.forgit.src;
+        name = "pure";
+        src = pkgs.fishPlugins.pure.src;
       }
     ];
   };
