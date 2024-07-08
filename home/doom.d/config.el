@@ -20,7 +20,7 @@
   (add-to-list 'doom-env-allow "^SSH_"))
 
 ;; theme
-(setq doom-theme 'doom-horizon)
+(setq doom-theme 'doom-gruvbox)
 
 ;; font
 (setq doom-font (font-spec :family "IBM Plex Mono" :size 13)

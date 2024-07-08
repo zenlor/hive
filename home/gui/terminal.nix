@@ -7,36 +7,38 @@
       font.size = 14.0;
       cursor.style = "Beam";
 
-      # snazzy theme
+      # gruvbox theme
       colors = {
+        cursor = {
+          text = "0x282828";
+          cursor = "0xd5c4a1";
+        };
         # Default colors
         primary = {
-          background = "0x282a36";
-          foreground = "0xeff0eb";
+          background = "0x282828";
+          foreground = "0xd5c4a1";
         };
-
         # Normal colors
         normal = {
-          black = "0x282a36";
-          red = "0xff5c57";
-          green = "0x5af78e";
-          yellow = "0xf3f99d";
-          blue = "0x57c7ff";
-          magenta = "0xff6ac1";
-          cyan = "0x9aedfe";
-          white = "0xf1f1f0";
+          black = "0x282828";
+          red = "0xfb4934";
+          green = "0xb8bb26";
+          yellow = "0xfabd2f";
+          blue = "0x83a598";
+          magenta = "0xd3869b";
+          cyan = "0x8ec07c";
+          white = "0xd5c4a1";
         };
-
         # Bright colors
         bright = {
-          black = "0x686868";
-          red = "0xff5c57";
-          green = "0x5af78e";
-          yellow = "0xf3f99d";
-          blue = "0x57c7ff";
-          magenta = "0xff6ac1";
-          cyan = "0x9aedfe";
-          white = "0xf1f1f0";
+          black = "0x665c54";
+          red = "0xfe8019";
+          green = "0x3c3836";
+          yellow = "0x504945";
+          blue = "0xbdae93";
+          magenta = "0xebdbb2";
+          cyan = "0xd65d0e";
+          white = "0xfbf1c7";
         };
       };
     };
@@ -54,7 +56,7 @@
       config.font_size = 13
 
       -- color scheme
-      config.color_scheme = "Horizon Dark (Gogh)"
+      config.color_scheme = 'Gruvbox dark, medium (base16)'
       -- misc UI
       config.enable_tab_bar = false
 

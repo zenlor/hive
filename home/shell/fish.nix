@@ -19,6 +19,8 @@
       set --universal pure_shorten_prompt_current_directory_length 2
       set --universal pure_enable_single_line_prompt true
       fish_vi_key_bindings
+
+      theme_gruvbox dark medium
     '';
     plugins = [
       {
@@ -36,6 +38,10 @@
       {
         name = "pure";
         src = pkgs.fishPlugins.pure.src;
+      }
+      {
+        name = "gruvbox";
+        src = pkgs.fishPlugins.gruvbox.src;
       }
     ];
   };

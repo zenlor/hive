@@ -119,11 +119,11 @@ require"mini.notify".setup{}
 require"mini.starter".setup{}
 require"mini.statusline".setup{}
 
-local palette = { -- https://github.com/RRethy/base16-nvim/blob/master/lua/colors/horizon-dark.lua
-  base00 = '#1c1e26', base01 = '#232530', base02 = '#2e303e', base03 = '#6f6f70',
-  base04 = '#9da0a2', base05 = '#cbced0', base06 = '#dcdfe4', base07 = '#e3e6ee',
-  base08 = '#e93c58', base09 = '#e58d7d', base0A = '#efb993', base0B = '#efaf8e',
-  base0C = '#24a8b4', base0D = '#df5273', base0E = '#b072d1', base0F = '#e4a382'
+local palette = { -- https://github.com/RRethy/base16-nvim/blob/master/lua/colors/gruvbox-dark-medium.lua
+    base00 = '#282828', base01 = '#3c3836', base02 = '#504945', base03 = '#665c54',
+    base04 = '#bdae93', base05 = '#d5c4a1', base06 = '#ebdbb2', base07 = '#fbf1c7',
+    base08 = '#fb4934', base09 = '#fe8019', base0A = '#fabd2f', base0B = '#b8bb26',
+    base0C = '#8ec07c', base0D = '#83a598', base0E = '#d3869b', base0F = '#d65d0e'
 }
 vim.api.nvim_set_option('background', 'dark')
 require('mini.base16').setup{
