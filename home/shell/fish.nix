@@ -9,11 +9,11 @@
       end
 
       function fish_title
-          if [ $_ = 'fish' ]
-              echo (prompt_pwd)
-          else
-              echo $_
-          end
+          set -q argv[1]; or set argv fish
+          # results:
+          # ~/d/fish: git log
+          # /e/apt: fish
+          echo (fish_prompt_pwd_dir_length=1 prompt_pwd): $argv;
       end
 
       set --universal pure_shorten_prompt_current_directory_length 2
@@ -23,10 +23,6 @@
       theme_gruvbox dark medium
     '';
     plugins = [
-      {
-        name = "done";
-        src = pkgs.fishPlugins.done.src;
-      }
       {
         name = "fzf";
         src = pkgs.fishPlugins.fzf-fish.src;
