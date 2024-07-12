@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }: {
+{ lib, pkgs, ... }: {
 
   nixpkgs.config.allowUnfree = true;
 
@@ -35,7 +35,7 @@
 
     firewall = {
       enable = true;
-      allowedTCPPorts = [ 22 ];
+      allowedTCPPorts = [ 22 80 443 8000 ];
       allowedUDPPorts = [ ];
       allowPing = true;
     };
@@ -64,4 +64,8 @@
   };
 
   services.flatpak.enable = true;
+
+  services.avahi.enable = true;
+  services.avahi.openFirewall = true;
+  services.avahi.wideArea = true;
 }

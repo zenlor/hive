@@ -7,6 +7,7 @@
     iosevka-comfy-fixed
     iosevka-aile
     iosevka-etoile
+    freefont_ttf
     fira
     fira-go
     fira-mono

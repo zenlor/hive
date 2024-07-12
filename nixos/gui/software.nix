@@ -4,6 +4,7 @@
     telegram-desktop
     firefox
     wezterm
+    vlc
   ];
 
   programs._1password.enable = true;
