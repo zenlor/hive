@@ -6,8 +6,8 @@
     displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
 
-    layout = "us";
-    xkbVariant = "";
+    xkb.layout = "us";
+    xkb.variant = "";
   };
 
   programs.geary.enable = true;

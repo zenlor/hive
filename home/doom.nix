@@ -1,7 +1,7 @@
 { ... }:
 { pkgs, lib, ... }: {
   home.packages = with pkgs; [
-    emacs29
+    emacs29-pgtk
     emacs-all-the-icons-fonts
 
     (nerdfonts.override { fonts = [ "Iosevka" ]; })
