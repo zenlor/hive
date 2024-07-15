@@ -6,8 +6,7 @@
 
     (nerdfonts.override { fonts = [ "Iosevka" ]; })
     iosevka
-    fira
-    fira-code
+    ibm-plex
 
     # base dependencies
     git
