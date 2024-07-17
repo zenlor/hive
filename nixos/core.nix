@@ -20,6 +20,7 @@ in {
     file
     git
     gnused
+    htop
     iftop
     jq
     lnav
@@ -33,7 +34,6 @@ in {
     tmux
     whois
     xh
-    zenith
     zig
 
     # manpages, you never know when they are useful
@@ -63,7 +63,7 @@ in {
     mn = ''
       manix "" | grep '^# ' | sed 's/^# \(.*\) (.*/\1/;s/ (.*//;s/^# //' | sk --preview="manix '{}'" | xargs manix
     '';
-    top = "zenith";
+    top = "htop";
 
     mkdir = "mkdir -pv";
     cp = "cp -iv";
