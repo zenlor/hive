@@ -490,23 +490,27 @@ end
 
 do -- [[ AutoFormat ]]
   Deps.add{ source = 'stevearc/conform.nvim' }
-  vim.keymap.set('', '<leader>cf', function()
-    require'conform'.format{async = true, lsp_fallback = true}
-  end, {desc ='[F]ormat buffer'})
+  local conform = require'conform'
 
-  require'conform'.setup{
+  kmap('<leader>cf', function()
+    conform.format{async = true, lsp_fallback = true}
+  end, '[F]ormat buffer')
+
+  conform.setup{
+    default_format_opts = {
+      lsp_format = "fallback",
+    },
     notify_on_error = false,
-    format_on_save = function(bn)
-      local disable_filetypes = { c = true, cpp = true, }
-      return {
-        timeout_ms = 500,
-        lsp_fallback = not disable_filetypes[vim.bo[bn].filetype],
-      }
-    end,
+    format_on_save = {
+      timeout_ms = 500,
+      lsp_fallback = true,
+    },
     formatters_by_ft = {
       lua = {'stylua'},
       nix = {'nix fmt'},
-      go  = {'go fmt'},
+      go = { "goimports", "gofmt" },
+      rust = { "rustfmt", lsp_format = "fallback" },
+      zig = { "zigfmt", lsp_format = "fallback" }
     },
   }
 end
