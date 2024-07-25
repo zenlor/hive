@@ -498,7 +498,7 @@ do -- [[ AutoFormat ]]
 
   conform.setup{
     default_format_opts = {
-      lsp_format = "fallback",
+      lsp_format = 'fallback',
     },
     notify_on_error = false,
     format_on_save = {
@@ -508,9 +508,11 @@ do -- [[ AutoFormat ]]
     formatters_by_ft = {
       lua = {'stylua'},
       nix = {'nix fmt'},
-      go = { "goimports", "gofmt" },
-      rust = { "rustfmt", lsp_format = "fallback" },
-      zig = { "zigfmt", lsp_format = "fallback" }
+      go = { 'goimports', 'gofmt' },
+      rust = { 'rustfmt', lsp_format = 'fallback' },
+      zig = { 'zigfmt', lsp_format = 'fallback' },
+      tf = { 'terraform fmt', 'tofu fmt', 'hclfmt', lsp_format = 'fallback'},
+      hcl = { 'terraform fmt', 'tofu fmt', 'hclfmt', lsp_format = 'fallback'},
     },
   }
 end
