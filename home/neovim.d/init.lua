@@ -511,26 +511,30 @@ do -- [[ AutoFormat ]]
       go = { 'goimports', 'gofmt' },
       rust = { 'rustfmt', lsp_format = 'fallback' },
       zig = { 'zigfmt', lsp_format = 'fallback' },
-      tf = { 'terraform fmt', 'tofu fmt', 'hclfmt', lsp_format = 'fallback'},
-      hcl = { 'terraform fmt', 'tofu fmt', 'hclfmt', lsp_format = 'fallback'},
+      tf = { {'terraformfmt', 'tofufmt', 'hclfmt'}, lsp_format = 'fallback'},
+      hcl = { 'hclfmt' },
     },
   }
 end
 
 -- [[ Doom-like Keymaps ]]
 do
+  local none = function() end
+  local tsb = require'telescope.builtin'
+  local mbf = require'mini.bufremove'
 
-  kmap('<leader>b',  '', '[B]uffers') -- dummy
-  kmap('<leader>bb', require'telescope.builtin'.buffers, '[B]uffer list' )
-  kmap('<leader>bk', require'mini.bufremove'.delete, '[K]ill buffer' )
-  kmap('<leader>bw', require'mini.bufremove'.wipeout, '[W]ipeout buffer')
-  kmap('<leader>b/', require'telescope.builtin'.current_buffer_fuzzy_find, '[/] find in buffer')
-  kmap('<leader>bt', require'telescope.builtin'.current_buffer_tags, '[/] find in buffer')
-  kmap('<leader>,',  require'telescope.builtin'.resume, 'resume ...')
+  kmap('<leader>b',  none, '[B]uffers') -- dummy
+  kmap('<leader>bb', tsb.buffers, '[B]uffer list' )
+  kmap('<leader>bk', mbf.delete, '[K]ill buffer' )
+  kmap('<leader>bw', mbf.wipeout, '[W]ipeout buffer')
+  kmap('<leader>b/', tsb.current_buffer_fuzzy_find, '[/] find in buffer')
+  kmap('<leader>bt', tsb.current_buffer_tags, '[/] find in buffer')
+  kmap('<leader>bs', ':w', '[S]ave')
+  kmap('<leader>,',  tsb.resume, 'resume ...')
 
-  kmap('<leader><space>', require'telescope.builtin'.find_files, 'find in project')
-  kmap('<leader>ff', require'telescope.builtin'.find_files, 'find in project')
-  kmap('<leader>fg', require'telescope.builtin'.live_grep, 'find in project')
+  kmap('<leader><space>', tsb.find_files, 'find in project')
+  kmap('<leader>ff', tsb.find_files, '[F]ind in project')
+  kmap('<leader>fg', tsb.live_grep, '[G]rep project')
 
 end
 

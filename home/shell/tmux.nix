@@ -55,8 +55,8 @@
       set -g status-left  "#(whoami)"
       set -g status-right "+ %m/%d|%H:%M"
 
-      set -g window-status-format " #I:#W "
-      set -g window-status-current-format "#[bg=#698DDA,fg=#000000] #I:#W "
+      set -g window-status-format " #I:#T "
+      set -g window-status-current-format "#[bg=#698DDA,fg=#000000] #I:#T "
 
       # keybindings
       bind-key a last-window
