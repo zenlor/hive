@@ -53,6 +53,20 @@
 ;; relative fringe numbers
 (setq display-line-numbers-type 'relative)
 
+;; keychain support: https://github.com/tarsius/keychain-environment/blob/main/keychain-environment.el
+(let* ((ssh (shell-command-to-string "keychain -q --noask --agents ssh --eval"))
+       (gpg (shell-command-to-string "keychain -q --noask --agents gpg --eval")))
+  (list (and ssh
+             (string-match "SSH_AUTH_SOCK[=\s]\\([^\s;\n]*\\)" ssh)
+             (setenv       "SSH_AUTH_SOCK" (match-string 1 ssh)))
+        (and ssh
+             (string-match "SSH_AGENT_PID[=\s]\\([0-9]*\\)?" ssh)
+             (setenv       "SSH_AGENT_PID" (match-string 1 ssh)))
+        (and gpg
+             (string-match "GPG_AGENT_INFO[=\s]\\([^\s;\n]*\\)" gpg)
+             (setenv       "GPG_AGENT_INFO" (match-string 1 gpg)))))
+
+
 ;;
 ;; Keybindings
 ;;
