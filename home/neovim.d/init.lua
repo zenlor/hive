@@ -507,12 +507,12 @@ do -- [[ AutoFormat ]]
     },
     formatters_by_ft = {
       lua = {'stylua'},
-      nix = {'nix fmt'},
+      nix = {{'nixpkgs_fmt', 'nix_fmt'}},
       go = { 'goimports', 'gofmt' },
       rust = { 'rustfmt', lsp_format = 'fallback' },
       zig = { 'zigfmt', lsp_format = 'fallback' },
-      tf = { {'terraformfmt', 'tofufmt', 'hclfmt'}, lsp_format = 'fallback'},
-      hcl = { 'hclfmt' },
+      tf = { {'terraform_fmt', 'tofu_fmt'}, lsp_format = 'fallback'},
+      hcl = { 'hcl' },
     },
   }
 end

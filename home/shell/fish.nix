@@ -4,16 +4,17 @@
     enable = true;
     interactiveShellInit = ''
       set fish_greeting
+
       if test "$TMUX" = ""
         tmux -u -2 attach; or tmux -u -2
       end
 
       function fish_title
-          set -q argv[1]; or set argv fish
-          # results:
-          # ~/d/fish: git log
-          # /e/apt: fish
-          echo (fish_prompt_pwd_dir_length=1 prompt_pwd): $argv;
+          if set -q argv[1]
+              echo $argv[1]
+          else
+              prompt_pwd
+          end
       end
 
       set --universal pure_shorten_prompt_current_directory_length 1
