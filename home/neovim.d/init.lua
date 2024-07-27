@@ -316,6 +316,7 @@ end
 do
   Deps.add({
     source = "nvim-treesitter/nvim-treesitter",
+    checkout = "v0.9.2",
     hooks = {
       post_checkout = function()
         vim.cmd('TSUpdate')

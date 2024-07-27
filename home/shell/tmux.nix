@@ -38,6 +38,8 @@
 
     # UI
     extraConfig = ''
+      # neovim termguicolors
+      set-option -sa terminal-features ',XXX:RGB'
       # aggressively renumber windows
       set -g renumber-windows on
 

@@ -14,6 +14,9 @@
       ast-grep
       # Telescope
       ripgrep
+
+      # luv
+      luajitPackages.luv
     ];
   };
 
