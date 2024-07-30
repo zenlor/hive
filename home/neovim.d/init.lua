@@ -530,7 +530,7 @@ do
   kmap('<leader>bw', mbf.wipeout, '[W]ipeout buffer')
   kmap('<leader>b/', tsb.current_buffer_fuzzy_find, '[/] find in buffer')
   kmap('<leader>bt', tsb.current_buffer_tags, '[/] find in buffer')
-  kmap('<leader>bs', ':w', '[S]ave')
+  kmap('<leader>bs', ':w<cr>', '[S]ave')
   kmap('<leader>,',  tsb.resume, 'resume ...')
 
   kmap('<leader><space>', tsb.find_files, 'find in project')
