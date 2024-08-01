@@ -2,7 +2,7 @@
 { pkgs, ... }: {
   imports = with super; [ cli.bat cli.bottom ];
 
-  home.packages = with pkgs; [ jq ijq lazygit k9s nmap rage htop ];
+  home.packages = with pkgs; [ jq ijq lazygit k9s nmap rage htop rtorrent ];
 
   home.sessionVariables = {
     GOPATH = "$HOME/lib";
