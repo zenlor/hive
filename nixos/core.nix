@@ -187,4 +187,7 @@ in {
     Compress=true
     MaxRetentionSec=2week
   '';
+
+  # qmk+via keyboards
+  hardware.keyboard.qmk.enable = true;
 }

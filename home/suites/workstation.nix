@@ -23,6 +23,7 @@
 
         root.doom
         root.neovim
+        root.helix
 
         root.gui.terminal
       ];
