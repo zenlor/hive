@@ -23,14 +23,15 @@
 (setq doom-theme 'doom-gruvbox)
 
 ;; font
-(setq doom-font (font-spec :family "IBM Plex Mono" :size 13)
-      doom-variable-font (font-spec :family "IBM Plex Sans")
-      doom-unicode-font (font-spec :family "IBM Plex Mono")
-      doom-big-font (font-spec :family "IBM Plex Mono" :size 22))
-;(setq doom-font (font-spec :family "Iosevka" :size 14)
-;      doom-variable-font (font-spec :family "Iosevka Aile")
-;      doom-unicode-font (font-spec :family "Iosevka")
-;      doom-big-font (font-spec :family "Iosevka" :size 22))
+(let ((fontsize 13)
+      (family           "IBM Plex Mono")  ;; Iosevka
+      (family-variable  "IBM Plex Sans")) ;; Iosevka Aile
+  (if (string= (system-name) "horus")
+    (setq fontsize 17))
+  (setq doom-font (font-spec :family family :size fontsize)
+        doom-variable-font (font-spec :family family-variable)
+        doom-unicode-font (font-spec :family family)
+        doom-big-font (font-spec :family family :size (truncate (* fontsize 1.5)))))
 
 ;; org
 (setq org-directory "~/Documents/notes")
