@@ -509,11 +509,11 @@ do -- [[ AutoFormat ]]
     formatters_by_ft = {
       lua = {'stylua'},
       nix = {{'nixpkgs_fmt', 'nix_fmt'}},
-      go = { 'goimports', 'gofmt' },
-      rust = { 'rustfmt', lsp_format = 'fallback' },
-      zig = { 'zigfmt', lsp_format = 'fallback' },
-      tf = { {'terraform_fmt', 'tofu_fmt'}, lsp_format = 'fallback'},
-      hcl = { 'hcl' },
+      go = {'goimports', 'gofmt'},
+      rust = {'rustfmt'},
+      zig = {'zigfmt'},
+      tf = {{'terraform_fmt', 'tofu_fmt'}},
+      hcl = {'hcl'},
     },
   }
 end
