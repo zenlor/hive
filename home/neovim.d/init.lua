@@ -301,9 +301,14 @@ do
 end
 
 do
-  Deps.add({ source = "ellisonleao/gruvbox.nvim" })
+  Deps.add({ source = 'shaunsingh/nord.nvim' })
 
-  vim.cmd.colorscheme 'gruvbox'
+  vim.g.nord_disable_background = true
+  vim.g.nord_italic = true
+  vim.g.nord_bold = true
+  require('nord').set()
+
+  vim.cmd.colorscheme "nord"
   vim.cmd.hi 'Comment gui=none'
 end
 

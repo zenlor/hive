@@ -56,7 +56,7 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
 
     powerManagement = {
-      enable= false;
+      enable = false;
       finegrained = false;
     };
 
@@ -72,7 +72,7 @@
       intelBusId = "PCI:0:2:0";
     };
   };
-  services.xserver.videoDrivers = ["intel" "nvidia"];
+  services.xserver.videoDrivers = [ "intel" "nvidia" ];
 
   # hardware.bumblebee = {
   #   enable = true;

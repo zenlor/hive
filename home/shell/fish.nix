@@ -21,7 +21,7 @@
       set --universal pure_enable_single_line_prompt true
       fish_vi_key_bindings
 
-      theme_gruvbox dark medium
+      export EDITOR=hx
     '';
     plugins = [
       {
@@ -35,10 +35,6 @@
       {
         name = "pure";
         src = pkgs.fishPlugins.pure.src;
-      }
-      {
-        name = "gruvbox";
-        src = pkgs.fishPlugins.gruvbox.src;
       }
     ];
   };

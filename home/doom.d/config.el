@@ -20,7 +20,7 @@
   (add-to-list 'doom-env-allow "^SSH_"))
 
 ;; theme
-(setq doom-theme 'doom-gruvbox)
+(setq doom-theme 'doom-opera-light)
 
 ;; font
 (let ((fontsize 13)

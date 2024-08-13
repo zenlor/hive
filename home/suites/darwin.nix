@@ -11,7 +11,8 @@
     root.shell.fish
     root.shell.tmux
     root.shell.direnv
-    root.shell.lsd
+    root.shell.eza
+    root.shell.btop
     root.shell.zoxide
     root.shell.fzf
     root.shell.zsh
