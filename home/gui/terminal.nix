@@ -56,7 +56,7 @@
       config.font_size = 13
 
       -- color scheme
-      config.color_scheme = 'PaperColor Light (base16)'
+      config.color_scheme = 'Grayscale Light (base16)'
       -- misc UI
       config.enable_tab_bar = false
 
