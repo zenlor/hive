@@ -5,10 +5,15 @@
     settings = {
       theme = "base16_terminal";
       editor = {
-        cursor-shape.insert = "bar";
+        bufferline = "multiple";
+        cursor-shape = {
+          insert = "bar";
+          normal = "block";
+          select = "underline";
+        };
         line-number = "relative";
         lsp.display-messages = true;
-        lsp.display-inlay-hints = true;
+        lsp.display-inlay-hints = false; # extremely intrusive by default, but interesting
       };
       keys.normal = {
         space.space = "file_picker";
