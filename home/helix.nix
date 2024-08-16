@@ -1,9 +1,10 @@
-{
+{ ... }:
+{ pkgs, ... }: {
   programs.helix = {
     enable = true;
 
     settings = {
-      theme = "base16_terminal";
+      theme = "modus_operandi";
       editor = {
         bufferline = "multiple";
         cursor-shape = {
@@ -13,7 +14,8 @@
         };
         line-number = "relative";
         lsp.display-messages = true;
-        lsp.display-inlay-hints = false; # extremely intrusive by default, but interesting
+        lsp.display-inlay-hints =
+          false; # extremely intrusive by default, but interesting
       };
       keys.normal = {
         space.space = "file_picker";
@@ -32,5 +34,17 @@
         ];
       };
     };
+    languages.language = [
+      {
+        name = "hcl";
+        auto-format = true;
+        formatter.command = "${pkgs.hclfmt}/bin/hclfmt";
+      }
+      {
+        name = "nix";
+        auto-format = true;
+        formatter.command = "${pkgs.nixfmt}/bin/nixfmt";
+      }
+    ];
   };
 }
