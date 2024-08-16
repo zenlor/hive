@@ -20,12 +20,12 @@
   (add-to-list 'doom-env-allow "^SSH_"))
 
 ;; theme
-(setq doom-theme 'doom-plain)
+(setq doom-theme 'doom-ayu-mirage)
 
 ;; font
 (let ((fontsize 13)
-      (family           "IBM Plex Mono")  ;; Iosevka
-      (family-variable  "IBM Plex Sans")) ;; Iosevka Aile
+      (family           "Iosevka")       ;; IBM Plex Mono
+      (family-variable  "Iosevka Aile")) ;; IBM Plex Sans
   (if (string= (system-name) "horus")
     (setq fontsize 17))
   (setq doom-font (font-spec :family family :size fontsize)

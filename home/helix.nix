@@ -4,7 +4,7 @@
     enable = true;
 
     settings = {
-      theme = "modus_operandi";
+      theme = "base16_transparent";
       editor = {
         bufferline = "multiple";
         cursor-shape = {

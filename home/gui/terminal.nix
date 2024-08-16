@@ -52,11 +52,11 @@
       local config = {}
 
       -- font
-      config.font = wezterm.font 'IBM Plex Mono'
-      config.font_size = 13
+      config.font = wezterm.font 'Iosevka Term'
+      config.font_size = 15
 
       -- color scheme
-      config.color_scheme = 'Ayu Light (Gogh)'
+      config.color_scheme = 'Ayu Mirage'
       -- misc UI
       config.enable_tab_bar = false
 
