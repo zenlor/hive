@@ -27,6 +27,7 @@ in {
     sudo.wheelNeedsPassword = false;
   };
 
+  networking.useNetworkd = true;
   networking.hostId = "cda31f1b";
   networking.useDHCP = true;
   networking.hostName = "frenz";
@@ -45,44 +46,71 @@ in {
   services.qemuGuest.enable = true;
 
   # wireguard
-  age.secrets.wireguard-key.file = secrets.wireguard.frenz.key;
-
-  networking.firewall.allowedUDPPorts = [ 51820 ];
-  networking.nat = {
-    enable = true;
-    externalInterface = "enp0s3";
-    internalInterfaces = [ "wg0" ];
+  age.secrets.wireguard-key = {
+    file = secrets.wireguard.frenz.key;
+    owner = "systemd-network";
   };
 
-  networking.wireguard.interfaces.wg0 = {
-    ips = [ "10.69.0.1/24" ];
-    listenPort = 51820;
-    privateKeyFile = config.age.secrets.wireguard-key.path;
-
-    postSetup = ''
-      ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -s 10.69.0.0/24 -o enp0s3 -j MASQUERADE
-    '';
-    postShutdown = ''
-      ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s 10.69.0.0/24 -o enp0s3 -j MASQUERADE
-    '';
-
-    peers = [
-      {
-        publicKey = secrets.wireguard.nasferatu.pub;
-        allowedIPs = [ "10.69.0.2/32" ];
-      }
-      {
-        publicKey = secrets.wireguard.pad.pub;
-        allowedIPs = [ "10.69.0.3/32" ];
-      }
-      {
-        publicKey = secrets.wireguard.horus.pub;
-        allowedIPs = [ "10.69.0.4/32" ];
-      }
-      {
-        publicKey = secrets.wireguard.deck.pub;
-        allowedIPs = [ "10.69.0.5/32" ];
-      }
-    ];
+  networking.firewall.allowedUDPPorts = [ 51820 ];
+  systemd.network = {
+    enable = true;
+    netdevs = {
+      "90-wg0" = {
+        enable = true;
+        netdevConfig = {
+          Kind = "wireguard";
+          Name = "wg0";
+        };
+        wireguardConfig = {
+          PrivateKeyFile = config.age.secrets.wireguard-key.path;
+          ListenPort = 51820;
+        };
+        wireguardPeers = [
+          # nasferatu
+          {
+            wireguardPeerConfig = {
+              PublicKey = secrets.wireguard.nasferatu.pub;
+              AllowedIPs = [ "10.69.0.2" ];
+              PersistentKeepalive = 15;
+            };
+          }
+          # pad
+          {
+            wireguardPeerConfig = {
+              PublicKey = secrets.wireguard.pad.pub;
+              AllowedIPs = [ "10.69.0.2" ];
+              PersistentKeepalive = 15;
+            };
+          }
+          # horus
+          {
+            wireguardPeerConfig = {
+              PublicKey = secrets.wireguard.horus.pub;
+              AllowedIPs = [ "10.69.0.4" ];
+              PersistentKeepalive = 15;
+            };
+          }
+          # deck
+          {
+            wireguardPeerConfig = {
+              PublicKey = secrets.wireguard.deck.pub;
+              AllowedIPs = [ "10.69.0.2" ];
+              PersistentKeepalive = 15;
+            };
+          }
+        ];
+      };
+    };
+    networks = {
+      "90-wg0" = {
+        enable = true;
+        matchConfig.Name = "wg0";
+        address = [ "10.69.0.1/24" ];
+        networkConfig = {
+          IPForward = true;
+          IPMasquerade = "ipv4";
+        };
+      };
+    };
   };
 }

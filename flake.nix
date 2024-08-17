@@ -29,7 +29,7 @@
               }
               {
                 category = "dev";
-                package = pkgs.nixd;
+                package = pkgs.nil;
               }
               {
                 category = "dev";
@@ -214,10 +214,12 @@
             nodeNixpkgs = builtins.mapAttrs (name: value: value.pkgs) conf;
             nodeSpecialArgs =
               builtins.mapAttrs (name: value: value._module.specialArgs) conf;
+
           };
           defaults.deployment = {
             buildOnTarget = true;
             allowLocalDeployment = true;
+            targetUser = null;
           };
           nasferatu = {
             deployment = {
