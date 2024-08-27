@@ -11,6 +11,7 @@
         root.shell.core
         root.shell.fish
         root.shell.tmux
+        root.shell.nnn
         root.neovim
       ];
       home.stateVersion = "${stateVersion}";

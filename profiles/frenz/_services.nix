@@ -41,4 +41,15 @@
   # services.marrano-bot.hostName = "bot.marrani.lol";
   # services.marrano-bot.logLevel = "debug";
   services.marrano-bot.logLevel = "error";
+
+  # tinyproxy
+  services.tinyproxy = {
+    enable = true;
+    settings = {
+      Port = 8888;
+      Listen = "10.69.0.1";
+      Allow = "10.69.0.0/24";
+      Timeout = 60;
+    };
+  };
 }

@@ -16,7 +16,7 @@
         root.shell.btop
         root.shell.zoxide
         root.shell.fzf
-        # root.shell.zsh
+        root.shell.nnn
         root.shell.nushell
 
         root.git
