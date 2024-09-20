@@ -27,8 +27,18 @@
     languages.language = [
       {
         name = "hcl";
+        file-types = [ "hcl" "tfvars" ];
         auto-format = true;
         formatter.command = "${pkgs.hclfmt}/bin/hclfmt";
+        language-servers = [ ];
+      }
+      {
+        name = "terraform";
+        scope = "source.terraform";
+        file-types = [ "tf" ];
+        auto-format = true;
+        formatter.command = "${pkgs.hclfmt}/bin/hclfmt";
+        language-servers = [ "terraform-ls" ];
       }
       {
         name = "nix";
