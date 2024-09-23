@@ -1,5 +1,7 @@
 { config, pkgs, ... }: {
 
+  system.stateVersion = 5;
+
   nix.extraOptions = ''
     extra-experimental-features = flakes nix-command
   '';
@@ -43,11 +45,7 @@
       upgrade = true;
     };
     taps = [ "homebrew/cask-versions" "homebrew/cask-fonts" ];
-    brews = [
-      "saml2aws"
-      "ollama"
-      "podman"
-    ];
+    brews = [ "saml2aws" "ollama" "podman" ];
     casks = [
       "utm"
       "wezterm"
@@ -79,10 +77,7 @@
   # https://github.com/nix-community/home-manager/issues/4026
   # fish shell setup
   programs.fish.enable = true;
-  environment.shells = [
-    pkgs.zsh
-    pkgs.fish
-  ];
+  environment.shells = [ pkgs.zsh pkgs.fish ];
   users.users.lorenzo = {
     home = "/Users/lorenzo";
     shell = pkgs.fish;
