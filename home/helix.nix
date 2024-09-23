@@ -24,27 +24,28 @@
         esc = [ "collapse_selection" "keep_primary_selection" ];
       };
     };
-    languages.language = [
-      {
-        name = "hcl";
-        file-types = [ "hcl" "tfvars" ];
-        auto-format = true;
-        formatter.command = "${pkgs.hclfmt}/bin/hclfmt";
-        language-servers = [ ];
-      }
-      {
-        name = "terraform";
-        scope = "source.terraform";
-        file-types = [ "tf" ];
-        auto-format = true;
-        formatter.command = "${pkgs.hclfmt}/bin/hclfmt";
-        language-servers = [ "terraform-ls" ];
-      }
-      {
-        name = "nix";
-        auto-format = true;
-        formatter.command = "${pkgs.nixfmt}/bin/nixfmt";
-      }
-    ];
+
+    # languages.language = [
+    #   {
+    #     name = "hcl";
+    #     file-types = [ "hcl" "nomad" ];
+    #     language-servers = [ ];
+    #     formatter = { command = "hclfmt"; };
+    #   }
+    #   {
+    #     name = "tf";
+    #     scope = "source.tfvars";
+    #     file-types = [ "tfvars" "tf" ];
+    #     language-servers = [ "terraform-ls" ];
+    #     auto-format = true;
+    #     grammar = "hcl";
+    #     formatter = { command = "hclfmt"; };
+    #   }
+    #   {
+    #     name = "nix";
+    #     auto-format = true;
+    #     formatter = { command = "${pkgs.nixfmt}/bin/nixfmt"; };
+    #   }
+    # ];
   };
 }
