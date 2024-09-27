@@ -19,6 +19,7 @@
       };
       keys.normal = {
         space.space = "file_picker";
+        space."." = "file_picker_in_current_buffer_directory";
         space.w = ":w";
         space.q = ":q";
         esc = [ "collapse_selection" "keep_primary_selection" ];
