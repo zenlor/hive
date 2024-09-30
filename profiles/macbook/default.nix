@@ -45,10 +45,11 @@
       upgrade = true;
     };
     taps = [ "homebrew/cask-versions" "homebrew/cask-fonts" ];
-    brews = [ "saml2aws" "ollama" "podman" ];
+    brews = [ "saml2aws" "ollama" "podman" "docker" ];
     casks = [
       "utm"
       "wezterm"
+      "alacritty"
       "launchcontrol"
       "keybase"
       "font-iosevka"
