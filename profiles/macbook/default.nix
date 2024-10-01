@@ -45,7 +45,7 @@
       upgrade = true;
     };
     taps = [ "homebrew/cask-versions" "homebrew/cask-fonts" ];
-    brews = [ "saml2aws" "ollama" "podman" "docker" ];
+    brews = [ "saml2aws" "ollama" "podman" "docker" "docker-credential-helper" "docker-credential-helper-ecr" ];
     casks = [
       "utm"
       "wezterm"

@@ -4,41 +4,56 @@
     settings = {
       # env.TERM = "xterm-256color";
       window.decorations = "full";
-      font.size = 14.0;
+      font = {
+        normal = {
+          family = "Iosevka Term";
+          style = "Light";
+        };
+        bold = {
+          family = "Iosevka Term";
+          style = "Bold";
+        };
+        italic = {
+          family = "Iosevka Term";
+          style = "Light Italic";
+        };
+        bold_italic = {
+          family = "Iosevka Term";
+          style = "Bold Italic";
+        };
+        size = 14.0;
+      };
       cursor.style = "Beam";
 
-      # gruvbox theme
+      # ayu theme
       colors = {
-        cursor = {
-          text = "0x282828";
-          cursor = "0xd5c4a1";
-        };
-        # Default colors
         primary = {
-          background = "0x282828";
-          foreground = "0xd5c4a1";
+          background = "#0A0E14";
+          foreground = "#B3B1AD";
         };
+
         # Normal colors
         normal = {
-          black = "0x282828";
-          red = "0xfb4934";
-          green = "0xb8bb26";
-          yellow = "0xfabd2f";
-          blue = "0x83a598";
-          magenta = "0xd3869b";
-          cyan = "0x8ec07c";
-          white = "0xd5c4a1";
+          black = "#01060E";
+          red = "#EA6C73";
+          green = "#91B362";
+          yellow = "#F9AF4F";
+          blue = "#53BDFA";
+          magenta = "#FAE994";
+          cyan = "#90E1C6";
+          white = "#C7C7C7";
         };
+
         # Bright colors
         bright = {
-          black = "0x665c54";
-          red = "0xfe8019";
-          green = "0x3c3836";
-          yellow = "0x504945";
-          blue = "0xbdae93";
-          magenta = "0xebdbb2";
-          cyan = "0xd65d0e";
-          white = "0xfbf1c7";
+          black = "#686868";
+          red = "#F07178";
+          green = "#C2D94C";
+          yellow = "#FFB454";
+          blue = "#59C2FF";
+          magenta = "#FFEE99";
+          cyan = "#95E6CB";
+          white = "#FFFFFF";
         };
       };
     };

@@ -4,8 +4,9 @@
     enable = true;
 
     settings = {
-      theme = "base16_transparent";
+      theme = "ayu_dark";
       editor = {
+        true-color = true; # force true color detection
         bufferline = "multiple";
         cursor-shape = {
           insert = "bar";
