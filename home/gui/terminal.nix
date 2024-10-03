@@ -73,7 +73,7 @@
       -- color scheme
       config.color_scheme = 'Ayu Mirage'
       -- misc UI
-      config.enable_tab_bar = false
+      config.enable_tab_bar = true
 
       -- bell
       config.audible_bell = "Disabled"
@@ -82,6 +82,74 @@
         fade_out_duration_ms = 75,
         target = "CursorColor",
       }
+
+      -- tmux-like bindings
+      local act = wezterm.action
+      config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
+      config.keys = {
+        {
+          mods = "CMD",
+          key = "m",
+          action = act.DisableDefaultAssignment,
+        },
+        {
+          mods = "LEADER",
+          key = "s",
+          action = act.SplitVertical { domain = 'CurrentPaneDomain' },
+        },
+        {
+          mods = "LEADER",
+          key = "v",
+          action = act.SplitHorizontal { domain = 'CurrentPaneDomain' },
+        },
+        -- zoom
+        {
+          mods = "LEADER",
+          key = "m",
+          action = act.TogglePaneZoomState,
+        },
+        -- rotate panes
+        {
+          mods = "LEADER",
+          key = "Space",
+          action = act.RotatePanes "Clockwise"
+        },
+        -- pane selection mode
+        {
+          mods = "LEADER",
+          key = "'",
+          action = act.PaneSelect { mode = "SwapWithActive" },
+        },
+        -- copy mode
+        {
+          mods = "LEADER",
+          key = "Enter",
+          action = act.ActivateCopyMode,
+        },
+        -- command palette
+        { mods = "LEADER", key = ":", action = act.ActivateCommandPalette, },
+        { mods = "CTRL", key = "p", action = act.ActivateCommandPalette, },
+        -- pane movement
+        { mods = "LEADER", key = "h", action = act.ActivatePaneDirection("Left"), },
+        { mods = "LEADER", key = "j", action = act.ActivatePaneDirection("Down"), },
+        { mods = "LEADER", key = "k", action = act.ActivatePaneDirection("Up"), },
+        { mods = "LEADER", key = "l", action = act.ActivatePaneDirection("Right"), },
+        -- pane selection
+        -- { mods = "LEADER", key = "n", action = act.ActivateTabRelative(1), },
+        -- { mods = "LEADER", key = "b", action = act.ActivateTabRelative(-1), },
+        -- pane/tab creation
+        { mods = "LEADER", key = "c", action = act.SpawnTab("CurrentPaneDomain"), },
+        { mods = "LEADER|SHIFT", key = "k", action = act.CloseCurrentPane({confirm = false}), },
+      }
+
+      -- pane activation
+      for idx = 1,9 do
+        table.insert(config.keys, {
+          mods = "LEADER",
+          key = string.format("%s", idx),
+          action = act.ActivatePaneByIndex(idx-1),
+        })
+      end
 
       return config
     '';
