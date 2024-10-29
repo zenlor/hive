@@ -5,6 +5,8 @@
     interactiveShellInit = ''
       set fish_greeting
 
+      fish_config theme choose "Lava"
+
       if test "$TMUX" = ""
         tmux -u -2 attach; or tmux -u -2
       end

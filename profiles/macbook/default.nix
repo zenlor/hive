@@ -45,7 +45,10 @@
       upgrade = true;
     };
     taps = [ "homebrew/cask-versions" "homebrew/cask-fonts" ];
-    brews = [ "saml2aws" "ollama" "podman" "docker" "docker-credential-helper" "docker-credential-helper-ecr" ];
+    brews = [
+     "saml2aws" "ollama" "podman" "docker" "docker-credential-helper" "docker-credential-helper-ecr"
+     "awscli" "kubectl"
+     ];
     casks = [
       "utm"
       "wezterm"
@@ -57,6 +60,9 @@
       "font-iosevka-nerd-font"
       "jan"
       "wireshark"
+      # This is ... .... so bad
+      # also, as always, the aws cli crashes using a different boto3 version
+      "session-manager-plugin"
     ];
   };
 
