@@ -141,22 +141,6 @@ in {
     "numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE="
   ];
 
-  # motd
-  programs.rust-motd = {
-    enable = true;
-    enableMotdInSSHD = true;
-    settings = {
-      global = {
-        progress_full_character = "=";
-        progress_empty_character = "-";
-        progress_prefix = "[";
-        progress_suffix = "]";
-      };
-      uptime.prefix = "up";
-      filesystems.root = "/";
-    };
-  };
-
   # shells
   programs.zsh = {
     enable = true;
@@ -172,7 +156,7 @@ in {
     '';
   };
 
-  users.defaultUserShell = pkgs.zsh;
+  users.defaultUserShell = pkgs.fish;
 
   # Editor
   programs.neovim = {

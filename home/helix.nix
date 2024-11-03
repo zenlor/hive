@@ -4,7 +4,7 @@
     enable = true;
 
     settings = {
-      theme = "ayu_dark";
+      theme = "ayu_mirage";
       editor = {
         true-color = true; # force true color detection
         bufferline = "multiple";
