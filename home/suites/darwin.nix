@@ -17,6 +17,8 @@
     root.shell.fzf
     root.shell.zsh
     root.shell.nushell
+    root.shell.nnn
+    # root.shell.zellij
 
     root.git
     root.ssh

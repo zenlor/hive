@@ -27,27 +27,17 @@
       };
     };
 
-    # languages.language = [
-    #   {
-    #     name = "hcl";
-    #     file-types = [ "hcl" "nomad" ];
-    #     language-servers = [ ];
-    #     formatter = { command = "hclfmt"; };
-    #   }
-    #   {
-    #     name = "tf";
-    #     scope = "source.tfvars";
-    #     file-types = [ "tfvars" "tf" ];
-    #     language-servers = [ "terraform-ls" ];
-    #     auto-format = true;
-    #     grammar = "hcl";
-    #     formatter = { command = "hclfmt"; };
-    #   }
-    #   {
-    #     name = "nix";
-    #     auto-format = true;
-    #     formatter = { command = "${pkgs.nixfmt}/bin/nixfmt"; };
-    #   }
-    # ];
+    languages.language = [
+      {
+        name = "hcl";
+        file-types = ["hcl" "nomad"];
+        language-servers = [];
+        formatter = { command = "hclfmt"; };
+      }
+      {
+        name = "tfvars";
+        file-types = ["tf" "tfvars"];
+      }
+    ];
   };
 }

@@ -158,10 +158,10 @@
 
             ./profiles/macbook
 
-            self.homeModules.suites.darwin
-
             inputs.home-manager.darwinModules.home-manager
             self.nixosModules.users.lorenzo
+
+            self.homeModules.suites.darwin
           ];
 
         };
