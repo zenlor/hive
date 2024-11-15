@@ -1,12 +1,12 @@
 {
   description = "nixos bee hive";
 
-  outputs = { self, flakelight, home-manager, nixpkgs, ... }@inputs:
+  outputs = { self, flakelight, flakelight-darwin, home-manager, nixpkgs, nix-darwin, ... }@inputs:
     flakelight ./. ({ lib, ... }:
       let
         stateVersion = "24.05";
 
-        nixosModules = inputs.haumea.lib.load {
+        nixModules = inputs.haumea.lib.load {
           src = ./nixos;
           inputs = {
             inherit inputs;
@@ -27,7 +27,8 @@
       in
       {
         inherit inputs;
-        systems = lib.systems.flakeExposed;
+        imports = [ flakelight-darwin.flakelightModules.default ];
+        # systems = lib.systems.flakeExposed;
 
         devShell = pkgs: {
           packages = with pkgs; [
@@ -36,6 +37,7 @@
             nixpkgs-fmt
             inputs.ragenix.packages.${system}.ragenix
             inputs.home-manager.packages.${system}.home-manager
+            # inputs.nix-darwin.packages.${system}.nix-darwin
           ];
         };
 
@@ -74,19 +76,34 @@
 
             { system.stateVersion = stateVersion; }
 
-            nixosModules.core
-            nixosModules.users.lor
-            nixosModules.suites.workstation
+            nixModules.core
+            nixModules.users.lor
+            nixModules.suites.workstation
 
             ./profiles/horus
           ];
+
+          specialArgs = { inherit inputs; inherit homeModules; inherit nixModules; };
         };
 
         nixosConfigurations.frenz = {
           system = "x86_64-linux";
           modules = [
             { system.stateVersion = stateVersion; }
+            ./profiles/frenz
           ];
+
+          specialArgs = { inherit inputs; inherit homeModules; inherit nixModules; };
+        };
+
+        darwinConfigurations."QF-00087" = nix-darwin.lib.darwinSystem {
+          system = "aarch64-darwin";
+          modules = [
+            { system.stateVersion = stateVersion; }
+            # ./profiles/macbook
+          ];
+
+          specialArgs = { inherit inputs; inherit homeModules; inherit nixModules; };
         };
       });
 
@@ -114,6 +131,7 @@
 
     flakelight.url = "github:nix-community/flakelight";
     flakelight.inputs.nixpkgs.follows = "nixpkgs";
+    flakelight-darwin.url = "github:cmacrae/flakelight-darwin";
 
     ragenix.url = "github:yaxitech/ragenix";
     ragenix.inputs.nixpkgs.follows = "nixpkgs";
