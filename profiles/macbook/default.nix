@@ -1,5 +1,4 @@
 { pkgs, ... }: {
-
   system.stateVersion = 5;
 
   nix.extraOptions = ''
@@ -66,20 +65,20 @@
     ];
   };
 
-  # https://github.com/LnL7/nix-darwin/issues/158#issuecomment-974598670
-  programs.zsh.enable = true;
-  programs.zsh.shellInit = ''export OLD_NIX_PATH="$NIX_PATH";'';
-  programs.zsh.interactiveShellInit = ''
-    if [ -n "$OLD_NIX_PATH" ]; then
-      if [ "$NIX_PATH" != "$OLD_NIX_PATH" ]; then
-        NIX_PATH="$OLD_NIX_PATH"
-      fi
-      unset OLD_NIX_PATH
-    fi
-    if [ -d /opt/homebrew ]; then
-      eval "$(/opt/homebrew/bin/brew shellenv)"
-    fi
-  '';
+  # # https://github.com/LnL7/nix-darwin/issues/158#issuecomment-974598670
+  # programs.zsh.enable = true;
+  # programs.zsh.shellInit = ''export OLD_NIX_PATH="$NIX_PATH";'';
+  # programs.zsh.interactiveShellInit = ''
+  #   if [ -n "$OLD_NIX_PATH" ]; then
+  #     if [ "$NIX_PATH" != "$OLD_NIX_PATH" ]; then
+  #       NIX_PATH="$OLD_NIX_PATH"
+  #     fi
+  #     unset OLD_NIX_PATH
+  #   fi
+  #   if [ -d /opt/homebrew ]; then
+  #     eval "$(/opt/homebrew/bin/brew shellenv)"
+  #   fi
+  # '';
 
   # https://github.com/nix-community/home-manager/issues/4026
   # fish shell setup

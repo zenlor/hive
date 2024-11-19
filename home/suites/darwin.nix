@@ -9,13 +9,11 @@
 
     root.shell.core
     root.shell.fish
-    root.shell.tmux
     root.shell.direnv
     root.shell.eza
     root.shell.btop
     root.shell.zoxide
     root.shell.fzf
-    root.shell.zsh
     root.shell.nushell
 
     root.git
@@ -25,7 +23,8 @@
     root.neovim
     root.helix
 
-    root.gui.terminal
+    root.terminal.alacritty
+    root.terminal.wezterm
   ];
 
   home-manager.users.lorenzo.programs.keychain.keys = [ "id_ed25519" ];

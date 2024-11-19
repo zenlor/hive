@@ -26,7 +26,8 @@
         root.neovim
         root.helix
 
-        root.gui.terminal
+        root.terminal.wezterm
+        root.terminal.alacritty
       ];
       home.stateVersion = "${stateVersion}";
     };

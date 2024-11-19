@@ -96,11 +96,18 @@
           specialArgs = { inherit inputs; inherit homeModules; inherit nixModules; };
         };
 
-        darwinConfigurations."QF-00087" = nix-darwin.lib.darwinSystem {
+        darwinConfigurations.macbook = nix-darwin.lib.darwinSystem {
           system = "aarch64-darwin";
           modules = [
-            { system.stateVersion = stateVersion; }
-            # ./profiles/macbook
+            ./profiles/macbook
+
+            nixModules.users.lorenzo
+
+            inputs.home-manager.darwinModules.home-manager
+            {
+              home-manager.users.lorenzo.home.stateVersion = stateVersion;
+            }
+            homeModules.suites.darwin
           ];
 
           specialArgs = { inherit inputs; inherit homeModules; inherit nixModules; };

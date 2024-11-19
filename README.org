@@ -73,5 +73,5 @@ simplified. Also ... it's now *much* faster.
 - [[/numtide/devshell]]
 - [[/numtide/flake-utils]]
 - [[/numtide/treefmt-nix]]
-- [[zhaofengli/colmena]]
+- [[/zhaofengli/colmena]]
 - [[/yaxitech/ragenix]]

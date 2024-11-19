@@ -3,7 +3,7 @@ local act = w.action
 local c = w.config_builder()
 
 if w.target_triple == 'x86_64-pc-windows-msvc' then
-  default_prog = {'wsl.exe', '~', '-d', 'nix'}
+  c.default_prog = {'wsl.exe', '~', '-d', 'nix'}
 end
 
 if w.target_triple == 'x86_64-apple-darwin' then
@@ -12,7 +12,6 @@ end
 if w.target_triple == 'x86_65-unknown-linux-gnu' then
 end
 
-c.default_prog = { "powershell.exe", "-NoLogo" }
 
 c.use_fancy_tab_bar = true
 c.tab_bar_at_bottom = false
