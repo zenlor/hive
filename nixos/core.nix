@@ -14,6 +14,7 @@ in {
     archiver
     curl
     direnv
+    devenv
     dnsutils
     entr
     fd
