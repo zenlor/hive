@@ -28,7 +28,7 @@
       {
         inherit inputs;
         imports = [ flakelight-darwin.flakelightModules.default ];
-        # systems = lib.systems.flakeExposed;
+        systems = lib.mkForce ["x86_64-linux" "aarch64-linux" "aarch64-darwin"];
 
         devShell = pkgs: {
           packages = with pkgs; [

@@ -1,12 +1,12 @@
 { root, ... }:
 { config, pkgs, lib, ... }: {
-  age.identityPaths = [ "/home/users/lor/.ssh/id_ed25519" "/home/users/lor/.ssh/id_rsa" ];
+  age.identityPaths = [ "/home/lor/.ssh/id_ed25519" "/home/lor/.ssh/id_rsa" ];
   age.secrets.lor-password.file = root.secrets.users.lor;
   users.users.lor = {
     isNormalUser = true;
     description = "Lorenzo";
     extraGroups = [ "networkmanager" "wheel" ];
-    hashedPasswordFile = lib.mkDefault config.age.secrets.lor-password.path;
+    # hashedPasswordFile = lib.mkDefault config.age.secrets.lor-password.path;
     shell = lib.mkForce pkgs.fish;
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPEjb3xZe7wZ7JezbXApLdLhMeTnO2c2J8FJrpr7nWCr"
