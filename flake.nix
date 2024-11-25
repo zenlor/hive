@@ -28,7 +28,8 @@
       {
         inherit inputs;
         imports = [ flakelight-darwin.flakelightModules.default ];
-        systems = lib.mkForce ["x86_64-linux" "aarch64-linux" "aarch64-darwin"];
+        # systems = lib.mkForce ["x86_64-linux" "aarch64-linux" "aarch64-darwin"];
+        systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin"];
 
         devShell = pkgs: {
           packages = with pkgs; [
@@ -138,7 +139,7 @@
 
     flakelight.url = "github:nix-community/flakelight";
     flakelight.inputs.nixpkgs.follows = "nixpkgs";
-    flakelight-darwin.url = "github:cmacrae/flakelight-darwin";
+    flakelight-darwin.url = "github:zenlor/flakelight-darwin?ref=fix/systems";
 
     ragenix.url = "github:yaxitech/ragenix";
     ragenix.inputs.nixpkgs.follows = "nixpkgs";
