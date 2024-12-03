@@ -19,7 +19,7 @@ c.tab_bar_at_bottom = false
 c.max_fps = 144 -- Gsync monitor!
 c.prefer_egl = true
 
-c.color_scheme = 'Ayu Mirage (Gogh)' --'Gruvbox Dark (Gogh)'
+c.color_scheme = 'Tokyo Night' --'Gruvbox Dark (Gogh)'
 
 c.font = w.font 'Iosevka' --'IBM Plex Mono'
 c.font_size = 14

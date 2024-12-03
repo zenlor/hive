@@ -4,7 +4,7 @@
     enable = true;
 
     settings = {
-      theme = "ayu_mirage";
+      theme = "tokyonight";
       editor = {
         true-color = true; # force true color detection
         bufferline = "multiple";

@@ -4,7 +4,7 @@
   outputs = { self, flakelight, flakelight-darwin, home-manager, nixpkgs, nix-darwin, ... }@inputs:
     flakelight ./. ({ lib, ... }:
       let
-        stateVersion = "24.05";
+        stateVersion = "24.11";
 
         nixModules = inputs.haumea.lib.load {
           src = ./nixos;
@@ -102,10 +102,12 @@
           modules = [
             ./profiles/macbook
 
+            nixModules.programs
             nixModules.users.lorenzo
 
             inputs.home-manager.darwinModules.home-manager
             {
+              home-manager.backupFileExtension = "backup";
               home-manager.users.lorenzo.home.stateVersion = stateVersion;
             }
             homeModules.suites.darwin
@@ -116,7 +118,7 @@
       });
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     nix-darwin.url = "github:LnL7/nix-darwin";
@@ -125,7 +127,7 @@
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
     nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
 
-    home-manager.url = "github:nix-community/home-manager/release-24.05";
+    home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     nur.url =
