@@ -1,5 +1,4 @@
-{ config, pkgs, ... }: {
-
+{ pkgs, ... }: {
   system.stateVersion = 5;
 
   nix.extraOptions = ''
@@ -12,18 +11,18 @@
   services.nix-daemon.enable = true;
 
   nix = {
-    nixPath = [
-      # TODO: This entry should be added automatically via FUP's
-      # `nix.linkInputs` and `nix.generateNixPathFromInputs` options, but
-      # currently that doesn't work because nix-darwin doesn't export packages,
-      # which FUP expects.
-      #
-      # This entry should be removed once the upstream issues are fixed.
-      #
-      # https://github.com/LnL7/nix-darwin/issues/277
-      # https://github.com/gytis-ivaskevicius/flake-utils-plus/issues/107
-      "darwin=/etc/nix/inputs/darwin"
-    ];
+    # nixPath = [
+    #   # TODO: This entry should be added automatically via FUP's
+    #   # `nix.linkInputs` and `nix.generateNixPathFromInputs` options, but
+    #   # currently that doesn't work because nix-darwin doesn't export packages,
+    #   # which FUP expects.
+    #   #
+    #   # This entry should be removed once the upstream issues are fixed.
+    #   #
+    #   # https://github.com/LnL7/nix-darwin/issues/277
+    #   # https://github.com/gytis-ivaskevicius/flake-utils-plus/issues/107
+    #   "darwin=/etc/nix/inputs/darwin"
+    # ];
 
     settings = {
       # Administrative users on Darwin are part of this group.
@@ -46,9 +45,13 @@
     };
     taps = [ "homebrew/cask-versions" "homebrew/cask-fonts" ];
     brews = [
-     "saml2aws" "ollama" "podman" "docker" "docker-credential-helper" "docker-credential-helper-ecr"
-     "awscli" "kubectl"
-     ];
+      "saml2aws"
+      "ollama"
+      "podman"
+      "podman-compose"
+      "awscli"
+      "kubectl"
+    ];
     casks = [
       "utm"
       "wezterm"
@@ -66,20 +69,20 @@
     ];
   };
 
-  # https://github.com/LnL7/nix-darwin/issues/158#issuecomment-974598670
-  programs.zsh.enable = true;
-  programs.zsh.shellInit = ''export OLD_NIX_PATH="$NIX_PATH";'';
-  programs.zsh.interactiveShellInit = ''
-    if [ -n "$OLD_NIX_PATH" ]; then
-      if [ "$NIX_PATH" != "$OLD_NIX_PATH" ]; then
-        NIX_PATH="$OLD_NIX_PATH"
-      fi
-      unset OLD_NIX_PATH
-    fi
-    if [ -d /opt/homebrew ]; then
-      eval "$(/opt/homebrew/bin/brew shellenv)"
-    fi
-  '';
+  # # https://github.com/LnL7/nix-darwin/issues/158#issuecomment-974598670
+  # programs.zsh.enable = true;
+  # programs.zsh.shellInit = ''export OLD_NIX_PATH="$NIX_PATH";'';
+  # programs.zsh.interactiveShellInit = ''
+  #   if [ -n "$OLD_NIX_PATH" ]; then
+  #     if [ "$NIX_PATH" != "$OLD_NIX_PATH" ]; then
+  #       NIX_PATH="$OLD_NIX_PATH"
+  #     fi
+  #     unset OLD_NIX_PATH
+  #   fi
+  #   if [ -d /opt/homebrew ]; then
+  #     eval "$(/opt/homebrew/bin/brew shellenv)"
+  #   fi
+  # '';
 
   # https://github.com/nix-community/home-manager/issues/4026
   # fish shell setup

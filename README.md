@@ -1,6 +1,6 @@
-* nix void spaceport
+# nix void spaceport
 
-#+begin_src
+```
 ├───colmena: unknown
 ├───darwinConfigurations: unknown
 ├───devShells
@@ -37,41 +37,37 @@
     ├───torrent: NixOS module
     ├───users: NixOS module
     └───wsl: NixOS module
-#+end_src
+```
 
-** Cheat sheet
+## Cheat sheet
 
 - apply
-  - locally: ~colmena apply-local --node nixos-horus --sudo~
-  - remote: ~colmena apply -v --build-on-target --on nixos-nasferatu~
-  - darwin: ~nix run nix-darwin -- switch --flake .#macbook~
-- ~nix flake show~ look at the outputs
+  - locally: `colmena apply-local --node nixos-horus --sudo`
+  - remote: `colmena apply -v --build-on-target --on nixos-nasferatu`
+  - darwin: `nix run nix-darwin -- switch --flake .#macbook`
+- `nix flake show` look at the outputs
 
-*** MacOS X idiosincracies
+### MacOS X idiosincracies
 
 Alacritty doesn't want to pay the apple-fee, and they are right. Apple should
 have, at least, a program for free software providing free, as in beer, signing
 certificates.
 
-Remove the quarantine: ~xattr -rd com.apple.quarantine /Applications/Alacritty.app~
+Remove the quarantine: `xattr -rd com.apple.quarantine /Applications/Alacritty.app`
 
-
-** No more ~divnix/hive~?
+### No more `divnix/hive`?
 
 As it stands the hive is simply over-shadowing most of the simplicity of nix
 flakes, a good alternative is to use Haumea to load lazy derivations and include
 them in the submodules, it's not as /clean/ but the tracebacks are greatly
-simplified. Also ... it's now *much* faster.
+simplified. Also ... it's now _much_ faster.
 
-** URLs
+# URLs
 
-- [[/LnL7/nix-darwin]]
-- [[/nix-community/NixOS-WSL]]
-- [[/nix-community/haumea]]
-- [[/nix-community/home-manager]]
-- [[/nix-community/nix-direnv]]
-- [[/numtide/devshell]]
-- [[/numtide/flake-utils]]
-- [[/numtide/treefmt-nix]]
-- [[zhaofengli/colmena]]
-- [[/yaxitech/ragenix]]
+- [/LnL7/nix-darwin](/LnL7/nix-darwin)
+- [/nix-community/NixOS-WSL](/nix-community/NixOS-WSL)
+- [/nix-community/haumea](/nix-community/haumea)
+- [/nix-community/home-manager](/nix-community/home-manager)
+- [/nix-community/nix-direnv](/nix-community/nix-direnv)
+- [/zhaofengli/colmena](/zhaofengli/colmena)
+- [/yaxitech/ragenix](/yaxitech/ragenix)

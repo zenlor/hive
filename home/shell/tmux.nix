@@ -9,6 +9,8 @@
     keyMode = "vi";
     customPaneNavigationAndResize = true;
 
+    shell = "${pkgs.fish}/bin/fish";
+
     # muscle-memory is bad
     prefix = "C-a";
     shortcut = "a";
@@ -66,6 +68,7 @@
       bind v split-window -h -c "#{pane_current_path}"
       bind b split-window -v -c "#{pane_current_path}"
 
+      set -g default-command "fish"
     '';
 
     plugins = with pkgs; [ tmuxPlugins.tmux-fzf ];

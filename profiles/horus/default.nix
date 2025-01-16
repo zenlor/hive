@@ -1,22 +1,19 @@
 { config, lib, ... }:
 let secrets = import ../../nixos/secrets.nix { };
 in {
-
-  system.stateVersion = "23.11";
-
   time.timeZone = "Europe/Rome";
 
   services.resolved.enable = false;
 
   wsl = {
     enable = true;
-    nativeSystemd = true;
+    # nativeSystemd = true;
 
     defaultUser = lib.mkForce "lor";
 
     wslConf = {
       automount.enabled = true;
-      boot.systemd = true;
+      # boot.systemd = true;
 
       interop = {
         enabled = true;

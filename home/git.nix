@@ -36,7 +36,7 @@
       commit.gpgsign = true;
       gpg.format = "ssh";
       gpg.ssh.allowedSignersFile = "~/.ssh/allowed-signers";
-      help.autocorrect = 50;
+      help.autocorrect = 0;
       ghq.root = "~/lib/src";
     };
   };
@@ -60,5 +60,9 @@
         };
       };
     };
+  };
+
+  programs.gitui = {
+    enable = true;
   };
 }

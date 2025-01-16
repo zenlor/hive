@@ -90,10 +90,10 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 --  Use CTRL+<hjkl> to switch between windows
 --
 --  See `:help wincmd` for a list of all window commands
-kmap('<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-kmap('<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-kmap('<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-kmap('<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+kmap('<C-h>', '<C-w><C-h>', 'Move focus to the left window')
+kmap('<C-l>', '<C-w><C-l>', 'Move focus to the right window')
+kmap('<C-j>', '<C-w><C-j>', 'Move focus to the lower window')
+kmap('<C-k>', '<C-w><C-k>', 'Move focus to the upper window')
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -298,6 +298,13 @@ do
   require'mini.starter'.setup()
   require'mini.jump'.setup()
   require'mini.jump2d'.setup()
+
+  require'mini.misc'.setup()
+  require'mini.misc'.setup_restore_cursor()
+  require'mini.misc'.setup_termbg_sync()
+
+  require'mini.icons'.setup()
+  require'mini.icons'.mock_nvim_web_devicons()
 end
 
 do

@@ -5,11 +5,7 @@
     interactiveShellInit = ''
       set fish_greeting
 
-      fish_config theme choose "ayu Dark"
-
-      if test "$TMUX" = ""
-        tmux -u -2 attach; or tmux -u -2
-      end
+      fish_config theme choose "Tomorrow Night"
 
       function fish_title
           if set -q argv[1]
@@ -22,8 +18,6 @@
       set --universal pure_shorten_prompt_current_directory_length 1
       set --universal pure_enable_single_line_prompt true
       fish_vi_key_bindings
-
-      export EDITOR=hx
     '';
     plugins = [
       {

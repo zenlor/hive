@@ -23,8 +23,6 @@
     aspell
     aspellDicts.en
     aspellDicts.en-computers
-    aspellDicts.en-science
-
 
     # org-mode exporter
     pandoc

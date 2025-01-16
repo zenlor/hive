@@ -1,8 +1,8 @@
 {
-    "options": {
-        "enable": true,
-        "target": {
-            "args": []
-        }
+  "options": {
+    "enable": true,
+    "target": {
+      "args": []
     }
+  }
 }

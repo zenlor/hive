@@ -14,6 +14,7 @@ in {
     archiver
     curl
     direnv
+    devenv
     dnsutils
     entr
     fd
@@ -35,18 +36,19 @@ in {
     whois
     xh
     zig
+    janet ## the need of scripting
 
     # manpages, you never know when they are useful
     man-pages
     man-pages-posix
   ];
 
-  documentation.dev.enable = true;
-  documentation.man = {
-    generateCaches = true;
-    man-db.enable = false;
-    mandoc.enable = true;
-  };
+  # documentation.dev.enable = true;
+  # documentation.man = {
+  #   generateCaches = true;
+  #   man-db.enable = false;
+  #   mandoc.enable = true;
+  # };
 
   environment.shellAliases = {
     # quick cd
@@ -141,22 +143,6 @@ in {
     "numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE="
   ];
 
-  # motd
-  programs.rust-motd = {
-    enable = true;
-    enableMotdInSSHD = true;
-    settings = {
-      global = {
-        progress_full_character = "=";
-        progress_empty_character = "-";
-        progress_prefix = "[";
-        progress_suffix = "]";
-      };
-      uptime.prefix = "up";
-      filesystems.root = "/";
-    };
-  };
-
   # shells
   programs.zsh = {
     enable = true;
@@ -172,7 +158,7 @@ in {
     '';
   };
 
-  users.defaultUserShell = pkgs.zsh;
+  users.defaultUserShell = pkgs.fish;
 
   # Editor
   programs.neovim = {
@@ -187,7 +173,4 @@ in {
     Compress=true
     MaxRetentionSec=2week
   '';
-
-  # qmk+via keyboards
-  hardware.keyboard.qmk.enable = true;
 }

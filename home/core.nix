@@ -1,6 +1,6 @@
 { super, ... }:
 { pkgs, ... }: {
-  home.packages = with pkgs; [ jq ijq lazygit k9s nmap rage htop ];
+  home.packages = with pkgs; [ jq ijq lazygit gitui k9s kdash nmap rage htop ];
 
   home.sessionVariables = {
     GOPATH = "$HOME/lib";

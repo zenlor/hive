@@ -15,10 +15,5 @@
     fileWidgetCommand = "fd --type f";
     fileWidgetOptions = [ "--preview 'head {}'" ];
     changeDirWidgetCommand = "fd --type d";
-
-    tmux = {
-      enableShellIntegration = true;
-      shellIntegrationOptions = [ "-d 35%" ];
-    };
   };
 }

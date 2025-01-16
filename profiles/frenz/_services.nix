@@ -94,11 +94,11 @@
       port = 10006;
       protocol = "https";
       storage-local-base-path = "/var/lib/gotosocial/storage";
-      instance-language = ["it" "en-us" "en-gb" "ru"];
+      instance-language = [ "it" "en-us" "en-gb" "ru" ];
       instance-inject-mastodon-version = true;
-      accounts-registration-open= true;
-      accounts-reason-required= true;
-      accounts-allow-custom-css= true;
+      accounts-registration-open = true;
+      accounts-reason-required = true;
+      accounts-allow-custom-css = true;
       letsencrypt-enabled = false;
     };
   };

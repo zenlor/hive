@@ -3,8 +3,27 @@
   programs.helix = {
     enable = true;
 
+    languages = {
+      language = [
+        {
+          name = "hcl";
+          file-types = ["hcl" "tfvars" "nomad"];
+          language-servers = [];
+          formatter = { command = "hclfmt"; };
+        }
+        {
+          name = "tfvars";
+          scope = "source.tfvars";
+          file-types = ["tf"];
+          formatter = { command = "hclfmt"; };
+          language-servers = ["terraform-ls"];
+          comment-token = "#";
+        }
+      ];
+    };
+
     settings = {
-      theme = "ayu_dark";
+      theme = "tokyonight";
       editor = {
         true-color = true; # force true color detection
         bufferline = "multiple";
@@ -26,18 +45,5 @@
         esc = [ "collapse_selection" "keep_primary_selection" ];
       };
     };
-
-    languages.language = [
-      {
-        name = "hcl";
-        file-types = ["hcl" "nomad"];
-        language-servers = [];
-        formatter = { command = "hclfmt"; };
-      }
-      {
-        name = "tfvars";
-        file-types = ["tf" "tfvars"];
-      }
-    ];
   };
 }
