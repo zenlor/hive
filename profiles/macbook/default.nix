@@ -53,9 +53,9 @@
       "kubectl"
     ];
     casks = [
+      "multipass"
       "utm"
       "wezterm"
-      "alacritty"
       "launchcontrol"
       "keybase"
       "font-iosevka"
