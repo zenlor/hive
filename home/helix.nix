@@ -7,16 +7,16 @@
       language = [
         {
           name = "hcl";
-          file-types = ["hcl" "tfvars" "nomad"];
-          language-servers = [];
+          file-types = [ "hcl" "tfvars" "nomad" ];
+          language-servers = [ ];
           formatter = { command = "hclfmt"; };
         }
         {
           name = "tfvars";
           scope = "source.tfvars";
-          file-types = ["tf"];
+          file-types = [ "tf" ];
           formatter = { command = "hclfmt"; };
-          language-servers = ["terraform-ls"];
+          language-servers = [ "terraform-ls" ];
           comment-token = "#";
         }
       ];
@@ -32,7 +32,12 @@
           normal = "block";
           select = "underline";
         };
-        line-number = "relative";
+        line-number = "absolute";
+        cursorline = true;
+        cursorcolumn = true;
+        text-width = 80;
+        color-modes = true;
+        popup-border = "popup";
         lsp.display-messages = true;
         lsp.display-inlay-hints = true; # extremely intrusive by default, but interesting
       };
