@@ -34,8 +34,7 @@
         };
         line-number = "relative";
         lsp.display-messages = true;
-        lsp.display-inlay-hints =
-          false; # extremely intrusive by default, but interesting
+        lsp.display-inlay-hints = true; # extremely intrusive by default, but interesting
       };
       keys.normal = {
         space.space = "file_picker";
@@ -43,6 +42,17 @@
         space.w = ":w";
         space.q = ":q";
         esc = [ "collapse_selection" "keep_primary_selection" ];
+        C-g = [
+          ":write-all"
+          ":new"
+          ":insert-output lazygit"
+          # First disable mouse to hint helix into activating it
+          ":set mouse false"
+          ":set mouse true"
+          ":buffer-close!"
+          ":redraw"
+          ":reload-all"
+        ];
       };
     };
   };
