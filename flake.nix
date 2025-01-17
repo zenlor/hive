@@ -134,7 +134,7 @@
 
             ./profiles/macbook
 
-            nixosModules.users.lorenzo
+            # nixosModules.users.lorenzo
             homeModules.suites.darwin
           ];
 

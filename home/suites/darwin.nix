@@ -28,6 +28,8 @@
 
     root.terminal.alacritty
     root.terminal.wezterm
+
+    root.users.quantfi
   ];
 
   home-manager.users.lorenzo.programs.keychain.keys = [ "id_ed25519" ];
