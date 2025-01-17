@@ -6,7 +6,8 @@
   '';
 
   # Recreate /run/current-system symlink after boot
-  services.activate-system.enable = true;
+  # services.activate-system.enable = true;
+  # active by default in nix-darwin-24.11
 
   services.nix-daemon.enable = true;
 

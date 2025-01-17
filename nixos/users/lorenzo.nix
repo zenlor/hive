@@ -1,4 +1,4 @@
-{ root, ... }:
+{ root, stateVersion, ... }:
 { config, lib, pkgs, ... }:
 
 {
