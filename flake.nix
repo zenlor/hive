@@ -24,6 +24,7 @@
     in {
       imports = [ flakelight-darwin.flakelightModules.default ];
       inherit inputs;
+      systems = nixpkgs.lib.systems.flakeExposed;
 
       devShell.packages = pkgs: [
         inputs.ragenix.packages.${pkgs.system}.ragenix
@@ -162,8 +163,7 @@
 
     flakelight.url = "github:nix-community/flakelight";
     flakelight.inputs.nixpkgs.follows = "nixpkgs";
-    flakelight-darwin.url = "github:zenlor/flakelight-darwin";
-    flakelight-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    flakelight-darwin.url = "github:zenlor/flakelight-darwin?ref=fix/systems";
     flakelight-darwin.inputs.flakelight.follows = "flakelight";
 
     nur.url =

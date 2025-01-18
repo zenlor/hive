@@ -124,15 +124,16 @@
         "nix-darwin": "nix-darwin"
       },
       "locked": {
-        "lastModified": 1725969919,
-        "narHash": "sha256-2vit931wouI3W87ZjJe2WLRHRvOjwJpgOpSsvNJk03Y=",
+        "lastModified": 1732546156,
+        "narHash": "sha256-LT2s1ndk8yxx+cWrITFobrawLPsB1R5+SOhusgCuugk=",
         "owner": "zenlor",
         "repo": "flakelight-darwin",
-        "rev": "3e211e1cf6e4b08e1669dd96db911809c027f273",
+        "rev": "1c590f7daa275e7b40fe590806f96b26aab822ee",
         "type": "github"
       },
       "original": {
         "owner": "zenlor",
+        "ref": "fix/systems",
         "repo": "flakelight-darwin",
         "type": "github"
       }
