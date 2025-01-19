@@ -18,7 +18,7 @@
         root.shell.fzf
         root.shell.nnn
         root.shell.nushell
-        root.shell.zellij
+        # root.shell.zellij
 
         root.git
         root.ssh
@@ -29,6 +29,8 @@
 
         root.terminal.wezterm
         root.terminal.alacritty
+
+        root.users.lor
       ];
       home.stateVersion = "${stateVersion}";
     };
