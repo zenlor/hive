@@ -34,12 +34,27 @@
         };
         line-number = "absolute";
         cursorline = true;
-        cursorcolumn = true;
         text-width = 80;
         color-modes = true;
         popup-border = "popup";
-        lsp.display-messages = true;
-        lsp.display-inlay-hints = true; # extremely intrusive by default, but interesting
+        lsp = {
+          display-messages = true;
+          display-inlay-hints = true; # extremely intrusive by default, but interesting
+        };
+        indent-guides = {
+          render = true;
+          character = "┆";
+        };
+        smart-tab = {
+          enable = true;
+          supersede-menu = true;
+        };
+        # FIXME: added in version 25.01
+        # inline-diagnostics = {
+        #   cursor-line = "warning";
+        #   prefix-len = 3;
+        #   other-lines = "error";
+        # };
       };
       keys.normal = {
         space.space = "file_picker";
@@ -59,6 +74,13 @@
           ":reload-all"
         ];
       };
+
+      # smart-tab
+      keys.normal.tab = "move_parent_node_end";
+      keys.normal.S-tab = "move_parent_node_start";
+      keys.insert.S-tab = "move_parent_node_start";
+      keys.select.tab = "extend_parent_node_end";
+      keys.select.S-tab = "extend_parent_node_start";
     };
   };
 }
