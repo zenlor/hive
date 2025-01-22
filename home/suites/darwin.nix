@@ -17,7 +17,7 @@
     root.shell.nushell
     root.shell.tmux
     root.shell.nnn
-    # root.shell.zellij
+    root.shell.zellij
 
     root.git
     root.ssh

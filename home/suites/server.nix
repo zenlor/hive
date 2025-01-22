@@ -12,6 +12,8 @@
         root.shell.fish
         root.shell.tmux
         root.shell.nnn
+        root.shell.zellij
+
         root.helix
         root.neovim
       ];

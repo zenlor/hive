@@ -1,9 +1,11 @@
 {
   programs.zellij = {
     enable = true;
-    enableFishIntegration = true;
-    enableZshIntegration = true;
+    enableBashIntegration = false;
+    enableFishIntegration = false;
+    enableZshIntegration = false;
     settings = {
+      theme = "ayu_dark";
     };
   };
 }
