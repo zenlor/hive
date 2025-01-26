@@ -31,6 +31,7 @@
         pkgs.deploy-rs
         pkgs.nil
         pkgs.nixfmt
+        pkgs.wireguard-tools
       ];
 
       nixosConfigurations = {

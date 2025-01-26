@@ -19,6 +19,9 @@ in
   "secrets/wireguard/wg-pad.age".publicKeys = [ lor pad ];
   "secrets/wireguard/wg-horus.age".publicKeys = [ lor horus ];
   "secrets/wireguard/wg-deck.age".publicKeys = [ pad lor horus ];
+  "secrets/wireguard/marrani-suppah.age".publicKeys = [ lor horus ];
+  "secrets/wireguard/marrani-lukke.age".publicKeys = [ lor horus ];
+  "secrets/wireguard/marrani-krs.age".publicKeys = [ lor horus ];
 
   # bot secrets
   "secrets/services/marrano-bot.age".publicKeys = all;

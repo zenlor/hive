@@ -34,6 +34,23 @@
       key = ../secrets/wireguard/wg-deck.age;
       pub = "lBWT6R8VZ75iDG1snAEHSL7gwJgHzYV83AxrppHUhUA=";
     };
+
+    # marrani
+    marrani-suppah = {
+      ip = "10.69.0.133";
+      key = ../secrets/wireguard/marrani-suppah.age;
+      pub = ../secrets/wireguard/marrani-suppah.pub;
+    };
+    marrani-krs = {
+      ip = "10.69.0.134";
+      key = ../secrets/wireguard/marrani-krs.age;
+      pub = ../secrets/wireguard/marrani-krs.pub;
+    };
+    marrani-lukke = {
+      ip = "10.69.0.135";
+      key = ../secrets/wireguard/marrani-lukke.age;
+      pub = ../secrets/wireguard/marrani-lukke.pub;
+    };
   };
 
   services = { marrano-bot = ../secrets/services/marrano-bot.age; };

@@ -98,6 +98,29 @@ in {
               PersistentKeepalive = 15;
             };
           }
+
+          # marrani
+          {
+            wireguardPeerConfig = {
+              PublicKey = secrets.wireguard.marrani-suppah.pub;
+              AllowedIPs = [secrets.wireguard.marrani-suppah.ip];
+              PersistentKeepalive = 15;
+            };
+          }
+          {
+            wireguardPeerConfig = {
+              PublicKey = secrets.wireguard.marrani-krs.pub;
+              AllowedIPs = [secrets.wireguard.marrani-krs.ip];
+              PersistentKeepalive = 15;
+            };
+          }
+          {
+            wireguardPeerConfig = {
+              PublicKey = secrets.wireguard.marrani-lukke.pub;
+              AllowedIPs = [secrets.wireguard.marrani-lukke.ip];
+              PersistentKeepalive = 15;
+            };
+          }
         ];
       };
     };
