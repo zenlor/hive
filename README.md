@@ -49,7 +49,7 @@
 
 using deploy-rs:
 
-- build and deploy: `deploy .#<node-name` 
+- build and deploy: `deploy .#<node-name`
 - build remotely: `deploy .#<node-name> --remote-build`
 - build only (test): `deploy .#<node-name> --dry-activate`
 
