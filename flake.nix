@@ -2,151 +2,154 @@
   description = "nixos bee hive";
 
   outputs = { self, flakelight, flakelight-darwin, nixpkgs, ... }@inputs:
-    flakelight ./. (let
-      stateVersion = "24.11";
-      nixosModules = inputs.haumea.lib.load {
-        src = ./nixos;
-        inputs = {
-          inherit inputs;
-          inherit stateVersion;
-        };
-        transformer = inputs.haumea.lib.transformers.liftDefault;
-      };
-
-      homeModules = inputs.haumea.lib.load {
-        src = ./home;
-        inputs = {
-          inherit inputs;
-          inherit stateVersion;
-        };
-        transformer = inputs.haumea.lib.transformers.liftDefault;
-      };
-    in {
-      imports = [ flakelight-darwin.flakelightModules.default ];
-      inherit inputs;
-      systems = nixpkgs.lib.systems.flakeExposed;
-
-      devShell.packages = pkgs: [
-        inputs.ragenix.packages.${pkgs.system}.ragenix
-        pkgs.deploy-rs
-        pkgs.nil
-        pkgs.nixfmt
-        pkgs.wireguard-tools
-      ];
-
-      nixosConfigurations = {
-
-        horus = inputs.nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            inputs.nixos-wsl.nixosModules.wsl
-            inputs.ragenix.nixosModules.default
-            inputs.home-manager.nixosModules.default
-
-            nixosModules.core
-            nixosModules.networking
-            nixosModules.openssh
-            nixosModules.users.lor
-            nixosModules.users.root
-
-            ./profiles/horus
-
-            homeModules.suites.workstation
-          ];
+    flakelight ./. (
+      let
+        stateVersion = "24.11";
+        nixosModules = inputs.haumea.lib.load {
+          src = ./nixos;
+          inputs = {
+            inherit inputs;
+            inherit stateVersion;
+          };
+          transformer = inputs.haumea.lib.transformers.liftDefault;
         };
 
-        pad = inputs.nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x280
-            inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
-            inputs.ragenix.nixosModules.default
-            inputs.home-manager.nixosModules.default
+        homeModules = inputs.haumea.lib.load {
+          src = ./home;
+          inputs = {
+            inherit inputs;
+            inherit stateVersion;
+          };
+          transformer = inputs.haumea.lib.transformers.liftDefault;
+        };
+      in
+      {
+        imports = [ flakelight-darwin.flakelightModules.default ];
+        inherit inputs;
+        systems = nixpkgs.lib.systems.flakeExposed;
 
-            nixosModules.core
-            nixosModules.networking
-            nixosModules.openssh
-            nixosModules.users.lor
-            nixosModules.users.root
-            nixosModules.laptop
+        devShell.packages = pkgs: [
+          inputs.ragenix.packages.${pkgs.system}.ragenix
+          pkgs.deploy-rs
+          pkgs.nil
+          pkgs.nixfmt
+          pkgs.wireguard-tools
+        ];
 
-            ./profiles/pad
+        nixosConfigurations = {
 
-            homeModules.suites.workstation
-          ];
+          horus = inputs.nixpkgs.lib.nixosSystem {
+            system = "x86_64-linux";
+            modules = [
+              inputs.nixos-wsl.nixosModules.wsl
+              inputs.ragenix.nixosModules.default
+              inputs.home-manager.nixosModules.default
+
+              nixosModules.core
+              nixosModules.networking
+              nixosModules.openssh
+              nixosModules.users.lor
+              nixosModules.users.root
+
+              ./profiles/horus
+
+              homeModules.suites.workstation
+            ];
+          };
+
+          pad = inputs.nixpkgs.lib.nixosSystem {
+            system = "x86_64-linux";
+            modules = [
+              inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x280
+              inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
+              inputs.ragenix.nixosModules.default
+              inputs.home-manager.nixosModules.default
+
+              nixosModules.core
+              nixosModules.networking
+              nixosModules.openssh
+              nixosModules.users.lor
+              nixosModules.users.root
+              nixosModules.laptop
+
+              ./profiles/pad
+
+              homeModules.suites.workstation
+            ];
+          };
+
+          nasferatu = inputs.nixpkgs.lib.nixosSystem {
+            system = "x86_64-linux";
+            modules = [
+              inputs.nixos-hardware.nixosModules.common-cpu-amd
+              inputs.nixos-hardware.nixosModules.common-gpu-amd
+              inputs.nixos-hardware.nixosModules.common-pc-ssd
+              inputs.ragenix.nixosModules.default
+              inputs.home-manager.nixosModules.default
+
+              nixosModules.core
+              nixosModules.networking
+              nixosModules.openssh
+              nixosModules.torrent
+              nixosModules.users.lor
+              nixosModules.users.root
+
+              ./profiles/nasferatu
+
+              homeModules.suites.server
+            ];
+          };
+
+          frenz = inputs.nixpkgs.lib.nixosSystem {
+            system = "x86_64-linux";
+            modules = [
+              inputs.nixos-hardware.nixosModules.common-cpu-intel
+              inputs.nixos-hardware.nixosModules.common-pc-ssd
+              inputs.ragenix.nixosModules.default
+              inputs.home-manager.nixosModules.default
+
+              nixosModules.core
+              nixosModules.networking
+              nixosModules.openssh
+              nixosModules.users.lor
+              nixosModules.users.root
+
+              inputs.marrano-bot.nixosModules.default
+              nixosModules.marrano-bot
+
+              ./profiles/frenz
+
+              homeModules.suites.server
+            ];
+          };
         };
 
-        nasferatu = inputs.nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            inputs.nixos-hardware.nixosModules.common-cpu-amd
-            inputs.nixos-hardware.nixosModules.common-gpu-amd
-            inputs.nixos-hardware.nixosModules.common-pc-ssd
-            inputs.ragenix.nixosModules.default
-            inputs.home-manager.nixosModules.default
+        # Configurations for macOS machines
+        darwinConfigurations = {
+          macbook = inputs.nix-darwin.lib.darwinSystem {
+            system = "aarch64-darwin";
+            modules = [
+              inputs.home-manager.darwinModules.home-manager
+              inputs.ragenix.darwinModules.default
 
-            nixosModules.core
-            nixosModules.networking
-            nixosModules.openssh
-            nixosModules.torrent
-            nixosModules.users.lor
-            nixosModules.users.root
+              # nix-darwin requires a number stateVersion
+              { system.stateVersion = 5; }
+              { home-manager.users.lorenzo.home.stateVersion = stateVersion; }
 
-            ./profiles/nasferatu
+              ./profiles/macbook
 
-            homeModules.suites.server
-          ];
+              # nixosModules.users.lorenzo
+              homeModules.suites.darwin
+            ];
+
+          };
         };
 
-        frenz = inputs.nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            inputs.nixos-hardware.nixosModules.common-cpu-intel
-            inputs.nixos-hardware.nixosModules.common-pc-ssd
-            inputs.ragenix.nixosModules.default
-            inputs.home-manager.nixosModules.default
-
-            nixosModules.core
-            nixosModules.networking
-            nixosModules.openssh
-            nixosModules.users.lor
-            nixosModules.users.root
-
-            inputs.marrano-bot.nixosModules.default
-            nixosModules.marrano-bot
-
-            ./profiles/frenz
-
-            homeModules.suites.server
-          ];
+        homeConfigurations.lor = {
+          modules = [ homeModules.suites.workstation ];
         };
-      };
-
-      # Configurations for macOS machines
-      darwinConfigurations = {
-        macbook = inputs.nix-darwin.lib.darwinSystem {
-          system = "aarch64-darwin";
-          modules = [
-            inputs.home-manager.darwinModules.home-manager
-            inputs.ragenix.darwinModules.default
-
-            # nix-darwin requires a number stateVersion
-            { system.stateVersion = 5; }
-            { home-manager.users.lorenzo.home.stateVersion = stateVersion; }
-
-            ./profiles/macbook
-
-            # nixosModules.users.lorenzo
-            homeModules.suites.darwin
-          ];
-
-        };
-      };
-
-      homeConfigurations.lor = {
-        modules = [ homeModules.suites.workstation ];
-      };
-    });
+      }
+    );
 
 
   inputs = {
