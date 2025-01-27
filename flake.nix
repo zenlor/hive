@@ -1,159 +1,187 @@
 {
   description = "nixos bee hive";
 
-  outputs = { self, flakelight, flakelight-darwin, nixpkgs, ... }@inputs:
-    flakelight ./. (
-      let
-        stateVersion = "24.11";
-        nixosModules = inputs.haumea.lib.load {
-          src = ./nixos;
-          inputs = {
-            inherit inputs;
-            inherit stateVersion;
+  outputs = { self, flakelight, flakelight-darwin, nixpkgs, deploy-rs, ... }@inputs:
+    flakelight ./.
+      (
+        let
+          stateVersion = "24.11";
+          nixosModules = inputs.haumea.lib.load {
+            src = ./nixos;
+            inputs = {
+              inherit inputs;
+              inherit stateVersion;
+            };
+            transformer = inputs.haumea.lib.transformers.liftDefault;
           };
-          transformer = inputs.haumea.lib.transformers.liftDefault;
+
+          homeModules = inputs.haumea.lib.load {
+            src = ./home;
+            inputs = {
+              inherit inputs;
+              inherit stateVersion;
+            };
+            transformer = inputs.haumea.lib.transformers.liftDefault;
+          };
+        in
+        {
+          imports = [ flakelight-darwin.flakelightModules.default ];
+          inherit inputs;
+          systems = nixpkgs.lib.systems.flakeExposed;
+
+          devShell.packages = pkgs: [
+            inputs.ragenix.packages.${pkgs.system}.ragenix
+            pkgs.deploy-rs
+            pkgs.nil
+            pkgs.nixfmt
+            pkgs.wireguard-tools
+          ];
+
+          nixosConfigurations = {
+
+            horus = inputs.nixpkgs.lib.nixosSystem {
+              system = "x86_64-linux";
+              modules = [
+                inputs.nixos-wsl.nixosModules.wsl
+                inputs.ragenix.nixosModules.default
+                inputs.home-manager.nixosModules.default
+
+                { system.stateVersion = stateVersion; }
+
+                nixosModules.core
+                nixosModules.networking
+                nixosModules.openssh
+                nixosModules.users.lor
+                nixosModules.users.root
+
+                ./profiles/horus
+
+                homeModules.suites.workstation
+              ];
+            };
+
+            pad = inputs.nixpkgs.lib.nixosSystem {
+              system = "x86_64-linux";
+              modules = [
+                inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x280
+                inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
+                inputs.ragenix.nixosModules.default
+                inputs.home-manager.nixosModules.default
+
+                { system.stateVersion = stateVersion; }
+
+                nixosModules.core
+                nixosModules.networking
+                nixosModules.openssh
+                nixosModules.users.lor
+                nixosModules.users.root
+                nixosModules.laptop
+
+                ./profiles/pad
+
+                homeModules.suites.workstation
+              ];
+            };
+
+            nasferatu = inputs.nixpkgs.lib.nixosSystem {
+              system = "x86_64-linux";
+              modules = [
+                inputs.nixos-hardware.nixosModules.common-cpu-amd
+                inputs.nixos-hardware.nixosModules.common-gpu-amd
+                inputs.nixos-hardware.nixosModules.common-pc-ssd
+                inputs.ragenix.nixosModules.default
+                inputs.home-manager.nixosModules.default
+
+                { system.stateVersion = stateVersion; }
+
+                nixosModules.core
+                nixosModules.networking
+                nixosModules.openssh
+                nixosModules.torrent
+                nixosModules.users.lor
+                nixosModules.users.root
+
+                ./profiles/nasferatu
+
+                homeModules.suites.server
+              ];
+            };
+
+            frenz = inputs.nixpkgs.lib.nixosSystem {
+              system = "x86_64-linux";
+              modules = [
+                inputs.nixos-hardware.nixosModules.common-cpu-intel
+                inputs.nixos-hardware.nixosModules.common-pc-ssd
+                inputs.ragenix.nixosModules.default
+                inputs.home-manager.nixosModules.default
+
+                { system.stateVersion = stateVersion; }
+
+                nixosModules.core
+                nixosModules.networking
+                nixosModules.openssh
+                nixosModules.users.lor
+                nixosModules.users.root
+
+                inputs.marrano-bot.nixosModules.default
+                nixosModules.marrano-bot
+
+                ./profiles/frenz
+
+                homeModules.suites.server
+              ];
+            };
+          };
+
+          # Configurations for macOS machines
+          darwinConfigurations = {
+            macbook = inputs.nix-darwin.lib.darwinSystem {
+              system = "aarch64-darwin";
+              modules = [
+                inputs.home-manager.darwinModules.home-manager
+                inputs.ragenix.darwinModules.default
+
+                # nix-darwin requires a number stateVersion
+                { system.stateVersion = 5; }
+                { home-manager.users.lorenzo.home.stateVersion = stateVersion; }
+
+                ./profiles/macbook
+
+                # nixosModules.users.lorenzo
+                homeModules.suites.darwin
+              ];
+
+            };
+          };
+        }
+      ) // {
+      deploy.nodes = {
+        frenz = {
+          hostname = "frenz.click";
+          profiles.system = {
+            user = "root";
+            sshUser = "lor";
+            path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.frenz;
+          };
         };
-
-        homeModules = inputs.haumea.lib.load {
-          src = ./home;
-          inputs = {
-            inherit inputs;
-            inherit stateVersion;
-          };
-          transformer = inputs.haumea.lib.transformers.liftDefault;
-        };
-      in
-      {
-        imports = [ flakelight-darwin.flakelightModules.default ];
-        inherit inputs;
-        systems = nixpkgs.lib.systems.flakeExposed;
-
-        devShell.packages = pkgs: [
-          inputs.ragenix.packages.${pkgs.system}.ragenix
-          pkgs.deploy-rs
-          pkgs.nil
-          pkgs.nixfmt
-          pkgs.wireguard-tools
-        ];
-
-        nixosConfigurations = {
-
-          horus = inputs.nixpkgs.lib.nixosSystem {
-            system = "x86_64-linux";
-            modules = [
-              inputs.nixos-wsl.nixosModules.wsl
-              inputs.ragenix.nixosModules.default
-              inputs.home-manager.nixosModules.default
-
-              { system.stateVersion = stateVersion; }
-
-              nixosModules.core
-              nixosModules.networking
-              nixosModules.openssh
-              nixosModules.users.lor
-              nixosModules.users.root
-
-              ./profiles/horus
-
-              homeModules.suites.workstation
-            ];
-          };
-
-          pad = inputs.nixpkgs.lib.nixosSystem {
-            system = "x86_64-linux";
-            modules = [
-              inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x280
-              inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
-              inputs.ragenix.nixosModules.default
-              inputs.home-manager.nixosModules.default
-
-              { system.stateVersion = stateVersion; }
-
-              nixosModules.core
-              nixosModules.networking
-              nixosModules.openssh
-              nixosModules.users.lor
-              nixosModules.users.root
-              nixosModules.laptop
-
-              ./profiles/pad
-
-              homeModules.suites.workstation
-            ];
-          };
-
-          nasferatu = inputs.nixpkgs.lib.nixosSystem {
-            system = "x86_64-linux";
-            modules = [
-              inputs.nixos-hardware.nixosModules.common-cpu-amd
-              inputs.nixos-hardware.nixosModules.common-gpu-amd
-              inputs.nixos-hardware.nixosModules.common-pc-ssd
-              inputs.ragenix.nixosModules.default
-              inputs.home-manager.nixosModules.default
-
-              { system.stateVersion = stateVersion; }
-
-              nixosModules.core
-              nixosModules.networking
-              nixosModules.openssh
-              nixosModules.torrent
-              nixosModules.users.lor
-              nixosModules.users.root
-
-              ./profiles/nasferatu
-
-              homeModules.suites.server
-            ];
-          };
-
-          frenz = inputs.nixpkgs.lib.nixosSystem {
-            system = "x86_64-linux";
-            modules = [
-              inputs.nixos-hardware.nixosModules.common-cpu-intel
-              inputs.nixos-hardware.nixosModules.common-pc-ssd
-              inputs.ragenix.nixosModules.default
-              inputs.home-manager.nixosModules.default
-
-              { system.stateVersion = stateVersion; }
-
-              nixosModules.core
-              nixosModules.networking
-              nixosModules.openssh
-              nixosModules.users.lor
-              nixosModules.users.root
-
-              inputs.marrano-bot.nixosModules.default
-              nixosModules.marrano-bot
-
-              ./profiles/frenz
-
-              homeModules.suites.server
-            ];
+        nasferatu = {
+          hostname = "192.168.1.1";
+          profiles.system = {
+            user = "root";
+            sshUser = "lor";
+            path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.nasferatu;
           };
         };
-
-        # Configurations for macOS machines
-        darwinConfigurations = {
-          macbook = inputs.nix-darwin.lib.darwinSystem {
-            system = "aarch64-darwin";
-            modules = [
-              inputs.home-manager.darwinModules.home-manager
-              inputs.ragenix.darwinModules.default
-
-              # nix-darwin requires a number stateVersion
-              { system.stateVersion = 5; }
-              { home-manager.users.lorenzo.home.stateVersion = stateVersion; }
-
-              ./profiles/macbook
-
-              # nixosModules.users.lorenzo
-              homeModules.suites.darwin
-            ];
-
+        pad = {
+          hostname = "192.168.1.12";
+          profiles.system = {
+            user = "root";
+            sshUser = "lor";
+            path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.pad;
           };
         };
-      }
-    );
+      };
+    };
 
 
   inputs = {
@@ -185,6 +213,9 @@
 
     marrano-bot.url = "github:moolite/bot";
     marrano-bot.inputs.nixpkgs.follows = "nixpkgs";
+
+    deploy-rs.url = "github:serokell/deploy-rs";
+    deploy-rs.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   nixConfig = {

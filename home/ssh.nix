@@ -4,6 +4,13 @@
     compression = true;
     serverAliveInterval = 60;
     includes = [ "local" ];
+
+    matchBlocks = {
+      "frenz.click" = {
+        hostname = "frenz.click";
+        user = "lor";
+      };
+    };
   };
 
   programs.keychain = {

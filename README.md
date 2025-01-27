@@ -47,6 +47,12 @@
   - darwin: `nix run nix-darwin -- switch --flake .#macbook`
 - `nix flake show` look at the outputs
 
+using deploy-rs:
+
+- build and deploy: `deploy .#<node-name` 
+- build remotely: `deploy .#<node-name> --remote-build`
+- build only (test): `deploy .#<node-name> --dry-activate`
+
 ### MacOS X idiosincracies
 
 Alacritty doesn't want to pay the apple-fee, and they are right. Apple should
