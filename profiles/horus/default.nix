@@ -5,9 +5,6 @@ in {
 
   services.resolved.enable = false;
 
-  # FIXME!
-  nixpkgs.config.permittedInsecurePackages = ["archiver-3.5.1"];
-
   wsl = {
     enable = true;
     # nativeSystemd = true;

@@ -42,10 +42,9 @@
   };
 
   # Hardware Acceleration
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
+    enable32Bit = true;
   };
   services.hardware.bolt.enable = true;
   hardware.nvidia = {
@@ -72,7 +71,7 @@
       intelBusId = "PCI:0:2:0";
     };
   };
-  services.xserver.videoDrivers = [ "intel" "nvidia" ];
+  services.xserver.videoDrivers = [ "modesetting" "nvidia" ];
 
   # hardware.bumblebee = {
   #   enable = true;

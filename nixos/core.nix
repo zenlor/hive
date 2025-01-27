@@ -11,7 +11,6 @@ in {
     psutils
 
     # general purpose rograms
-    archiver
     curl
     direnv
     devenv

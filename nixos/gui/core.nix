@@ -2,10 +2,9 @@
 { pkgs, ... }: {
 
   security.polkit.enable = true;
-  hardware.opengl.enable = true;
+  hardware.graphics.enable = true;
 
   # Sound support
-  sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -29,7 +28,7 @@
       liberation_ttf
       mplus-outline-fonts.githubRelease
       noto-fonts
-      noto-fonts-cjk
+      noto-fonts-cjk-sans
       noto-fonts-emoji
       proggyfonts
       ubuntu_font_family
