@@ -68,58 +68,44 @@ in {
         wireguardPeers = [
           # nasferatu
           {
-            wireguardPeerConfig = {
-              PublicKey = secrets.wireguard.nasferatu.pub;
-              AllowedIPs = [ "10.69.0.2" ];
-              PersistentKeepalive = 15;
-            };
+            PublicKey = secrets.wireguard.nasferatu.pub;
+            AllowedIPs = [ "10.69.0.2" ];
+            PersistentKeepalive = 15;
           }
           # pad
           {
-            wireguardPeerConfig = {
-              PublicKey = secrets.wireguard.pad.pub;
-              AllowedIPs = [ "10.69.0.2" ];
-              PersistentKeepalive = 15;
-            };
+            PublicKey = secrets.wireguard.pad.pub;
+            AllowedIPs = [ "10.69.0.2" ];
+            PersistentKeepalive = 15;
           }
           # horus
           {
-            wireguardPeerConfig = {
-              PublicKey = secrets.wireguard.horus.pub;
-              AllowedIPs = [ "10.69.0.4" ];
-              PersistentKeepalive = 15;
-            };
+            PublicKey = secrets.wireguard.horus.pub;
+            AllowedIPs = [ "10.69.0.4" ];
+            PersistentKeepalive = 15;
           }
           # deck
           {
-            wireguardPeerConfig = {
-              PublicKey = secrets.wireguard.deck.pub;
-              AllowedIPs = [ "10.69.0.2" ];
-              PersistentKeepalive = 15;
-            };
+            PublicKey = secrets.wireguard.deck.pub;
+            AllowedIPs = [ "10.69.0.2" ];
+            PersistentKeepalive = 15;
           }
 
           # marrani
           {
-            wireguardPeerConfig = {
-              PublicKey = secrets.wireguard.marrani-suppah.pub;
-              AllowedIPs = [ secrets.wireguard.marrani-suppah.ip ];
-              PersistentKeepalive = 15;
-            };
+            PublicKey = secrets.wireguard.marrani-suppah.pub;
+            AllowedIPs = [ secrets.wireguard.marrani-suppah.ip ];
+            PersistentKeepalive = 15;
           }
           {
-            wireguardPeerConfig = {
-              PublicKey = secrets.wireguard.marrani-krs.pub;
-              AllowedIPs = [ secrets.wireguard.marrani-krs.ip ];
-              PersistentKeepalive = 15;
-            };
+            PublicKey = secrets.wireguard.marrani-krs.pub;
+            AllowedIPs = [ secrets.wireguard.marrani-krs.ip ];
+            PersistentKeepalive = 15;
           }
           {
-            wireguardPeerConfig = {
-              PublicKey = secrets.wireguard.marrani-lukke.pub;
-              AllowedIPs = [ secrets.wireguard.marrani-lukke.ip ];
-              PersistentKeepalive = 15;
-            };
+            PublicKey = secrets.wireguard.marrani-lukke.pub;
+            AllowedIPs = [ secrets.wireguard.marrani-lukke.ip ];
+            PersistentKeepalive = 15;
           }
         ];
       };
@@ -130,7 +116,7 @@ in {
         matchConfig.Name = "wg0";
         address = [ "10.69.0.1/24" ];
         networkConfig = {
-          IPForward = true;
+          IPv4Forwarding = true;
           IPMasquerade = "ipv4";
         };
       };

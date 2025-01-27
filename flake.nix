@@ -45,6 +45,8 @@
               inputs.ragenix.nixosModules.default
               inputs.home-manager.nixosModules.default
 
+              { system.stateVersion = stateVersion; }
+
               nixosModules.core
               nixosModules.networking
               nixosModules.openssh
@@ -64,6 +66,8 @@
               inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
               inputs.ragenix.nixosModules.default
               inputs.home-manager.nixosModules.default
+
+              { system.stateVersion = stateVersion; }
 
               nixosModules.core
               nixosModules.networking
@@ -87,6 +91,8 @@
               inputs.ragenix.nixosModules.default
               inputs.home-manager.nixosModules.default
 
+              { system.stateVersion = stateVersion; }
+
               nixosModules.core
               nixosModules.networking
               nixosModules.openssh
@@ -107,6 +113,8 @@
               inputs.nixos-hardware.nixosModules.common-pc-ssd
               inputs.ragenix.nixosModules.default
               inputs.home-manager.nixosModules.default
+
+              { system.stateVersion = stateVersion; }
 
               nixosModules.core
               nixosModules.networking
@@ -143,10 +151,6 @@
             ];
 
           };
-        };
-
-        homeConfigurations.lor = {
-          modules = [ homeModules.suites.workstation ];
         };
       }
     );

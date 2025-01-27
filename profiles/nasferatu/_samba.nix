@@ -2,9 +2,8 @@
   services.samba = {
     enable = true;
     openFirewall = true;
-    enableWinbindd = false;
-    enableNmbd = true;
-    securityType = "user";
+    winbindd.enable = true;
+    nmbd.enable = true;
 
     settings = {
       global = {

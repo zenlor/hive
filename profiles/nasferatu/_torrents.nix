@@ -28,15 +28,21 @@
     };
   };
 
+  services.jackett = {
+    enable = true;
+    openFirewall = true;
+  };
+
+  # FIXME sonarr uses an ancient version of dotnet6
+  nixpkgs.config.permittedInsecurePackages = [
+    "dotnet-sdk-6.0.428"
+    "aspnetcore-runtime-6.0.36"
+  ];
+
   services.sonarr = {
     enable = true;
     user = "share";
     group = "share";
-    openFirewall = true;
-  };
-
-  services.jackett = {
-    enable = true;
     openFirewall = true;
   };
 }
