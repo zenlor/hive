@@ -6,30 +6,30 @@
     enableNmbd = true;
     securityType = "user";
 
-    extraConfig = ''
-      workgroup = WORKGROUP
-      server string = nasferatu
-      netbios name = nasferatu
-      security = user
-      hosts allow = 10.69.0. 192.168.1. 127.0.0.1 localhost ::1
-      hosts deny = 0.0.0.0/0
-      guest account = nobody
-      map to guest = bad user
+    settings = {
+      global = {
+        workgroup = "WORKGROUP";
+        "server string" = "nasferatu";
+        "netbios name" = "nasferatu";
+        "security" = "user";
+        "hosts allow" = "10.69.0. 192.168.1. 127.0.0.1 localhost ::1";
+        "hosts deny" = "0.0.0.0/0";
+        "guest account" = "nobody";
+        "map to guest" = "bad user";
 
-      min protocol = SMB2
-      vfs objects = acl_xattr catia fruit streams_xattr
-      fruit:nfs_aces = no
-      inherit permissions = yes
+        "min protocol" = "SMB2";
+        "vfs objects" = "acl_xattr catia fruit streams_xattr";
+        "fruit:nfs_aces" = "no";
+        "inherit permissions" = "yes";
 
-      fruit:model = MacSamba
-      fruit:posix_rename = yes
-      fruit:veto_appledouble = no
-      fruit:wipe_intentionally_left_blank_rfork = yes
-      fruit:delete_empty_adfiles = yes
-      fruit:metadata = stream
-    '';
+        "fruit:model" = "MacSamba";
+        "fruit:posix_rename" = "yes";
+        "fruit:veto_appledouble" = "no";
+        "fruit:wipe_intentionally_left_blank_rfork" = "yes";
+        "fruit:delete_empty_adfiles" = "yes";
+        "fruit:metadata" = "stream";
+      };
 
-    shares = {
       downloads = {
         path = "/media/warez/downloads";
         "valid users" = "lor";
