@@ -40,7 +40,8 @@
 (with-eval-after-load 'eglot
   (add-to-list 'eglot-server-programs
                '(terraform-mode . ("terraform-ls" "serve"))
-               '(nix-mode . ("nixd"))))
+               '(nix-mode . ("nixd"))
+               '((web-mode :language-id "html") . ("superhtml", "lsp"))))
 ;; apheleia
 (after! apheleia
         (setf (alist-get 'opentofu apheleia-formatters)

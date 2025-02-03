@@ -1,9 +1,16 @@
 { ... }:
 { pkgs, ... }: {
+  home.packages = [pkgs.superhtml];
+
   programs.helix = {
     enable = true;
 
     languages = {
+      # FIXME: remove it with helix release 25.01
+      language-server.superhtml = {
+        command = "superhtml";
+        args = ["lsp"];
+      };
       language = [
         {
           name = "hcl";
@@ -18,6 +25,11 @@
           formatter = { command = "hclfmt"; };
           language-servers = [ "terraform-ls" ];
           comment-token = "#";
+        }
+        {
+          name = "html";
+          formatter = { command = "super fmt"; };
+          language-servers = [ "superhtml" ];
         }
       ];
     };
