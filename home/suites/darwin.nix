@@ -18,6 +18,7 @@
     root.shell.tmux
     root.shell.nnn
     root.shell.zellij
+    root.shell.bat
 
     root.git
     root.ssh
@@ -25,6 +26,8 @@
     root.doom
     root.neovim
     root.helix
+
+    root.dev
 
     root.terminal.alacritty
     root.terminal.wezterm

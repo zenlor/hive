@@ -27,6 +27,8 @@
         root.neovim
         root.helix
 
+        root.dev
+
         root.terminal.wezterm
         root.terminal.alacritty
 

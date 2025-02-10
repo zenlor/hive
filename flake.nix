@@ -35,6 +35,7 @@
             pkgs.nil
             pkgs.nixfmt
             pkgs.wireguard-tools
+            pkgs.alejandra
           ];
 
           nixosConfigurations = {

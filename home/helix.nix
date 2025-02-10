@@ -1,6 +1,6 @@
 { ... }:
 { pkgs, ... }: {
-  home.packages = [pkgs.superhtml];
+  home.packages = [ pkgs.superhtml ];
 
   programs.helix = {
     enable = true;
@@ -9,7 +9,7 @@
       # FIXME: remove it with helix release 25.01
       language-server.superhtml = {
         command = "superhtml";
-        args = ["lsp"];
+        args = [ "lsp" ];
       };
       language = [
         {

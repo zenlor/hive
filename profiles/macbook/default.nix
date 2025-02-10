@@ -52,6 +52,7 @@
       "podman-compose"
       "awscli"
       "kubectl"
+      "helm"
     ];
     casks = [
       "multipass"

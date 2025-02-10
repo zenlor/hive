@@ -13,6 +13,8 @@
         root.shell.tmux
         root.shell.nnn
         root.shell.zellij
+        root.shell.bat
+        root.shell.btop
 
         root.helix
         root.neovim
