@@ -31,6 +31,7 @@
 
     root.terminal.alacritty
     root.terminal.wezterm
+    root.terminal.ghostty
 
     root.users.quantfi
   ];
