@@ -13,6 +13,6 @@
 
   home.sessionVariables = {
     XDG_BROWSER = "elinks";
-    EDITOR = "hx";
+    EDITOR = "nvim";
   };
 }
