@@ -1,14 +1,15 @@
 { super, ... }:
 { pkgs, ... }: {
   home.packages = with pkgs; [
-    jq
+    htop
     ijq
+    jq
+    k9s
     lazygit
     lazysql
-    k9s
     nmap
     rage
-    htop
+    xh
   ];
 
   home.sessionVariables = {
