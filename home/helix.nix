@@ -35,7 +35,7 @@
     };
 
     settings = {
-      theme = "tokyonight";
+      theme = "ayu_mirage";
       editor = {
         true-color = true; # force true color detection
         bufferline = "multiple";
@@ -77,13 +77,22 @@
         C-g = [
           ":write-all"
           ":new"
-          ":insert-output lazygit"
+          ":insert-output gitui"
           # First disable mouse to hint helix into activating it
           ":set mouse false"
           ":set mouse true"
           ":buffer-close!"
           ":redraw"
           ":reload-all"
+        ];
+        C-f = [
+          ":write-all"
+          ":new"
+          ":insert-output nnn"
+          ":set mouse false"
+          ":set mouse true"
+          ":buffer-close!"
+          ":redraw"
         ];
       };
 
