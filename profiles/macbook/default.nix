@@ -44,7 +44,11 @@
       autoUpdate = true;
       upgrade = true;
     };
-    taps = [ "homebrew/cask-versions" "homebrew/cask-fonts" ];
+    taps = [
+      "homebrew/cask-versions"
+      "homebrew/cask-fonts"
+      "turbot/tab/steampipe"
+    ];
     brews = [
       "saml2aws"
       "ollama"
