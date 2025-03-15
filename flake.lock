@@ -269,11 +269,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1741453641,
-        "narHash": "sha256-KfBcFs70chUm0+xNIQRnx2uwR86cVHVKYT+FX3ry1Hw=",
+        "lastModified": 1742048585,
+        "narHash": "sha256-owA4S4fYSS4zp0cWToldmESfZHEXBmws72wWrVUDRos=",
         "owner": "moolite",
         "repo": "bot",
-        "rev": "38680dd795b0015daf46f5a15315343a1f1b229c",
+        "rev": "ccf2ffa0e0136d444b23662b916b930d7c742d97",
         "type": "github"
       },
       "original": {
