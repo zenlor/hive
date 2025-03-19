@@ -11,7 +11,7 @@
         "server string" = "nasferatu";
         "netbios name" = "nasferatu";
         "security" = "user";
-        "hosts allow" = "10.69.0. 192.168.1. 127.0.0.1 localhost ::1";
+        "hosts allow" = "10.69.0. 192.168.178. 127.0.0.1 localhost ::1";
         "hosts deny" = "0.0.0.0/0";
         "guest account" = "nobody";
         "map to guest" = "bad user";

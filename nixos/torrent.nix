@@ -33,10 +33,10 @@
     openFirewall = true;
   };
 
-  services.jackett = {
-    enable = true;
-    openFirewall = true;
-  };
+  # services.jackett = {
+  #   enable = true;
+  #   openFirewall = true;
+  # };
 
   virtualisation.oci-containers.containers.flaresolverr = {
     image = "ghcr.io/flaresolverr/flaresolverr:v3.2.1";

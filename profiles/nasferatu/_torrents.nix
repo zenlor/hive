@@ -28,10 +28,10 @@
     };
   };
 
-  services.jackett = {
-    enable = true;
-    openFirewall = true;
-  };
+  # services.jackett = {
+  # enable = true;
+  # openFirewall = true;
+  # };
 
   # FIXME sonarr uses an ancient version of dotnet6
   nixpkgs.config.permittedInsecurePackages = [

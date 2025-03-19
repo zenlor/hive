@@ -166,11 +166,13 @@
           };
         };
         nasferatu = {
-          hostname = "192.168.1.1";
+          hostname = "192.168.178.2";
           profiles.system = {
             user = "root";
             sshUser = "lor";
             path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.nasferatu;
+            fastConnection = true;
+            autoRollback = true;
           };
         };
         pad = {
