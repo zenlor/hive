@@ -176,7 +176,7 @@
           };
         };
         pad = {
-          hostname = "192.168.1.12";
+          hostname = "192.168.178.31";
           profiles.system = {
             user = "root";
             sshUser = "lor";
