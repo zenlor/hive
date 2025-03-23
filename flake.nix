@@ -38,6 +38,15 @@
             pkgs.alejandra
           ];
 
+          homeConfigurations = {
+            lor = {
+              system = "x86_64-linux";
+              modules = [
+                homeModules.users.lor
+              ];
+            };
+          };
+
           nixosConfigurations = {
 
             horus = inputs.nixpkgs.lib.nixosSystem {
