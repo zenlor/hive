@@ -31,6 +31,7 @@
 
     root.terminal.alacritty
     root.terminal.wezterm
+    root.terminal.kitty
     # root.terminal.ghostty # NOTE: not working in darwin
 
     root.users.quantfi
