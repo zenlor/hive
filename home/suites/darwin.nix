@@ -29,7 +29,6 @@
 
     root.dev
 
-    root.terminal.alacritty
     root.terminal.wezterm
     root.terminal.kitty
     # root.terminal.ghostty # NOTE: not working in darwin
@@ -37,5 +36,10 @@
     root.users.quantfi
   ];
 
+  home-manager.backupFileExtension = "bak";
+
   home-manager.users.lorenzo.programs.keychain.keys = [ "id_ed25519" ];
+
+  # in darwin fonts have different sizes :'(
+  home-manager.users.lorenzo.programs.kitty.font.size = 14;
 }

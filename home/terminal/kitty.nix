@@ -1,10 +1,11 @@
-{
+{}:
+{pkgs, lib,...}:{
   programs.kitty = {
     enable = true;
 
     font = {
       name = "Iosevka";
-      size = 11;
+      size =  lib.mkDefault 11;
     };
 
     themeFile = "purpurite";
@@ -14,11 +15,11 @@
     '';
 
     keybindings = {
-      "ctrl+b>enter" = "launch --cwd=current";
-
       "ctrl+b>c" = "new_tab";
       "ctrl+b>z" = "close_tab";
+      "ctrl+b>]" = "next_tab";
       "ctrl+b>n" = "next_tab";
+      "ctrl+b>[" = "previous_tab";
       "ctrl+b>p" = "previous_tab";
 
       "ctrl+b>1" = "goto_tab 1";
@@ -33,11 +34,16 @@
       "ctrl+b>0" = "goto_tab 10";
       "ctrl+b>t" = "select_tab";
 
+      # Windows
+      "ctrl+b>enter" = "launch --cwd=current";
+
+      # visually move between window panes
       "ctrl+b>h" = "neighboring_window left";
       "ctrl+b>j" = "neighboring_window bottom";
       "ctrl+b>k" = "neighboring_window top";
       "ctrl+b>l" = "neighboring_window right";
 
+      # set the main window
       "ctrl+b>;" = "move_window_to_top";
 
     };
