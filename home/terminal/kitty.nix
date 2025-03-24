@@ -11,6 +11,10 @@
     themeFile = "purpurite";
 
     extraConfig = ''
+      bell_on_tab yes
+      tab_bar_edge bottom
+      focus_follows_mouse yes
+      tab_title_template {index}::{title}
       enabled_layouts tall:bias=60;full_size=1;mirrored=false
     '';
 
