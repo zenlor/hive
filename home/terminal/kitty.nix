@@ -52,4 +52,7 @@
 
     };
   };
+
+  # FIXME: use a script to conditionally use kitty
+  home.shellAliases.ssh = "kitty +kitten ssh";
 }
