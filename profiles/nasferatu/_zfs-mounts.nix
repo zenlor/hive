@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ ... }: {
   boot.supportedFilesystems = [ "zfs" "xfs" ];
 
   boot.zfs.extraPools = [ "tank" ];

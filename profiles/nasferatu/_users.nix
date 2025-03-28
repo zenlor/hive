@@ -9,6 +9,9 @@
         isSystemUser = true;
         group = "share";
       };
+      lor = {
+        extraGroups = ["share"];
+      };
     };
   };
 }
