@@ -8,7 +8,7 @@
       size =  lib.mkDefault 11;
     };
 
-    themeFile = "purpurite";
+    themeFile = "Grape";
 
     extraConfig = ''
       bell_on_tab yes
