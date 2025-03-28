@@ -27,6 +27,7 @@
 
       root.neovim
       root.helix
+      root.doom
 
       root.dev
 
