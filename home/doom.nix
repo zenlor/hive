@@ -1,37 +1,37 @@
 { ... }:
 { pkgs, lib, ... }: {
-  home.packages = with pkgs; [
-    emacs
-    emacs-all-the-icons-fonts
+  # home.packages = with pkgs; [
+  #   emacs
+  #   emacs-all-the-icons-fonts
 
-    (nerdfonts.override { fonts = [ "Iosevka" ]; })
-    iosevka
-    ibm-plex
+  #   (nerdfonts.override { fonts = [ "Iosevka" ]; })
+  #   iosevka
+  #   ibm-plex
 
-    # base dependencies
-    git
-    (ripgrep.override { withPCRE2 = true; })
-    gnutls
+  #   # base dependencies
+  #   git
+  #   (ripgrep.override { withPCRE2 = true; })
+  #   gnutls
 
-    # optional dependencies
-    fd
-    imagemagick
-    zstd
+  #   # optional dependencies
+  #   fd
+  #   imagemagick
+  #   zstd
 
-    # :checkers grammar spell
-    languagetool
-    aspell
-    aspellDicts.en
-    aspellDicts.en-computers
+  #   # :checkers grammar spell
+  #   languagetool
+  #   aspell
+  #   aspellDicts.en
+  #   aspellDicts.en-computers
 
-    # org-mode exporter
-    pandoc
-    # pdflatex
-    texlive.combined.scheme-basic
+  #   # org-mode exporter
+  #   pandoc
+  #   # pdflatex
+  #   texlive.combined.scheme-basic
 
-    # ssh integration
-    pinentry-emacs
-  ];
+  #   # ssh integration
+  #   pinentry-emacs
+  # ];
 
   home.sessionPath = [ "$HOME/.config/emacs/bin" "$HOME/.config/doom/bin" ];
 
