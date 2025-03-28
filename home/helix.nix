@@ -35,7 +35,7 @@
     };
 
     settings = {
-      theme = "ayu_mirage";
+      theme = "default";
       editor = {
         true-color = true; # force true color detection
         bufferline = "multiple";
@@ -61,12 +61,11 @@
           enable = true;
           supersede-menu = true;
         };
-        # FIXME: added in version 25.01
-        # inline-diagnostics = {
-        #   cursor-line = "warning";
-        #   prefix-len = 3;
-        #   other-lines = "error";
-        # };
+        inline-diagnostics = {
+          cursor-line = "warning";
+          prefix-len = 3;
+          other-lines = "error";
+        };
       };
       keys.normal = {
         space.space = "file_picker";
