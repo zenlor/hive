@@ -36,6 +36,7 @@
             pkgs.nixfmt
             pkgs.wireguard-tools
             pkgs.alejandra
+            pkgs.nixos-install-tools
           ];
 
           homeConfigurations = {
@@ -114,6 +115,33 @@
                 ./profiles/nasferatu
 
                 homeModules.suites.server
+              ];
+            };
+
+            meila = inputs.nixpkgs.lib.nixosSystem {
+              system = "x86_64-linux";
+              modules = [
+                inputs.nixos-hardware.nixosModules.common-cpu-intel
+                inputs.nixos-hardware.nixosModules.common-pc-ssd
+                inputs.ragenix.nixosModules.default
+                inputs.home-manager.nixosModules.default
+
+                { system.stateVersion = stateVersion; }
+
+                nixosModules.core
+                nixosModules.networking
+                nixosModules.openssh
+                nixosModules.users.lor
+                nixosModules.users.root
+                nixosModules.gui.core
+                nixosModules.gui.gnome
+                nixosModules.gui.steam
+                nixosModules.gui.software
+                nixosModules.gui.nvidia
+
+                ./profiles/meila
+
+                homeModules.suites.workstation
               ];
             };
 

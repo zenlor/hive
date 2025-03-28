@@ -1,5 +1,5 @@
 { ... }:
-{ pkgs, ... }: {
+{ pkgs, lib, ... }: {
   environment.systemPackages = with pkgs; [
     telegram-desktop
     firefox

@@ -34,7 +34,11 @@
       key = ../secrets/wireguard/wg-deck.age;
       pub = "lBWT6R8VZ75iDG1snAEHSL7gwJgHzYV83AxrppHUhUA=";
     };
-
+    meila = {
+      ip = "10.69.0.6";
+      key = ../secrets/wireguard/wg-meila.age;
+      pub = "nWMdhCAmHvXNodcoMmiYuD8DNNniDjzR4vr1mNpLbC0=";
+    };
     # marrani
     marrani-suppah = {
       ip = "10.69.0.133";

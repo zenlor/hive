@@ -29,4 +29,30 @@
 
   # boxes might break
   environment.systemPackages = with pkgs; [ gnome-boxes gnome-tweaks ];
+
+  programs.dconf.profiles.user = {
+    databases = [{
+      lockAll = true;
+      settings = {
+        "org/gnome/desktop/interface" = {
+          color-scheme = "prefer-dark";
+          clock-format = "12h";
+          clock-show-weekday = true;
+        };
+        "org/gnome/desktop/media-handling" = {
+          automount = false;
+          automount-open = false;
+          autorun-never = true;
+        };
+        "org/gnome/settings-daemon/plugins/power" = {
+          sleep-inactive-ac-type = "nothing";
+        };
+        "org/gnome/mutter" = {
+          edge-tiling = true;
+          dynamic-workspaces = true;
+          experimental-features = ["variable-refresh-rate"];
+        };
+      };
+    }];
+  };
 }

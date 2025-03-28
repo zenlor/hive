@@ -4,7 +4,6 @@ let GB = 1024 * 1024 * 1024;
 in {
   # Selection of sysadmin tools that can come in handy
   environment.systemPackages = with pkgs; [
-
     # hardware
     usbutils
     pciutils
@@ -36,18 +35,14 @@ in {
     xh
     zig
     janet ## the need of scripting
-
-    # manpages, you never know when they are useful
-    man-pages
-    man-pages-posix
   ];
 
-  # documentation.dev.enable = true;
-  # documentation.man = {
-  #   generateCaches = true;
-  #   man-db.enable = false;
-  #   mandoc.enable = true;
-  # };
+  documentation.dev.enable = true;
+  documentation.man = {
+    generateCaches = true;
+    man-db.enable = false;
+    mandoc.enable = true;
+  };
 
   environment.shellAliases = {
     # quick cd
