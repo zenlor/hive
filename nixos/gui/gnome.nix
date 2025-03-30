@@ -28,7 +28,10 @@
   programs.gphoto2.enable = true;
 
   # boxes might break
-  environment.systemPackages = with pkgs; [ gnome-boxes gnome-tweaks ];
+  environment.systemPackages = with pkgs; [
+    gnome-boxes
+    gnome-tweaks
+  ];
 
   programs.dconf.profiles.user = {
     databases = [{
