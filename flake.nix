@@ -131,8 +131,10 @@
                 nixosModules.core
                 nixosModules.networking
                 nixosModules.openssh
+
                 nixosModules.users.lor
                 nixosModules.users.root
+
                 nixosModules.gui.core
                 nixosModules.gui.gnome
                 nixosModules.gui.steam
@@ -241,9 +243,6 @@
     flakelight.inputs.nixpkgs.follows = "nixpkgs";
     flakelight-darwin.url = "github:zenlor/flakelight-darwin?ref=fix/systems";
     flakelight-darwin.inputs.flakelight.follows = "flakelight";
-
-    nur.url =
-      "github:nix-community/NUR/0880c3c03c2125b267ae20bbf72eb5bebc5a8470";
 
     haumea.url = "github:nix-community/haumea?ref=v0.2.2";
     haumea.inputs.nixpkgs.follows = "nixpkgs";

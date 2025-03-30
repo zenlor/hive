@@ -6,8 +6,6 @@
     users.lor = {
       imports = [
         root.core
-        inputs.nur.hmModules.nur
-
         root.shell.core
         root.shell.fish
         root.shell.tmux
