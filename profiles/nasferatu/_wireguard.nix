@@ -1,7 +1,6 @@
-{ config, lib, pkgs, ... }:
+{ config, ... }:
 let secrets = import ../../nixos/secrets.nix { };
 in {
-
   age.secrets.wireguard-key.file = secrets.wireguard.nasferatu.key;
 
   networking.firewall.allowedUDPPorts = [ 51820 ];

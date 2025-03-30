@@ -7,6 +7,7 @@
     ./_users.nix
     ./_zfs-mounts.nix
     ./_plex.nix
+    ./_wireguard.nix
   ];
 
   time.timeZone = "Europe/Amsterdam";

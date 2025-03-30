@@ -25,7 +25,7 @@
                     <li><a href='http://nasferatu.local:9091/'>Transmission</a></li>
                     <li><a href='http://nasferatu.local:32400/'>Plex</a></li>
                     <li><a href='http://nasferatu.local:8989/'>Sonarr</a></li>
-                    <li><a href='http://nasferatu.local:9117/'>Jackett</a></li>
+                    <li><a href='http://nasferatu.local:9696/'>Prowlerr</a></li>
                     <li><a href='http://nasferatu.local:8191/'>Flaresolverr</a></li>
                   </ul>
                 </body>
@@ -43,9 +43,9 @@
         reverse_proxy :8989:
       '';
     };
-    "http://jackett.nasferatu.local" = {
+    "http://prowlerr.nasferatu.local" = {
       extraConfig = ''
-        reverse_proxy :9117:
+        reverse_proxy :9696:
       '';
     };
     "http://flaresolverr.nasferatu.local" = {
