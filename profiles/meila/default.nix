@@ -29,6 +29,10 @@
   systemd.enableEmergencyMode = false;
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
+  systemd.extraConfig = ''
+    DefaultTimeoutStopSec=10s
+  '';
+
   networking = {
     hostName = "meila";
     search = [ "local" ];

@@ -1,4 +1,41 @@
-{ ... }: {
+{ config, ... }: {
+
+  fileSystems."/export/downloads" = {
+    device = "/mnt/warez/downloads";
+    options = [ "bind" ];
+  };
+  fileSystems."/export/movies" = {
+    device = "/mnt/video/Movies";
+    options = [ "bind" ];
+  };
+  fileSystems."/export/tv" = {
+    device = "/mnt/video/TV";
+    options = [ "bind" ];
+  };
+  fileSystems."/export/music" = {
+    device = "/mnt/warez/music";
+    options = [ "bind" ];
+  };
+  fileSystems."/export/vault" = {
+    device = "/mnt/backup/vault";
+    options = [ "bind" ];
+  };
+  services.nfs.server = {
+    enable = true;
+    exports = ''
+      /export/downloads  192.168.178.0/24(rw,fsid=0,no_subtree_check) 10.69.0.0/30(rw,fsid=0,no_subtree_check)
+      /export/movies     192.168.178.0/24(rw,fsid=0,no_subtree_check) 10.69.0.0/30(rw,fsid=0,no_subtree_check)
+      /export/tv         192.168.178.0/24(rw,fsid=0,no_subtree_check) 10.69.0.0/30(rw,fsid=0,no_subtree_check)
+      /export/music      192.168.178.0/24(rw,fsid=0,no_subtree_check) 10.69.0.0/30(rw,fsid=0,no_subtree_check)
+      /export/vault      192.168.178.0/24(rw,fsid=0,no_subtree_check) 10.69.0.0/30(rw,fsid=0,no_subtree_check)
+    '';
+    lockdPort = 4001;
+    mountdPort = 4002;
+    statdPort = 4000;
+  };
+  networking.firewall.allowedTCPPorts = [ 111 2049 4000 4001 4002 20048 ];
+  networking.firewall.allowedUDPPorts = [ 111 2049 4000 4001 4002 20048 ];
+  
   services.samba = {
     enable = true;
     openFirewall = true;
