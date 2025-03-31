@@ -87,6 +87,9 @@ in {
 
     # Don't clear the screen after quitting a `man` page.
     MANPAGER = "less -X";
+
+    # fix old GTK3 applications
+    GDK_GL = "gles";
   };
 
   nix.settings.sandbox = true;
