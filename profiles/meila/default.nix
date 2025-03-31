@@ -24,6 +24,7 @@
     systemd-boot = {
       enable = true;
       configurationLimit = 2;
+      consoleMode = "max";
     };
   };
   systemd.enableEmergencyMode = false;
