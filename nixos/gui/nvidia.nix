@@ -12,6 +12,9 @@
     open = true;
     modesetting.enable = true;
     nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.beta;
+    package = config.boot.kernelPackages.nvidiaPackages.latest;
   };
+
+  # boot params
+  boot.kernelParams = ["nvidia.NVreg_PerserveVideoMemoryAllocations=1"];
 }

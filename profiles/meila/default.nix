@@ -29,6 +29,10 @@
   };
   systemd.enableEmergencyMode = false;
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  boot.kernelParams = [
+    # avoid some nvidia issues with wakeup/sleep
+    "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
+  ];
 
   systemd.extraConfig = ''
     DefaultTimeoutStopSec=10s
