@@ -157,6 +157,9 @@ in {
 
   users.defaultUserShell = pkgs.fish;
 
+  # ssd, always enable fstrim
+  services.fstrim.enable = true;
+
   # Editor
   programs.neovim = {
     enable = true;
