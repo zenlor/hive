@@ -17,9 +17,12 @@
   environment.systemPackages = with pkgs; [
     wineWowPackages.waylandFull
 
-    steamtinkerlaunch
     winetricks
     protontricks
+
     lutris
+
+    gamemode
+    gnomeExtensions.gamemode-shell-extension
   ];
 }
