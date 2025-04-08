@@ -32,10 +32,7 @@
   environment.systemPackages = with pkgs; [
     gnome-boxes
     gnome-tweaks
-  ] ++ (with pkgs.gnomeExtensions; [
-    burn-my-windows
-    dash-to-panel
-  ]);
+  ];
 
   programs.dconf.profiles.user = {
     databases = [{
@@ -51,10 +48,6 @@
           automount-open = false;
           autorun-never = true;
         };
-        "org/gnome/shell".enabled-extensions = [
-          "burn-my-windows@schneegans.githu.com"
-          "dash-to-panel@jderose9.github.com"
-        ];
         "org/gnome/settings-daemon/plugins/power" = {
           sleep-inactive-ac-type = "nothing";
         };
