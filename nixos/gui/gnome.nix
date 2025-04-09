@@ -64,4 +64,7 @@
       };
     }];
   };
+
+  # nobody asked for NM to be online :/
+  systemd.services.NetworkManager-wait-online.enable = false;
 }
