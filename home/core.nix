@@ -9,6 +9,8 @@
     lazysql
     nmap
     rage
+    ripgrep
+    fd
     xh
   ];
 
