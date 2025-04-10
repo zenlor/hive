@@ -9,9 +9,11 @@
     lazysql
     nmap
     rage
-    ripgrep
+    (ripgrep.override { withPCRE2 = true; })
     fd
+    zstd
     xh
+    pandoc
   ];
 
   home.sessionVariables = {

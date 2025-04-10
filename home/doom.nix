@@ -33,6 +33,12 @@
   #   pinentry-emacs
   # ];
 
+  home.packages = with pkgs; [
+    emacs
+    emacs-all-the-icons-fonts
+    pinentry-emacs
+  ];
+
   home.sessionPath = [ "$HOME/.config/emacs/bin" "$HOME/.config/doom/bin" ];
 
   xdg.configFile = {
