@@ -1,6 +1,12 @@
 { ... }:
 { pkgs, ... }: {
-  home.packages = with pkgs; [ difftastic ghq git-stack git-extras ];
+  home.packages = with pkgs; [
+    difftastic
+    ghq
+    git-stack
+    git-extras
+    gitu
+  ];
 
   programs.git = {
     enable = true;

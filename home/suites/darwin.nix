@@ -3,7 +3,7 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    users.lor = {
+    users.lorenzo = {
       imports = [
         root.users.quantfi
       ];

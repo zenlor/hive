@@ -76,7 +76,7 @@
         C-g = [
           ":write-all"
           ":new"
-          ":insert-output gitui"
+          ":insert-output gitu"
           # First disable mouse to hint helix into activating it
           ":set mouse false"
           ":set mouse true"

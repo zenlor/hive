@@ -36,7 +36,7 @@
             pkgs.nixfmt
             pkgs.wireguard-tools
             pkgs.alejandra
-            pkgs.nixos-install-tools
+            # pkgs.nixos-install-tools
           ];
 
           homeConfigurations = {
