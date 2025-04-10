@@ -140,6 +140,7 @@
                 nixosModules.gui.steam
                 nixosModules.gui.software
                 nixosModules.gui.nvidia
+                nixosModules.gui.razer
 
                 ./profiles/meila
 
