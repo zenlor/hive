@@ -27,6 +27,7 @@ in {
     lsof
     ncdu
     neovim
+    helix
     nmap
     nnn
     ripgrep
@@ -79,7 +80,7 @@ in {
   environment.variables = {
     # vim as default editor
     EDITOR = "nvim";
-    VISUAL = "nvim";
+    VISUAL = "hx";
 
     # Use custom `less` colors for `man` pages.
     LESS_TERMCAP_md = "$(tput bold 2> /dev/null; tput setaf 2 2> /dev/null)";
