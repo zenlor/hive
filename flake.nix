@@ -135,6 +135,7 @@
                 nixosModules.users.lor
                 nixosModules.users.root
 
+                nixosModules.qmk_keyboards
                 nixosModules.gui.core
                 nixosModules.gui.gnome
                 nixosModules.gui.steam

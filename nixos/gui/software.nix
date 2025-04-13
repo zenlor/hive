@@ -5,6 +5,7 @@
     firefox
     wezterm
     vlc
+    chromium
   ];
 
   programs._1password.enable = true;
