@@ -33,7 +33,7 @@
             inputs.ragenix.packages.${pkgs.system}.ragenix
             pkgs.deploy-rs
             pkgs.nil
-            pkgs.nixfmt
+            pkgs.nixfmt-rfc-style
             pkgs.wireguard-tools
             pkgs.alejandra
             # pkgs.nixos-install-tools

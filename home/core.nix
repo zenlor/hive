@@ -18,5 +18,7 @@
 
   home.sessionVariables = {
     # XDG_BROWSER = "elinks";
+    VISUAL = "hx"; # NOTE: this is bad, but better than having to use `nano` or worse `pico`
+    EDITOR = "hx";
   };
 }

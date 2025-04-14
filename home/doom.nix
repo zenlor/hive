@@ -1,12 +1,18 @@
 { ... }:
-{ pkgs, lib, ... }: {
+{ pkgs, ... }: {
   home.packages = with pkgs; [
-    emacs
+    emacs-pgtk
     emacs-all-the-icons-fonts
     pinentry-emacs
-    aspell
-    aspellDicts.en
-    aspellDicts.en-computers
+
+    (aspellWithDicts (dicts: with dicts; [
+      en
+      en-computers
+      # en-science # this is marked non-free
+    ]))
+
+    # export things
+    texliveMedium
   ];
 
   home.sessionPath = [ "$HOME/.config/emacs/bin" "$HOME/.config/doom/bin" ];
