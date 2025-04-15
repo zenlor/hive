@@ -5,7 +5,7 @@
     flakelight ./.
       (
         let
-          stateVersion = "24.11";
+          stateVersion = "25.05";
           nixosModules = inputs.haumea.lib.load {
             src = ./nixos;
             inputs = {
@@ -229,16 +229,16 @@
 
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
-    nix-darwin.url = "github:LnL7/nix-darwin/nix-darwin-24.11";
+    nix-darwin.url = "github:nix-darwin/nix-darwin/master";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
     nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
 
-    home-manager.url = "github:nix-community/home-manager/release-24.11";
+    home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     flakelight.url = "github:nix-community/flakelight";
@@ -246,7 +246,7 @@
     flakelight-darwin.url = "github:zenlor/flakelight-darwin?ref=fix/systems";
     flakelight-darwin.inputs.flakelight.follows = "flakelight";
 
-    haumea.url = "github:nix-community/haumea?ref=v0.2.2";
+    haumea.url = "github:nix-community/haumea?ref=main";
     haumea.inputs.nixpkgs.follows = "nixpkgs";
 
     ragenix.url = "github:yaxitech/ragenix";
