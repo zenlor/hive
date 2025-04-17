@@ -36,6 +36,7 @@
       noto-fonts-emoji
       proggyfonts
       ubuntu_font_family
+      comic-neue
     ];
 
     fontconfig = {
