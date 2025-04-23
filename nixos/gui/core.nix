@@ -5,7 +5,7 @@
   hardware.graphics.enable = true;
 
   # Sound support
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -17,8 +17,6 @@
     };
     jack.enable = false;
   };
-  # basic terminal emulator
-  environment.systemPackages = with pkgs; [ alacritty ];
 
   # fonts
   fonts = {
@@ -28,7 +26,7 @@
       fira-code
       fira-code-symbols
       ibm-plex
-      iosevka
+      iosevka-bin
       liberation_ttf
       mplus-outline-fonts.githubRelease
       noto-fonts
