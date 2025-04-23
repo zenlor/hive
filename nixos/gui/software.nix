@@ -3,9 +3,11 @@
   environment.systemPackages = with pkgs; [
     telegram-desktop
     firefox
-    wezterm
     vlc
     chromium
+    modrinth-app
+    bitwarden-cli
+    bitwarden-desktop
   ];
 
   programs._1password.enable = true;
