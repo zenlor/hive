@@ -11,13 +11,15 @@
   hardware.nvidia = {
     open = true;
     modesetting.enable = true;
-    powerManagement.enable = true;
+    powerManagement.enable = false;
+    gsp.enable = true;
+    dynamicBoost.enable = true;
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.latest;
   };
 
   # boot params
-  boot.kernelParams = ["nvidia.NVreg_PerserveVideoMemoryAllocations=1"];
+  # boot.kernelParams = ["nvidia.NVreg_PerserveVideoMemoryAllocations=1"];
 
   # nvidia Modprobe settings
   # 
@@ -28,11 +30,11 @@
   #   options nvidia NVreg_PreserveVideoMemoryAllocations=0
   # '';
 
-  systemd.units.systemd-suspend = {
-    overrideStrategy = "asDropin";
-    text = ''
-      [Service]
-      Environment="SYSTEMD_SLEEP_FREEZE_USER_SESSIONS=false"
-    '';
-  };
+  # systemd.units.systemd-suspend = {
+  #   overrideStrategy = "asDropin";
+  #   text = ''
+  #     [Service]
+  #     Environment="SYSTEMD_SLEEP_FREEZE_USER_SESSIONS=false"
+  #   '';
+  # };
 }
