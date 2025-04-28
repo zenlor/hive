@@ -41,7 +41,7 @@
   networking = {
     hostName = "meila";
     search = [ "local" ];
-    useDHCP = lib.mkForce false;
+    useDHCP = lib.mkForce true;
 
     firewall = {
       enable = true;

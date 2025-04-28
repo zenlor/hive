@@ -11,9 +11,9 @@
   hardware.nvidia = {
     open = true;
     modesetting.enable = true;
-    powerManagement.enable = false;
     gsp.enable = true;
-    dynamicBoost.enable = true;
+    dynamicBoost.enable = false; # laptop
+    videoAcceleration = true;
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.latest;
   };

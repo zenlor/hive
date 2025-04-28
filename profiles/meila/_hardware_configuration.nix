@@ -60,4 +60,6 @@
   };
 
   swapDevices = [{ device = "/swap/swapfile"; }];
+
+  hardware.bluetooth.enable = true;
 }

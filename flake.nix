@@ -137,7 +137,8 @@
 
                 nixosModules.qmk_keyboards
                 nixosModules.gui.core
-                nixosModules.gui.gnome
+                # nixosModules.gui.gnome
+                nixosModules.gui.kde
                 nixosModules.gui.steam
                 nixosModules.gui.software
                 nixosModules.gui.nvidia
