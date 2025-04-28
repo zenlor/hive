@@ -3,7 +3,6 @@
   home.packages = with pkgs; [
     difftastic
     ghq
-    git-stack
     git-extras
     gitu
   ];
@@ -58,13 +57,6 @@
     settings = {
       os.editPreset = "nvim";
       gui.nerdFontsVersion = "3";
-      git = {
-        branchLogCmd = "git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium --oneline {{branchName}} --";
-        commitPrefix = {
-          pattern = "^\\w+\\/(\\w+-\\w+).*";
-          replace = "[$1]";
-        };
-      };
     };
   };
 
