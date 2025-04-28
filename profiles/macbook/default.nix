@@ -9,9 +9,8 @@
   # services.activate-system.enable = true;
   # active by default in nix-darwin-24.11
 
-  services.nix-daemon.enable = true;
-
   nix = {
+    enable = true;
     # nixPath = [
     #   # TODO: This entry should be added automatically via FUP's
     #   # `nix.linkInputs` and `nix.generateNixPathFromInputs` options, but
@@ -29,12 +28,10 @@
       # Administrative users on Darwin are part of this group.
       trusted-users = [ "@admin" "@staff" ];
     };
-
-    configureBuildUsers = true;
   };
 
   # enable touch id for sudo
-  security.pam.enableSudoTouchIdAuth = true;
+  security.pam.services.sudo_local.touchIdAuth = true;
 
   homebrew = {
     enable = true;
