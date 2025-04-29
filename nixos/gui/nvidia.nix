@@ -12,6 +12,7 @@
     open = true;
     modesetting.enable = true;
     gsp.enable = true;
+    powerManagement.enable = true;
     dynamicBoost.enable = false; # laptop
     videoAcceleration = true;
     nvidiaSettings = true;
