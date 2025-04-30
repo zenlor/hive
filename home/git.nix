@@ -4,7 +4,6 @@
     difftastic
     ghq
     git-extras
-    gitu
   ];
 
   programs.git = {

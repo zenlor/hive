@@ -21,6 +21,8 @@
     kdepim-runtime
     kde-gtk-config
 
+    plasma-browser-integration
+
     kwave
   ];
 }
