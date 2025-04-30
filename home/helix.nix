@@ -51,7 +51,7 @@
         popup-border = "popup";
         lsp = {
           display-messages = true;
-          display-inlay-hints = true; # extremely intrusive by default, but interesting
+          display-inlay-hints = false; # extremely intrusive by default, but interesting
         };
         indent-guides = {
           render = true;

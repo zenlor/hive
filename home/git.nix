@@ -54,10 +54,6 @@
 
   programs.lazygit = {
     enable = true;
-    settings = {
-      os.editPreset = "nvim";
-      gui.nerdFontsVersion = "3";
-    };
   };
 
   programs.gitui = {
