@@ -61,5 +61,12 @@
 
   swapDevices = [{ device = "/swap/swapfile"; }];
 
-  hardware.bluetooth.enable = true;
+  hardware.bluetooth = {
+    enable = true;
+    settings = {
+      General = {
+        Disable = "HandsFree";
+      };
+    };
+  };
 }
