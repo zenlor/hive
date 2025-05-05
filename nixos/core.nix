@@ -174,4 +174,20 @@ in {
     Compress=true
     MaxRetentionSec=2week
   '';
+
+    #
+  # System
+  #
+  system = {
+    activationScripts = {
+      # Print a summary of nixos-rebuild changes
+      diff = {
+        supportsDryActivation = true;
+        text = ''
+          ${pkgs.nvd}/bin/nvd --nix-bin-dir=${pkgs.nix}/bin diff \
+            /run/current-system "$systemConfig"
+        '';
+      };
+    };
+  };
 }
