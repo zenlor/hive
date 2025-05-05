@@ -143,6 +143,7 @@
                 nixosModules.gui.software
                 nixosModules.gui.nvidia
                 nixosModules.gui.razer
+                nixosModules.gui.plymouth
 
                 ./profiles/meila
 
