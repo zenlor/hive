@@ -21,6 +21,14 @@
     kdepim-runtime
     kde-gtk-config
 
+    akonadi
+    akonadi-calendar
+    akonadi-calendar-tools
+    akonadi-contacts
+    akonadi-import-wizard
+    akonadi-mime
+    akonadi-search
+
     plasma-browser-integration
 
     kwave
