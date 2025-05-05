@@ -1,5 +1,5 @@
-{ config, lib, ...} : {
-
+{ config, lib, pkgs, ...} :
+{
   imports = [
     ./_hardware_configuration.nix
     ./_wireguard.nix
@@ -27,12 +27,24 @@
       consoleMode = "max";
     };
   };
+  boot.initrd.verbose = false;
+  # boot.kernelPackages = pkgs.linuxPackages-rt_latest;
+  boot.plymouth.enable = true;
+
   systemd.enableEmergencyMode = false;
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   boot.kernelParams = [
+    # Quiet boot
+    "quiet"
+    "loglevel=3"
+    "rd.systemd.show_status=false"
+    "rd.udev.log_level=3"
+    "udev.log_priority=3"
+
     # avoid some nvidia issues with wakeup/sleep
     "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
   ];
+
 
   systemd.extraConfig = ''
     DefaultTimeoutStopSec=10s
