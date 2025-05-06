@@ -31,6 +31,8 @@
       root.dev
 
       root.terminal.kitty
+
+      root.gui.core
   ];
    
   # Git settings

@@ -47,14 +47,15 @@
   };
 
   #Flatpak
-  services.flatpak.enable = true;
+  services.flatpak = {
+    enable = true;
+  };
+
   xdg.portal = {
     enable = true;
-    extraPortals = with pkgs; [
-      kdePackages.xdg-desktop-portal-kde
-      xdg-desktop-portal-gtk
-    ];
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
+
 
   # Appimage support
   programs.appimage = {

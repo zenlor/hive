@@ -59,4 +59,11 @@
       '';
     };
   };
+
+  services.ollama = {
+    enable = true;
+    loadModels = ["qwen3:8b" "qwen3:4b"];
+    openFirewall = true;
+    host = "0.0.0.0";
+  };
 }
