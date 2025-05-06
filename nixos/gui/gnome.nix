@@ -17,11 +17,13 @@
     gnome-initial-setup.enable = true;
     core-os-services.enable = true;
     core-utilities.enable = true;
+    core-shell.enable = true;
     sushi.enable = true;
     tinysparql.enable = true;
     gnome-keyring.enable = true;
     gnome-user-share.enable = true;
     gnome-browser-connector.enable = true;
+    games.enable = true;
   };
 
   services.gvfs.enable = true;
@@ -40,16 +42,13 @@
       settings = {
         "org/gnome/desktop/interface" = {
           color-scheme = "prefer-dark";
-          clock-format = "12h";
+          clock-format = "24h";
           clock-show-weekday = true;
         };
         "org/gnome/desktop/media-handling" = {
           automount = false;
           automount-open = false;
           autorun-never = true;
-        };
-        "org/gnome/settings-daemon/plugins/power" = {
-          sleep-inactive-ac-type = "nothing";
         };
         "org/gtk/gtk4/settings/file-chooser" = {
           sort-directories-first = true;
@@ -59,7 +58,7 @@
         "org/gnome/mutter" = {
           edge-tiling = true;
           dynamic-workspaces = true;
-          experimental-features = ["variable-refresh-rate"];
+          experimental-features = ["variable-refresh-rate" "scale-monitor-buffer"];
         };
       };
     }];
