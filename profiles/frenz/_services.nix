@@ -1,9 +1,11 @@
-{ pkgs, ... }: {
-  environment.systemPackages = [ pkgs.caddy ];
-
+{ ... }: {
   services.caddy = {
     enable = true;
     email = "lorenzo@frenzart.com";
+
+    globalConfig = ''
+      metrics
+    '';
 
     virtualHosts = {
       "www.giuliani.me" = {
@@ -16,16 +18,17 @@
           redir https://frenz.click
         '';
       };
-      "www.frenzart.com" = {
-        extraConfig = ''
-          redir https://frenz.click
-        '';
-      };
-      "frenzart.com" = {
-        extraConfig = ''
-          redir https://frenz.click
-        '';
-      };
+      # lost in time and space
+      # "www.frenzart.com" = {
+      #   extraConfig = ''
+      #     redir https://frenz.click
+      #   '';
+      # };
+      # "frenzart.com" = {
+      #   extraConfig = ''
+      #     redir https://frenz.click
+      #   '';
+      # };
       "www.frenz.click" = {
         extraConfig = ''
           redir https://frenz.click
@@ -63,8 +66,24 @@
           }
         '';
       };
+      "stats.frenz.click" = {
+        extraConfig = ''
+          reverse_proxy http://127.0.0.1:9163
+        '';
+      };
     };
   };
+
+  services.prometheus.scrapeConfigs = [
+    {
+      job_name = "caddy";
+      scrape_interval = "15s";
+      scrape_timeout = "10s";
+      static_configs = [
+        {targets = ["127.0.0.1:2019"]; }
+      ];
+    }
+  ];
 
   # services.marrano-bot.hostName = "bot.marrani.lol";
   # services.marrano-bot.logLevel = "debug";

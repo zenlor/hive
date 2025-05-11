@@ -1,5 +1,5 @@
-{ config, lib, ... }:
-let secrets = import ../../nixos/secrets.nix { };
+{ lib, ... }:
+let secrets = import ../../nixos/secrets.nix;
 in {
   time.timeZone = "Europe/Rome";
 

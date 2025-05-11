@@ -1,8 +1,9 @@
-{ ... }: {
+{
   users = {
     lor = ../secrets/users/lor.age;
     root = ../secrets/users/root.age;
   };
+
   wireguard = {
     networkMask = "10.69.0.0/24";
     allowedIPs = [ "10.69.0.0/24" ];
@@ -12,32 +13,33 @@
     frenz = {
       ip = "10.69.0.1";
       key = ../secrets/wireguard/wg-frenz.age;
-      pub = "nh7Q89VbgCLLkJBLgRvhApmSu37kOib2x0KMR/LNZUA=";
+      pub = ../secrets/wireguard/wg-frenz.pub;
     };
     nasferatu = {
       ip = "10.69.0.2";
       key = ../secrets/wireguard/wg-nasferatu.age;
-      pub = "s50INjeYVKPz7pL3/5iNo1aTGRvqG5mCPEz3QJQkNzI=";
+      pub = ../secrets/wireguard/wg-nasferatu.pub;
     };
     pad = {
       ip = "10.69.0.3";
       key = ../secrets/wireguard/wg-pad.age;
-      pub = "l9bhrR7BU9AdTCeGfhDtyJyb8FMM9pf67s8zTAciRxA=";
+      pub = ../secrets/wireguard/wg-pad.pub;
     };
     horus = {
       ip = "10.69.0.4";
       key = ../secrets/wireguard/wg-horus.age;
-      pub = "JW02K/XfumFo4rtsEgQjgNCin2wNoxEiEQUQpm+ErzE=";
+      pub = ../secrets/wireguard/wg-horus.pub;
     };
     deck = {
       ip = "10.69.0.5";
       key = ../secrets/wireguard/wg-deck.age;
-      pub = "lBWT6R8VZ75iDG1snAEHSL7gwJgHzYV83AxrppHUhUA=";
+      pub = ../secrets/wireguard/wg-deck.pub;
+      # pub = "lBWT6R8VZ75iDG1snAEHSL7gwJgHzYV83AxrppHUhUA=";
     };
     meila = {
       ip = "10.69.0.6";
       key = ../secrets/wireguard/wg-meila.age;
-      pub = "nWMdhCAmHvXNodcoMmiYuD8DNNniDjzR4vr1mNpLbC0=";
+      pub = ../secrets/wireguard/wg-horus.pub;
     };
     # marrani
     marrani-suppah = {

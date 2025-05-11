@@ -1,5 +1,5 @@
-{ config, ... }:
-let secrets = import ../../nixos/secrets.nix { };
+{ config, lib, ... }:
+let secrets = import ../../nixos/secrets.nix;
 in {
   age.secrets.wireguard-key.file = secrets.wireguard.nasferatu.key;
 
@@ -11,7 +11,7 @@ in {
     privateKeyFile = config.age.secrets.wireguard-key.path;
 
     peers = [{
-      publicKey = secrets.wireguard.frenz.pub;
+      publicKey = lib.readFile secrets.wireguard.frenz.pub;
       allowedIPs = secrets.wireguard.allowedIPs;
       endpoint = secrets.wireguard.endpoint;
       persistentKeepalive = 25;

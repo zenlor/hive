@@ -50,6 +50,8 @@
         8989 # sonarr
         5357 # wsdd
         548 # netatalk
+
+        9163 # prometheus
       ];
       allowedUDPPorts = [
         51820

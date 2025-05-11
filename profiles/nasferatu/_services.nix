@@ -1,5 +1,4 @@
-{ ... }:
-{
+{ ... }: {
 
   virtualisation.podman = {
     enable = true;
@@ -8,6 +7,10 @@
   };
 
   services.caddy.enable = true;
+
+  services.caddy.globalConfig = ''
+    metrics
+  '';
 
   services.caddy.virtualHosts = {
     "http://nasferatu.local" = {
@@ -59,12 +62,29 @@
         reverse_proxy :32400:
       '';
     };
+    "http://prometheus.nasferatu.local" = {
+      extraConfig = ''
+        reverse_proxy :9163:
+      '';
+    };
   };
 
-  services.ollama = {
-    enable = true;
-    loadModels = ["qwen3:8b" "qwen3:4b"];
-    openFirewall = true;
-    host = "0.0.0.0";
-  };
+  services.prometheus.scrapeConfigs = [
+    {
+      job_name = "caddy";
+      scrape_interval = "15s";
+      scrape_timeout = "10s";
+      static_configs = [
+        {targets = ["127.0.0.1:2019"]; }
+      ];
+    }
+  ];
+
+  # services.ollama = {
+  #   enable = true;
+  #   loadModels = ["qwen3:8b" "qwen3:4b"];
+  #   openFirewall = true;
+  #   host = "0.0.0.0";
+  # };
+  # services.prometheus.webExternalUrl = "nasferatu.local";
 }

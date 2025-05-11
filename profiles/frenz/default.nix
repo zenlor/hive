@@ -1,5 +1,5 @@
-{ lib, modulesPath, config, pkgs, ... }:
-let secrets = import ../../nixos/secrets.nix { };
+{ lib, config, pkgs, ... }:
+let secrets = import ../../nixos/secrets.nix;
 in {
 
   imports = [ ./_hardware.nix ./_services.nix ];
@@ -68,42 +68,42 @@ in {
         wireguardPeers = [
           # nasferatu
           {
-            PublicKey = secrets.wireguard.nasferatu.pub;
+            PublicKey = lib.readFile secrets.wireguard.nasferatu.pub;
             AllowedIPs = [ "10.69.0.2" ];
             PersistentKeepalive = 15;
           }
           # pad
           {
-            PublicKey = secrets.wireguard.pad.pub;
+            PublicKey = lib.readFile secrets.wireguard.pad.pub;
             AllowedIPs = [ "10.69.0.2" ];
             PersistentKeepalive = 15;
           }
           # horus
           {
-            PublicKey = secrets.wireguard.horus.pub;
+            PublicKey = lib.readFile secrets.wireguard.horus.pub;
             AllowedIPs = [ "10.69.0.4" ];
             PersistentKeepalive = 15;
           }
           # deck
           {
-            PublicKey = secrets.wireguard.deck.pub;
+            PublicKey = lib.readFile secrets.wireguard.deck.pub;
             AllowedIPs = [ "10.69.0.2" ];
             PersistentKeepalive = 15;
           }
 
           # marrani
           {
-            PublicKey = secrets.wireguard.marrani-suppah.pub;
+            PublicKey = lib.readFile secrets.wireguard.marrani-suppah.pub;
             AllowedIPs = [ secrets.wireguard.marrani-suppah.ip ];
             PersistentKeepalive = 15;
           }
           {
-            PublicKey = secrets.wireguard.marrani-krs.pub;
+            PublicKey = lib.readFile secrets.wireguard.marrani-krs.pub;
             AllowedIPs = [ secrets.wireguard.marrani-krs.ip ];
             PersistentKeepalive = 15;
           }
           {
-            PublicKey = secrets.wireguard.marrani-lukke.pub;
+            PublicKey = lib.readFile secrets.wireguard.marrani-lukke.pub;
             AllowedIPs = [ secrets.wireguard.marrani-lukke.ip ];
             PersistentKeepalive = 15;
           }
