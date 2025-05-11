@@ -164,6 +164,7 @@
 
                 nixosModules.core
                 nixosModules.networking
+                nixosModules.monitoring
                 nixosModules.openssh
                 nixosModules.users.lor
                 nixosModules.users.root
