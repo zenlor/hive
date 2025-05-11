@@ -1,10 +1,14 @@
-{ ... }: {
+{ config, ... }: let
+  secrets = import ../../nixos/secrets.nix;
+in {
   services.caddy = {
     enable = true;
     email = "lorenzo@frenzart.com";
 
     globalConfig = ''
-      metrics
+      metrics {
+        per_host
+      }
     '';
 
     virtualHosts = {
@@ -71,6 +75,11 @@
           reverse_proxy http://127.0.0.1:9163
         '';
       };
+      "prometheus.frenz.click" = {
+        extraConfig = ''
+          reverse_proxy http://127.0.0.1:9163
+        '';
+      };
     };
   };
 
@@ -84,6 +93,24 @@
       ];
     }
   ];
+
+  age.secrets.grafana-admin = {
+    file = secrets.services.grafana;
+    owner = "grafana";
+  };
+
+  services.grafana = {
+    enable = true;
+    settings = {
+      http_addr = "127.0.0.1";
+      http_port = 59123;
+      domain = "stats.frenz.click";
+    };
+    security = {
+      admin_email = secrets.grafana.email;
+      admin_password = "$__file{${config.age.secrets.grafana-admin}}";
+    };
+  };
 
   # services.marrano-bot.hostName = "bot.marrani.lol";
   # services.marrano-bot.logLevel = "debug";

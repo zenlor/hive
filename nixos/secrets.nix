@@ -59,5 +59,8 @@
     };
   };
 
-  services = { marrano-bot = ../secrets/services/marrano-bot.age; };
+  services = {
+    grafana = ../secrets/services/grafana.age;
+    marrano-bot = ../secrets/services/marrano-bot.age;
+  };
 }

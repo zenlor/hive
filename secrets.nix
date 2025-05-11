@@ -24,6 +24,9 @@ in
   "secrets/wireguard/marrani-lukke.age".publicKeys = [ lor horus ];
   "secrets/wireguard/marrani-krs.age".publicKeys = [ lor horus ];
 
+  # grafana
+  "secrets/services/grafana.age".publicKeys = [lor frenz];  
+  
   # bot secrets
   "secrets/services/marrano-bot.age".publicKeys = all;
 
