@@ -107,6 +107,7 @@
 
                 nixosModules.core
                 nixosModules.networking
+                nixosModules.monitoring
                 nixosModules.openssh
                 nixosModules.torrent
                 nixosModules.users.lor
