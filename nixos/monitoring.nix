@@ -4,14 +4,15 @@
  services.prometheus = {
     enable = true;
     listenAddress = "0.0.0.0";
+    port = 9163;
     retentionTime = "3y";
     scrapeConfigs = [
       {
-        jobName = "collectd";
-        scrapeInterval = "5s";
-        scrapeTimeout = "10s";
+        job_name = "collectd";
+        scrape_interval = "5s";
+        scrape_timeout = "3s";
         scheme = "http";
-        staticConfigs = [
+        static_configs = [
           { targets = ["127.0.0.1:59103"]; }
         ];
       }
@@ -27,15 +28,13 @@
         ReportByCPU true
         ValuesPercentage false
       '';
-      cpufreq = "";
       cpusleep = "";
       df = "";
       disk = "";
       memory = "";
-      ipstats = "";
+      # ipstats = ""; # NOTE: BROKEN
       cgroups = "";
       buddyinfo = "";
-      uptime_check = "Type uptime";
       connectivity = "";
       conntrack = "";
       smart = "";
@@ -43,7 +42,7 @@
         CounterSum true
         TimerPercentile 95
       '';
-      prometheus = ''
+      write_prometheus = ''
         Host 127.0.0.1
         Port 59103
       '';

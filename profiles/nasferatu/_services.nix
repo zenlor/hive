@@ -27,6 +27,7 @@
                     <li><a href='http://nasferatu.local:8989/'>Sonarr</a></li>
                     <li><a href='http://nasferatu.local:9696/'>Prowlerr</a></li>
                     <li><a href='http://nasferatu.local:8191/'>Flaresolverr</a></li>
+                    <li><a href='http://nasferatu.local:9163/'>Prometheus</a></li>
                   </ul>
                 </body>
                 <html>"
