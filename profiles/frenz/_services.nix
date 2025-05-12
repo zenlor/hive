@@ -1,4 +1,4 @@
-{ config, ... }: let
+{ config, lib, ... }: let
   secrets = import ../../nixos/secrets.nix;
 in {
   services.caddy = {
@@ -62,9 +62,29 @@ in {
           }
         '';
       };
+      "www.marrani.lol" = {
+        extraConfig = ''
+          redir https://marrani.lol
+        '';
+      };
+      "marrani.lol" = {
+        extraConfig = ''
+          redir /.well-known/host-meta* https://social.marrani.lol{uri} permanent  # host
+          redir /.well-known/webfinger* https://social.marrani.lol{uri} permanent  # host
+          redir /.well-known/nodeinfo* https://social.marrani.lol{uri} permanent   # host
+
+          # respond / 200 {
+          #   body ""
+          # }
+          reverse_proxy http://127.0.0.1:10006 {
+            flush_interval -1
+          }
+        '';
+      };
       "social.marrani.lol" = {
         extraConfig = ''
           encode zstd gzip
+          respond /metrics 404
           reverse_proxy http://127.0.0.1:10006 {
             flush_interval -1
           }
@@ -72,7 +92,7 @@ in {
       };
       "stats.frenz.click" = {
         extraConfig = ''
-          reverse_proxy http://127.0.0.1:9163
+          reverse_proxy http://127.0.0.1:59123
         '';
       };
       "prometheus.frenz.click" = {
@@ -83,17 +103,6 @@ in {
     };
   };
 
-  services.prometheus.scrapeConfigs = [
-    {
-      job_name = "caddy";
-      scrape_interval = "15s";
-      scrape_timeout = "10s";
-      static_configs = [
-        {targets = ["127.0.0.1:2019"]; }
-      ];
-    }
-  ];
-
   age.secrets.grafana-admin = {
     file = secrets.services.grafana;
     owner = "grafana";
@@ -102,13 +111,15 @@ in {
   services.grafana = {
     enable = true;
     settings = {
-      http_addr = "127.0.0.1";
-      http_port = 59123;
-      domain = "stats.frenz.click";
-    };
-    security = {
-      admin_email = secrets.grafana.email;
-      admin_password = "$__file{${config.age.secrets.grafana-admin}}";
+      server = {
+        http_addr = "127.0.0.1";
+        http_port = 59123;
+        domain = "stats.frenz.click";
+      };
+      security = {
+        admin_email = "lorenzo@frenzart.com";
+        admin_password = "$__file{${config.age.secrets.grafana-admin.path}}";
+      };
     };
   };
 
@@ -146,6 +157,45 @@ in {
       accounts-reason-required = true;
       accounts-allow-custom-css = true;
       letsencrypt-enabled = false;
+
+      metrics-enabled = true;
+      metrics-auth-enabled = false;
     };
   };
+
+
+  services.prometheus.enable = true;
+  services.prometheus.exporters.node.openFirewall = lib.mkForce false;
+  services.prometheus.exporters.wireguard.openFirewall = lib.mkForce false;
+  services.prometheus.exporters.zfs.openFirewall = lib.mkForce false;
+  services.prometheus.scrapeConfigs = [
+    {
+      job_name = "caddy";
+      scrape_interval = "15s";
+      scrape_timeout = "10s";
+      static_configs = [
+        {targets = ["127.0.0.1:2019"]; }
+      ];
+      metric_relabel_configs = [
+        {
+          source_labels = [ "__name__" ];
+          regex= "go_.*";
+          action= "drop";
+        } {
+          source_labels = [ "__name__" ];
+          regex= "go_.*";
+          action= "drop";
+        }
+      ];
+    }
+    {
+      job_name = "gotosocial";
+      metrics_path = "/metrics";
+      scrape_interval = "15s";
+      scrape_timeout = "10s";
+      static_configs = [
+        {targets = ["127.0.0.1:10006"]; }
+      ];
+    }
+  ];
 }

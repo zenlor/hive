@@ -1,50 +1,57 @@
-{ ... }:
+{ root, ... }:
 {
  services.prometheus = {
-    enable = true;
     listenAddress = "0.0.0.0";
     port = 9163;
-    retentionTime = "3y";
+    retentionTime = "730d";
     scrapeConfigs = [
       {
-        job_name = "collectd";
-        scrape_interval = "5s";
-        scrape_timeout = "3s";
+        job_name = "node";
+        scrape_interval = "60s";
+        scrape_timeout = "30s";
+        scheme = "http";
+        static_configs = [
+          { targets = ["127.0.0.1:59101"]; }
+          { targets = ["${root.secrets.wireguard.nasferatu.ip}:59101"]; }
+        ];
+      }
+      {
+        job_name = "wireguard";
+        scrape_interval = "60s";
+        scrape_timeout = "30s";
+        scheme = "http";
+        static_configs = [
+          { targets = ["127.0.0.1:59102"]; }
+          { targets = ["${root.secrets.wireguard.nasferatu.ip}:59102"]; }
+        ];
+      }
+      {
+        job_name = "zfs";
+        scrape_interval = "60s";
+        scrape_timeout = "30s";
         scheme = "http";
         static_configs = [
           { targets = ["127.0.0.1:59103"]; }
+          { targets = ["${root.secrets.wireguard.nasferatu.ip}:59101"]; }
         ];
       }
     ];
-  };
-
-  services.collectd = {
-    enable = true;
-    autoLoadPlugin = true;
-    plugins = {
-      cpu = ''
-        ReportByState true
-        ReportByCPU true
-        ValuesPercentage false
-      '';
-      cpusleep = "";
-      df = "";
-      disk = "";
-      memory = "";
-      # ipstats = ""; # NOTE: BROKEN
-      cgroups = "";
-      buddyinfo = "";
-      connectivity = "";
-      conntrack = "";
-      smart = "";
-      statsd = ''
-        CounterSum true
-        TimerPercentile 95
-      '';
-      write_prometheus = ''
-        Host 127.0.0.1
-        Port 59103
-      '';
+    exporters = {
+      node = {
+        enable = true;
+        port = 59101;
+        openFirewall = true;
+      };
+      wireguard = {
+        enable = true;
+        port = 59102;
+        openFirewall = true;
+      };
+      zfs = {
+        enable = true;
+        port = 59103;
+        openFirewall = true;
+      };
     };
   };
 }

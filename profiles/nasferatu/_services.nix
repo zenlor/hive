@@ -77,8 +77,22 @@
       static_configs = [
         {targets = ["127.0.0.1:2019"]; }
       ];
+      metric_relabel_configs = [
+        {
+          source_labels = [ "__name__" ];
+          regex= "go_.*";
+          action= "drop";
+        } {
+          source_labels = [ "__name__" ];
+          regex= "go_.*";
+          action= "drop";
+        }
+      ];
     }
   ];
+
+  # enable smart
+  services.collectd.plugins.smart = "";
 
   # services.ollama = {
   #   enable = true;
