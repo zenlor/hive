@@ -189,7 +189,7 @@
 
                 # nix-darwin requires a number stateVersion
                 { system.stateVersion = 5; }
-                { home-manager.backupFileExtensions = "nix-backup"; } # FIXME this should not happen!
+                { home-manager.backupFileExtension = "nix-backup"; } # FIXME this should not happen!
                 { home-manager.users.lorenzo.home.stateVersion = stateVersion; }
 
                 ./profiles/macbook
