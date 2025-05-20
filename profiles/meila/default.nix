@@ -87,4 +87,8 @@
     openFirewall = true;
     wideArea = true;
   };
+
+  environment.systemPackages = with pkgs; [
+    dotnet-sdk_8
+  ];
 }

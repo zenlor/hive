@@ -1,5 +1,5 @@
-{ super, ... }:
-{ pkgs, ... }: {
+{ ... }: { pkgs, ... }:
+{
   home.packages = with pkgs; [
     htop
     ijq
@@ -20,6 +20,8 @@
     # XDG_BROWSER = "elinks";
     VISUAL = "hx"; # NOTE: this is bad, but better than having to use `nano` or worse `pico`
     EDITOR = "hx";
+
+    
   };
 
   programs.nix-index.enable = true;

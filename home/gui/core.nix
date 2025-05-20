@@ -8,4 +8,8 @@
     hyprcursor.enable = true;
     sway.enable = true;
   };
+
+  home.packages = with pkgs; [
+    godot
+  ];
 }
