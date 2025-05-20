@@ -30,13 +30,15 @@
           systems = nixpkgs.lib.systems.flakeExposed;
 
           devShell.packages = pkgs: [
-            inputs.ragenix.packages.${pkgs.system}.ragenix
             pkgs.deploy-rs
             pkgs.nil
             pkgs.nixfmt-rfc-style
             pkgs.wireguard-tools
             pkgs.alejandra
             # pkgs.nixos-install-tools
+          ] ++ pkgs.lib.optionals pkgs.stdenv.isLinux [
+            # ragenix is brokne in darwin for 25.05
+            inputs.ragenix.packages.${pkgs.system}.ragenix
           ];
 
           homeConfigurations = {
@@ -234,7 +236,7 @@
 
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     nix-darwin.url = "github:nix-darwin/nix-darwin/master";
