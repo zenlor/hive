@@ -38,7 +38,7 @@
 
   programs.dconf.profiles.user = {
     databases = [{
-      lockAll = true;
+      lockAll = false;
       settings = {
         "org/gnome/desktop/interface" = {
           color-scheme = "prefer-dark";
@@ -52,7 +52,7 @@
         };
         "org/gtk/gtk4/settings/file-chooser" = {
           sort-directories-first = true;
-          show-hidden = true;
+          show-hidden = false;
           view-type = "list";
         };
         "org/gnome/mutter" = {

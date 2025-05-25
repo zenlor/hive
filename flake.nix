@@ -135,6 +135,8 @@
                 nixosModules.networking
                 nixosModules.openssh
 
+                nixosModules.ollama
+
                 nixosModules.users.lor
                 nixosModules.users.root
 
