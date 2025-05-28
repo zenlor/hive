@@ -35,6 +35,7 @@ in {
     whois
     xh
     zig
+    samba
     janet ## the need of scripting
   ];
 
@@ -175,7 +176,7 @@ in {
     MaxRetentionSec=2week
   '';
 
-    #
+  #
   # System
   #
   system = {

@@ -1,4 +1,4 @@
-{ config, ... }: {
+{ ... }: {
 
   fileSystems."/export/downloads" = {
     device = "/mnt/warez/downloads";
@@ -35,7 +35,7 @@
   };
   networking.firewall.allowedTCPPorts = [ 111 2049 4000 4001 4002 20048 ];
   networking.firewall.allowedUDPPorts = [ 111 2049 4000 4001 4002 20048 ];
-  
+
   services.samba = {
     enable = true;
     openFirewall = true;
@@ -57,6 +57,15 @@
         "vfs objects" = "acl_xattr catia fruit streams_xattr";
         "fruit:nfs_aces" = "no";
         "inherit permissions" = "yes";
+
+        "socket options" = "TCP_NODELAY IPTOS_LOWDELAY SO_RCVBUF=131072 SO_SNDBUF=131072";
+        "read raw" = "yes";
+        "write raw" = "yes";
+        "min receivefile size" = "16384";
+        "use sendfile" = "yes";
+        "aio read size" = "16384";
+        "aio write size" = "16384";
+        "write cache size" = "1073741824";
 
         "fruit:model" = "MacSamba";
         "fruit:posix_rename" = "yes";
