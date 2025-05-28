@@ -4,11 +4,11 @@
   hardware.keyboard.qmk.enable = true;
 
   environment.systemPackages = with pkgs; [
-      qmk
-      qmk-udev-rules
-      qmk_hid
-      via
-      vial   
+    qmk
+    qmk-udev-rules
+    qmk_hid
+    via
+    vial
   ];
   services.udev = {
     packages = with pkgs; [
@@ -16,7 +16,7 @@
       qmk-udev-rules
       qmk_hid
       via
-      vial   
+      vial
     ];
   };
 

@@ -59,7 +59,8 @@ Alacritty doesn't want to pay the apple-fee, and they are right. Apple should
 have, at least, a program for free software providing free, as in beer, signing
 certificates.
 
-Remove the quarantine: `xattr -rd com.apple.quarantine /Applications/Alacritty.app`
+Remove the quarantine:
+`xattr -rd com.apple.quarantine /Applications/Alacritty.app`
 
 ### No more `divnix/hive`?
 

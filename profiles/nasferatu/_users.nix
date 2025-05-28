@@ -10,7 +10,7 @@
         group = "share";
       };
       lor = {
-        extraGroups = ["share"];
+        extraGroups = [ "share" ];
       };
     };
   };

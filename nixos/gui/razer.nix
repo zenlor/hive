@@ -2,7 +2,7 @@
 { pkgs, lib, ... }: {
   hardware.openrazer = {
     enable = true;
-    users = ["lor"];
+    users = [ "lor" ];
   };
 
   environment.systemPackages = with pkgs; [

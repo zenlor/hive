@@ -1,7 +1,8 @@
 { config, lib, ... }:
 let
   secrets = import ../../nixos/secrets.nix;
-in {
+in
+{
   age.secrets.wireguard-key.file = secrets.wireguard.meila.key;
 
   networking.firewall.allowedUDPPorts = [ 51820 ];

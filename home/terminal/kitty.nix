@@ -1,11 +1,11 @@
 {}:
-{pkgs, lib,...}:{
+{ pkgs, lib, ... }: {
   programs.kitty = {
     enable = true;
 
     font = {
       name = "Iosevka";
-      size =  lib.mkDefault 11;
+      size = lib.mkDefault 11;
     };
 
     themeFile = "Grape";

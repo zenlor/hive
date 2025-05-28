@@ -131,6 +131,8 @@
 
                 { system.stateVersion = stateVersion; }
 
+                { nixpkgs.overlays = [ inputs.helix.overlays.default ]; }
+
                 nixosModules.core
                 nixosModules.networking
                 nixosModules.openssh
@@ -266,6 +268,7 @@
 
     deploy-rs.url = "github:serokell/deploy-rs";
     deploy-rs.inputs.nixpkgs.follows = "nixpkgs";
-  };
 
+    helix.url = "github:helix-editor/helix";
+  };
 }

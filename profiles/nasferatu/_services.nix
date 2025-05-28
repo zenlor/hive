@@ -75,17 +75,18 @@
       scrape_interval = "15s";
       scrape_timeout = "10s";
       static_configs = [
-        {targets = ["127.0.0.1:2019"]; }
+        { targets = [ "127.0.0.1:2019" ]; }
       ];
       metric_relabel_configs = [
         {
           source_labels = [ "__name__" ];
-          regex= "go_.*";
-          action= "drop";
-        } {
+          regex = "go_.*";
+          action = "drop";
+        }
+        {
           source_labels = [ "__name__" ];
-          regex= "go_.*";
-          action= "drop";
+          regex = "go_.*";
+          action = "drop";
         }
       ];
     }

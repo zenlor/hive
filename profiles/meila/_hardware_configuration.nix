@@ -9,8 +9,8 @@
     "usbhid"
   ];
   boot.kernelModules = [ "kvm-intel" "nvidia" ];
-  boot.extraModulePackages = [];
-  fileSystems= {
+  boot.extraModulePackages = [ ];
+  fileSystems = {
     "/" = {
       device = "/dev/disk/by-uuid/f1a4b5a3-9386-4984-8eee-0d0037d2a7cd";
       fsType = "btrfs";
@@ -69,4 +69,22 @@
       };
     };
   };
+
+  # have fun: https://www.kernel.org/doc/html/v4.12/input/uinput.html
+  hardware.uinput.enable = true;
+
+  hardware.sensor.hddtemp = {
+    enable = true;
+    unit = "C";
+    drives = [ "/dev/disk/by-path/*" ];
+  };
+
+  # manage external storage spindown/shutdown
+  hardware.usbStorage.manageShutdown = true;
+
+  # xbox controllers laying around
+  hardware.xone.enable = true;
+
+  # crap usb dongles
+  hardware.usb-modeswitch.enable = true;
 }

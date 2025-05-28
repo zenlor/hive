@@ -1,6 +1,6 @@
 { root, ... }:
 {
- services.prometheus = {
+  services.prometheus = {
     listenAddress = "0.0.0.0";
     port = 9163;
     retentionTime = "730d";
@@ -11,8 +11,8 @@
         scrape_timeout = "30s";
         scheme = "http";
         static_configs = [
-          { targets = ["127.0.0.1:59101"]; }
-          { targets = ["${root.secrets.wireguard.nasferatu.ip}:59101"]; }
+          { targets = [ "127.0.0.1:59101" ]; }
+          { targets = [ "${root.secrets.wireguard.nasferatu.ip}:59101" ]; }
         ];
       }
       {
@@ -21,8 +21,8 @@
         scrape_timeout = "30s";
         scheme = "http";
         static_configs = [
-          { targets = ["127.0.0.1:59102"]; }
-          { targets = ["${root.secrets.wireguard.nasferatu.ip}:59102"]; }
+          { targets = [ "127.0.0.1:59102" ]; }
+          { targets = [ "${root.secrets.wireguard.nasferatu.ip}:59102" ]; }
         ];
       }
       {
@@ -31,8 +31,8 @@
         scrape_timeout = "30s";
         scheme = "http";
         static_configs = [
-          { targets = ["127.0.0.1:59103"]; }
-          { targets = ["${root.secrets.wireguard.nasferatu.ip}:59101"]; }
+          { targets = [ "127.0.0.1:59103" ]; }
+          { targets = [ "${root.secrets.wireguard.nasferatu.ip}:59101" ]; }
         ];
       }
     ];

@@ -16,7 +16,7 @@
   services.gnome = {
     gnome-initial-setup.enable = true;
     core-os-services.enable = true;
-    core-utilities.enable = true;
+    core-apps.enable = true;
     core-shell.enable = true;
     sushi.enable = true;
     tinysparql.enable = true;
@@ -58,7 +58,7 @@
         "org/gnome/mutter" = {
           edge-tiling = true;
           dynamic-workspaces = true;
-          experimental-features = ["variable-refresh-rate" "scale-monitor-framebuffer"];
+          experimental-features = [ "variable-refresh-rate" "scale-monitor-framebuffer" ];
         };
       };
     }];
@@ -73,10 +73,10 @@
   #
   # somehow still relevant: https://discourse.nixos.org/t/suspend-resume-cycling-on-system-resume/32322/12
   systemd.services = {
-     gnome-suspend = {
+    gnome-suspend = {
       description = "suspend gnome shell";
       before = [
-        "systemd-suspend.service" 
+        "systemd-suspend.service"
         "systemd-hibernate.service"
         "nvidia-suspend.service"
         "nvidia-hibernate.service"
@@ -93,7 +93,7 @@
     gnome-resume = {
       description = "resume gnome shell";
       after = [
-        "systemd-suspend.service" 
+        "systemd-suspend.service"
         "systemd-hibernate.service"
         "nvidia-resume.service"
       ];

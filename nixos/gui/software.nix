@@ -4,7 +4,7 @@
     telegram-desktop
     firefox
     vlc
-    chromium
+    brave
     bitwarden-cli
     bitwarden-desktop
   ];

@@ -1,6 +1,8 @@
-{ config, lib, ... }: let
+{ config, lib, ... }:
+let
   secrets = import ../../nixos/secrets.nix;
-in {
+in
+{
   services.caddy = {
     enable = true;
     email = "lorenzo@frenzart.com";
@@ -174,17 +176,18 @@ in {
       scrape_interval = "15s";
       scrape_timeout = "10s";
       static_configs = [
-        {targets = ["127.0.0.1:2019"]; }
+        { targets = [ "127.0.0.1:2019" ]; }
       ];
       metric_relabel_configs = [
         {
           source_labels = [ "__name__" ];
-          regex= "go_.*";
-          action= "drop";
-        } {
+          regex = "go_.*";
+          action = "drop";
+        }
+        {
           source_labels = [ "__name__" ];
-          regex= "go_.*";
-          action= "drop";
+          regex = "go_.*";
+          action = "drop";
         }
       ];
     }
@@ -194,7 +197,7 @@ in {
       scrape_interval = "15s";
       scrape_timeout = "10s";
       static_configs = [
-        {targets = ["127.0.0.1:10006"]; }
+        { targets = [ "127.0.0.1:10006" ]; }
       ];
     }
   ];
