@@ -13,6 +13,9 @@
     zstd
     xh
     pandoc
+    asciinema
+    asciinema-agg
+    asciinema-scenario
   ];
 
   home.sessionVariables = {
