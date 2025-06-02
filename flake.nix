@@ -36,9 +36,7 @@
             pkgs.wireguard-tools
             pkgs.alejandra
             # pkgs.nixos-install-tools
-          ] ++ pkgs.lib.optionals pkgs.stdenv.isLinux [
-            # ragenix is brokne in darwin for 25.05
-            inputs.ragenix.packages.${pkgs.system}.ragenix
+            pkgs.ragenix
           ];
 
           homeConfigurations = {
