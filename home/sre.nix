@@ -2,7 +2,8 @@
 { pkgs, ... }: {
   packages = with pkgs; [
     awscli2 # the worst official aws cli
-    k9s # nicer kubectl
+    k9s # nicer kubectls
+    kubetui
     pre-commit # overengineered frameworks for simple things :facepalm:
     saml2aws # samling on aws over and over
     terraform-docs # documentation for terraform things

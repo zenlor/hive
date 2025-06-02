@@ -4,7 +4,6 @@
     htop
     ijq
     jq
-    k9s
     lazygit
     lazysql
     nmap
