@@ -33,6 +33,7 @@
   # enable touch id for sudo
   security.pam.services.sudo_local.touchIdAuth = true;
 
+  system.primaryUser = "lorenzo";
   homebrew = {
     enable = true;
     brewPrefix = "/opt/homebrew/bin";

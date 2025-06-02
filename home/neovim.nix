@@ -16,7 +16,8 @@
       ripgrep
 
       # luv
-      luajitPackages.luv
+      # NOTE: broken in osx?
+      # luajitPackages.luv
     ];
   };
 
