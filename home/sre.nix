@@ -1,6 +1,6 @@
-{ ... }:
-{ pkgs, ... }: {
-  packages = with pkgs; [
+{ ... }: { pkgs, ... }:
+{
+  home.packages = with pkgs; [
     awscli2 # the worst official aws cli
     k9s # nicer kubectls
     kubetui

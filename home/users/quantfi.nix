@@ -8,6 +8,8 @@
   imports = [
     root.core
 
+    root.sre
+
     root.shell.core
     root.shell.fish
     root.shell.tmux
