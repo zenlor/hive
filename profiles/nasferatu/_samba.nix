@@ -20,6 +20,8 @@
     device = "/mnt/backup/vault";
     options = [ "bind" ];
   };
+
+  # Fileserver
   services.nfs.server = {
     enable = true;
     exports = ''
@@ -36,44 +38,166 @@
   networking.firewall.allowedTCPPorts = [ 111 2049 4000 4001 4002 20048 ];
   networking.firewall.allowedUDPPorts = [ 111 2049 4000 4001 4002 20048 ];
 
+ services.avahi.extraServiceFiles = {
+    smb = ''
+        <?xml version="1.0" standalone='no'?><!--*-nxml-*-->
+        <!DOCTYPE service-group SYSTEM "avahi-service.dtd">
+        <service-group>
+         <name replace-wildcards="yes">%h</name>
+         <service>
+          <type>_adisk._tcp</type>
+          <txt-record>sys=waMa=0,adVF=0x100</txt-record>
+          <txt-record>dk0=adVN=Time Capsule,adVF=0x82</txt-record>
+         </service>
+         <service>
+          <type>_smb._tcp</type>
+          <port>445</port>
+         </service>
+         <service>
+          <type>_device-info._tcp</type>
+          <txt-record>model=TimeCapsule8,119</txt-record>
+        </service>
+        </service-group>
+        '';
+  };
+
+  # Most of the Samba configuration is coppied from dperson/samba container.
+  # Note: when adding user do not forge to run `smbpasswd -a <USER>`.
+  # services.samba = {
+  #   enable = true;
+  #   securityType = "user";
+  #   settings = ''
+  #       workgroup = WORKGROUP
+  #       server role = standalone server
+  #       dns proxy = no
+  #       vfs objects = catia fruit streams_xattr
+
+  #       pam password change = yes
+  #       map to guest = bad user
+  #       usershare allow guests = yes
+  #       create mask = 0664
+  #       force create mode = 0664
+  #       directory mask = 0775
+  #       force directory mode = 0775
+  #       follow symlinks = yes
+  #       load printers = no
+  #       printing = bsd
+  #       printcap name = /dev/null
+  #       disable spoolss = yes
+  #       strict locking = no
+  #       aio read size = 0
+  #       aio write size = 0
+  #       vfs objects = acl_xattr catia fruit streams_xattr
+  #       inherit permissions = yes
+
+  #       # Security
+  #       client ipc max protocol = SMB3
+  #       client ipc min protocol = SMB2_10
+  #       client max protocol = SMB3
+  #       client min protocol = SMB2_10
+  #       server max protocol = SMB3
+  #       server min protocol = SMB2_10
+
+  #       # Time Machine
+  #       fruit:delete_empty_adfiles = yes
+  #       fruit:time machine = yes
+  #       fruit:veto_appledouble = no
+  #       fruit:wipe_intentionally_left_blank_rfork = yes
+  #       fruit:posix_rename = yes
+  #       fruit:metadata = stream
+  #     '';
+
+  #   shares = {
+  #     "Time Capsule" = {
+  #       path = "/pool/samba/timemachine";
+  #       browseable = "yes";
+  #       "read only" = "no";
+  #       "inherit acls" = "yes";
+
+  #       # Authenticate ?
+  #       # "valid users" = "melias122";
+
+  #       # Or allow guests
+  #       "guest ok" = "yes";
+  #       "force user" = "nobody";
+  #       "force group" = "nogroup";
+  #     };
+  #     public = {
+  #       path = "/pool/samba/public";
+  #       browseable = "yes";
+  #       "read only" = "no";
+
+  #       # This is public, everybody can access.
+  #       "guest ok" = "yes";
+  #       "force user" = "nobody";
+  #       "force group" = "users";
+
+  #       "veto files" = "/.apdisk/.DS_Store/.TemporaryItems/.Trashes/desktop.ini/ehthumbs.db/Network Trash Folder/Temporary Items/Thumbs.db/";
+  #       "delete veto files" = "yes";
+  #     };
+  #     melias122 = {
+  #       path = "/pool/samba/melias122";
+  #       browseable = "yes";
+  #       "read only" = "no";
+
+  #       # Make this private
+  #       "guest ok" = "no";
+  #       "valid users" = "melias122";
+
+  #       "veto files" = "/.apdisk/.DS_Store/.TemporaryItems/.Trashes/desktop.ini/ehthumbs.db/Network Trash Folder/Temporary Items/Thumbs.db/";
+  #       "delete veto files" = "yes";
+  #     };
+  #   };
+  # };
+
   services.samba = {
     enable = true;
     openFirewall = true;
     winbindd.enable = true;
     nmbd.enable = true;
+    securityType = "user";
+    enableNmbd = true;
+    enableWinbindd = true;
 
     settings = {
       global = {
-        workgroup = "WORKGROUP";
-        "server string" = "nasferatu";
-        "netbios name" = "nasferatu";
-        "security" = "user";
-        "hosts allow" = "10.69.0. 192.168.178. 127.0.0.1 localhost ::1";
-        "hosts deny" = "0.0.0.0/0";
-        "guest account" = "nobody";
-        "map to guest" = "bad user";
-
-        "min protocol" = "SMB2";
+        "workgroup" = "WORKGROUP";
+        "server role" = "standalone server";
+        "dns proxy" = "no";
         "vfs objects" = "acl_xattr catia fruit streams_xattr";
-        "fruit:nfs_aces" = "no";
+        "pam password change" = "yes";
+        "map to guest" = "bad user";
+        "usershare allow guests" = "yes";
+        "create mask" = "0664";
+        "force create mode" = "0664";
+        "directory mask" = "0775";
+        "force directory mode" = "0775";
+        "follow symlinks" = "yes";
+        "load printers" = "no";
+        "printing" = "bsd";
+        "printcap name" = "/dev/null";
+        "disable spoolss" = "yes";
+        "strict locking" = "no";
+        "aio read size" = 0;
+        "aio write size" = 0;
         "inherit permissions" = "yes";
 
-        "socket options" = "TCP_NODELAY IPTOS_LOWDELAY SO_RCVBUF=131072 SO_SNDBUF=131072";
-        "read raw" = "yes";
-        "write raw" = "yes";
-        "min receivefile size" = "16384";
-        "use sendfile" = "yes";
-        "aio read size" = "16384";
-        "aio write size" = "16384";
-        "write cache size" = "1073741824";
+        # Security
+        "client ipc max protocol" = "SMB3";
+        "client ipc min protocol" = "SMB2_10";
+        "client max protocol" = "SMB3";
+        "client min protocol" = "SMB2_10";
+        "server max protocol" = "SMB3";
+        "server min protocol" = "SMB2_10";
 
-        "fruit:model" = "MacSamba";
-        "fruit:posix_rename" = "yes";
+        # Time Machine
+        "fruit:delete_empty_adfiles" = "yes";
+        "fruit:time machine" = "yes";
         "fruit:veto_appledouble" = "no";
         "fruit:wipe_intentionally_left_blank_rfork" = "yes";
-        "fruit:delete_empty_adfiles" = "yes";
+        "fruit:posix_rename" = "yes";
         "fruit:metadata" = "stream";
-      };
+     };
 
       downloads = {
         path = "/media/warez/downloads";
@@ -83,24 +207,19 @@
         "guest ok" = "yes";
         "force user" = "share";
         "force group" = "share";
+        "veto files" = "/.apdisk/.DS_Store/.TemporaryItems/.Trashes/desktop.ini/ehthumbs.db/Network Trash Folder/Temporary Items/Thumbs.db/";
+        "delete veto files" = "yes";
       };
-      Movies = {
-        path = "/media/video/Movies";
+      Videos = {
+        path = "/media/video";
         "valid users" = "lor";
         public = "yes";
         writeable = "yes";
         "guest ok" = "yes";
         "force user" = "share";
         "force group" = "share";
-      };
-      TV = {
-        path = "/media/video/TV";
-        "valid users" = "lor";
-        public = "yes";
-        writeable = "yes";
-        "guest ok" = "yes";
-        "force user" = "share";
-        "force group" = "share";
+        "veto files" = "/.apdisk/.DS_Store/.TemporaryItems/.Trashes/desktop.ini/ehthumbs.db/Network Trash Folder/Temporary Items/Thumbs.db/";
+        "delete veto files" = "yes";
       };
       Music = {
         path = "/media/warez/music";
@@ -110,6 +229,8 @@
         "guest ok" = "yes";
         "force user" = "share";
         "force group" = "share";
+        "veto files" = "/.apdisk/.DS_Store/.TemporaryItems/.Trashes/desktop.ini/ehthumbs.db/Network Trash Folder/Temporary Items/Thumbs.db/";
+        "delete veto files" = "yes";
       };
       warez = {
         path = "/media/warez";
@@ -119,6 +240,8 @@
         "guest ok" = "yes";
         "force user" = "share";
         "force group" = "share";
+        "veto files" = "/.apdisk/.DS_Store/.TemporaryItems/.Trashes/desktop.ini/ehthumbs.db/Network Trash Folder/Temporary Items/Thumbs.db/";
+        "delete veto files" = "yes";
       };
       Vault = {
         path = "/media/backup/vault";
@@ -129,6 +252,8 @@
         "read only" = "no";
         "inherit acls" = "yes";
         "vfs objects" = "catia fruit streams_xattr";
+        "veto files" = "/.apdisk/.DS_Store/.TemporaryItems/.Trashes/desktop.ini/ehthumbs.db/Network Trash Folder/Temporary Items/Thumbs.db/";
+        "delete veto files" = "yes";
       };
       TimeMachine = {
         path = "/media/backup/time_machine";
@@ -140,48 +265,15 @@
         "inherit acls" = "yes";
         "fruit:time machine" = "yes";
         "vfs objects" = "catia fruit streams_xattr";
+        "veto files" = "/.apdisk/.DS_Store/.TemporaryItems/.Trashes/desktop.ini/ehthumbs.db/Network Trash Folder/Temporary Items/Thumbs.db/";
+        "delete veto files" = "yes";
       };
     };
   };
 
-  services.samba-wsdd = { enable = true; };
-
-  # MacOS TimeMachine
-  services.netatalk.settings = {
-    TimeMachine = {
-      "time machine" = "yes";
-      path = "/media/backup/time_machine";
-      "valid users" = "@users lor";
-    };
-  };
-
-  services.avahi = {
-    openFirewall = true;
-    allowPointToPoint = true;
-    reflector = true;
-    extraServiceFiles = {
-      smb = ''
-        <?xml version="1.0" standalone='no'?>
-        <!DOCTYPE service-group SYSTEM "avahi-service.dtd">
-        <service-group>
-          <name replace-wildcards="yes">%h</name>
-          <service>
-            <type>_smb._tcp</type>
-            <port>445</port>
-          </service>
-          <service>
-            <type>_device-info._tcp</type>
-            <port>0</port>
-            <txt-record>model=MacPro7,1@ECOLOR=226,226,224</txt-record>
-          </service>
-          <service>
-            <type>_adisk._tcp</type>
-            <port>9</port>
-            <txt-record>sys=waMa=0,adVF=0x100,adVU=b08171b5-7b5c-4a6d-9774-99f7a7d40cdc</txt-record>
-            <txt-record>dk0=adVN=TimeMachine,adVF=0x81</txt-record>
-          </service>
-        </service-group>
-      '';
-    };
+  services.samba-wsdd = {
+     enable = true;
+     openFirewall = true;
+     discovery = true;
   };
 }
