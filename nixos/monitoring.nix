@@ -52,6 +52,10 @@
         port = 59103;
         openFirewall = true;
       };
+      statsd = {
+        enable = true;
+        openFirewall = false;
+      };
     };
   };
 }
