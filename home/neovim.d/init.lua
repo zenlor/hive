@@ -305,18 +305,9 @@ do
 
   require'mini.icons'.setup()
   require'mini.icons'.mock_nvim_web_devicons()
-end
 
-do
-  Deps.add({ source = 'shaunsingh/nord.nvim' })
-
-  vim.g.nord_disable_background = true
-  vim.g.nord_italic = true
-  vim.g.nord_bold = true
-  require('nord').set()
-
-  vim.cmd.colorscheme "nord"
-  vim.cmd.hi 'Comment gui=none'
+  -- colors
+  require'mini.hues'.setup({ background = '#2b1a33', foreground = '#c9c5cb' })
 end
 
 do
@@ -530,12 +521,13 @@ do -- [[ AutoFormat ]]
   }
 end
 
--- [[ Doom-like Keymaps ]]
+-- [[ doom/helix-like Keymaps ]]
 do
   local none = function() end
   local tsb = require'telescope.builtin'
   local mbf = require'mini.bufremove'
 
+  kmap('<leader>w', ':w<cr>', '[W]rite')
   kmap('<leader>b',  none, '[B]uffers') -- dummy
   kmap('<leader>bb', tsb.buffers, '[B]uffer list' )
   kmap('<leader>bk', mbf.delete, '[K]ill buffer' )
