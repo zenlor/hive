@@ -57,14 +57,14 @@
 
     firewall = {
       enable = true;
-      allowedTCPPorts = [ 22 80 443 8000 ];
-      allowedUDPPorts = [ ];
+      allowedTCPPorts = [ 22 53 80 443 8000 ];
+      allowedUDPPorts = [ 53 ];
       allowPing = true;
     };
 
     hostId = "DEAFF47E";
   };
-  services.resolved.enable = true;
+  services.resolved.enable = false;
 
   i18n = {
     defaultLocale = "en_US.UTF-8";

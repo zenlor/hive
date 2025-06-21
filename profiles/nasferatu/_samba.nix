@@ -38,27 +38,27 @@
   networking.firewall.allowedTCPPorts = [ 111 2049 4000 4001 4002 20048 ];
   networking.firewall.allowedUDPPorts = [ 111 2049 4000 4001 4002 20048 ];
 
- services.avahi.extraServiceFiles = {
+  services.avahi.extraServiceFiles = {
     smb = ''
-        <?xml version="1.0" standalone='no'?><!--*-nxml-*-->
-        <!DOCTYPE service-group SYSTEM "avahi-service.dtd">
-        <service-group>
-         <name replace-wildcards="yes">%h</name>
-         <service>
-          <type>_adisk._tcp</type>
-          <txt-record>sys=waMa=0,adVF=0x100</txt-record>
-          <txt-record>dk0=adVN=Time Capsule,adVF=0x82</txt-record>
-         </service>
-         <service>
-          <type>_smb._tcp</type>
-          <port>445</port>
-         </service>
-         <service>
-          <type>_device-info._tcp</type>
-          <txt-record>model=TimeCapsule8,119</txt-record>
-        </service>
-        </service-group>
-        '';
+      <?xml version="1.0" standalone='no'?><!--*-nxml-*-->
+      <!DOCTYPE service-group SYSTEM "avahi-service.dtd">
+      <service-group>
+       <name replace-wildcards="yes">%h</name>
+       <service>
+        <type>_adisk._tcp</type>
+        <txt-record>sys=waMa=0,adVF=0x100</txt-record>
+        <txt-record>dk0=adVN=Time Capsule,adVF=0x82</txt-record>
+       </service>
+       <service>
+        <type>_smb._tcp</type>
+        <port>445</port>
+       </service>
+       <service>
+        <type>_device-info._tcp</type>
+        <txt-record>model=TimeCapsule8,119</txt-record>
+      </service>
+      </service-group>
+    '';
   };
 
   # Most of the Samba configuration is coppied from dperson/samba container.
@@ -197,7 +197,7 @@
         "fruit:wipe_intentionally_left_blank_rfork" = "yes";
         "fruit:posix_rename" = "yes";
         "fruit:metadata" = "stream";
-     };
+      };
 
       downloads = {
         path = "/media/warez/downloads";
@@ -272,8 +272,8 @@
   };
 
   services.samba-wsdd = {
-     enable = true;
-     openFirewall = true;
-     discovery = true;
+    enable = true;
+    openFirewall = true;
+    discovery = true;
   };
 }

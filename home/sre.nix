@@ -14,7 +14,7 @@
   ];
 
   programs.k9s = {
-    enable = true;    
+    enable = true;
     settings = {
       k9s = {
         skin = "default";
@@ -24,7 +24,7 @@
           logoless = true;
         };
         skipLatestRevCheck = true;
-        
+
       };
     };
   };
