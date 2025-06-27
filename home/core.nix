@@ -13,6 +13,8 @@
     zstd
     xh
     pandoc
+    entr
+    trippy
     asciinema
     asciinema-agg
     asciinema-scenario
