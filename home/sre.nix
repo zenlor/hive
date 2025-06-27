@@ -11,6 +11,7 @@
     kubetui
     kubectl
     kubelogin-oidc
+    krew
   ];
 
   programs.k9s = {
