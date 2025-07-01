@@ -65,7 +65,9 @@
     enable = true;
     settings = {
       General = {
-        Disable = "HandsFree";
+        MultiProfile = "multiple";
+        ControllerMode = "dual";
+        FastConnectable = true;
       };
     };
   };
