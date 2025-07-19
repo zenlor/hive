@@ -10,11 +10,13 @@
 
   services.caddy.globalConfig = ''
     metrics
+    tls internal
   '';
 
   services.caddy.virtualHosts = {
-    "http://nasferatu.local" = {
+    "*" = {
       extraConfig = ''
+        tls internal
         header {
           Content-Type text/html;utf-8
           Cache-Control max-age=31536000
