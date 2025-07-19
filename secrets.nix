@@ -23,6 +23,7 @@ in
   "secrets/wireguard/marrani-suppah.age".publicKeys = [ lor horus ];
   "secrets/wireguard/marrani-lukke.age".publicKeys = [ lor horus ];
   "secrets/wireguard/marrani-krs.age".publicKeys = [ lor horus ];
+  "secrets/proton/nasferatu.age".publicKeys = [ lor nasferatu ];
 
   # grafana
   "secrets/services/grafana.age".publicKeys = [ lor frenz ];
