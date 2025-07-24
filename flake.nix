@@ -227,6 +227,16 @@
             autoRollback = true;
           };
         };
+        nasanywhere = {
+          hostname = "nas.out";
+          profiles.system = {
+            user = "root";
+            sshUser = "lor";
+            path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.nasferatu;
+            fastConnection = true;
+            autoRollback = true;
+          };
+        };
         pad = {
           hostname = "192.168.178.31";
           profiles.system = {

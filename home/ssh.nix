@@ -10,6 +10,11 @@
         hostname = "frenz.click";
         user = "lor";
       };
+      "nas.out" = {
+        hostname = "10.69.0.2";
+        proxyJump = "frenz.click";
+        user = "lor";
+      };
     };
   };
 

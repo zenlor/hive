@@ -16,6 +16,7 @@ in {
     dnsutils
     entr
     fd
+    fzf
     file
     git
     gnused

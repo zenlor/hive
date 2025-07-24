@@ -18,6 +18,7 @@
     asciinema
     asciinema-agg
     asciinema-scenario
+    janet # for scripting
   ];
 
   home.sessionVariables = {
