@@ -103,11 +103,6 @@
   virtualisation.oci-containers.backend = "podman";
 
   environment.systemPackages = with pkgs; [
-    # dotnet-sdk_8
-    mono6
-    dotnetCorePackages.sdk_6_0-bin
-    msbuild
-    jetbrains.rider
     ollama
     yt-dlp
     vdhcoapp
