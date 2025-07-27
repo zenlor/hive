@@ -59,6 +59,13 @@
     };
   };
 
+  proton = {
+    nasferatu = {
+      ip = "10.2.0.2/32";
+      key = ../secrets/proton/nasferatu.age;
+    };
+  };
+
   services = {
     grafana = ../secrets/services/grafana.age;
     marrano-bot = ../secrets/services/marrano-bot.age;

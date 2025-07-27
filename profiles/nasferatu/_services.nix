@@ -7,14 +7,8 @@
   };
 
   services.caddy.enable = true;
-
-  services.caddy.globalConfig = ''
-    metrics
-    tls internal
-  '';
-
   services.caddy.virtualHosts = {
-    "*" = {
+    "http://nasferatu.local" = {
       extraConfig = ''
         tls internal
         header {

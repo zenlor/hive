@@ -5,9 +5,11 @@ in
 {
   age.secrets.wireguard-key.file = secrets.wireguard.meila.key;
 
+  networking.useNetworkd = true;
+
   networking.firewall.allowedUDPPorts = [ 51820 ];
 
-  networking.wireguard.interfaces.wg0 = {
+  networking.wireguard.interfaces.home0 = {
     ips = [ "${secrets.wireguard.meila.ip}/24" ];
     listenPort = 51820;
     privateKeyFile = config.age.secrets.wireguard-key.path;

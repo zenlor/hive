@@ -55,6 +55,8 @@
     search = [ "local" ];
     useDHCP = lib.mkForce true;
 
+    defaultGateway = { address = "192.168.178.1"; interface = "eno0"; };
+
     firewall = {
       enable = true;
       allowedTCPPorts = [ 22 53 80 443 8000 ];

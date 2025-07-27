@@ -1,4 +1,4 @@
-{ ... }: {
+{ lib, ... }: {
   imports = [
     ./_hardware.nix
     ./_samba.nix
@@ -36,8 +36,8 @@
       address = "192.168.178.2";
       prefixLength = 24;
     }];
-    defaultGateway = "192.168.178.1";
-    nameservers = [ "1.1.1.1" "1.0.0.1" ];
+    defaultGateway = lib.mkDefault "192.168.178.1";
+    nameservers = lib.mkDefault [ "1.1.1.1" "1.0.0.1" ];
 
     firewall = {
       enable = true;
@@ -65,7 +65,7 @@
 
   services.resolved = {
     enable = true;
-    dnssec = "allow-downgrade";
+    dnssec = "true";
     domains = [ "~." ];
     fallbackDns = [ "1.1.1.1" "1.0.0.1" ];
     extraConfig = ''
