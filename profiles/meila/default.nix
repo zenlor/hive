@@ -1,11 +1,11 @@
 { config, lib, pkgs, ... }:
 {
+  nixpkgs.config.allowUnfree = true;
+
   imports = [
     ./_hardware_configuration.nix
     ./_wireguard.nix
   ];
-
-  nixpkgs.config.allowUnfree = true;
 
   hardware.enableRedistributableFirmware = true;
 
@@ -90,8 +90,24 @@
     wideArea = true;
   };
 
+  virtualisation.podman = {
+    enable = true;
+    autoPrune.enable = true;
+    dockerCompat = true;
+  };
+
+  virtualisation.containerd = {
+    enable = true;
+  };
+
+  virtualisation.oci-containers.backend = "podman";
+
   environment.systemPackages = with pkgs; [
-    dotnet-sdk_8
+    # dotnet-sdk_8
+    mono6
+    dotnetCorePackages.sdk_6_0-bin
+    msbuild
+    jetbrains.rider
     ollama
     yt-dlp
     vdhcoapp

@@ -6,6 +6,8 @@ in
   age.secrets.wireguard-key.file = secrets.wireguard.meila.key;
 
   networking.useNetworkd = true;
+  networking.useHostResolvConf = true;
+  networking.wireguard.useNetworkd = true;
 
   networking.firewall.allowedUDPPorts = [ 51820 ];
 

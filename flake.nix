@@ -122,6 +122,12 @@
             meila = inputs.nixpkgs.lib.nixosSystem {
               system = "x86_64-linux";
               modules = [
+                # FIXME this should be updated when msbuild updates
+                { nixpkgs.config.permittedInsecurePackages = [
+                    "dotnet-sdk-6.0.428"
+                    "dotnet-runtime-6.0.36"
+                  ];
+                }
                 inputs.nixos-hardware.nixosModules.common-cpu-intel
                 inputs.nixos-hardware.nixosModules.common-pc-ssd
                 inputs.ragenix.nixosModules.default
