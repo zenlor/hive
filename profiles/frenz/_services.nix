@@ -92,6 +92,12 @@ in
           }
         '';
       };
+      "rpg.marrani.lol" = {
+        extraConfig = ''
+          encode zstd gzip
+          reverse_proxy http://127.0.0.1:30000
+        '';
+      };
       "stats.frenz.click" = {
         extraConfig = ''
           reverse_proxy http://127.0.0.1:59123

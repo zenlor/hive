@@ -7,16 +7,16 @@ in {
 
   networking.useNetworkd = mkDefault false;
   networking.useDHCP = mkDefault true;
-
-  systemd.network.wait-online.enable = true;
+  systemd.network.wait-online.enable = mkDefault true;
 
   services.resolved = {
     enable = mkDefault true;
-    dnssec = "allow-downgrade";
+    dnssec = mkDefault "true";
+    dnsovertls = "true";
     domains = [ "~." ];
-    fallbackDns = [ "1.1.1.1" "1.0.0.1" ];
-    extraConfig = ''
-      DNSOverTLS=yes
-    '';
+    fallbackDns = mkDefault [ "1.1.1.1" "1.0.0.1" ];
   };
+
+  networking.firewall.allowedTCPPorts = [ 53 ];
+  networking.firewall.allowedUDPPorts = [ 53 ];
 }
