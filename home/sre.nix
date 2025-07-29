@@ -18,14 +18,13 @@
     enable = true;
     settings = {
       k9s = {
-        skin = "default";
         ui = {
           enableMouse = true;
-          headless = true;
-          logoless = true;
+          headless = false;
+          logoless = false;
+          skin = "default";
         };
         skipLatestRevCheck = true;
-
       };
     };
   };
