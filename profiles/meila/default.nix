@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ lib, pkgs, ... }:
 {
   nixpkgs.config.allowUnfree = true;
 
@@ -55,7 +55,15 @@
     search = [ "local" ];
     useDHCP = lib.mkForce true;
 
-    defaultGateway = { address = "192.168.178.1"; interface = "eno0"; };
+    interfaces.enp0s31f6.ipv4.addresses = [{
+      address = "192.168.178.3";
+      prefixLength = 24;
+    }];
+
+    defaultGateway = {
+      address = "192.168.178.1";
+      interface = "enp0s31f6";
+    };
 
     firewall = {
       enable = true;

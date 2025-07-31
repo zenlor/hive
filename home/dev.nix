@@ -7,9 +7,13 @@
     superhtml
     nixd
     fish-lsp
+
     # zig
     zig
     zls
+
+    # C# for RimRim
+    omnisharp-roslyn
   ];
 
   programs.go = {
