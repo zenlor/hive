@@ -1,4 +1,4 @@
-{lib, buildGoModule, fetchFromGithub}:
+{ lib, buildGoModule, fetchFromGithub }:
 buildGoModule rec {
   pname = "wg-portal";
   version = "";
@@ -15,8 +15,8 @@ buildGoModule rec {
   ];
 
   meta = with lib; {
-   homepage = "https://github.com/h44z/wg-portal"; 
-   description = "WireGuard Portal: a simple web-based confguration portal for WireGuard server management";
-   platforms = platforms.linux;
+    homepage = "https://github.com/h44z/wg-portal";
+    description = "WireGuard Portal: a simple web-based confguration portal for WireGuard server management";
+    platforms = platforms.linux;
   };
 }

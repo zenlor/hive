@@ -61,7 +61,7 @@
 
   proton = {
     nasferatu = {
-      ip = "10.2.0.2/32";
+      ip = "10.2.0.2/28";
       key = ../secrets/proton/nasferatu.age;
     };
   };

@@ -25,10 +25,23 @@
     openRPCPort = true;
   };
 
+  services.deluge = {
+    enable = false;
+    web.enable = true;
+    web.openFirewall = true;
+    openFirewall = true;
+    user = "deluge";
+  };
+
   #
   # Sonarr
   #
   services.sonarr = {
+    enable = true;
+    openFirewall = true;
+  };
+
+  services.prowlarr = {
     enable = true;
     openFirewall = true;
   };
