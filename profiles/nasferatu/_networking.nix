@@ -24,7 +24,7 @@ in {
     '';
   };
 
-    systemd.services."protonvpn-ns" = {
+  systemd.services."protonvpn-ns" = {
     description = "User ProtonVPN Network Namespace";
     before = [ "network.target" ];
     serviceConfig = {
@@ -161,7 +161,7 @@ in {
       enable = true;
       matchConfig.Name = "proton0";
       address = [ secrets.proton.nasferatu.ip ];
-      dns = ["10.2.0.1"];
+      dns = [ "10.2.0.1" ];
       routes = [
         {
           Gateway = "10.2.0.1";
@@ -172,15 +172,22 @@ in {
         }
       ];
       routingPolicyRules = [
-        # {
-        #   User = "transmission";
-        #   From = "192.0.0.0/8";
-        #   Table = 100;
-        # }
         {
           User = "transmission";
           Table = 110;
-          Priority = 0;
+          Priority = 5;
+        }
+        {
+          User = "transmission";
+          Table = "main";
+          To = "192.168.178.0/24";
+          Priority = 1;
+        }
+        {
+          User = "transmission";
+          Table = "main";
+          To = "10.69.0.0/24";
+          Priority = 1;
         }
       ];
     };
