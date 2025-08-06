@@ -132,10 +132,11 @@
                 { nixpkgs.overlays = [ inputs.helix.overlays.default ]; }
 
                 nixosModules.core
-                nixosModules.networking
-                nixosModules.openssh
+                # nixosModules.networking
+                # nixosModules.network-manager
+                # nixosModules.openssh
 
-                nixosModules.ollama
+                # nixosModules.ollama
 
                 nixosModules.users.lor
                 nixosModules.users.root
@@ -265,6 +266,7 @@
     flakelight.url = "github:nix-community/flakelight";
     flakelight.inputs.nixpkgs.follows = "nixpkgs";
     flakelight-darwin.url = "github:zenlor/flakelight-darwin?ref=fix/systems";
+    # flakelight-darwin.url = "github:cmacrae/flakelight-darwin";
     flakelight-darwin.inputs.flakelight.follows = "flakelight";
 
     haumea.url = "github:nix-community/haumea?ref=main";

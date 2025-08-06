@@ -1,20 +1,20 @@
 { ... }:
 { pkgs, ... }: {
   home.packages =
-    let
-      emacs-custom-options = pkgs.emacs-pgtk.override {
-        withNativeCompilation = false; # FIXME currently broken in MacOSX
-        withSQLite3 = true;
-        withTreeSitter = true;
-      };
-      emacs-custom = (pkgs.emacsPackagesFor emacs-custom-options).emacsWithPackages (epkgs: with epkgs; [
-        vterm
-        multi-vterm
-        treesit-grammars.with-all-grammars
-      ]);
-    in
+    # let
+    #   emacs-custom-options = pkgs.emacs-pgtk.override {
+    #     withNativeCompilation = false; # FIXME currently broken in MacOSX
+    #     withSQLite3 = true;
+    #     withTreeSitter = true;
+    #   };
+    #   emacs-custom = (pkgs.emacsPackagesFor emacs-custom-options).emacsWithPackages (epkgs: with epkgs; [
+    #     vterm
+    #     multi-vterm
+    #     treesit-grammars.with-all-grammars
+    #   ]);
+    # in
     with pkgs; [
-      emacs-custom
+      emacs
       emacs-all-the-icons-fonts
       pinentry-emacs
 

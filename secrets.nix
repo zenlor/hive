@@ -9,6 +9,8 @@ let
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAly76ldEsrk0wikYNe1NDqdQLo8K7EkbfDL3LUl4XqL";
   pad =
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFqg48dF7t3LV4qsliz1r59wP53TtCdhcfO5+XJ6lJ+M";
+  meila =
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKqBzr95wQhhIDxbg92W7mC+UvJLDB/9/7XIJu3HhvsC";
 
   all = [ lor frenz nasferatu horus pad ];
 in
@@ -18,7 +20,7 @@ in
   "secrets/wireguard/wg-nasferatu.age".publicKeys = [ lor nasferatu ];
   "secrets/wireguard/wg-pad.age".publicKeys = [ lor pad ];
   "secrets/wireguard/wg-horus.age".publicKeys = [ lor horus ];
-  "secrets/wireguard/wg-meila.age".publicKeys = [ lor ];
+  "secrets/wireguard/wg-meila.age".publicKeys = [ lor meila ];
   "secrets/wireguard/wg-deck.age".publicKeys = [ pad lor horus ];
   "secrets/wireguard/marrani-suppah.age".publicKeys = [ lor horus ];
   "secrets/wireguard/marrani-lukke.age".publicKeys = [ lor horus ];
