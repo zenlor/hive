@@ -15,6 +15,9 @@
           end
       end
 
+      # delete erroneous commands at shell exit
+      set sponge_purge_only_on_exit true
+
       set --universal pure_shorten_prompt_current_directory_length 1
       set --universal pure_enable_single_line_prompt true
       fish_vi_key_bindings
@@ -29,8 +32,12 @@
         src = pkgs.fishPlugins.sponge.src;
       }
       {
-        name = "pure";
-        src = pkgs.fishPlugins.pure.src;
+        name = "prompt";
+        src = pkgs.fishPlugins.hydro.src;
+      }
+      {
+        name = "forgit";
+        src = pkgs.fishPlugins.forgit.src;
       }
     ];
   };

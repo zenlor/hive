@@ -6,6 +6,7 @@
     saml2aws # samling on aws over and over
     terraform-docs # documentation for terraform things
     terraform-ls # lsp for terraformation
+    ipcalc # calculate ip subnets
 
     # kubernetes
     kubetui

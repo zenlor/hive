@@ -19,7 +19,7 @@
     root.shell.zoxide
     root.shell.fzf
     root.shell.nnn
-    root.shell.nushell
+    # root.shell.nushell # broken :/
     root.shell.zellij
 
     root.git
@@ -32,6 +32,7 @@
     root.dev
 
     root.terminal.kitty
+    # root.terminal.wezterm
   ];
 
   # set kitty font size in darwin
