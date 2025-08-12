@@ -38,6 +38,12 @@ in {
     zig
     samba
     janet ## the need of scripting
+
+    zstd
+    zip
+    unzip
+    p7zip
+    p7zip-rar
   ];
 
   documentation.dev.enable = true;
