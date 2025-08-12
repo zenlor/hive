@@ -20,7 +20,6 @@
 
       # hydro settings
       set hydro_multiline false
-      set hydro_fetch true
       set hydro_color_pwd $fish_color_cwd
       set hydro_color_error $fish_color_error
       set hydro_color_prompt $fish_color_operator

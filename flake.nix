@@ -282,5 +282,6 @@
     deploy-rs.inputs.nixpkgs.follows = "nixpkgs";
 
     helix.url = "github:helix-editor/helix";
+    helix.inputs.nixpkgs.follows = "nixpkgs";
   };
 }
