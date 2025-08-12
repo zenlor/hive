@@ -52,6 +52,7 @@
   networking = {
     hostName = "meila";
     search = [ "local" ];
+    nameservers = lib.mkDefault [ "1.1.1.1" "1.0.0.1" ];
 
     # interfaces.enp0s31f6.ipv4.addresses = [{
     #   address = "192.168.178.4";
@@ -72,6 +73,7 @@
 
     hostId = "DEAFF47E";
 
+    networkmanager.enable = true;
     useNetworkd = true;
     useDHCP = false;
   };
@@ -89,6 +91,7 @@
   systemd.network = {
     enable = true;
     networks."10-lan" = {
+      networkConfig.MulticastDNS = true;
       matchConfig.Name = "eno2";
       address = [ "192.168.178.3/24" ];
       routes = [

@@ -11,6 +11,7 @@
   hardware.bluetooth.enable = true;
 
   environment.systemPackages = with pkgs.kdePackages; [
+    plasma-nm
     bluedevil
     bluez-qt
 
