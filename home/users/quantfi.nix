@@ -32,7 +32,8 @@
     root.dev
 
     root.terminal.kitty
-    # root.terminal.wezterm
+    root.terminal.wezterm
+    root.terminal.alacritty
   ];
 
   # set kitty font size in darwin
