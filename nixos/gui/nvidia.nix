@@ -16,7 +16,7 @@
     dynamicBoost.enable = false; # laptop
     videoAcceleration = true;
     nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.latest;
+    package = config.boot.kernelPackages.nvidiaPackages.production;
   };
 
   # boot params
