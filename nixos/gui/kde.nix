@@ -10,6 +10,9 @@
   # hardware.pulseaudio.enable = true;
   hardware.bluetooth.enable = true;
 
+  programs.kdeconnect.enable = true;
+  programs.kde-pim.enable = true;
+
   environment.systemPackages = with pkgs.kdePackages; [
     plasma-nm
     bluedevil

@@ -59,7 +59,6 @@
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
-
   # Appimage support
   programs.appimage = {
     enable = true;
