@@ -177,6 +177,10 @@ in {
     vimAlias = true;
   };
 
+  # direnv
+  programs.direnv.enable = true;
+  programs.nix-direnv.enable = true;
+
   # journald
   services.journald.extraConfig = ''
     Compress=true

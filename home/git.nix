@@ -4,17 +4,11 @@
     difftastic
     ghq
     git-extras
+    gitu
   ];
 
   programs.git = {
     enable = true;
-
-    difftastic = {
-      enable = true;
-      background = "dark";
-      color = "auto";
-      display = "side-by-side-show-both";
-    };
 
     ignores = [ ".dir-locals.el" ".DS_Store" ".lsp" ".clj-kondo" ".direnv" ];
 

@@ -11,22 +11,33 @@
 
   nix = {
     enable = true;
-    # nixPath = [
-    #   # TODO: This entry should be added automatically via FUP's
-    #   # `nix.linkInputs` and `nix.generateNixPathFromInputs` options, but
-    #   # currently that doesn't work because nix-darwin doesn't export packages,
-    #   # which FUP expects.
-    #   #
-    #   # This entry should be removed once the upstream issues are fixed.
-    #   #
-    #   # https://github.com/LnL7/nix-darwin/issues/277
-    #   # https://github.com/gytis-ivaskevicius/flake-utils-plus/issues/107
-    #   "darwin=/etc/nix/inputs/darwin"
-    # ];
-
     settings = {
-      # Administrative users on Darwin are part of this group.
-      trusted-users = [ "@admin" "@staff" ];
+      trusted-users = [ "@admin" "@staff" "lorenzo" ];
+      system-features = ["nixos-test" "apple-virt"];
+      experimental-features = ["nix-command" "flakes"];
+    };
+  };
+
+  # build Linux NixOS under OSX
+  nix.linux-builder = {
+    enable = false;
+    ephemeral = true;
+    config = {
+      nix.settings.sandbox = false;
+      virtualisation = {
+        darwin-builder = {
+          diskSize = 40*1024;
+          memorySize = 8*1024;
+        };
+        cores = 6;
+      };
+    };
+  };
+
+  launchd.daemons.linux-builder = {
+    serviceConfig = {
+      StandardOutPath = "/var/log/darwin-builder.log";
+      StandardErrorPath = "/var/log/darwin-builder.log";
     };
   };
 
