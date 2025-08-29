@@ -6,7 +6,7 @@
     installBatSyntax = true;
 
     settings = {
-      theme = "Ayu Mirage";
+      theme = "tokyonight";
       font-size = 12;
       keybind = [
         "ctrl+b>c=new_tab"

@@ -31,6 +31,7 @@
     root.dev
 
     root.terminal.kitty
+    root.terminal.ghostty
 
     root.gui.core
   ];

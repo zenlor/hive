@@ -35,7 +35,7 @@
     };
 
     settings = {
-      theme = "default";
+      theme = "tokyonight";
       editor = {
         true-color = true; # force true color detection
         bufferline = "multiple";
