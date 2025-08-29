@@ -6,6 +6,5 @@
     super.gui.software
     super.network-manager
     super.gui.steam
-    super.gui.audio
   ];
 }

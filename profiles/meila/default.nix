@@ -151,6 +151,5 @@
   environment.systemPackages = with pkgs; [
     ollama
     yt-dlp
-    vdhcoapp
   ];
 }

@@ -45,6 +45,6 @@
   programs.git.userName = "Lorenzo Giuliani";
   programs.git.userEmail = "lorenzo@quantfi.tech";
 
-  home.sessionPath = ["/opt/homebrew/bin" "/opt/homebrew/sbin"];
+  home.sessionPath = [ "/opt/homebrew/bin" "/opt/homebrew/sbin" ];
 }
 

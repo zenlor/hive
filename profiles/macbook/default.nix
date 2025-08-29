@@ -13,8 +13,8 @@
     enable = true;
     settings = {
       trusted-users = [ "@admin" "@staff" "lorenzo" ];
-      system-features = ["nixos-test" "apple-virt"];
-      experimental-features = ["nix-command" "flakes"];
+      system-features = [ "nixos-test" "apple-virt" ];
+      experimental-features = [ "nix-command" "flakes" ];
     };
   };
 
@@ -26,8 +26,8 @@
       nix.settings.sandbox = false;
       virtualisation = {
         darwin-builder = {
-          diskSize = 40*1024;
-          memorySize = 8*1024;
+          diskSize = 40 * 1024;
+          memorySize = 8 * 1024;
         };
         cores = 6;
       };

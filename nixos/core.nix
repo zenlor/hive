@@ -44,6 +44,12 @@ in {
     unzip
     p7zip
     p7zip-rar
+
+    # nix
+    nix-tree
+    nix-diff
+    nix-nix-du
+    nix-fast-build
   ];
 
   documentation.dev.enable = true;
