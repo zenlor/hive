@@ -48,7 +48,7 @@ in {
     # nix
     nix-tree
     nix-diff
-    nix-nix-du
+    nix-du
     nix-fast-build
   ];
 
