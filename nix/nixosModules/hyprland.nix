@@ -17,7 +17,8 @@
     hyprpolkitagent
 
     anyrun
-    ironbar
+    hyprnotify
+    ashell
   ];
 
   programs.hyprland = {
