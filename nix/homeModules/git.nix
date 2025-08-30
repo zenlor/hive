@@ -10,7 +10,13 @@
   programs.git = {
     enable = true;
 
-    ignores = [ ".dir-locals.el" ".DS_Store" ".lsp" ".clj-kondo" ".direnv" ];
+    ignores = [
+      ".dir-locals.el"
+      ".DS_Store"
+      ".lsp"
+      ".clj-kondo"
+      ".direnv"
+    ];
 
     aliases = {
       fixup = ''!f() { TARGET=$(git rev-parse "$1"); git commit --fixup=$TARGET ''${@:2} && EDITOR=true git rebase -i --autostash --autosquash $TARGET^; }; f'';
@@ -30,7 +36,8 @@
       push.autoSetupRemote = true;
       rebase.autosquash = true;
       rerere.enabled = true;
-
+      merge.conflictStyle = "diff3";
+      status.submoduleSummary = true;
       commit.gpgsign = true;
       gpg.format = "ssh";
       gpg.ssh.allowedSignersFile = "~/.ssh/allowed-signers";

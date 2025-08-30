@@ -1,8 +1,36 @@
-{ inputs, pkgs, ... }:
+{ inputs, pkgs, lib, config, ... }:
 {
   imports = [
     inputs.home-manager.nixosModules.home-manager
+    inputs.ragenix.nixosModules.default
   ];
+
+  ##
+  # Environment
+  ##
+  security = {
+    protectKernelImage = true;
+    rtkit.enable = true;
+    sudo.wheelNeedsPassword = false;
+  };
+
+  environment.shellAliases = {
+    myip = "dig +short myip.opendns.com @208.67.222.222 2>&1";
+    top = "htop";
+
+    ll = "ls -l";
+    la = "ls -la";
+
+    tm = "tmux new-session -A -s main";
+  };
+
+  environment.variables = {
+    # vim as default editor
+    EDITOR = "nvim";
+    VISUAL = "hx";
+
+    MANPAGER = "nvim +Man!";
+  };
 
   environment.systemPackages = with pkgs;[
     usbutils
@@ -33,33 +61,34 @@
     p7zip
     p7zip-rar
   ];
-
+  
+  ##
+  # Users
+  ##
   users.defaultUserShell = pkgs.fish;
   users.mutableUsers = true;
-
-  security = {
-    protectKernelImage = true;
-    rtkit.enable = true;
-    sudo.wheelNeedsPassword = false;
+  users.users.lor = {
+    isNormalUser = true;
+    description = "Lorenzo";
+    extraGroups = ["wheel" "networkmanager" ];
+    uid = 1000;
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPEjb3xZe7wZ7JezbXApLdLhMeTnO2c2J8FJrpr7nWCr"
+      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDO4vpKL4UUOAm9g92tn+Ez6c+zPum4dxm7ocVlyGDskC0/lKa/i+fG/hzzWH3TLvolhyCvzByswGj/eXDnEURaY5yfjd65i7EQGz7GSZb8XCS1/nG7/zdxantsw4a8YdnSDKzCgNWfveXYwmxT9mJi+3jcUbvkL6qTZy9r+Pm+ovmzEwOQex8tx+OCJyfaoD3VjrzWqIW6o16vua5akgs2BnFOMhLkLutf4MoB20ZuXV6RN8A7XoCcQiqxMV68p7z2ACKuXQyuh/UkJARSRKTURLbF00YF9NVh3FNSXOj9m5Nhh8d4P1dGvI1xXZjYF7+YYt4y/dpYS6GIpr3zzkFh lorenzo@frenz"
+    ];
+    hashedPasswordFile = lib.mkDefault config.age.secrets.lor-password.path;
   };
 
-  environment.shellAliases = {
-    myip = "dig +short myip.opendns.com @208.67.222.222 2>&1";
-    top = "htop";
+  ##
+  # Secrets
+  ##
+  age.identityPaths = [
+    "/home/lor/.ssh/id_ed25519"
+    "/home/lor/.ssh/id_rsa"
+  ];
 
-    ll = "ls -l";
-    la = "ls -la";
-
-    tm = "tmux new-session -A -s main";
-  };
-
-  environment.variables = {
-    # vim as default editor
-    EDITOR = "nvim";
-    VISUAL = "hx";
-
-    MANPAGER = "nvim +Man!";
-  };
+  age.secrets.lor-password.file = ../../secrets/users/lor.age;
+  age.secrets.root-password.file = ../../secrets/users/root.age;
 
   virtualisation.podman = {
     enable = true;

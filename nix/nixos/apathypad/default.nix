@@ -1,8 +1,12 @@
-{ ... }:
+{ inputs, ... }:
 {
   system = "x86_64-linux";
   modules = [
     { system.stateVersion = "25.05"; }
+
+    inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x280
+    inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
+
     # ./configuration.nix
   ];
 }

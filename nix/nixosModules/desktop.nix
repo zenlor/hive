@@ -5,6 +5,12 @@
     inputs.self.nixosModules.audio
   ];
 
+  environment.systemPackages = with pkgs; [
+    firefox
+    vlc
+    bitwarden-cli
+  ];
+
   powerManagement = {
     enable = true;
     powertop.enable = true;

@@ -1,10 +1,13 @@
-{ inputs, pkgs, ... }:
+{ pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
+    overskride # bluetooth frontend
+    shotman # screenshots
+
+    # wayland tools
     wl-clipboard
     wl-clip-persist
     wl-restart
-    overskride # bluetooth frontend
 
     hyprpicker
     hyprcursor

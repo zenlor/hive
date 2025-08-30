@@ -1,4 +1,5 @@
-{ pkgs, lib, ... }: {
+{ pkgs, ... }:
+{
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true; # Steam Remote Play
@@ -9,9 +10,7 @@
     protontricks.enable = true;
   };
 
-  programs.gamescope = {
-    enable = true;
-  };
+  programs.gamescope.enable = true;
 
   # Steam controller
   hardware.steam-hardware.enable = true;
@@ -19,16 +18,11 @@
 
   environment.systemPackages = with pkgs; [
     wineWowPackages.waylandFull
-
     mangohud
-
     winetricks
     protontricks
-
     lutris
-
     gamemode
-    gnomeExtensions.gamemode-shell-extension
   ];
 
 
