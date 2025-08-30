@@ -1,14 +1,10 @@
-{ inputs, ... }:
+{ inputs, pkgs, ... }:
 {
   imports = [
-    inputs.nixos-hardware.nixosModules.common.cpu.intel.coffee-lake
-    inputs.nixos-hardware.nixosModules.common.gpu.nvidia.ampere
-
-    inputs.home-manager.nixosModules.default
-
     inputs.self.nixosModules.common
     inputs.self.nixosModules.workstation
     inputs.self.nixosModules.desktop
+    inputs.self.nixosModules.nvidia
 
     # inputs.self.nixosModules.gnome
     # inputs.self.nixosModules.kde
@@ -18,8 +14,6 @@
   ];
 
   hardware = {
-    initrd.availableKernelModules = [ "nvme" ];
-    kernelModules = [ "cpuid" "coretemp" ];
     enableAllFirmware = true;
     cpu.intel.updateMicrocode = true;
   };
@@ -31,6 +25,20 @@
     rtkit.enable = true;
     sudo.wheelNeedsPassword = false;
   };
+
+  boot.loader = {
+    efi = {
+      efiSysMountPoint = "/boot";
+      canTouchEfiVariables = true;
+    };
+    systemd-boot = {
+      enable = true;
+      configurationLimit = 2;
+      consoleMode = "max";
+    };
+  };
+  boot.initrd.verbose = false;
+  systemd.enableEmergencyMode = false;
 
   boot.kernelParams = [
     # Quiet boot
@@ -45,15 +53,33 @@
     "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
   ];
 
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
+  home-manager.backupFileExtension = "backup";
   home-manager.useGlobalPkgs = true;
-  home-manager.users.lor.imports = [
-    inputs.self.homeModules.core
-    inputs.self.homeModules.git
-    inputs.self.homeModules.dev
-    inputs.self.homeModules.helix
-    inputs.self.homeModules.neovim
-    inputs.self.homeModules.shell
-    inputs.self.homeModules.terminal
-  ];
+  home-manager.users.lor = {
+    # inherit (pkgs) system;
+    imports = with inputs.self.homeModules; [
+      { home.stateVersion = "25.05"; }
+
+      core
+      dev
+      doom
+      git
+      helix
+      neovim
+      shell
+      terminal
+
+      hyprland
+
+      {
+        programs.git.extraConfig.user.signingkey = "~/.ssh/id_ed25519.pub";
+        # "key::ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPEjb3xZe7wZ7JezbXApLdLhMeTnO2c2J8FJrpr7nWCr";
+        programs.git.userName = "Lorenzo Giuliani";
+        programs.git.userEmail = "lorenzo@frenzart.com";
+      }
+    ];
+  };
 }
 

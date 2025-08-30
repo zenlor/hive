@@ -1,11 +1,19 @@
 { inputs, ... }: {
   system = "x86_64-linux";
-  modules = with inputs.homeModules;[
+  modules = with inputs.self.homeModules; [
     { home.stateVersion = "25.05"; }
-
-    emacs
-    neovim
+    { home-manager.backupFileExtension = "backup"; }
+    
+    core
+    dev
+    doom
+    git
     helix
+    neovim
     shell
+    terminal
+
+    # WM
+    hyprland
   ];
 }

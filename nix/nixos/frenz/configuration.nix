@@ -1,9 +1,15 @@
 { inputs, pkgs, lib, config, ... }:
 let
-  secrets = inputs.self.nixosModules.secrets;
+  secrets = import ../../secrets.nix;
 in
 {
   imports = [
+    inputs.ragenix.nixosModules.default
+    inputs.marrano-bot.nixosModules.default
+
+    inputs.self.nixosModules.common
+    inputs.self.nixosModules.server
+
     ./hardware.nix
     ./services.nix
   ];
@@ -125,4 +131,5 @@ in
         };
       };
     };
-  };}
+  };
+}

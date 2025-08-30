@@ -2,7 +2,7 @@
 {
   home.packages = with pkgs; [
     emacs
-    emacs-emacs-all-the-icons-fonts
+    emacs-all-the-icons-fonts
 
     # ssh passwords
     pinentry-emacs

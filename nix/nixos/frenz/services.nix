@@ -1,6 +1,6 @@
-{ inputs, config, lib, ...}:
+{ inputs, config, lib, ... }:
 let
-  secrets = import inputs.self.nixosModules.secrets;
+  secrets = import ../../secrets.nix;
 in
 {
   services.caddy = {
@@ -132,7 +132,7 @@ in
   };
 
   # services.marrano-bot.hostName = "bot.marrani.lol";
-  services.marrano-bot.logLevel = "debug";
+  # services.marrano-bot.logLevel = "debug";
   # services.marrano-bot.logLevel = "error";
 
   # tinyproxy

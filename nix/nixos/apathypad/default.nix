@@ -7,6 +7,9 @@
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x280
     inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
 
-    # ./configuration.nix
+    inputs.home-manager.nixosModules.home-manager
+    inputs.ragenix.nixosModules.default
+
+    ./configuration.nix
   ];
 }

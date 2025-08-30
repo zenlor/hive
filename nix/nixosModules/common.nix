@@ -1,9 +1,10 @@
-{ inputs, pkgs, lib, config, ... }:
 {
-  imports = [
-    inputs.home-manager.nixosModules.home-manager
-    inputs.ragenix.nixosModules.default
-  ];
+  inputs,
+  pkgs,
+  ...
+}:
+{
+  nixpkgs.config.allowUnfree = true;
 
   ##
   # Environment
@@ -32,7 +33,18 @@
     MANPAGER = "nvim +Man!";
   };
 
-  environment.systemPackages = with pkgs;[
+  system.activationScripts = {
+    # Print a summary of nixos-rebuild changes
+    diff = {
+      supportsDryActivation = true;
+      text = ''
+        ${pkgs.nvd}/bin/nvd --nix-bin-dir=${pkgs.nix}/bin diff \
+          /run/current-system "$systemConfig"
+      '';
+    };
+  };
+
+  environment.systemPackages = with pkgs; [
     usbutils
     pciutils
     psutils
@@ -46,7 +58,7 @@
     git
     gnused
     htop
-    btm
+    bottom
     jq
     ncdu
     nnn
@@ -54,6 +66,8 @@
     tmux
     xh
     janet
+    nil
+    nvd
 
     zstd
     zip
@@ -61,22 +75,27 @@
     p7zip
     p7zip-rar
   ];
-  
+
   ##
   # Users
   ##
-  users.defaultUserShell = pkgs.fish;
-  users.mutableUsers = true;
-  users.users.lor = {
-    isNormalUser = true;
-    description = "Lorenzo";
-    extraGroups = ["wheel" "networkmanager" ];
-    uid = 1000;
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPEjb3xZe7wZ7JezbXApLdLhMeTnO2c2J8FJrpr7nWCr"
-      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDO4vpKL4UUOAm9g92tn+Ez6c+zPum4dxm7ocVlyGDskC0/lKa/i+fG/hzzWH3TLvolhyCvzByswGj/eXDnEURaY5yfjd65i7EQGz7GSZb8XCS1/nG7/zdxantsw4a8YdnSDKzCgNWfveXYwmxT9mJi+3jcUbvkL6qTZy9r+Pm+ovmzEwOQex8tx+OCJyfaoD3VjrzWqIW6o16vua5akgs2BnFOMhLkLutf4MoB20ZuXV6RN8A7XoCcQiqxMV68p7z2ACKuXQyuh/UkJARSRKTURLbF00YF9NVh3FNSXOj9m5Nhh8d4P1dGvI1xXZjYF7+YYt4y/dpYS6GIpr3zzkFh lorenzo@frenz"
-    ];
-    hashedPasswordFile = lib.mkDefault config.age.secrets.lor-password.path;
+  users = {
+    defaultUserShell = pkgs.fish;
+    mutableUsers = true;
+    users.lor = {
+      isNormalUser = true;
+      description = "Lorenzo";
+      extraGroups = [
+        "wheel"
+        "networkmanager"
+      ];
+      uid = 1000;
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPEjb3xZe7wZ7JezbXApLdLhMeTnO2c2J8FJrpr7nWCr"
+        "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDO4vpKL4UUOAm9g92tn+Ez6c+zPum4dxm7ocVlyGDskC0/lKa/i+fG/hzzWH3TLvolhyCvzByswGj/eXDnEURaY5yfjd65i7EQGz7GSZb8XCS1/nG7/zdxantsw4a8YdnSDKzCgNWfveXYwmxT9mJi+3jcUbvkL6qTZy9r+Pm+ovmzEwOQex8tx+OCJyfaoD3VjrzWqIW6o16vua5akgs2BnFOMhLkLutf4MoB20ZuXV6RN8A7XoCcQiqxMV68p7z2ACKuXQyuh/UkJARSRKTURLbF00YF9NVh3FNSXOj9m5Nhh8d4P1dGvI1xXZjYF7+YYt4y/dpYS6GIpr3zzkFh lorenzo@frenz"
+      ];
+      # hashedPasswordFile = lib.mkDefault config.age.secrets.lor-password.path;
+    };
   };
 
   ##
@@ -164,7 +183,6 @@
       "82.169.232.124"
     ];
   };
-
 
   i18n = {
     defaultLocale = "en_US.UTF-8";

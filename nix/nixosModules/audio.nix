@@ -1,7 +1,6 @@
 { inputs, pkgs, ... }: {
   services = {
-    pulseaudio.enable = true;
-    rtkit.enable = true;
+    pulseaudio.enable = false;
     pipewire = {
       enable = true;
       audio.enable = true;

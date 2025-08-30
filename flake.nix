@@ -2,15 +2,14 @@
   description = "nixos bee hive";
 
   outputs =
-    {
-      self,
-      flakelight,
-      flakelight-darwin,
-      nixpkgs,
-      deploy-rs,
-      helix,
-      ragenix,
-      ...
+    { self
+    , flakelight
+    , flakelight-darwin
+    , nixpkgs
+    , deploy-rs
+    , helix
+    , ragenix
+    , ...
     }@inputs:
     flakelight ./. {
       inherit inputs;

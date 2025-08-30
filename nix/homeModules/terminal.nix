@@ -1,7 +1,7 @@
-{ lib, stdenv, ... }:
+{ lib, pkgs, ... }:
 {
   programs.ghostty = {
-    enable = stdenv.hostPlatform.isDarwin; # FIXME broken in darwin
+    enable = pkgs.stdenv.hostPlatform.isDarwin; # FIXME broken in darwin
 
     enableFishIntegration = true;
     installBatSyntax = true;

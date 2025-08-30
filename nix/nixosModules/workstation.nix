@@ -2,7 +2,7 @@
 {
   boot.plymouth = {
     enable = true;
-    font = "${pkgs.noto-fonts}/share/fonts/noto/NotoSans[wdth,wght].ttf";
+    # font = "${pkgs.noto-fonts}/share/fonts/noto/NotoSans[wdth,wght].ttf";
     extraConfig = ''
       DeviceScale=2
     '';

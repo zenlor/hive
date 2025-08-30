@@ -1,15 +1,11 @@
 { inputs, config, pkgs, lib, ... }:
 let
-  secrets = inputs.self.nixosModules.secrets;
+  secrets = import ../../secrets.nix;
 in
 {
   imports = [
     inputs.self.nixosModules.common
     inputs.self.nixosModules.server
-
-    inputs.nixos-hardware.nixosModules.common-cpu-amd
-    inputs.nixos-hardware.nixosModules.common-gpu-amd
-    inputs.nixos-hardware.nixosModules.common-pc-ssd
 
     ./disks.nix
     ./file_sharing.nix
@@ -29,6 +25,15 @@ in
 
   systemd.enableEmergencyMode = false;
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
+  hardware.graphics.enable32Bit = true;
+  hardware.graphics.extraPackages = with pkgs; [
+    amdvlk
+  ];
+  # For 32 bit applications 
+  hardware.graphics.extraPackages32 = with pkgs; [
+    driversi686Linux.amdvlk
+  ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

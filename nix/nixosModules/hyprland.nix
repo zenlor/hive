@@ -15,6 +15,9 @@
     hyprpaper
     hyprsunset
     hyprpolkitagent
+
+    anyrun
+    ironbar
   ];
 
   programs.hyprland = {
@@ -25,13 +28,8 @@
 
   programs.uwsm = {
     enable = true;
-
-    waylandCompositors = {
-      hyprland = {
-        prettyName = "Hyprland";
-        comment = "Hyprland compositor managed by UWSM";
-        binPath = "${pkgs.hyprland}/bin/Hyprland";
-      };
-    };
   };
+
+  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable=true;
 }

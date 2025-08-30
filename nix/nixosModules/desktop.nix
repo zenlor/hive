@@ -9,6 +9,7 @@
     firefox
     vlc
     bitwarden-cli
+    ghostty
   ];
 
   powerManagement = {
@@ -59,6 +60,11 @@
   xdg.portal = {
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    config = {
+      preferred = {
+        default = "gtk";
+      };
+    };
   };
 
   # Appimage support
@@ -94,4 +100,12 @@
       };
     };
   };
+
+  # annoying udev rules. Disable autosuspend for HID
+  services.udev.extraRules = ''
+    ACTION=="add", SUBSYSTEM=="usb", DRIVERS=="usbhid", ATTR{power/autosuspend_delay_ms}="-1"
+    ACTION=="add", SUBSYSTEM=="usb", ATTR{bInterfaceClass}=="03", ATTR{power/autosuspend_delay_ms}="-1"
+    ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="1532", ATTR{idProduct}=="008d", ATTR{power/autosuspend_delay_ms}="-1"
+    ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="3297", ATTR{idProduct}=="4975", ATTR{power/autosuspend_delay_ms}="-1"
+  '';
 }
