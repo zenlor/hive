@@ -19,6 +19,9 @@
     anyrun
     hyprnotify
     ashell
+    
+    pwvucontrol
+    pa-applet
   ];
 
   programs.hyprland = {

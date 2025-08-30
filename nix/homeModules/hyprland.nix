@@ -14,10 +14,13 @@
       ];
 
       bind = [
-        "$mod, RETURN, exec, anyrun"
+        "$mod, space, exec, anyrun"
         "$mod, P, exec, ghostty"
         "$mod, C, killactive"
         "$mod+ALT, M, exit"
+
+        "$mod, TAB, cyclenext, bringactivetotop"
+        "ALT, TAB, workspace, previous"
 
         "$mod, h, movefocus, l"
         "$mod, j, movefocus, d"
@@ -41,23 +44,15 @@
         # exit session
         "SUPER,M,exit"
 
-        # lock screen
-        "SUPER,B,exec,swaylock-fancy"
+        "SUPER,Enter,fullscreen,1"
+        "SUPERSHIFT,Enter,fullscreen,0"
+        "SUPER, T, togglefloating,"
 
-        # launch firefox
-        "SUPER,F,exec,firefox"
-
-        #  launch discord
-        "SUPER,V,exec,vesktop"
-
-        "SUPER,F,fullscreen,1"
-        "SUPERSHIFT,F,fullscreen,0"
-
-        "SUPER,RETURN,exec,kitty"
         "SUPER,C,killactive"
         "SUPERSHIFT,Q,exit"
-        "SUPER,E,exec,pcmanfm"
-        "SUPER,D,exec,rofi -show drun"
+
+        # "SUPER,E,exec,pcmanfm"
+        # "SUPER,D,exec,rofi -show drun"
 
         # ",XF86AudioMute,exec,~/.config/hypr/scripts/volume mute"
         # ",XF86AudioLowerVolume,exec,~/.config/hypr/scripts/volume down"
@@ -69,17 +64,11 @@
 
         # "SUPERSHIFT,C,exec,bash ~/.config/hypr/scripts/hyprPicker.sh"
         # "SUPERSHIFT,E,exec,wlogout"
-        "SUPER, T, togglefloating,"
 
         ## Screen shot
         # "SUPERSHIFT,S,exec,grim -g \"$\(slurp)\""
         ## Emoji selector
         # "SUPERSHIFT,E,exec,rofi -modi emoji -show emoji"
-
-        "SUPER,j,movefocus,d"
-        "SUPER,k,movefocus,u"
-        "SUPER,h,movefocus,l"
-        "SUPER,l,movefocus,r"
 
         "SUPER,left,resizeactive,-40 0"
         "SUPER,right,resizeactive,40 0"
@@ -117,7 +106,7 @@
         "pin, title:^(Picture-in-Picture)$"
         "move 69.5% 4%, title:^(Picture-in-Picture)$"
         "idleinhibit fullscreen,class:([window])"
-        "float, title:pavucontrol"
+        "float, title:pwvucontrol"
         
       ];
       windowrulev2 = [
@@ -225,7 +214,8 @@
 
       plugins = [
         "${pkgs.anyrun}/lib/libapplications.so"
-        "${pkgs.anyrun}/lib/libsymbols.so"
+        "${pkgs.anyrun}/lib/libshell.so"
+        "${pkgs.hyprpolkitagent}/lib/hyprpolkitagent"
       ];
     };
   };
@@ -258,8 +248,8 @@
         backdrop = 0.3
 
         [settings]
-        audio_sinks_more_cmd = "pavucontrol -t 3"
-        audio_sources_more_cmd = "pavucontrol -t 3"
+        audio_sinks_more_cmd = "pwvucontrol -t 3"
+        audio_sources_more_cmd = "pwvucontrol -t 3"
         bluetooth_more_cmd = "overskride"
         vpn_more_cmd = "nm-connection-editor"
       '';
