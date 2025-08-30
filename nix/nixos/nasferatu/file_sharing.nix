@@ -1,5 +1,5 @@
-{ ... }: {
-
+{ ... }:
+{
   fileSystems."/export/downloads" = {
     device = "/mnt/warez/downloads";
     options = [ "bind" ];

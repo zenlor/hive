@@ -1,0 +1,9 @@
+#!/bin/sh
+set -e
+if [ ! -x ~/.config/emacs/bin/doom ]; then
+	git clone --depth=1 \
+		git@github.com:doomemacs/doomemacs.git \
+		~/.config/emacs
+fi
+
+exec ~/.config/emacs/bin/doom $@

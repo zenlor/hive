@@ -28,9 +28,6 @@
     };
   };
   boot.initrd.verbose = false;
-  # boot.kernelPackages = pkgs.linuxPackages-rt_latest;
-  boot.plymouth.enable = true;
-
   systemd.enableEmergencyMode = false;
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   boot.kernelParams = [
@@ -73,7 +70,7 @@
 
     hostId = "DEAFF47E";
 
-    networkmanager.enable = true;
+    networkmanager.enable = false;
     useNetworkd = true;
     useDHCP = false;
   };
@@ -113,43 +110,4 @@
       ];
     };
   };
-
-  i18n = {
-    defaultLocale = "en_US.UTF-8";
-
-    extraLocaleSettings = {
-      LC_ADDRESS = "it_IT.UTF-8";
-      LC_IDENTIFICATION = "it_IT.UTF-8";
-      LC_MEASUREMENT = "it_IT.UTF-8";
-      LC_MONETARY = "it_IT.UTF-8";
-      LC_NAME = "it_IT.UTF-8";
-      LC_NUMERIC = "it_IT.UTF-8";
-      LC_PAPER = "it_IT.UTF-8";
-      LC_TELEPHONE = "it_IT.UTF-8";
-      LC_TIME = "it_IT.UTF-8";
-    };
-  };
-
-  services.avahi = {
-    enable = true;
-    openFirewall = true;
-    wideArea = true;
-  };
-
-  virtualisation.podman = {
-    enable = true;
-    autoPrune.enable = true;
-    dockerCompat = true;
-  };
-
-  virtualisation.containerd = {
-    enable = true;
-  };
-
-  virtualisation.oci-containers.backend = "podman";
-
-  environment.systemPackages = with pkgs; [
-    ollama
-    yt-dlp
-  ];
 }
