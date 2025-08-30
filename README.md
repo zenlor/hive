@@ -1,57 +1,12 @@
 # nix void spaceport
 
-```
-├───colmena: unknown
-├───darwinConfigurations: unknown
-├───devShells
-│   ├───aarch64-darwin
-│   │   └───default: development environment 'shell'
-│   ├───aarch64-linux
-│   │   └───default: development environment 'shell'
-│   ├───x86_64-darwin
-│   │   └───default: development environment 'shell'
-│   └───x86_64-linux
-│       └───default: development environment 'shell'
-├───formatter
-│   ├───aarch64-darwin: package 'nixpkgs-fmt-1.3.0'
-│   ├───aarch64-linux: package 'nixpkgs-fmt-1.3.0'
-│   ├───x86_64-darwin: package 'nixpkgs-fmt-1.3.0'
-│   └───x86_64-linux: package 'nixpkgs-fmt-1.3.0'
-├───homeConfigurations: unknown
-├───homeModules: unknown
-├───nixosConfigurations
-│   ├───frenz: NixOS configuration
-│   ├───horus: NixOS configuration
-│   ├───nasferatu: NixOS configuration
-│   └───pad: NixOS configuration
-└───nixosModules
-    ├───core: NixOS module
-    ├───docker: NixOS module
-    ├───gui: NixOS module
-    ├───laptop: NixOS module
-    ├───marrano-bot: NixOS module
-    ├───network-manager: NixOS module
-    ├───networking: NixOS module
-    ├───openssh: NixOS module
-    ├───secrets: NixOS module
-    ├───torrent: NixOS module
-    ├───users: NixOS module
-    └───wsl: NixOS module
-```
-
 ## Cheat sheet
 
 - apply
-  - locally: `colmena apply-local --node nixos-horus --sudo`
-  - remote: `colmena apply -v --build-on-target --on nixos-nasferatu`
+  - locally: `sudo nixos-rebuild switch --flake .#<host>`
+  - remote: `deploy --remote-build -s .#<host>`
   - darwin: `nix run nix-darwin -- switch --flake .#macbook`
 - `nix flake show` look at the outputs
-
-using deploy-rs:
-
-- build and deploy: `deploy .#<node-name`
-- build remotely: `deploy .#<node-name> --remote-build`
-- build only (test): `deploy .#<node-name> --dry-activate`
 
 ### MacOS X idiosincracies
 
@@ -71,10 +26,10 @@ simplified. Also ... it's now _much_ faster.
 
 # URLs
 
+- [/nix-community/flakelight](/nix-community/flakelight)
 - [/LnL7/nix-darwin](/LnL7/nix-darwin)
 - [/nix-community/NixOS-WSL](/nix-community/NixOS-WSL)
-- [/nix-community/haumea](/nix-community/haumea)
 - [/nix-community/home-manager](/nix-community/home-manager)
-- [/nix-community/nix-direnv](/nix-community/nix-direnv)
-- [/zhaofengli/colmena](/zhaofengli/colmena)
 - [/yaxitech/ragenix](/yaxitech/ragenix)
+- [serokell/deploy-rs](serokell/deploy-rs)
+- [helix-editor/helix](helix-editor/helix)
