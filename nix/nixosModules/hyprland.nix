@@ -8,6 +8,8 @@
     wl-clipboard
     wl-clip-persist
     wl-restart
+    wlr-randr
+    wl-screenrec
 
     fuzzel
     hyprpicker
@@ -17,8 +19,10 @@
     hyprsunset
     hyprpolkitagent
     hyprnotify
+    mako
     cava
     waybar
+    wttrbar
 
     pwvucontrol
   ];
@@ -33,6 +37,8 @@
     enable = true;
   };
 
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable=true;
+  services.displayManager = {
+    sddm.enable = true;
+    sddm.wayland.enable=true;
+  };
 }
