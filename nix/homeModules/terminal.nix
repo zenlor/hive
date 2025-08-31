@@ -1,7 +1,7 @@
 { lib, pkgs, ... }:
 {
   programs.ghostty = {
-    enable = pkgs.stdenv.hostPlatform.isDarwin; # FIXME broken in darwin
+    enable = !pkgs.stdenv.hostPlatform.isDarwin; # FIXME broken in darwin
 
     enableFishIntegration = true;
     installBatSyntax = true;
@@ -9,6 +9,7 @@
     settings = {
       theme = "tokyonight";
       font-size = 12;
+      font-family = "Iosevka Fixed";
       keybind = [
         "ctrl+b>c=new_tab"
 
