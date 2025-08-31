@@ -18,7 +18,7 @@
     hyprpolkitagent
     hyprnotify
     cava
-    ashell
+    waybar
 
     pwvucontrol
   ];

@@ -96,7 +96,7 @@
 
       exec-once = [
         "${pkgs.blueman}/bin/blueman-applet"
-        "${pkgs.ashell}/bin/ashell"
+        "${pkgs.waybar}/bin/waybar"
         "${pkgs.hyprnotify}/bin/hyprnotify"
       ];
 
@@ -213,115 +213,292 @@
     };
   };
 
-  programs.anyrun = {
+  programs.waybar = {
     enable = true;
-    config = {
-      x = {
-        fraction = 0.5;
-      };
-      y = {
-        fraction = 0.3;
-      };
-      width = {
-        fraction = 0.7;
-      };
-      hideIcons = false;
-      ignoreExclusiveZones = false;
-      maxEntries = null;
+    settings = [
+      {
+        layer = "top";
+        position = "top";
+        height = 34;
+        spacing = 4;
 
-      plugins = [
-        "${pkgs.anyrun}/lib/libapplications.so"
-        "${pkgs.anyrun}/lib/libshell.so"
-      ];
-    };
-  };
+        modules-left = [
+          "hyprland/window"
+          "taskbar"
+        ];
 
-  programs.hyprpanel = {
-    # Configure and theme almost all options from the GUI.
-    # See 'https://hyprpanel.com/configuration/settings.html'.
-    # Default: <same as gui>
-    settings = {
+        modules-center = [
+          "hyprland/workspaces"
+        ];
 
-      # Configure bar layouts for monitors.
-      # See 'https://hyprpanel.com/configuration/panel.html'.
-      # Default: null
-      layout = {
-        bar.layouts = {
-          "0" = {
-            left = [
-              "dashboard"
-              "workspaces"
-            ];
-            middle = [ "media" ];
-            right = [
-              "volume"
-              "systray"
-              "notifications"
-            ];
+        modules-right = [
+          "idle_inhibitor"
+          "pulseaudio"
+          "bluetooth"
+          "network"
+          "cpu"
+          "memory"
+          "temperature"
+          "battery"
+          "clock"
+        ];
+
+        #
+        # Modules configuration
+        #
+        "hyprland/window" = {
+            format = " {initialTitle}";
+            separate-outputs = true;
+            on-click = "${pkgs.fuzzel}/bin/fuzzel";
+        };
+
+        taskbar = {
+          format = "{icon}";
+        };
+
+        "hyprland/workspaces" = {
+          disable-scroll = true;
+          all-outputs = true;
+          warp-on-scroll = false;
+          format = "{name}";
+          format-icons = {
+            urgent = "";
+            active = "";
+            default = "";
           };
         };
-      };
-
-      bar.launcher.autoDetectIcon = true;
-      bar.workspaces.show_icons = true;
-
-      menus.clock = {
-        time = {
-          military = true;
-          hideSeconds = true;
+        idle_inhibitor = {
+          format = "{icon}";
+          format-icons = {
+            activated = "";
+            deactivated = "";
+          };
         };
-        weather.unit = "metric";
-      };
 
-      menus.dashboard.directories.enabled = false;
-      menus.dashboard.stats.enable_gpu = true;
+        bluetooth = {
+        	format= " {status}";
+        	format-connected= " {device_alias}";
+        	format-connected-battery = " {device_alias} {device_battery_percentage}%";
+        	# // "format-device-preference": [ "device1", "device2" ], // preference list deciding the displayed device
+        	tooltip-format = "{controller_alias}\t{controller_address}\n\n{num_connections} connected";
+        	tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}";
+        	tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
+        	tooltip-format-enumerate-connected-battery = "{device_alias}\t{device_address}\t{device_battery_percentage}%";
+        	on-click-right = "${pkgs.overskride}/bin/overskride";
+        };
 
-      theme.bar.transparent = true;
+        pulseaudio = {
+          format = "{icon}  {volume}%";
+          format-bluetooth = "{icon} {volume}%  {format_source}";
+          format-bluetooth-muted = " {icon} {format_source}";
+          format-muted = " {format_source}";
+          format-source = " {volume}%";
+          format-source-muted = "";
+          format-icons = {
+            headphone = "";
+            hands-free = "";
+            headset = "";
+            phone = "";
+            portable = "";
+            car = "";
+            default = [
+              ""
+              ""
+              ""
+            ];
+          };
+          on-click-right = "${pkgs.pwvucontrol}/bin/pwvucontrol";
+        };
 
-      theme.font = {
-        name = "CaskaydiaCove NF";
-        size = "16px";
-      };
-    };
+        network = {
+          format-wifi = "   {essid} ({signalStrength}%)";
+          format-ethernet = "{ipaddr}/{cidr} ";
+          tooltip-format = "{ifname} via {gwaddr} ";
+          format-linked = "{ifname} (No IP) ";
+          format-disconnected = "Disconnected ⚠";
+          on-click = "sh ~/scripts/rofi-wifi-menu/rofi-wifi-menu.sh";
+        };
+
+        cpu = {
+          format = "  {usage}%";
+          tooltip = true;
+        };
+
+        memory = {
+          format = "  {}%";
+          tooltip = true;
+        };
+
+        temperature = {
+          interval = 10;
+          hwmon-path = "/sys/devices/platform/coretemp.0/hwmon/hwmon4/temp1_input";
+          critical-threshold = 100;
+          format-critical = " {temperatureC}";
+          format = " {temperatureC}°C";
+        };
+
+        battery = {
+          states = {
+            warning = 30;
+            critical = 15;
+          };
+          format = "{icon}  {capacity}%";
+          format-full = "{icon}  {capacity}%";
+          format-charging = "  {capacity}%";
+          format-plugged = "  {capacity}%";
+          format-alt = "{time}  {icon}";
+          format-icons = [
+            ""
+            ""
+            ""
+            ""
+            ""
+          ];
+        };
+
+        clock = {
+          format = "{:%H:%M | %e %B} ";
+          tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+        };
+      }
+    ];
+
+    style = ''
+      * {
+          font-family: "Iosevka", FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+          font-size: 11px;
+          transition: background-color .3s ease-out;
+      }
+
+      window#waybar {
+          background: rgba(26, 27, 38, 0.0);
+          color: #c0caf5;
+          font-family: Iosevka, feather;
+          transition: background-color .5s;
+      }
+
+      .modules-left,
+      .modules-center,
+      .modules-right
+      {
+          background: rgba(0, 0, 8, .7);
+          margin: 2px 10px;
+          padding: 0 5px;
+          border-radius: 15px;
+      }
+      .modules-left {
+          padding: 0 10px;
+      }
+      .modules-center {
+          padding: 0 10px;
+      }
+
+      #clock,
+      #battery,
+      #cpu,
+      #memory,
+      #disk,
+      #temperature,
+      #backlight,
+      #network,
+      #pulseaudio,
+      #wireplumber,
+      #custom-media,
+      #tray,
+      #mode,
+      #idle_inhibitor,
+      #scratchpad,
+      #power-profiles-daemon,
+      #language,
+      #mpd {
+          padding: 0 10px;
+          border-radius: 15px;
+      }
+
+      #clock:hover,
+      #battery:hover,
+      #cpu:hover,
+      #memory:hover,
+      #disk:hover,
+      #temperature:hover,
+      #backlight:hover,
+      #network:hover,
+      #pulseaudio:hover,
+      #wireplumber:hover,
+      #custom-media:hover,
+      #tray:hover,
+      #mode:hover,
+      #idle_inhibitor:hover,
+      #scratchpad:hover,
+      #power-profiles-daemon:hover,
+      #language:hover,
+      #mpd:hover {
+          background: rgba(26, 27, 38, 0.9);
+      }
+
+
+      #workspaces button {
+        background: transparent;
+        font-family:
+          SpaceMono Nerd Font,
+          feather;
+        font-weight: 900;
+        font-size: 13pt;
+        color: #c0caf5;
+        border:none;
+        border-radius: 15px;
+      }
+
+      #workspaces button.active {
+          background: #13131d; 
+      }
+
+      #workspaces button:hover {
+        background: #11111b;
+        color: #cdd6f4;
+        box-shadow: none;
+      }
+
+      #custom-arch {
+          margin-left: 5px;
+          padding: 0 10px;
+          font-size: 25px;
+          transition: color .5s;
+      }
+      #custom-arch:hover {
+          color: #1793d1;
+      }
+    '';
   };
 
   xdg.configFile = {
-    "ashell/config.toml" = {
+    "fuzzel/fuzzel.ini" = {
       text = ''
-        log_level = "warn"
-        app_launcher_cmd = "${pkgs.anyrun}/bin/anyrun"
+        [main]
+        font=Iosevka:size=14
+        terminal=ghostty
+        prompt="$> "
+        layer=overlay
 
-        [system]
-        indicators = [ "Temperature" "Cpu" "Memory" ]
-        [system.cpu]
-        warn_threshold = 65
-        alert_threshold = 85
-        [system.memory]
-        warn_threshold = 50
-        alert_threshold = 85
-        [system.temperature]
-        warn_threshold = 65
-        alert_threshold = 85
+        [border]
+        radius=15
+        width=1
 
-        [appearance]
-        opacity = 0.7
-        style = "Islands"
-        font_name = "Iosevka - Medium"
+        [dmenu]
+        exit-immediately-if-empty=yes
 
-        [appearance.menu]
-        opacity = 0.7
-        backdrop = 0.3
-
-        [settings]
-        audio_sinks_more_cmd = "pwvucontrol -t 3"
-        audio_sources_more_cmd = "pwvucontrol -t 3"
-        bluetooth_more_cmd = "overskride"
-        vpn_more_cmd = "nm-connection-editor"
+        [colors]
+        background=161217ff
+        text=e9e0e8ff
+        selection=4b454dff
+        selection-text=cdc3ceff
+        border=4b454ddd
+        match=dfb8f6ff
+        selection-match=dfb8f6ff
       '';
     };
   };
 
-  # home.pointerCursor = { };
   gtk = {
     enable = true;
     theme = {

@@ -93,10 +93,12 @@
     ];
 
     fontconfig = {
+      useEmbeddedBitmaps = true;
       defaultFonts = {
         serif = [ "Noto" ];
         sansSerif = [ "Noto" ];
         monospace = [ "Iosevka" ];
+        emoji = [ "Noto Color Emoji" ];
       };
     };
   };
