@@ -9,19 +9,18 @@
     wl-clip-persist
     wl-restart
 
+    fuzzel
     hyprpicker
     hyprcursor
     hyprlock
     hyprpaper
     hyprsunset
     hyprpolkitagent
-
-    anyrun
     hyprnotify
+    cava
     ashell
-    
+
     pwvucontrol
-    pa-applet
   ];
 
   programs.hyprland = {
