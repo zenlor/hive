@@ -107,7 +107,7 @@
         "move 69.5% 4%, title:^(Picture-in-Picture)$"
         "idleinhibit fullscreen,class:([window])"
         "float, title:pwvucontrol"
-        
+
       ];
       windowrulev2 = [
         "float,class:^()$,title:^(Picture in picture)$"
@@ -133,53 +133,53 @@
         gaps_in = 5;
         gaps_out = 20;
         border_size = 2;
-        # col.active_border = "0xff5e81ac";
-        # col.inactive_border = "0x66333333";
 
-        # apply_sens_to_raw=0 # whether to apply the sensitivity to raw input (e.g. used by games where you aim using your mouse)
+        "col.active_border" = "rgb(8aadf4) rgb(24273A) rgb(24273A) rgb(8aadf4) 45deg";
+        "col.inactive_border" = "rgb(24273A) rgb(24273A) rgb(24273A) rgb(27273A) 45deg";
       };
-
-      decoration = {
-        rounding = 8;
-        blur = {
-          enabled = 1;
-          size = 6;
-          passes = 2;
-          new_optimizations = true;
-
-          # Your blur "amount" is size * passes, but high size (over around 5-ish)
-          # will produce artifacts.
-          # if you want heavy blur, you need to up the passes.
-          # the more passes, the more you can up the size without noticing artifacts.
-        };
-        shadow = {
-          enabled = true;
-          range = 2;
-          color = "0x000000f0";
-          color_inactive = "0x50000000";
-        };
-      };
-
-      blurls = [
-        "ashell"
-        "lockscreen"
-      ];
 
       animations = {
-        enabled = 1;
-        # bezier=overshot,0.05,0.9,0.1,1.1
-        bezier = "overshot,0.13,0.99,0.29,1.1";
+        enabled = true;
+        bezier = [
+          "wind, 0.05, 0.9, 0.1, 1.05"
+          "winIn, 0.1, 1.1, 0.1, 1.1"
+          "winOut, 0.3, -0.3, 0, 1"
+          "liner, 1, 1, 1, 1"
+        ];
         animation = [
-          "windows,1,4,overshot,popin"
-          "fade,1,10,default"
-          "workspaces,1,6,overshot,slide"
-          "border,1,10,default"
+          "windows, 1, 6, wind, slide"
+          "windowsIn, 1, 6, winIn, slide"
+          "windowsOut, 1, 5, winOut, slide"
+          "windowsMove, 1, 5, wind, slide"
+          "border, 1, 1, liner"
+          "borderangle, 1, 30, liner, loop"
+          "fade, 1, 10, default"
+          "workspaces, 1, 5, wind"
         ];
       };
 
-      dwindle = {
-        pseudotile = 1; # enable pseudotiling on dwindle
-        force_split = 0;
+      decoration = {
+        rounding = 10;
+
+        # Change transparency of focused and unfocused windows
+        active_opacity = 1.0;
+        inactive_opacity = 1.0;
+
+        shadow = {
+          enabled = true;
+          range = 4;
+          render_power = 3;
+          color = "rgba(1a1a1aee)";
+        };
+
+        blur = {
+          enabled = true;
+          size = 3;
+          passes = 3;
+          new_optimizations = true;
+          vibrancy = 0.1696;
+          ignore_opacity = true;
+        };
       };
 
       master = {
@@ -187,11 +187,28 @@
       };
 
       misc = {
-        disable_hyprland_logo = true;
-        disable_splash_rendering = true;
         mouse_move_enables_dpms = true;
-        vfr = false;
+        vrr = true;
       };
+
+      env = [
+        # QT
+        "QT_QPA_PLATFORM,wayland;xcb"
+        "QT_QPA_PLATFORMTHEME,qt6ct"
+        "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
+        "QT_AUTO_SCREEN_SCALE_FACTOR,1"
+        "QT_STYLE_OVERRIDE,kvantum"
+
+        # Toolkit Backend Variables
+        "GDK_BACKEND,wayland,x11,*"
+        "SDL_VIDEODRIVER,wayland"
+        "CLUTTER_BACKEND,wayland"
+
+        # XDG Specifications
+        "XDG_CURRENT_DESKTOP,Hyprland"
+        "XDG_SESSION_TYPE,wayland"
+        "XDG_SESSION_DESKTOP,Hyprland"
+      ];
 
     };
   };
@@ -231,9 +248,16 @@
       layout = {
         bar.layouts = {
           "0" = {
-            left = [ "dashboard" "workspaces" ];
+            left = [
+              "dashboard"
+              "workspaces"
+            ];
             middle = [ "media" ];
-            right = [ "volume" "systray" "notifications" ];
+            right = [
+              "volume"
+              "systray"
+              "notifications"
+            ];
           };
         };
       };

@@ -56,5 +56,7 @@
   ];
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
+  networking.networkmanager.enable = true;
 }
 
