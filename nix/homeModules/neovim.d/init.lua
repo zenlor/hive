@@ -307,7 +307,10 @@ do
   require'mini.icons'.mock_nvim_web_devicons()
 
   -- colors
-  require'mini.hues'.setup({ background = '#2b1a33', foreground = '#c9c5cb' })
+  require'mini.hues'.setup({
+    background = "#1a1b26", -- helix-like '#2b1a33',
+    foreground = "#c0caf5", -- helix-like '#c9c5cb',
+  })
 end
 
 do

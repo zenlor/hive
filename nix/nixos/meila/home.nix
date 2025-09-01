@@ -16,7 +16,8 @@
       shell
       terminal
 
-      hyprland
+      desktop
+      # hyprland
 
       {
         programs.git.extraConfig.user.signingkey = "~/.ssh/id_ed25519.pub";

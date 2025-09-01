@@ -9,7 +9,8 @@
     firefox
     vlc
     bitwarden-cli
-    ghostty
+    # ghostty
+    kitty
   ];
 
   powerManagement = {

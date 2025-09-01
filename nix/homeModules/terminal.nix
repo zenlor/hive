@@ -1,7 +1,7 @@
-{ lib, pkgs, ... }:
+{ lib, ... }:
 {
   programs.ghostty = {
-    enable = !pkgs.stdenv.hostPlatform.isDarwin; # FIXME broken in darwin
+    enable = false; # !pkgs.stdenv.hostPlatform.isDarwin; # FIXME broken in darwin
 
     enableFishIntegration = true;
     installBatSyntax = true;
@@ -33,51 +33,66 @@
 
     font = {
       name = "Iosevka";
-      size = lib.mkDefault 11;
+      size = lib.mkDefault 13;
     };
 
-    themeFile = "Grape";
+    themeFile = "tokyo_night_moon";
 
-    extraConfig = ''
-      bell_on_tab yes
-      tab_bar_edge bottom
-      focus_follows_mouse yes
-      tab_title_template {index}::{title}
-      enabled_layouts tall:bias=60;full_size=1;mirrored=false
-    '';
+    settings = {
+      kitty_mod = "meta+ctrl";
+
+      bell_on_tab = "yes";
+      tab_bar_edge = "bottom";
+      focus_follows_mouse = "yes";
+      tab_title_template = "{index}::{title}";
+      enabled_layouts = "tall:bias=60;full_size=1;mirrored=false";
+    };
 
     keybindings = {
-      "ctrl+b>c" = "new_tab";
-      "ctrl+b>z" = "close_tab";
-      "ctrl+b>]" = "next_tab";
-      "ctrl+b>n" = "next_tab";
-      "ctrl+b>[" = "previous_tab";
-      "ctrl+b>p" = "previous_tab";
+      # remove useless crap
+      "ctrl+h" = "no_op";
+      "ctrl+shift+t" = "no_op";
 
-      "ctrl+b>1" = "goto_tab 1";
-      "ctrl+b>2" = "goto_tab 2";
-      "ctrl+b>3" = "goto_tab 3";
-      "ctrl+b>4" = "goto_tab 4";
-      "ctrl+b>5" = "goto_tab 5";
-      "ctrl+b>6" = "goto_tab 6";
-      "ctrl+b>7" = "goto_tab 7";
-      "ctrl+b>8" = "goto_tab 8";
-      "ctrl+b>9" = "goto_tab 9";
-      "ctrl+b>0" = "goto_tab 10";
-      "ctrl+b>t" = "select_tab";
+      # actual bindings
+      "ctrl+s>c" = "new_tab";
+      "ctrl+s>z" = "close_tab";
+      "ctrl+s>]" = "next_tab";
+      "ctrl+s>n" = "next_tab";
+      "ctrl+s>[" = "previous_tab";
+      "ctrl+s>p" = "previous_tab";
 
       # Windows
-      "ctrl+b>enter" = "launch --cwd=current";
+      "ctrl+s>enter" = "launch --cwd=current";
 
       # visually move between window panes
-      "ctrl+b>h" = "neighboring_window left";
-      "ctrl+b>j" = "neighboring_window bottom";
-      "ctrl+b>k" = "neighboring_window top";
-      "ctrl+b>l" = "neighboring_window right";
+      "ctrl+s>h" = "neighboring_window left";
+      "ctrl+s>j" = "neighboring_window bottom";
+      "ctrl+s>k" = "neighboring_window top";
+      "ctrl+s>l" = "neighboring_window right";
 
       # set the main window
-      "ctrl+b>;" = "move_window_to_top";
+      "ctrl+s>;" = "move_window_to_top";
 
+      # tab movement
+      "ctrl+shift+l" = "next_tab";
+      "ctrl+shift+h" = "previous_tab";
+
+      "ctrl+s>1" = "goto_tab 1";
+      "ctrl+s>2" = "goto_tab 2";
+      "ctrl+s>3" = "goto_tab 3";
+      "ctrl+s>4" = "goto_tab 4";
+      "ctrl+s>5" = "goto_tab 5";
+      "ctrl+s>6" = "goto_tab 6";
+      "ctrl+s>7" = "goto_tab 7";
+      "ctrl+s>8" = "goto_tab 8";
+      "ctrl+s>9" = "goto_tab 9";
+      "ctrl+s>0" = "goto_tab 10";
+      "ctrl+s>t" = "select_tab";
+
+      "ctrl+s>r" = "layout_action rotate";
+
+      "ctrl+s>b" = "launch --location=hsplit --cwd=current";
+      "ctrl+s>v" = "launch --location=vsplit --cwd=current";
     };
   };
 

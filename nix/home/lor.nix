@@ -14,6 +14,7 @@
     terminal
 
     # WM
-    hyprland
+    desktop
+    # hyprland
   ];
 }

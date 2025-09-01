@@ -5,10 +5,11 @@
   services.xserver = {
     enable = true;
 
-    displayManage.gdm = {
+    desktopManager.gnome.enable = true;
+
+    displayManager.gdm = {
       enable = true;
       wayland = true;
-      gnome.enable = true;
     };
 
     xkb.layout = "us";
@@ -18,11 +19,11 @@
   programs = {
     geary.enable = true;
     file-roller.enable = true;
-    gvfs.enable = true;
     gphoto2.enable = true;
     seahorse.enable = true;
   };
 
+  services.gvfs.enable = true;
   services.gnome = {
     gnome-initial-setup.enable = true;
     core-os-services.enable = true;
@@ -38,7 +39,14 @@
   environment.systemPackages = with pkgs; [
     gnome-boxes
     gnome-tweaks
+    gnomeExtensions.appindicator
+    gnome-settings-daemon
   ];
+
+  services.udev.packages = [ pkgs.gnome-settings-daemon ];
+
+  # HACK: applications being blank
+  environment.variables.GSK_RENDERER = "ngl";
 
   # HACK:
   # send STOP on suspend to gnome-shell
