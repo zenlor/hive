@@ -1,8 +1,4 @@
-{
-  inputs,
-  pkgs,
-  ...
-}:
+{ pkgs, ... }:
 {
   nixpkgs.config.allowUnfree = true;
 
@@ -68,6 +64,7 @@
     janet
     nil
     nvd
+    trippy
 
     zstd
     zip
