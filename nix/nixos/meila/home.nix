@@ -11,6 +11,7 @@
       dev
       doom
       git
+      ssh
       helix
       neovim
       shell
