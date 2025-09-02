@@ -8,7 +8,7 @@
     , nixpkgs
     , deploy-rs
     , helix
-    , ragenix
+    , agenix
     , ...
     }@inputs:
     flakelight ./. {
@@ -23,7 +23,7 @@
 
       withOverlays = [
         helix.overlays.helix
-        ragenix.overlays.default
+        agenix.overlays.default
       ];
 
       outputs.deploy.nodes = {
@@ -85,8 +85,8 @@
     # flakelight-darwin.url = "github:cmacrae/flakelight-darwin";
     flakelight-darwin.inputs.flakelight.follows = "flakelight";
 
-    ragenix.url = "github:yaxitech/ragenix";
-    ragenix.inputs.nixpkgs.follows = "nixpkgs";
+    agenix.url = "github:ryantm/agenix";
+    agenix.inputs.nixpkgs.follows = "nixpkgs";
 
     marrano-bot.url = "github:moolite/bot";
     marrano-bot.inputs.nixpkgs.follows = "nixpkgs";

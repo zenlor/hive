@@ -9,7 +9,7 @@
     inputs.nixos-hardware.nixosModules.common-cpu-intel
 
     inputs.home-manager.nixosModules.home-manager
-    inputs.ragenix.nixosModules.default
+    inputs.agenix.nixosModules.default
 
     ./configuration.nix
   ];

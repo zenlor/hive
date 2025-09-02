@@ -4,7 +4,7 @@ pkgs: with pkgs; {
     nixfmt-rfc-style
     deploy-rs
     alejandra
-    ragenix
+    agenix
     wireguard-tools
   ];
 }

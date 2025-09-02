@@ -4,7 +4,7 @@ let
 in
 {
   imports = [
-    inputs.ragenix.nixosModules.default
+    inputs.agenix.nixosModules.default
 
     inputs.self.nixosModules.common
     inputs.self.nixosModules.desktop

@@ -5,7 +5,7 @@
     { system.stateVersion = "25.05"; }
 
     inputs.home-manager.nixosModules.home-manager
-    inputs.ragenix.nixosModules.default
+    inputs.agenix.nixosModules.default
 
     ./configuration.nix
   ];

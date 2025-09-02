@@ -31,5 +31,6 @@ simplified. Also ... it's now _much_ faster.
 - [/nix-community/NixOS-WSL](/nix-community/NixOS-WSL)
 - [/nix-community/home-manager](/nix-community/home-manager)
 - [/yaxitech/ragenix](/yaxitech/ragenix)
+- [/yaxitech/ragenix](/ryantm/agenix)
 - [serokell/deploy-rs](serokell/deploy-rs)
 - [helix-editor/helix](helix-editor/helix)
