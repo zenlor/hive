@@ -5,6 +5,15 @@
     inputs.self.nixosModules.audio
   ];
 
+  boot.plymouth = {
+    enable = true;
+    # font = "${pkgs.noto-fonts}/share/fonts/noto/NotoSans[wdth,wght].ttf";
+    extraConfig = ''
+      DeviceScale=2
+    '';
+    theme = "details";
+  };
+
   environment.systemPackages = with pkgs; [
     firefox
     vlc

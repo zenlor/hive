@@ -64,6 +64,7 @@
       "steampipe"
     ];
     casks = [
+      "kitty"
       "multipass"
       "utm"
       "wezterm"
@@ -81,6 +82,11 @@
   };
 
   programs.fish.enable = true;
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
+
   environment.shells = [ pkgs.fish ];
   users.users.lorenzo = {
     home = "/Users/lorenzo";

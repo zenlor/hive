@@ -183,4 +183,6 @@
 
     plugins = with pkgs; [ tmuxPlugins.tmux-fzf ];
   };
+
+  programs.ripgrep-all.enable = true;
 }

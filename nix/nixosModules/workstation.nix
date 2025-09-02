@@ -1,14 +1,5 @@
 { pkgs, ... }:
 {
-  boot.plymouth = {
-    enable = true;
-    # font = "${pkgs.noto-fonts}/share/fonts/noto/NotoSans[wdth,wght].ttf";
-    extraConfig = ''
-      DeviceScale=2
-    '';
-    theme = "details";
-  };
-
   documentation.dev.enable = true;
   documentation.man = {
     generateCaches = true;
