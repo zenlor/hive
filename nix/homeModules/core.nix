@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs,... }:
 {
   home.sessionVariables = {
     # vim as default editor
@@ -7,4 +7,10 @@
 
     MANPAGER = "nvim +Man!";
   };
+
+  home.packages = with pkgs;[
+    fd
+    entr
+    rg
+  ];
 }
