@@ -11,6 +11,6 @@
   home.packages = with pkgs;[
     fd
     entr
-    rg
+    ripgrep
   ];
 }
