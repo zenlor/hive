@@ -152,6 +152,7 @@
     extraConfig = ''
       # neovim termguicolors
       set-option -sa terminal-features ',XXX:RGB'
+      set-option -sa terminal-overrides ',xterm-kitty:RGB'
       # aggressively renumber windows
       set -g renumber-windows on
 
