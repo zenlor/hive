@@ -3,12 +3,12 @@
   gtk = {
     enable = true;
     theme = {
-      package = pkgs.flat-remix-gtk;
-      name = "Flat-Remix-GTK-Grey-Darkest";
+      package = pkgs.theme-vertex;
+      name = "Vertex";
     };
     iconTheme = {
-      package = pkgs.adwaita-icon-theme;
-      name = "Adwaita";
+      package = pkgs.vimix-icon-theme;
+      name = "Vimix-dark";
     };
     font = {
       name = "Sans";

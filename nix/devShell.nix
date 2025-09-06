@@ -1,6 +1,6 @@
 pkgs: with pkgs; {
   packages = [
-    nil
+    nixd
     nixfmt-rfc-style
     deploy-rs
     alejandra
