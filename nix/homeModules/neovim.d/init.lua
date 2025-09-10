@@ -307,9 +307,29 @@ do
   require'mini.icons'.mock_nvim_web_devicons()
 
   -- colors
-  require'mini.hues'.setup({
-    background = "#1a1b26", -- helix-like '#2b1a33',
-    foreground = "#c0caf5", -- helix-like '#c9c5cb',
+  -- require'mini.hues'.setup({
+  --   background = "#1a1b26", -- helix-like '#2b1a33',
+  --   foreground = "#c0caf5", -- helix-like '#c9c5cb',
+  -- })
+  require'mini.base16'.setup({
+    palette = {
+      base00 = "#24283b",
+      base01 = "#1f2335",
+      base02 = "#292e42",
+      base03 = "#565f89",
+      base04 = "#a9b1d6",
+      base05 = "#c0caf5",
+      base06 = "#c0caf5",
+      base07 = "#c0caf5",
+      base08 = "#f7768e",
+      base09 = "#ff9e64",
+      base0A = "#e0af68",
+      base0B = "#9ece6a",
+      base0C = "#1abc9c",
+      base0D = "#41a6b5",
+      base0E = "#bb9af7",
+      base0F = "#ff007c",
+    }
   })
 end
 
@@ -322,7 +342,7 @@ end
 do
   Deps.add({
     source = "nvim-treesitter/nvim-treesitter",
-    checkout = "v0.9.2",
+    checkout = "v0.10.0",
     hooks = {
       post_checkout = function()
         vim.cmd('TSUpdate')

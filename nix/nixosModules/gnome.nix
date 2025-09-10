@@ -42,7 +42,6 @@
     gnomeExtensions.appindicator
     gnomeExtensions.user-themes
     gnomeExtensions.applications-menu
-    gnomeExtensions.pipewire-settings
     gnome-settings-daemon
   ];
 
