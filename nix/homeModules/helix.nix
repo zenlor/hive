@@ -32,7 +32,7 @@
     };
 
     settings = {
-      theme = "base16_default";
+      theme = "tokyonight_moon";
       editor = {
         true-color = true; # force true color detection
         bufferline = "multiple";
