@@ -12,5 +12,6 @@
     fd
     entr
     ripgrep
+    janet
   ];
 }
