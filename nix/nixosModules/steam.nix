@@ -8,6 +8,26 @@
     gamescopeSession.enable = true;
 
     protontricks.enable = true;
+    extraCompatPackages = with pkgs; [
+      proton-ge-bin
+    ];
+
+    # steam with extra packages (for gamescope)
+    package = pkgs.steam.override {
+      extraPkgs = pkgs': with pkgs'; [
+        xorg.libXcursor
+        xorg.libXi
+        xorg.libXinerama
+        xorg.libXScrnSaver
+        libpng
+        libpulseaudio
+        libvorbis
+        stdenv.cc.cc.lib # Provides libstdc++.so.6
+        libkrb5
+        keyutils
+        # Add other libraries as needed
+      ];
+    };
   };
 
   programs.gamescope.enable = true;
@@ -23,9 +43,9 @@
     protontricks
     lutris
     gamemode
+    protonup-qt
   ];
 
-
-  # Star citizen needs more
+ # Star citizen needs more
   boot.kernel.sysctl."vm.max_map_count" = 16777216;
 }
