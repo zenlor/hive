@@ -1,4 +1,7 @@
 { lib, ... }:
+let
+  font-family = "IBM Plex Mono";
+in
 {
   programs.ghostty = {
     enable = false; # !pkgs.stdenv.hostPlatform.isDarwin; # FIXME broken in darwin
@@ -9,7 +12,7 @@
     settings = {
       theme = "tokyonight";
       font-size = 12;
-      font-family = "Iosevka Fixed";
+      font-family = font-family; ## "Iosevka Fixed";
       keybind = [
         "ctrl+b>c=new_tab"
 
@@ -32,7 +35,7 @@
     enable = true;
 
     font = {
-      name = "Iosevka";
+      name = font-family; #"IBM Plex Mono"; #"Iosevka Term";
       size = lib.mkDefault 13;
     };
 
