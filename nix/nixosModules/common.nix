@@ -55,6 +55,7 @@
     gnused
     htop
     bottom
+    btop
     jq
     ncdu
     nnn

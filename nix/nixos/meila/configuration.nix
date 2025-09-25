@@ -58,5 +58,13 @@
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   networking.networkmanager.enable = true;
+
+  # crappy razer
+  hardware.openrazer = {
+    enable = true;
+    users = ["lor"];
+    devicesOffOnScreensaver = true;
+  };
+  environment.systemPackages = with pkgs;[ razergenie ];
 }
 

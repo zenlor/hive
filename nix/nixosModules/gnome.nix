@@ -37,6 +37,8 @@
   };
 
   environment.systemPackages = with pkgs; [
+    evolution
+    evolutionWithPlugins
     gnome-boxes
     gnome-tweaks
     gnomeExtensions.appindicator

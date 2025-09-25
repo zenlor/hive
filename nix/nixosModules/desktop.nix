@@ -83,22 +83,24 @@
     binfmt = true;
   };
 
+  # X11/Wayland
+  programs.xwayland = {
+    enable = true;
+  };
+
   # fonts
   fonts = {
+    fontDir.enable = true;
     enableDefaultPackages = true;
     packages = with pkgs; [
       dina-font
-      fira-code
       fira-code-symbols
       ibm-plex
       iosevka-bin
       liberation_ttf
-      mplus-outline-fonts.githubRelease
       noto-fonts
       noto-fonts-cjk-sans
       noto-fonts-emoji
-      proggyfonts
-      ubuntu_font_family
       comic-neue
     ];
 
