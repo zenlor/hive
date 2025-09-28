@@ -14,9 +14,10 @@
     # bluetooth
     wireplumber.extraConfig.bluetoothEnhancements = {
       "monitor.bluez.properties" = {
+        "bluez5.enable-hw-volume" = false;
         "bluez5.enable-sbc-xq" = true;
         "bluez5.enable-msbc" = true;
-        "bluez5.enable-hw-volume" = true;
+        # "bluez5.enable-hw-volume" = true;
         "bluez5.roles" = [
           "a2dp_sink" "a2dp_source"
           "bap_sink" "bap_source"
@@ -29,12 +30,14 @@
     };
     # 
     # low-latency default settings
-    extraConfig.pipewire."92-low-latency" = {
-      "context.properties" = {
-        "default.clock.rate" = 48000;
-        "default.clock.quantum" = 32;
-        "default.clock.min-quantum" = 32;
-        "default.clock.max-quantum" = 32; # force maximum Quantum to 32
+    extraConfig.pipewire = {
+      "92-low-latency" = {
+        "context.properties" = {
+          "default.clock.rate" = 48000;
+          "default.clock.quantum" = 32;
+          "default.clock.min-quantum" = 32;
+          "default.clock.max-quantum" = 8192;
+        };
       };
     };
     # low-latency for pipewire-pulse conversion layer
@@ -44,15 +47,14 @@
           name = "libpipewire-module-protocol-pulse";
           args = {
             pulse.min.req = "32/48000";
-            pulse.default.req = "32/48000";
-            pulse.max.req = "1024/48000";
+            pulse.max.req = "8192/48000";
             pulse.min.quantum = "32/48000";
-            pulse.max.quantum = "1024/48000";
+            pulse.max.quantum = "8192/48000";
           };
         }
       ];
       stream.properties = {
-        node.latency = "32/48000";
+        node.latency = "128/48000";
         resample.quality = 1;
       };
     };
