@@ -1,5 +1,7 @@
 { pkgs, ... }:
 {
+  # boot.kernelPackages = pkgs.linuxPackages_zen; # NOTE: broken nvidia
+
   documentation.dev.enable = true;
   documentation.man = {
     generateCaches = true;
@@ -13,6 +15,13 @@
   hardware.keyboard.qmk.enable = true;
   environment.systemPackages = with pkgs; [
     qmk
+
+    # NOTE: qmk .. actually PYTHON sucks, try installing it using:
+    # git clone --depth=0 https://github.come/qmk/qmk_firmware.git
+    # pipx install qmk
+    # pipx inject qmk -r ~/qmk_firmware/requirements.txt
+    pipx
+
     qmk-udev-rules
     qmk_hid
     via
