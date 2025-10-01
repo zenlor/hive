@@ -88,6 +88,11 @@
     enable = true;
   };
 
+  # thunderbird
+  programs.thunderbird = {
+    enable = true;
+  };
+
   # fonts
   fonts = {
     fontDir.enable = true;
