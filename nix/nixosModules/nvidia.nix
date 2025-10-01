@@ -1,5 +1,10 @@
-{ config, lib, ... }:
+{ config, pkgs, ... }:
 {
+
+  environment.systemPackages = with pkgs; [
+    nvtopPackages.full
+  ];
+
   hardware.graphics = {
     enable = true;
   };
