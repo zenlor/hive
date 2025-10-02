@@ -97,6 +97,10 @@
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
   home-manager.users.lorenzo = {
+    home.sessionPath = [
+      "/opt/homebrew/bin"
+      "/opt/homebrew/sbin"
+    ];
     # inherit (pkgs) system;
     imports = with inputs.self.homeModules; [
       { home.stateVersion = "25.05"; }
