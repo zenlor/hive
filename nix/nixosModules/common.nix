@@ -72,6 +72,7 @@
     unzip
     p7zip
     p7zip-rar
+    unrar
   ];
 
   ##
