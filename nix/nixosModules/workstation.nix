@@ -61,4 +61,8 @@
     openFirewall = true;
     wideArea = true;
   };
+
+  # add local bin... always WTF
+  # WHY this is not the default?
+  environment.localBinInPath = true;
 }
