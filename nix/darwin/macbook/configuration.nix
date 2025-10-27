@@ -60,6 +60,7 @@
       "podman-compose"
       "awscli"
       "kubectl"
+      "kubelogin"
       "helm"
       "steampipe"
     ];
