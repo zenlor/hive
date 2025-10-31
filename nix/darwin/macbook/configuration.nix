@@ -54,6 +54,7 @@
       "homebrew/cask-fonts"
     ];
     brews = [
+      # "openssh"
       "saml2aws"
       "ollama"
       "podman"
@@ -63,6 +64,7 @@
       "kubelogin"
       "helm"
       "steampipe"
+      "dropbear"
     ];
     casks = [
       "kitty"
