@@ -1,10 +1,13 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    difftastic
     ghq
-    git-extras
     gitu
+    git-extras
+    git-stack
+    tig
+    git-branchless
+    git-branchstack
   ];
 
   programs.git = {
