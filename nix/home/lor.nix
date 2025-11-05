@@ -16,6 +16,6 @@
 
     # WM
     desktop
-    # hyprland
+    hyprland
   ];
 }

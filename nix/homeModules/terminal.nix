@@ -49,6 +49,7 @@ in
       focus_follows_mouse = "yes";
       tab_title_template = "{index}::{title}";
       enabled_layouts = "tall:bias=60;full_size=1;mirrored=false";
+      copy_on_select = "yes";
     };
 
     keybindings = {
