@@ -19,7 +19,6 @@
     vlc
     bitwarden-cli
     kitty
-    jdk
   ];
 
   powerManagement = {

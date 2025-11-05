@@ -11,6 +11,7 @@
 
     # terraria/rimrim?
     dotnet-sdk
+    jdk
   ];
 
   programs.go = {
