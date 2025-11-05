@@ -15,11 +15,11 @@
   };
 
   environment.systemPackages = with pkgs; [
-    firefox
+    luakit
     vlc
     bitwarden-cli
-    # ghostty
     kitty
+    jdk
   ];
 
   powerManagement = {
@@ -85,11 +85,6 @@
 
   # X11/Wayland
   programs.xwayland = {
-    enable = true;
-  };
-
-  # thunderbird
-  programs.thunderbird = {
     enable = true;
   };
 

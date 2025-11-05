@@ -35,6 +35,7 @@
   # Steam controller
   hardware.steam-hardware.enable = true;
   services.joycond.enable = true;
+  services.ratbagd.enable = true;
 
   environment.systemPackages = with pkgs; [
     wineWowPackages.waylandFull
@@ -44,8 +45,9 @@
     lutris
     gamemode
     protonup-qt
+    piper # mouse configuration
   ];
 
- # Star citizen needs more
-  boot.kernel.sysctl."vm.max_map_count" = 16777216;
+  # NOTE: SteamDeck value
+  boot.kernel.sysctl."vm.max_map_count" = 2147483642;
 }
