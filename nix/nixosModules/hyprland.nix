@@ -25,6 +25,7 @@
     wttrbar
 
     pwvucontrol
+    xwayland-satellite
   ];
 
   programs.hyprland = {

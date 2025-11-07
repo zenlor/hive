@@ -7,9 +7,10 @@
     inputs.self.nixosModules.nvidia
     inputs.self.nixosModules.steam
 
-    inputs.self.nixosModules.gnome
+    # inputs.self.nixosModules.gnome
     # inputs.self.nixosModules.kde
     # inputs.self.nixosModules.hyprland
+    inputs.self.nixosModules.niri
 
     ./disks.nix
     ./home.nix
