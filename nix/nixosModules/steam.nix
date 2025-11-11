@@ -46,6 +46,9 @@
     gamemode
     protonup-qt
     piper # mouse configuration
+
+    fsuae-launcher
+    fsuae
   ];
 
   # NOTE: SteamDeck value
