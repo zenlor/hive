@@ -14,6 +14,7 @@
     swayidle
     swaybg
     xwayland-satellite
+    gnome-software
   ];
 
   # do I need this?
@@ -21,4 +22,11 @@
   #   sddm.enable = true;
   #   sddm.wayland.enable=true;
   # };
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+  };
+
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  xdg.portal.config.common.defaults = "gtk";
 }

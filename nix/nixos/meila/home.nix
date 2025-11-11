@@ -18,7 +18,9 @@
       terminal
 
       desktop
-      # hyprland
+      hyprland
+      niri
+      waybar
 
       {
         programs.git.extraConfig.user.signingkey = "~/.ssh/id_ed25519.pub";
