@@ -214,4 +214,11 @@ in
       ];
     }
   ];
+
+  age.secrets.marrano-bot.file = ../../../secrets/services/marrano-bot.age;
+  services.marrano-bot = {
+    enable = true;
+    hostName = "bot.marrani.lol";
+    logLevel = "debug";
+  };
 }
