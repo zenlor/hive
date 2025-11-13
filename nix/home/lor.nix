@@ -18,5 +18,7 @@
     desktop
     hyprland
     niri
+    waybar
+    fuzzel
   ];
 }

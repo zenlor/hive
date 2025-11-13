@@ -21,6 +21,7 @@
       hyprland
       niri
       waybar
+      fuzzel
 
       {
         programs.git.extraConfig.user.signingkey = "~/.ssh/id_ed25519.pub";
