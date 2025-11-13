@@ -13,9 +13,26 @@
     mako
     swayidle
     swaybg
+    blueman
     xwayland-satellite
+    # default applications
+    gnome-keyring
+    file-roller
+    zathura
+    nautilus
+    # flatpak
     gnome-software
+
+    # wayland
+    wl-clipboard
   ];
+
+  services.dbus.packages = [ pkgs.nautilus ];
+
+  services.udisks2.enable = true;
+  services.gnome.gnome-settings-daemon.enable = true;
+  programs.gnome-disks.enable = true;
+  programs.file-roller.enable = true;
 
   # do I need this?
   # services.displayManager = {
@@ -27,6 +44,9 @@
     wayland.enable = true;
   };
 
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  xdg.portal.config.common.defaults = "gtk";
+  xdg.portal.extraPortals = [
+    pkgs.xdg-desktop-portal-gtk
+    pkgs.xdg-desktop-portal-gnome
+  ];
+  xdg.portal.config.common.defaults = "gnome";
 }

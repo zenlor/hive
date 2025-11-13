@@ -21,6 +21,8 @@
     kitty
   ];
 
+  services.udisks2.enable = true;
+
   powerManagement = {
     enable = true;
     powertop.enable = true;
