@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     overskride # bluetooth frontend
     shotman # screenshots
@@ -41,6 +40,6 @@
 
   services.displayManager = {
     sddm.enable = true;
-    sddm.wayland.enable=true;
+    sddm.wayland.enable = true;
   };
 }

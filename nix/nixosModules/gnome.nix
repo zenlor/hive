@@ -1,6 +1,9 @@
-{ inputs, pkgs, ... }:
 {
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  inputs,
+  pkgs,
+  ...
+}: {
+  xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
 
   services.xserver = {
     enable = true;
@@ -47,7 +50,7 @@
     gnome-settings-daemon
   ];
 
-  services.udev.packages = [ pkgs.gnome-settings-daemon ];
+  services.udev.packages = [pkgs.gnome-settings-daemon];
 
   # HACK: applications being blank
   environment.variables.GSK_RENDERER = "ngl";

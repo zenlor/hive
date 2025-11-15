@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   home.packages = with pkgs; [
     ghq
     gitu
@@ -25,8 +24,7 @@
       fixup = ''!f() { TARGET=$(git rev-parse "$1"); git commit --fixup=$TARGET ''${@:2} && EDITOR=true git rebase -i --autostash --autosquash $TARGET^; }; f'';
       co = "checkout";
       st = "status";
-      l =
-        "log --date=format:'%a %b %e, %Y' --pretty=format:'%C(yellow)%h%C(reset) %s %C(cyan)%cd%C(reset) %C(blue)%an%C(reset) %C(green)%d%C(reset)' --graph";
+      l = "log --date=format:'%a %b %e, %Y' --pretty=format:'%C(yellow)%h%C(reset) %s %C(cyan)%cd%C(reset) %C(blue)%an%C(reset) %C(green)%d%C(reset)' --graph";
       cl = "!ghq get";
       z = "!lazygit";
     };
@@ -51,8 +49,8 @@
 
   programs.gh = {
     enable = true;
-    gitCredentialHelper = { enable = true; };
-    extensions = [ pkgs.gh-eco ];
+    gitCredentialHelper = {enable = true;};
+    extensions = [pkgs.gh-eco];
   };
 
   programs.lazygit = {

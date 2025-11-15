@@ -1,8 +1,12 @@
-{ inputs, config, pkgs, lib, ... }:
-let
-  secrets = import ../../secrets.nix;
-in
 {
+  inputs,
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  secrets = import ../../secrets.nix;
+in {
   imports = [
     inputs.self.nixosModules.common
     inputs.self.nixosModules.server
@@ -16,7 +20,7 @@ in
   time.timeZone = "Europe/Amsterdam";
 
   boot.loader = {
-    efi = { efiSysMountPoint = "/boot"; };
+    efi = {efiSysMountPoint = "/boot";};
     systemd-boot = {
       enable = true;
       configurationLimit = 5;
@@ -24,13 +28,13 @@ in
   };
 
   systemd.enableEmergencyMode = false;
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  boot.binfmt.emulatedSystems = ["aarch64-linux"];
 
   hardware.graphics.enable32Bit = true;
   hardware.graphics.extraPackages = with pkgs; [
     amdvlk
   ];
-  # For 32 bit applications 
+  # For 32 bit applications
   hardware.graphics.extraPackages32 = with pkgs; [
     driversi686Linux.amdvlk
   ];
@@ -65,8 +69,8 @@ in
   services.resolved = {
     enable = true;
     dnssec = "true";
-    domains = [ "~." ];
-    fallbackDns = [ "1.1.1.1" "1.0.0.1" ];
+    domains = ["~."];
+    fallbackDns = ["1.1.1.1" "1.0.0.1"];
     extraConfig = ''
       DNSOverTLS=yes
     '';
@@ -74,23 +78,26 @@ in
 
   systemd.services."protonvpn-ns" = {
     description = "User ProtonVPN Network Namespace";
-    before = [ "network.target" ];
+    before = ["network.target"];
     serviceConfig = {
       Type = "oneshot";
       ExecStart = "${pkgs.iproute2}/bin/ip netns add protonvpn";
       ExecStop = "${pkgs.iproute2}/bin/ip netns del protonvpn";
       RemainAfterExit = true;
     };
-    wantedBy = [ "multi-user.target" ];
+    wantedBy = ["multi-user.target"];
   };
 
   networking = {
     hostName = "nasferatu";
-    search = [ "local" ];
+    search = ["local"];
     # defaultGateway = lib.mkDefault "192.168.178.1";
-    defaultGateway = { address = "192.168.178.1"; interface = "enp4s0"; };
+    defaultGateway = {
+      address = "192.168.178.1";
+      interface = "enp4s0";
+    };
 
-    nameservers = lib.mkDefault [ "1.1.1.1" "1.0.0.1" ];
+    nameservers = lib.mkDefault ["1.1.1.1" "1.0.0.1"];
 
     firewall = {
       enable = true;
@@ -135,7 +142,7 @@ in
     # lan
     networks."10-lan" = {
       matchConfig.Name = "enp4s0";
-      address = [ "192.168.178.2/24" ];
+      address = ["192.168.178.2/24"];
       routes = [
         {
           Gateway = "192.168.178.1";
@@ -180,7 +187,7 @@ in
     networks."50-home0" = {
       enable = true;
       matchConfig.Name = "home0";
-      address = [ "${secrets.wireguard.nasferatu.ip}/24" ];
+      address = ["${secrets.wireguard.nasferatu.ip}/24"];
     };
 
     # proton network
@@ -199,7 +206,7 @@ in
         {
           PublicKey = "afmlPt2O8Y+u4ykaOpMoO6q1JkbArZsaoFcpNXudXCg=";
           Endpoint = "46.29.25.3:51820";
-          AllowedIPs = [ "0.0.0.0/0" "::0/0" ];
+          AllowedIPs = ["0.0.0.0/0" "::0/0"];
           PersistentKeepalive = 25;
           RouteTable = 110;
         }
@@ -208,8 +215,8 @@ in
     networks."60-proton0" = {
       enable = true;
       matchConfig.Name = "proton0";
-      address = [ secrets.proton.nasferatu.ip ];
-      dns = [ "10.2.0.1" ];
+      address = [secrets.proton.nasferatu.ip];
+      dns = ["10.2.0.1"];
       routes = [
         {
           Gateway = "10.2.0.1";

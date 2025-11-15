@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   services.avahi = {
     enable = true;
     nssmdns4 = true;
@@ -43,8 +42,8 @@
   virtualisation.oci-containers.containers.flaresolverr = {
     image = "ghcr.io/flaresolverr/flaresolverr:v3.2.1";
     autoStart = true;
-    ports = [ "8191:8191" ];
-    extraOptions = [ "--name=flaresolverr" ];
+    ports = ["8191:8191"];
+    extraOptions = ["--name=flaresolverr"];
   };
-  networking.firewall.allowedTCPPorts = [ 8191 ];
+  networking.firewall.allowedTCPPorts = [8191];
 }

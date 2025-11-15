@@ -1,4 +1,8 @@
-{ inputs, pkgs, ... }: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   system.stateVersion = 5;
 
   nix.extraOptions = ''
@@ -8,9 +12,9 @@
   nix = {
     enable = true;
     settings = {
-      trusted-users = [ "@admin" "@staff" "lorenzo" ];
-      system-features = [ "nixos-test" "apple-virt" ];
-      experimental-features = [ "nix-command" "flakes" ];
+      trusted-users = ["@admin" "@staff" "lorenzo"];
+      system-features = ["nixos-test" "apple-virt"];
+      experimental-features = ["nix-command" "flakes"];
     };
   };
 
@@ -90,7 +94,7 @@
     nix-direnv.enable = true;
   };
 
-  environment.shells = [ pkgs.fish ];
+  environment.shells = [pkgs.fish];
   users.users.lorenzo = {
     home = "/Users/lorenzo";
     shell = pkgs.fish;
@@ -106,7 +110,7 @@
     ];
     # inherit (pkgs) system;
     imports = with inputs.self.homeModules; [
-      { home.stateVersion = "25.05"; }
+      {home.stateVersion = "25.05";}
 
       core
       dev

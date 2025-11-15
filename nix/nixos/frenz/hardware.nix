@@ -1,23 +1,25 @@
-{ lib, modulesPath, ... }:
 {
-  imports = [ (modulesPath + "/profiles/qemu-guest.nix") ];
+  lib,
+  modulesPath,
+  ...
+}: {
+  imports = [(modulesPath + "/profiles/qemu-guest.nix")];
 
-  boot.initrd.availableKernelModules =
-    [ "ata_piix" "uhci_hcd" "virtio_pci" "virtio_scsi" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+  boot.initrd.availableKernelModules = ["ata_piix" "uhci_hcd" "virtio_pci" "virtio_scsi"];
+  boot.initrd.kernelModules = [];
+  boot.kernelModules = ["kvm-intel"];
+  boot.extraModulePackages = [];
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/737459fa-eab9-4d8f-9a14-c8c32d403c08";
     fsType = "btrfs";
-    options = [ "subvol=root" ];
+    options = ["subvol=root"];
   };
 
   fileSystems."/home" = {
     device = "/dev/disk/by-uuid/737459fa-eab9-4d8f-9a14-c8c32d403c08";
     fsType = "btrfs";
-    options = [ "subvol=home" ];
+    options = ["subvol=home"];
   };
 
   fileSystems."/boot" = {
@@ -30,7 +32,7 @@
     fsType = "vfat";
   };
 
-  swapDevices = [ ];
+  swapDevices = [];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

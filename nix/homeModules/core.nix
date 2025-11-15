@@ -1,5 +1,4 @@
-{ pkgs,... }:
-{
+{pkgs, ...}: {
   home.sessionVariables = {
     # vim as default editor
     EDITOR = "nvim";
@@ -8,7 +7,7 @@
     MANPAGER = "nvim +Man!";
   };
 
-  home.packages = with pkgs;[
+  home.packages = with pkgs; [
     fd
     entr
     ripgrep

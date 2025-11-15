@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   home.packages = [
     pkgs.superhtml
   ];
@@ -11,22 +10,22 @@
       language = [
         {
           name = "hcl";
-          file-types = [ "hcl" "tfvars" "nomad" ];
-          language-servers = [ ];
-          formatter = { command = "hclfmt"; };
+          file-types = ["hcl" "tfvars" "nomad"];
+          language-servers = [];
+          formatter = {command = "hclfmt";};
         }
         {
           name = "tfvars";
           scope = "source.tfvars";
-          file-types = [ "tf" ];
-          formatter = { command = "hclfmt"; };
-          language-servers = [ "terraform-ls" ];
+          file-types = ["tf"];
+          formatter = {command = "hclfmt";};
+          language-servers = ["terraform-ls"];
           comment-token = "#";
         }
         {
           name = "html";
-          formatter = { command = "super fmt"; };
-          language-servers = [ "superhtml" ];
+          formatter = {command = "super fmt";};
+          language-servers = ["superhtml"];
         }
       ];
     };
@@ -69,7 +68,7 @@
         space."." = "file_picker_in_current_buffer_directory";
         space.w = ":w";
         space.q = ":q";
-        esc = [ "collapse_selection" "keep_primary_selection" ];
+        esc = ["collapse_selection" "keep_primary_selection"];
         C-g = [
           ":write-all"
           ":new"

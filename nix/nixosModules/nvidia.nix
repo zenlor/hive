@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
 {
-
+  config,
+  pkgs,
+  ...
+}: {
   environment.systemPackages = with pkgs; [
     nvtopPackages.full
   ];
@@ -10,7 +12,7 @@
   };
 
   # Load nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = ["nvidia"];
 
   hardware.nvidia = {
     open = true;
@@ -28,7 +30,7 @@
   # boot.kernelParams = ["nvidia.NVreg_PerserveVideoMemoryAllocations=1"];
 
   # nvidia Modprobe settings
-  # 
+  #
   # https://discourse.nixos.org/t/psa-for-those-with-hibernation-issues-on-nvidia/61834
   # https://forums.developer.nvidia.com/t/black-screen-with-cursor-after-sleep/319473/5
   # boot.extraModprobeConfig = ''

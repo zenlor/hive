@@ -1,8 +1,6 @@
-{ pkgs, ... }:
-let
+{pkgs, ...}: let
   terminal = "${pkgs.kitty}/bin/kitty";
-in
-{
+in {
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
@@ -110,7 +108,6 @@ in
         "move 69.5% 4%, title:^(Picture-in-Picture)$"
         "idleinhibit fullscreen,class:([window])"
         "float, title:pwvucontrol"
-
       ];
       windowrulev2 = [
         "float,class:^()$,title:^(Picture in picture)$"
@@ -213,7 +210,6 @@ in
         "XDG_SESSION_TYPE,wayland"
         "XDG_SESSION_DESKTOP,Hyprland"
       ];
-
     };
   };
 }

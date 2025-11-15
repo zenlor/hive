@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-{
-
+{pkgs, ...}: {
   services.pulseaudio.enable = false;
 
   services.pipewire = {
@@ -19,16 +17,19 @@
         "bluez5.enable-sbc-xq" = true;
         "bluez5.enable-msbc" = true;
         "bluez5.roles" = [
-          "a2dp_sink" "a2dp_source"
-          "bap_sink" "bap_source"
+          "a2dp_sink"
+          "a2dp_source"
+          "bap_sink"
+          "bap_source"
           # "hsp_hs" "hsp_ag"
-          "hfp_hf" "hfp_ag"
+          "hfp_hf"
+          "hfp_ag"
         ];
-        "bluez5.codecs" = [ "sbc" "sbc_xq" "aac" ];
+        "bluez5.codecs" = ["sbc" "sbc_xq" "aac"];
         "bluez5.hfphsp-backend" = "native";
       };
     };
-    # 
+    #
     # low-latency default settings
     extraConfig.pipewire = {
       "92-low-latency" = {
@@ -58,8 +59,7 @@
         resample.quality = 1;
       };
     };
-    
   };
 
-  environment.systemPackages = [ pkgs.helvum ];
+  environment.systemPackages = [pkgs.helvum];
 }

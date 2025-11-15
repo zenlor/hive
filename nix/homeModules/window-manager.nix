@@ -1,5 +1,4 @@
-{pkgs, ...}:
-let
+{pkgs, ...}: let
   terminal = "${pkgs.kitty}/bin/kitty";
   # tokyo-city-night
   base00 = "171D23";
@@ -18,9 +17,7 @@ let
   base0D = "7AA2F7";
   base0E = "BB9AF7";
   base0F = "BB9AF7";
-in
-{
-  
+in {
   programs.waybar = {
     enable = true;
     settings = [

@@ -1,5 +1,8 @@
-{lib, pkgs, ...}:
 {
+  lib,
+  pkgs,
+  ...
+}: {
   programs.niri.enable = true;
 
   security.polkit.enable = lib.mkDefault true;
@@ -27,7 +30,7 @@
     wl-clipboard
   ];
 
-  services.dbus.packages = [ pkgs.nautilus ];
+  services.dbus.packages = [pkgs.nautilus];
 
   services.udisks2.enable = true;
   services.gnome.gnome-settings-daemon.enable = true;
@@ -39,14 +42,16 @@
   #   sddm.enable = true;
   #   sddm.wayland.enable=true;
   # };
-  services.displayManager.sddm = {
-    enable = true;
-    wayland.enable = true;
-  };
+  #
+  # do I need this for gdm?
+  # services.displayManager.sddm = {
+  #   enable = true;
+  #   wayland.enable = true;
+  # };
 
   xdg.portal.extraPortals = [
-    pkgs.xdg-desktop-portal-gtk
     pkgs.xdg-desktop-portal-gnome
+    pkgs.xdg-desktop-portal-gtk
   ];
   xdg.portal.config.common.defaults = "gnome";
 }

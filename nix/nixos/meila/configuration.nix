@@ -1,5 +1,8 @@
-{ inputs, pkgs, ... }:
 {
+  inputs,
+  pkgs,
+  ...
+}: {
   imports = [
     inputs.self.nixosModules.common
     inputs.self.nixosModules.workstation
@@ -7,7 +10,7 @@
     inputs.self.nixosModules.nvidia
     inputs.self.nixosModules.steam
 
-    # inputs.self.nixosModules.gnome
+    inputs.self.nixosModules.gnome
     # inputs.self.nixosModules.kde
     # inputs.self.nixosModules.hyprland
     inputs.self.nixosModules.niri
@@ -56,7 +59,7 @@
     "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
   ];
 
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  boot.binfmt.emulatedSystems = ["aarch64-linux"];
 
   networking.networkmanager.enable = true;
 
@@ -66,6 +69,5 @@
     users = ["lor"];
     devicesOffOnScreensaver = true;
   };
-  environment.systemPackages = with pkgs;[ razergenie ];
+  environment.systemPackages = with pkgs; [razergenie];
 }
-

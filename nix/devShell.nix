@@ -1,4 +1,5 @@
-pkgs: with pkgs; {
+pkgs:
+with pkgs; {
   packages = [
     nixd
     nixfmt-rfc-style
@@ -6,5 +7,6 @@ pkgs: with pkgs; {
     alejandra
     agenix
     wireguard-tools
+    home-manager
   ];
 }
