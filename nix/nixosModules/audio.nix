@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   services.pulseaudio.enable = false;
 
   services.pipewire = {
@@ -25,7 +25,7 @@
           "hfp_hf"
           "hfp_ag"
         ];
-        "bluez5.codecs" = ["sbc" "sbc_xq" "aac"];
+        "bluez5.codecs" = [ "sbc" "sbc_xq" "aac" ];
         "bluez5.hfphsp-backend" = "native";
       };
     };
@@ -61,5 +61,5 @@
     };
   };
 
-  environment.systemPackages = [pkgs.helvum];
+  environment.systemPackages = [ pkgs.helvum ];
 }

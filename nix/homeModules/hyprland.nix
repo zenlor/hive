@@ -1,6 +1,8 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   terminal = "${pkgs.kitty}/bin/kitty";
-in {
+in
+{
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {

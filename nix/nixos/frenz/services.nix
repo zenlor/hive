@@ -1,11 +1,12 @@
-{
-  inputs,
-  config,
-  lib,
-  ...
-}: let
+{ inputs
+, config
+, lib
+, ...
+}:
+let
   secrets = import ../../secrets.nix;
-in {
+in
+{
   services.caddy = {
     enable = true;
     email = "lorenzo@frenzart.com";
@@ -169,7 +170,7 @@ in {
       port = 10006;
       protocol = "https";
       storage-local-base-path = "/var/lib/gotosocial/storage";
-      instance-language = ["it" "en-us" "en-gb" "ru"];
+      instance-language = [ "it" "en-us" "en-gb" "ru" ];
       instance-inject-mastodon-version = true;
       accounts-registration-open = true;
       accounts-reason-required = true;
@@ -191,16 +192,16 @@ in {
       scrape_interval = "15s";
       scrape_timeout = "10s";
       static_configs = [
-        {targets = ["127.0.0.1:2019"];}
+        { targets = [ "127.0.0.1:2019" ]; }
       ];
       metric_relabel_configs = [
         {
-          source_labels = ["__name__"];
+          source_labels = [ "__name__" ];
           regex = "go_.*";
           action = "drop";
         }
         {
-          source_labels = ["__name__"];
+          source_labels = [ "__name__" ];
           regex = "go_.*";
           action = "drop";
         }
@@ -212,7 +213,7 @@ in {
       scrape_interval = "15s";
       scrape_timeout = "10s";
       static_configs = [
-        {targets = ["127.0.0.1:10006"];}
+        { targets = [ "127.0.0.1:10006" ]; }
       ];
     }
   ];

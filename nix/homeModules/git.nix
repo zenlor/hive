@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   home.packages = with pkgs; [
     ghq
     gitu
@@ -49,8 +49,8 @@
 
   programs.gh = {
     enable = true;
-    gitCredentialHelper = {enable = true;};
-    extensions = [pkgs.gh-eco];
+    gitCredentialHelper = { enable = true; };
+    extensions = [ pkgs.gh-eco ];
   };
 
   programs.lazygit = {

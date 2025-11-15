@@ -1,7 +1,6 @@
-{
-  inputs,
-  pkgs,
-  ...
+{ inputs
+, pkgs
+, ...
 }: {
   imports = [
     inputs.self.nixosModules.common
@@ -59,15 +58,15 @@
     "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
   ];
 
-  boot.binfmt.emulatedSystems = ["aarch64-linux"];
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   networking.networkmanager.enable = true;
 
   # crappy razer
   hardware.openrazer = {
     enable = true;
-    users = ["lor"];
+    users = [ "lor" ];
     devicesOffOnScreensaver = true;
   };
-  environment.systemPackages = with pkgs; [razergenie];
+  environment.systemPackages = with pkgs; [ razergenie ];
 }

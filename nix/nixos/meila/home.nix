@@ -1,9 +1,9 @@
-{inputs, ...}: {
+{ inputs, ... }: {
   home-manager.backupFileExtension = "backup";
   home-manager.useGlobalPkgs = true;
   home-manager.users.lor = {
     imports = with inputs.self.homeModules; [
-      {home.stateVersion = "25.05";}
+      { home.stateVersion = "25.05"; }
 
       core
       dev

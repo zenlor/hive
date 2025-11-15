@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
@@ -57,7 +57,7 @@
 
     defaultCommand = "fd --type f";
     fileWidgetCommand = "fd --type f";
-    fileWidgetOptions = ["--preview 'head {}'"];
+    fileWidgetOptions = [ "--preview 'head {}'" ];
     changeDirWidgetCommand = "fd --type d";
   };
 
@@ -68,7 +68,7 @@
 
   programs.zoxide = {
     enable = true;
-    options = [];
+    options = [ ];
   };
 
   programs.tmux = {
@@ -143,7 +143,7 @@
       set -g default-command "fish"
     '';
 
-    plugins = with pkgs; [tmuxPlugins.tmux-fzf];
+    plugins = with pkgs; [ tmuxPlugins.tmux-fzf ];
   };
 
   programs.ripgrep-all.enable = true;

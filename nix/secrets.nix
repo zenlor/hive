@@ -6,7 +6,7 @@
 
   wireguard = {
     networkMask = "10.69.0.0/24";
-    allowedIPs = ["10.69.0.0/24"];
+    allowedIPs = [ "10.69.0.0/24" ];
     endpoint = "frenz.click:51820";
 
     # hosts

@@ -1,11 +1,12 @@
-{
-  inputs,
-  config,
-  lib,
-  ...
-}: let
+{ inputs
+, config
+, lib
+, ...
+}:
+let
   secrets = import ../../secrets.nix;
-in {
+in
+{
   imports = [
     inputs.agenix.nixosModules.default
 
@@ -33,11 +34,11 @@ in {
     };
   };
   systemd.enableEmergencyMode = false;
-  boot.binfmt.emulatedSystems = ["aarch64-linux"];
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   networking = {
     hostName = "pad";
-    search = ["local"];
+    search = [ "local" ];
     useDHCP = lib.mkForce false;
 
     firewall = {
@@ -84,10 +85,10 @@ in {
 
   age.secrets.wireguard-key.file = secrets.wireguard.pad.key;
 
-  networking.firewall.allowedUDPPorts = [51820];
+  networking.firewall.allowedUDPPorts = [ 51820 ];
 
   networking.wireguard.interfaces.wg0 = {
-    ips = ["${secrets.wireguard.pad.ip}/24"];
+    ips = [ "${secrets.wireguard.pad.ip}/24" ];
     listenPort = 51820;
     privateKeyFile = config.age.secrets.wireguard-key.path;
 

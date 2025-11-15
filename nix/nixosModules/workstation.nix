@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   # boot.kernelPackages = pkgs.linuxPackages_zen; # NOTE: broken nvidia
   #
 
@@ -11,12 +11,14 @@
     options = "--delete-older-than 7d";
   };
 
-  nix.extraOptions = let
-    GB = 1024 * 1024 * 1024;
-  in ''
-    min-free = ${toString (1 * GB)}
-    max-free = ${toString (10 * GB)}
-  '';
+  nix.extraOptions =
+    let
+      GB = 1024 * 1024 * 1024;
+    in
+    ''
+      min-free = ${toString (1 * GB)}
+      max-free = ${toString (10 * GB)}
+    '';
 
   documentation.dev.enable = true;
   documentation.man = {

@@ -1,6 +1,8 @@
-{lib, ...}: let
+{ lib, ... }:
+let
   font-family = "IBM Plex Mono";
-in {
+in
+{
   programs.ghostty = {
     enable = false; # !pkgs.stdenv.hostPlatform.isDarwin; # FIXME broken in darwin
 

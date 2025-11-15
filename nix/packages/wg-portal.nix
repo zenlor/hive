@@ -1,7 +1,7 @@
-{
-  lib,
-  buildGoModule,
-  fetchFromGithub,
+{ lib
+, buildGoModule
+, fetchFromGithub
+,
 }:
 buildGoModule rec {
   pname = "wg-portal";

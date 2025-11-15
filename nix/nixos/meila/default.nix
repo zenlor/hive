@@ -1,7 +1,7 @@
-{inputs, ...}: {
+{ inputs, ... }: {
   system = "x86_64-linux";
   modules = [
-    {system.stateVersion = "25.05";}
+    { system.stateVersion = "25.05"; }
 
     inputs.nixos-hardware.nixosModules.common-pc
     inputs.nixos-hardware.nixosModules.common-pc-ssd

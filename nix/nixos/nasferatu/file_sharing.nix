@@ -1,23 +1,23 @@
-{...}: {
+{ ... }: {
   fileSystems."/export/downloads" = {
     device = "/mnt/warez/downloads";
-    options = ["bind"];
+    options = [ "bind" ];
   };
   fileSystems."/export/movies" = {
     device = "/mnt/video/Movies";
-    options = ["bind"];
+    options = [ "bind" ];
   };
   fileSystems."/export/tv" = {
     device = "/mnt/video/TV";
-    options = ["bind"];
+    options = [ "bind" ];
   };
   fileSystems."/export/music" = {
     device = "/mnt/warez/music";
-    options = ["bind"];
+    options = [ "bind" ];
   };
   fileSystems."/export/vault" = {
     device = "/mnt/backup/vault";
-    options = ["bind"];
+    options = [ "bind" ];
   };
 
   # Fileserver
@@ -34,8 +34,8 @@
     mountdPort = 4002;
     statdPort = 4000;
   };
-  networking.firewall.allowedTCPPorts = [111 2049 4000 4001 4002 20048];
-  networking.firewall.allowedUDPPorts = [111 2049 4000 4001 4002 20048];
+  networking.firewall.allowedTCPPorts = [ 111 2049 4000 4001 4002 20048 ];
+  networking.firewall.allowedUDPPorts = [ 111 2049 4000 4001 4002 20048 ];
 
   services.avahi.extraServiceFiles = {
     smb = ''

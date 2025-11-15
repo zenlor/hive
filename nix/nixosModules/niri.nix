@@ -1,13 +1,12 @@
-{
-  lib,
-  pkgs,
-  ...
+{ lib
+, pkgs
+, ...
 }: {
   programs.niri.enable = true;
 
   security.polkit.enable = lib.mkDefault true;
   services.gnome.gnome-keyring.enable = true;
-  security.pam.services.swaylock = {};
+  security.pam.services.swaylock = { };
 
   programs.waybar.enable = true; # top bar
   environment.systemPackages = with pkgs; [
@@ -30,7 +29,7 @@
     wl-clipboard
   ];
 
-  services.dbus.packages = [pkgs.nautilus];
+  services.dbus.packages = [ pkgs.nautilus ];
 
   services.udisks2.enable = true;
   services.gnome.gnome-settings-daemon.enable = true;

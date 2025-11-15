@@ -1,7 +1,6 @@
-{
-  inputs,
-  pkgs,
-  ...
+{ inputs
+, pkgs
+, ...
 }: {
   imports = [
     inputs.home-manager.nixosModules.home-manager
@@ -55,7 +54,7 @@
   hardware.sensor.hddtemp = {
     enable = true;
     unit = "C";
-    drives = ["/dev/disk/by-path/*"];
+    drives = [ "/dev/disk/by-path/*" ];
   };
 
   hardware.usbStorage.manageShutdown = true;
@@ -74,7 +73,7 @@
 
   xdg.portal = {
     enable = true;
-    extraPortals = [pkgs.xdg-desktop-portal-gtk];
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
     config = {
       preferred = {
         default = "gtk";
@@ -112,10 +111,10 @@
     fontconfig = {
       useEmbeddedBitmaps = true;
       defaultFonts = {
-        serif = ["Noto"];
-        sansSerif = ["Noto"];
-        monospace = ["Iosevka"];
-        emoji = ["Noto Color Emoji"];
+        serif = [ "Noto" ];
+        sansSerif = [ "Noto" ];
+        monospace = [ "Iosevka" ];
+        emoji = [ "Noto Color Emoji" ];
       };
     };
   };

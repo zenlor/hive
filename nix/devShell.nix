@@ -4,7 +4,6 @@ with pkgs; {
     nixd
     nixfmt-rfc-style
     deploy-rs
-    alejandra
     agenix
     wireguard-tools
     home-manager
