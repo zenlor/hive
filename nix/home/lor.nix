@@ -1,4 +1,5 @@
-{ inputs, ... }: {
+{ inputs, ... }:
+{
   system = "x86_64-linux";
   modules = with inputs.self.homeModules; [
     { home.stateVersion = "25.05"; }
@@ -21,10 +22,10 @@
     fuzzel
 
     {
-      programs.git.extraConfig.user.signingkey = "~/.ssh/id_ed25519.pub";
+      programs.git.settings.user.signingkey = "~/.ssh/id_ed25519.pub";
       # "key::ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPEjb3xZe7wZ7JezbXApLdLhMeTnO2c2J8FJrpr7nWCr";
-      programs.git.userName = "Lorenzo Giuliani";
-      programs.git.userEmail = "lorenzo@frenzart.com";
+      programs.git.settings.user.name = "Lorenzo Giuliani";
+      programs.git.settings.user.email = "lorenzo@frenzart.com";
     }
   ];
 }

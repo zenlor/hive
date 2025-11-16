@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   home.packages = with pkgs; [
     ghq
     gitu
@@ -20,7 +21,7 @@
       ".direnv"
     ];
 
-    aliases = {
+    settings.aliases = {
       fixup = ''!f() { TARGET=$(git rev-parse "$1"); git commit --fixup=$TARGET ''${@:2} && EDITOR=true git rebase -i --autostash --autosquash $TARGET^; }; f'';
       co = "checkout";
       st = "status";
@@ -29,7 +30,7 @@
       z = "!lazygit";
     };
 
-    extraConfig = {
+    settings = {
       core.autocrlf = "input";
       init.defaultBranch = "main";
       pull.rebase = true;
@@ -49,7 +50,9 @@
 
   programs.gh = {
     enable = true;
-    gitCredentialHelper = { enable = true; };
+    gitCredentialHelper = {
+      enable = true;
+    };
     extensions = [ pkgs.gh-eco ];
   };
 

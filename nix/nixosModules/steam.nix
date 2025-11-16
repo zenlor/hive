@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true; # Steam Remote Play
@@ -13,8 +14,8 @@
 
     # steam with extra packages (for gamescope)
     package = pkgs.steam.override {
-      extraPkgs = pkgs':
-        with pkgs'; [
+      extraPkgs =
+        pkgs': with pkgs'; [
           xorg.libXcursor
           xorg.libXi
           xorg.libXinerama
@@ -26,6 +27,9 @@
           libkrb5
           keyutils
           # Add other libraries as needed
+
+          mangohud
+          gamescope
         ];
     };
   };

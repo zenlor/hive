@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   home.packages = with pkgs; [
     # LSP Servers I usually need
     nixd
@@ -15,6 +16,6 @@
 
   programs.go = {
     enable = true;
-    goPath = "lib";
+    env.GOPATH = "lib";
   };
 }

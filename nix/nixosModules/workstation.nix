@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   # boot.kernelPackages = pkgs.linuxPackages_zen; # NOTE: broken nvidia
   #
 
@@ -53,10 +54,10 @@
     ];
   };
 
-  # Ergodox EZ
-  services.udev.extraRules = ''
-    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="3297", ATTRS{idProduct}=="4975", OWNER="1000", GROUP="100", MODE="0666"
-  '';
+  # # Ergodox EZ
+  # services.udev.extraRules = ''
+  #   KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="3297", ATTRS{idProduct}=="4975", OWNER="1000", GROUP="100", MODE="0666"
+  # '';
 
   # enable mDNS
   services.avahi = {

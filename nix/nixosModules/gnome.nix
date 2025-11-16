@@ -1,22 +1,14 @@
-{ inputs
-, pkgs
-, ...
-}: {
+{
+  inputs,
+  pkgs,
+  ...
+}:
+{
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
-  services.xserver = {
-    enable = true;
-
-    desktopManager.gnome.enable = true;
-
-    displayManager.gdm = {
-      enable = true;
-      wayland = true;
-    };
-
-    xkb.layout = "us";
-    xkb.variant = "";
-  };
+  services.displayManager.gdm.enable = true;
+  services.displayManager.gdm.wayland = true;
+  services.desktopManager.gnome.enable = true;
 
   programs = {
     geary.enable = true;
@@ -39,8 +31,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    evolution
-    evolutionWithPlugins
     gnome-boxes
     gnome-tweaks
     gnomeExtensions.appindicator

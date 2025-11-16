@@ -1,7 +1,9 @@
-{ inputs
-, pkgs
-, ...
-}: {
+{
+  inputs,
+  pkgs,
+  ...
+}:
+{
   imports = [
     inputs.home-manager.nixosModules.home-manager
 
@@ -103,8 +105,7 @@
       iosevka-bin
       liberation_ttf
       noto-fonts
-      noto-fonts-cjk-sans
-      noto-fonts-emoji
+      noto-fonts-color-emoji
       comic-neue
     ];
 

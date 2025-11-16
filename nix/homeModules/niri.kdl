@@ -52,13 +52,16 @@ layout {
         proportion 0.5
         proportion 0.66667
     }
+
     default-column-width { proportion 0.5; }
+
     focus-ring {
         // off
-        width 4
-        inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
+        width 2
+        inactive-gradient from="#505050" to="#101010" angle=45 relative-to="workspace-view"
         active-gradient from="#80c8ff" to="bbddff" angle=45 relative-to="workspace-view"
     }
+
     border {
         off
 
@@ -77,6 +80,7 @@ layout {
         offset x=0 y=5
         color "#0007"
     }
+
     struts {
         // left 64
         // right 64
