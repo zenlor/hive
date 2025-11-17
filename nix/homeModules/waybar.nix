@@ -11,6 +11,7 @@ in
         reload_style_on_change = true;
         toggle = true;
         position = "left";
+        layer = "top";
         output = [ "DP-1" ];
         mode = "dock";
         margin-top = 0;
@@ -18,9 +19,25 @@ in
         margin-left = 0;
         margin-right = 0;
         spacing = 0;
-        modules-left = [ "clock" "cpu" ];
-        modules-center = [ "niri/windows" "niri/workspaces" "privacy" ];
-        modules-right = [ "group/extras" "network" "bluetooth" "pulseaudio#microphone" "group/audio" "group/brightness" "custom/powermenu" ];
+        modules-left = [
+          "clock"
+          "cpu"
+        ];
+        modules-center = [
+          "wlr/taskbar"
+          # "niri/window"
+          "niri/workspaces"
+          "privacy"
+        ];
+        modules-right = [
+          "group/extras"
+          "network"
+          "bluetooth"
+          "pulseaudio#microphone"
+          "group/audio"
+          "group/brightness"
+          "custom/powermenu"
+        ];
 
         "group/extras" = {
           orientation = "inherit";
@@ -29,7 +46,10 @@ in
             children-class = "extras";
             transition-left-to-right = false;
           };
-          modules = [ "custom/menu" "tray" ];
+          modules = [
+            "custom/menu"
+            "tray"
+          ];
         };
 
         "group/brightness" = {
@@ -39,7 +59,10 @@ in
             children-class = "brightness";
             transition-left-to-right = false;
           };
-          modules = [ "backlight" "backlight/slider" ];
+          modules = [
+            "backlight"
+            "backlight/slider"
+          ];
         };
 
         "group/audio" = {
@@ -49,7 +72,10 @@ in
             children-class = "audio";
             transition-left-to-right = false;
           };
-          modules = [ "pulseaudio" "pulseaudio/slider" ];
+          modules = [
+            "pulseaudio"
+            "pulseaudio/slider"
+          ];
         };
 
         "custom/cachy" = {
@@ -65,6 +91,14 @@ in
             default = "󰄰";
             active = "󰄯";
           };
+        };
+        "niri/window" = {
+          icon = true;
+          icon-size = 24;
+        };
+        "wlr/taskbar" = {
+          on-click = "activate";
+          on-middle-click = "minimize-raise";
         };
 
         cpu = {

@@ -1,13 +1,19 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   gtk = {
-    enable = true;
+    # enable = true;
+    iconTheme = {
+      name = "oomox-gruvbox-dark";
+      package = pkgs.gruvbox-dark-icons-gtk;
+    };
     font = {
       name = "Sans";
       size = 11;
     };
-    cursorTheme = {
-      name = "DMZ-Black";
-      package = pkgs.vanilla-dmz;
-    };
+  };
+  qt = {
+    enable = true;
+    style.name = "kvantum";
+    platformTheme = "gtk3";
   };
 }

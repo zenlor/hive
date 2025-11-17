@@ -6,6 +6,8 @@
     imports = with inputs.self.homeModules; [
       { home.stateVersion = "25.05"; }
 
+      inputs.catppuccin.homeModules.catppuccin
+
       core
       dev
       doom
@@ -21,6 +23,8 @@
       niri
       waybar
       fuzzel
+
+      theme
 
       {
         programs.git.settings.user.signingkey = "~/.ssh/id_ed25519.pub";

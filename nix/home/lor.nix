@@ -5,6 +5,8 @@
     { home.stateVersion = "25.05"; }
     { home-manager.backupFileExtension = "backup"; }
 
+    inputs.catppuccin.homeModules.catppuccin
+
     core
     dev
     doom
@@ -20,6 +22,8 @@
     niri
     waybar
     fuzzel
+
+    theme
 
     {
       programs.git.settings.user.signingkey = "~/.ssh/id_ed25519.pub";

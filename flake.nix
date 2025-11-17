@@ -2,14 +2,15 @@
   description = "nixos bee hive";
 
   outputs =
-    { self
-    , flakelight
-    , flakelight-darwin
-    , nixpkgs
-    , deploy-rs
-    , helix
-    , agenix
-    , ...
+    {
+      self,
+      flakelight,
+      flakelight-darwin,
+      nixpkgs,
+      deploy-rs,
+      helix,
+      agenix,
+      ...
     }@inputs:
     flakelight ./. {
       inherit inputs;
@@ -97,5 +98,8 @@
 
     helix.url = "github:helix-editor/helix";
     helix.inputs.nixpkgs.follows = "nixpkgs";
+
+    catppuccin.url = "github:catppuccin/nix";
+    catppuccin.inputs.nixpkgs.follows = "nixpkgs";
   };
 }

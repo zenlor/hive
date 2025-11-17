@@ -1,7 +1,9 @@
-{ lib
-, pkgs
-, ...
-}: {
+{
+  lib,
+  pkgs,
+  ...
+}:
+{
   programs.niri.enable = true;
 
   security.polkit.enable = lib.mkDefault true;
@@ -24,9 +26,11 @@
     nautilus
     # flatpak
     gnome-software
+    polkit_gnome
 
     # wayland
     wl-clipboard
+    shotman
   ];
 
   services.dbus.packages = [ pkgs.nautilus ];
@@ -35,6 +39,20 @@
   services.gnome.gnome-settings-daemon.enable = true;
   programs.gnome-disks.enable = true;
   programs.file-roller.enable = true;
+
+  systemd.user.services.polkit-gnome-authentication-agent-1 = {
+    description = "polkit-gnome-authentication-agent-1";
+    wantedBy = [ "graphical-session.target" ];
+    wants = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+      Restart = "on-failure";
+      RestartSec = 1;
+      TimeoutStopSec = 10;
+    };
+  };
 
   # do I need this?
   # services.displayManager = {

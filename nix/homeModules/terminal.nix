@@ -10,9 +10,9 @@ in
     installBatSyntax = true;
 
     settings = {
-      theme = "tokyonight";
+      # theme = "tokyonight";
       font-size = 12;
-      font-family = font-family; ## "Iosevka Fixed";
+      font-family = font-family; # # "Iosevka Fixed";
       keybind = [
         "ctrl+b>c=new_tab"
 
@@ -35,11 +35,11 @@ in
     enable = true;
 
     font = {
-      name = font-family; #"IBM Plex Mono"; #"Iosevka Term";
+      name = font-family; # "IBM Plex Mono"; #"Iosevka Term";
       size = lib.mkDefault 13;
     };
 
-    themeFile = "tokyo_night_moon";
+    # themeFile = "tokyo_night_moon";
 
     settings = {
       kitty_mod = "meta+ctrl";
