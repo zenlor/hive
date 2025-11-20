@@ -16,5 +16,8 @@
     gitui.enable = true;
     # gtk.enable = true;
     hyprland.enable = true;
+    kitty.enable = true;
+    tmux.enable = true;
+    zathura.enable = true;
   };
 }
