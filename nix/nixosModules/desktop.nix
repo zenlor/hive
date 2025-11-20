@@ -16,7 +16,7 @@
     extraConfig = ''
       DeviceScale=2
     '';
-    theme = "details";
+    theme = "glow"; # "details";
   };
 
   environment.systemPackages = with pkgs; [
