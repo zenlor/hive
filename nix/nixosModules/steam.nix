@@ -51,6 +51,10 @@
     protonup-qt
     piper # mouse configuration
 
+    # Heroic game launcher + gog integration
+    heroic
+    gogdl
+
     fsuae-launcher
     fsuae
   ];
