@@ -91,7 +91,7 @@ layout {
 
 spawn-at-startup "blueman-applet"
 // spawn-at-startup "waybar"
-spawn-at-startup "mako"
+// spawn-at-startup "dunst" // started as service
 // spawn-at-startup "swayidle" "-w" "timeout" "601" "niri msg action power-off-monitors" "timeout" "600" "swaylock -f" "before-sleep" "swaylock -f" 
 spawn-at-startup "xwayland-satellite"
 
@@ -114,6 +114,11 @@ window-rule {
 
 window-rule {
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    open-floating true
+}
+
+window-rule {
+    match tile="wiremix"
     open-floating true
 }
 

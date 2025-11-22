@@ -51,6 +51,8 @@
     };
   };
 
+  services.blueman.enable = true;
+
   hardware.uinput.enable = true;
 
   hardware.sensor.hddtemp = {
@@ -82,6 +84,8 @@
       };
     };
   };
+
+  services.accounts-daemon.enable = true;
 
   # Appimage support
   programs.appimage = {

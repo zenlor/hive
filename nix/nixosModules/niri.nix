@@ -14,11 +14,13 @@
   environment.systemPackages = with pkgs; [
     fuzzel
     swaylock
-    mako
+    dunst
     swayidle
     swaybg
     blueman
     xwayland-satellite
+    wiremix
+    impala
     # default applications
     gnome-keyring
     file-roller

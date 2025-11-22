@@ -3,13 +3,14 @@
   catppuccin = {
     enable = true;
 
-    accent = "mauve";
-    flavor = "frappe";
+    accent = "teal";
+    flavor = "mocha";
 
     bat.enable = true;
     bottom.enable = true;
     btop.enable = true;
     cursors.enable = true;
+    dunst.enable = true;
     fish.enable = true;
     fuzzel.enable = true;
     fzf.enable = true;

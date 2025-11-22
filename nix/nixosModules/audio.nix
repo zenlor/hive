@@ -10,6 +10,8 @@
     alsa.enable = true;
     alsa.support32Bit = true;
 
+    wireplumber.enable = true;
+
     # bluetooth
     wireplumber.extraConfig.bluetoothEnhancements = {
       "monitor.bluez.properties" = {
@@ -65,6 +67,8 @@
       };
     };
   };
+
+  services.playerctld.enable = true;
 
   environment.systemPackages = [
     pkgs.helvum
