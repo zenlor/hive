@@ -45,8 +45,9 @@ output "PNP(AOC) AG271QG #ASPfKgF2Tlrd" { // DP-2
 }
 
 layout {
-    gaps 8
+    gaps 10
     center-focused-column "never"
+
     preset-column-widths {
         proportion 0.33333
         proportion 0.5
@@ -57,9 +58,10 @@ layout {
 
     focus-ring {
         // off
-        width 2
-        inactive-gradient from="#505050" to="#101010" angle=45 relative-to="workspace-view"
-        active-gradient from="#80c8ff" to="bbddff" angle=45 relative-to="workspace-view"
+        width 3
+
+        active-gradient from="#e5989b" to="#ffb4a2" angle=45 relative-to="workspace-view" in="oklch longer hue"
+        inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
     }
 
     border {
@@ -82,7 +84,7 @@ layout {
     }
 
     struts {
-        // left 64
+        // left 48
         // right 64
         // top 64
         // bottom 64
@@ -103,8 +105,10 @@ hotkey-overlay {
 
 prefer-no-csd
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
 animations {
     // off
+    slowdown 0.25
 }
 
 window-rule {
@@ -118,7 +122,7 @@ window-rule {
 }
 
 window-rule {
-    match tile="wiremix"
+    match title="wiremix"
     open-floating true
 }
 

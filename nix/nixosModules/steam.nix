@@ -23,10 +23,10 @@
           libpng
           libpulseaudio
           libvorbis
+          libiconv
           stdenv.cc.cc.lib # Provides libstdc++.so.6
           libkrb5
           keyutils
-          # Add other libraries as needed
 
           mangohud
           gamescope
@@ -57,6 +57,10 @@
 
     fsuae-launcher
     fsuae
+
+    _86Box-with-roms
+    dosbox-staging
+    dosbox-x
   ];
 
   # NOTE: SteamDeck value

@@ -70,7 +70,6 @@ in
     git
     gnused
     htop
-    bottom
     btop
     jq
     ncdu
@@ -82,6 +81,7 @@ in
     nil
     nvd
     trippy
+    lsof
 
     zstd
     zip
