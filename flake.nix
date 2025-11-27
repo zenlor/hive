@@ -2,14 +2,15 @@
   description = "nixos bee hive";
 
   outputs =
-    { self
-    , flakelight
-    , flakelight-darwin
-    , nixpkgs
-    , deploy-rs
-    , helix
-    , agenix
-    , ...
+    {
+      self,
+      flakelight,
+      flakelight-darwin,
+      nixpkgs,
+      deploy-rs,
+      helix,
+      agenix,
+      ...
     }@inputs:
     flakelight ./. {
       inherit inputs;
@@ -68,7 +69,7 @@
     };
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     nix-darwin.url = "github:nix-darwin/nix-darwin/master";
@@ -77,7 +78,7 @@
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
     nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
 
-    home-manager.url = "github:nix-community/home-manager/master";
+    home-manager.url = "github:nix-community/home-manager/release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     flakelight.url = "github:nix-community/flakelight";
