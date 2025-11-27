@@ -1,6 +1,7 @@
-{ lib
-, pkgs
-, ...
+{
+  lib,
+  pkgs,
+  ...
 }:
 {
   programs.niri.enable = true;
@@ -8,8 +9,8 @@
   security.polkit.enable = lib.mkDefault true;
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.swaylock = { };
+  programs.waybar.enable = true;
 
-  programs.waybar.enable = true; # top bar
   environment.systemPackages = with pkgs; [
     fuzzel
     swaylock
@@ -39,7 +40,6 @@
   services.udisks2.enable = true;
   services.gnome.gnome-settings-daemon.enable = true;
   programs.gnome-disks.enable = true;
-  programs.file-roller.enable = true;
 
   systemd.user.services.polkit-gnome-authentication-agent-1 = {
     description = "polkit-gnome-authentication-agent-1";

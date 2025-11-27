@@ -54,6 +54,7 @@
     # Heroic game launcher + gog integration
     heroic
     gogdl
+    minigalaxy
 
     fsuae-launcher
     fsuae

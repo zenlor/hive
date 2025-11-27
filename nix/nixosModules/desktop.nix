@@ -1,6 +1,7 @@
-{ inputs
-, pkgs
-, ...
+{
+  inputs,
+  pkgs,
+  ...
 }:
 {
   imports = [
@@ -43,7 +44,8 @@
 
     settings = {
       General = {
-        MultiProfile = "multiple";
+        # MultiProfile = "multiple";
+        Disable = "Handsfree";
         ControllerMode = "dual";
         FastConnectable = true;
       };
@@ -76,10 +78,13 @@
 
   xdg.portal = {
     enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gnome
+      pkgs.xdg-desktop-portal-gtk
+    ];
     config = {
       preferred = {
-        default = "gtk";
+        default = "gnome";
       };
     };
   };

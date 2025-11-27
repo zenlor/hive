@@ -1,6 +1,7 @@
-{ inputs
-, pkgs
-, ...
+{
+  inputs,
+  pkgs,
+  ...
 }:
 {
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
@@ -11,7 +12,6 @@
 
   programs = {
     geary.enable = true;
-    file-roller.enable = true;
     gphoto2.enable = true;
     seahorse.enable = true;
   };

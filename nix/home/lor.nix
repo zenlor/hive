@@ -17,7 +17,6 @@
     shell
     terminal
 
-    desktop
     hyprland
     niri
     waybar

@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   catppuccin = {
     enable = true;
@@ -20,5 +20,18 @@
     kitty.enable = true;
     tmux.enable = true;
     zathura.enable = true;
+  };
+
+  gtk = {
+    enable = true;
+    font = {
+      name = "Sans";
+      size = 11;
+    };
+  };
+  qt = {
+    enable = true;
+    style.name = "kvantum";
+    platformTheme.name = "gtk3";
   };
 }
