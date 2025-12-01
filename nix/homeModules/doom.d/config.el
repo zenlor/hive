@@ -23,11 +23,12 @@
 (setq doom-theme 'doom-ayu-mirage)
 
 ;; font
-(let ((fontsize 13)
+(let ((fontsize 15)
       (family           "Iosevka")       ;; IBM Plex Mono
       (family-variable  "Iosevka Aile")) ;; IBM Plex Sans
   (if (or (equal (system-name) "horus")
-          (equal (system-name) "meila"))
+          (equal (system-name) "meila")
+          (equal (system-name) "nixos"))
     (setq fontsize 17))
   (setq doom-font (font-spec :family family :size fontsize)
         doom-variable-font (font-spec :family family-variable)
