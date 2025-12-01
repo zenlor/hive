@@ -101,8 +101,10 @@ in
       isNormalUser = true;
       description = "Lorenzo";
       extraGroups = [
-        "wheel"
+        "bluetooth"
+        "input"
         "networkmanager"
+        "wheel"
       ];
       uid = 1000;
       openssh.authorizedKeys.keys = [

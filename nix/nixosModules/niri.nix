@@ -9,6 +9,7 @@
   security.polkit.enable = lib.mkDefault true;
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.swaylock = { };
+  security.pam.services.niri.enableGnomeKeyring = true;
   programs.waybar.enable = true;
 
   environment.systemPackages = with pkgs; [
