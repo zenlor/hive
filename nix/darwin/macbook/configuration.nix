@@ -1,19 +1,35 @@
-{ inputs
-, pkgs
-, ...
-}: {
+{
+  inputs,
+  pkgs,
+  ...
+}:
+{
   system.stateVersion = 5;
 
   nix.extraOptions = ''
     extra-experimental-features = flakes nix-command
   '';
 
+  nixpkgs.config = {
+    allowUnfree = true;
+  };
+
   nix = {
     enable = true;
     settings = {
-      trusted-users = [ "@admin" "@staff" "lorenzo" ];
-      system-features = [ "nixos-test" "apple-virt" ];
-      experimental-features = [ "nix-command" "flakes" ];
+      trusted-users = [
+        "@admin"
+        "@staff"
+        "lorenzo"
+      ];
+      system-features = [
+        "nixos-test"
+        "apple-virt"
+      ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
     };
   };
 
@@ -111,6 +127,10 @@
     # inherit (pkgs) system;
     imports = with inputs.self.homeModules; [
       { home.stateVersion = "25.05"; }
+
+      inputs.stylix.homeModules.stylix
+
+      theme
 
       core
       dev
