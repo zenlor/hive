@@ -20,10 +20,12 @@
   };
 
   environment.systemPackages = with pkgs; [
-    luakit
     vlc
-    bitwarden-cli
     kitty
+    ungoogled-chromium
+    bitwarden-cli
+    bitwarden-desktop
+    bws
   ];
 
   services.udisks2.enable = true;
