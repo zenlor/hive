@@ -35,5 +35,5 @@
     targets.fontconfig.enable = true;
   };
 
-  home.file.".icons/default".source = "${pkgs.apple-cursor}/share/icons/macOS";
+  home.file.".icons/default".source = "${pkgs.vanilla-dmz}/share/icons/Vanilla-DMZ";
 }
