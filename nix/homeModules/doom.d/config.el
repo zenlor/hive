@@ -20,7 +20,7 @@
   (add-to-list 'doom-env-allow "^SSH_"))
 
 ;; theme
-(setq doom-theme 'doom-ayu-mirage)
+(setq doom-theme 'doom-laserwave)
 
 ;; font
 (let ((fontsize 15)
