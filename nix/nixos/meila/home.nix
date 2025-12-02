@@ -4,9 +4,9 @@
   home-manager.useGlobalPkgs = true;
   home-manager.users.lor = {
     imports = with inputs.self.homeModules; [
-      { home.stateVersion = "25.05"; }
+      { home.stateVersion = "25.11"; }
 
-      inputs.catppuccin.homeModules.catppuccin
+      inputs.stylix.homeModules.stylix
 
       core
       dev

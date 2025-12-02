@@ -135,9 +135,6 @@ in
         gaps_in = 5;
         gaps_out = 20;
         border_size = 2;
-
-        "col.active_border" = "rgb(8aadf4) rgb(24273A) rgb(24273A) rgb(8aadf4) 45deg";
-        "col.inactive_border" = "rgb(24273A) rgb(24273A) rgb(24273A) rgb(27273A) 45deg";
       };
 
       animations = {
@@ -172,7 +169,6 @@ in
           enabled = true;
           range = 4;
           render_power = 3;
-          color = "rgba(1a1a1aee)";
         };
 
         blur = {

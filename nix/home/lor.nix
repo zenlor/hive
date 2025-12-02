@@ -5,7 +5,7 @@
     { home.stateVersion = "25.05"; }
     { home-manager.backupFileExtension = "backup"; }
 
-    inputs.catppuccin.homeModules.catppuccin
+    inputs.stylix.homeModules.stylix
 
     core
     dev

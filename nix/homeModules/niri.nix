@@ -7,7 +7,6 @@
       global = {
         width = "(300,400)";
         height = "(0,200)";
-        font = "IBM Plex Sans 14";
       };
     };
   };

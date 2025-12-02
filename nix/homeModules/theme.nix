@@ -1,37 +1,37 @@
 { pkgs, ... }:
 {
-  catppuccin = {
+  stylix = {
     enable = true;
+    autoEnable = true;
 
-    accent = "teal";
-    flavor = "mocha";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/snazzy.yaml";
+    polarity = "dark";
 
-    bat.enable = true;
-    bottom.enable = true;
-    btop.enable = true;
-    cursors.enable = true;
-    dunst.enable = true;
-    fish.enable = true;
-    fuzzel.enable = true;
-    fzf.enable = true;
-    gitui.enable = true;
-    # gtk.enable = true;
-    hyprland.enable = true;
-    kitty.enable = true;
-    tmux.enable = true;
-    zathura.enable = true;
-  };
-
-  gtk = {
-    enable = true;
-    font = {
-      name = "Sans";
-      size = 11;
+    fonts = {
+      serif = {
+        package = pkgs.ibm-plex;
+        name = "IBM Plex Serif";
+      };
+      sansSerif = {
+        package = pkgs.ibm-plex;
+        name = "IBM Plex Sans";
+      };
+      monospace = {
+        package = pkgs.ibm-plex;
+        name = "IBM Plex Mono";
+      };
+      emoji = {
+        package = pkgs.noto-fonts-color-emoji;
+        name = "Noto Color Emoji";
+      };
+      sizes = {
+        desktop = 12;
+        applications = 12;
+        terminal = 14;
+        popups = 12;
+      };
     };
-  };
-  qt = {
-    enable = true;
-    style.name = "kvantum";
-    platformTheme.name = "gtk3";
+
+    targets.fontconfig.enable = true;
   };
 }
