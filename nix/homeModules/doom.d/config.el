@@ -20,19 +20,19 @@
   (add-to-list 'doom-env-allow "^SSH_"))
 
 ;; theme
-(setq doom-theme 'doom-laserwave)
+(setq doom-theme 'doom-snazzy)
 
 ;; font
 (let ((fontsize 15)
-      (family           "Iosevka")       ;; IBM Plex Mono
-      (family-variable  "Iosevka Aile")) ;; IBM Plex Sans
+      (family           "IBM Plex Mono")  ;; IBM Plex Mono
+      (family-variable  "IBM Plex Sans")) ;; IBM Plex Sans
   (if (or (equal (system-name) "horus")
           (equal (system-name) "meila")
           (equal (system-name) "nixos"))
     (setq fontsize 17))
   (setq doom-font (font-spec :family family :size fontsize)
         doom-variable-font (font-spec :family family-variable)
-        doom-unicode-font (font-spec :family family)
+        doom-symbol-font (font-spec :family family)
         doom-big-font (font-spec :family family :size (truncate (* fontsize 1.5)))))
 
 ;; org

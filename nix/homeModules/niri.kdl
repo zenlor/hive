@@ -35,6 +35,11 @@ output "PNP(AOC) AG271QG #ASNH7z62UjXd" { // DP-1
     variable-refresh-rate on-demand=true
     scale 1
     position x=0 y=0
+    layout {
+        struts {
+            left 48
+        }
+    }
 }
 
 output "PNP(AOC) AG271QG #ASPfKgF2Tlrd" { // DP-2

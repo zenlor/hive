@@ -27,11 +27,13 @@
       sizes = {
         desktop = 12;
         applications = 12;
-        terminal = 14;
+        terminal = 12;
         popups = 12;
       };
     };
 
     targets.fontconfig.enable = true;
   };
+
+  home.file.".icons/default".source = "${pkgs.apple-cursor}/share/icons/macOS";
 }
