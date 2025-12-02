@@ -42,9 +42,9 @@
       status.submoduleSummary = true;
       commit.gpgsign = true;
       gpg.format = "ssh";
-      gpg.ssh.allowedSignersFile = "~/.ssh/allowed-signers";
+      gpg.ssh.allowedSignersFile = "$HOME/.ssh/allowed-signers";
       help.autocorrect = 0;
-      ghq.root = "~/lib/src";
+      ghq.root = "$HOME/lib/src";
     };
   };
 
