@@ -27,6 +27,14 @@ let
 
 in
 {
+
+  stylix.targets.waybar = {
+    enable = true;
+    enableLeftBackColors = true;
+    enableCenterBackColors = true;
+    enableRightBackColors = true;
+  };
+
   programs.waybar = {
     enable = true;
     systemd.enable = true;
