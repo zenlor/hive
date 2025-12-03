@@ -15,6 +15,14 @@
 (add-to-list 'exec-path (getenv "HOME") "/.local/bin")
 (add-to-list 'exec-path (getenv "HOME") "/.luarocks/bin")
 
+;; fix complaints about non posix shell ... or better: non-bash shell :'(
+(setq shell-file-name (executable-find "bash"))
+    
+(setq-default
+  vterm-shell "/run/current-system/sw/bin/fish")
+(setq-default
+  explicit-shell-file-name "/run/current-system/sw/bin/fish")
+
 ;; keep ssh agent variables
 (after! doom-cli-env
   (add-to-list 'doom-env-allow "^SSH_"))
@@ -24,8 +32,8 @@
 
 ;; font
 (let ((fontsize 15)
-      (family           "IBM Plex Mono")  ;; IBM Plex Mono
-      (family-variable  "IBM Plex Sans")) ;; IBM Plex Sans
+      (family           "Iosevka")  ;; IBM Plex Mono
+      (family-variable  "Iosevka Etoile")) ;; IBM Plex Sans
   (if (or (equal (system-name) "horus")
           (equal (system-name) "meila")
           (equal (system-name) "nixos"))
@@ -94,3 +102,26 @@
              "s" #'cider-scratch
              "b" #'cider-load-buffer
              "B" #'cider-load-buffer-and-switch-to-repl-buffer)))
+
+
+;; projectile
+;; control project root additional guess (besides ".git", ".projectile")
+(setq projectile-project-root-files
+'("CMakeLists.txt" "Makefile" "configure.ac" "configure.in" "TAGS" "GTAGS"))
+(setq projectile-ignored-projects '("~/"))
+
+(c-set-offset 'inline-open '0)
+(defun vlad-cc-style()
+  (c-set-style "linux")
+  (c-set-offset 'innamespace '0)
+  (c-set-offset 'inextern-lang '0)
+  (c-set-offset 'inline-open '0)
+  (c-set-offset 'label '*)
+  (c-set-offset 'case-label '*)
+  (c-set-offset 'access-label '/)
+  (setq c-basic-offset 4)
+  (setq tab-width 4)
+  (setq indent-tabs-mode nil)
+)
+
+(add-hook 'c++-mode-hook 'vlad-cc-style)
