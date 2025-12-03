@@ -1,7 +1,7 @@
 pkgs:
 with pkgs; {
   packages = [
-    nixd
+    nil
     nixfmt-rfc-style
     deploy-rs
     agenix
