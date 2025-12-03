@@ -9,16 +9,16 @@
 
     fonts = {
       serif = {
-        package = pkgs.ibm-plex;
-        name = "IBM Plex Serif";
+        package = pkgs.iosevka;
+        name = "Iosevka Etoile";
       };
       sansSerif = {
-        package = pkgs.ibm-plex;
-        name = "IBM Plex Sans";
+        package = pkgs.iosevka;
+        name = "Iosevka Aile";
       };
       monospace = {
-        package = pkgs.ibm-plex;
-        name = "IBM Plex Mono";
+        package = pkgs.iosevka;
+        name = "Iosevka Etoile";
       };
       emoji = {
         package = pkgs.noto-fonts-color-emoji;

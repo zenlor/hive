@@ -1,7 +1,4 @@
-{ lib, ... }:
-let
-  font-family = "IBM Plex Mono";
-in
+{ ... }:
 {
   programs.ghostty = {
     enable = false; # !pkgs.stdenv.hostPlatform.isDarwin; # FIXME broken in darwin
@@ -10,9 +7,6 @@ in
     installBatSyntax = true;
 
     settings = {
-      # theme = "tokyonight";
-      font-size = 12;
-      font-family = font-family; # # "Iosevka Fixed";
       keybind = [
         "ctrl+b>c=new_tab"
 
@@ -33,14 +27,6 @@ in
 
   programs.kitty = {
     enable = true;
-
-    font = {
-      name = font-family; # "IBM Plex Mono"; #"Iosevka Term";
-      size = lib.mkDefault 13;
-    };
-
-    # themeFile = "tokyo_night_moon";
-
     settings = {
       kitty_mod = "meta+ctrl";
 

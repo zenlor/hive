@@ -1,6 +1,10 @@
-{ lib, pkgs, ... }:
+{
+  lib,
+  pkgs,
+  ...
+}:
 let
-  font = "IBM Plex Mono";
+  font = "Iosevka Etoile";
   position = "left";
   width = 45;
 

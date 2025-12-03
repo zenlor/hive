@@ -21,16 +21,16 @@
       ".direnv"
     ];
 
-    settings.aliases = {
-      fixup = ''!f() { TARGET=$(git rev-parse "$1"); git commit --fixup=$TARGET ''${@:2} && EDITOR=true git rebase -i --autostash --autosquash $TARGET^; }; f'';
-      co = "checkout";
-      st = "status";
-      l = "log --date=format:'%a %b %e, %Y' --pretty=format:'%C(yellow)%h%C(reset) %s %C(cyan)%cd%C(reset) %C(blue)%an%C(reset) %C(green)%d%C(reset)' --graph";
-      cl = "!ghq get";
-      z = "!lazygit";
-    };
-
     settings = {
+      alias = {
+        fixup = ''!f() { TARGET=$(git rev-parse "$1"); git commit --fixup=$TARGET ''${@:2} && EDITOR=true git rebase -i --autostash --autosquash $TARGET^; }; f'';
+        co = "checkout";
+        st = "status";
+        l = "log --date=format:'%a %b %e, %Y' --pretty=format:'%C(yellow)%h%C(reset) %s %C(cyan)%cd%C(reset) %C(blue)%an%C(reset) %C(green)%d%C(reset)' --graph";
+        cl = "!ghq get";
+        z = "!lazygit";
+      };
+
       core.autocrlf = "input";
       init.defaultBranch = "main";
       pull.rebase = true;
