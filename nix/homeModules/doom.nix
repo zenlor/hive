@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   home.packages = with pkgs; [
     emacs
     emacs-all-the-icons-fonts
@@ -9,12 +10,16 @@
     # org-mode export
     texliveMedium
 
-    (aspellWithDicts (dicts:
-      with dicts; [
+    tree-sitter
+    tree-sitter-grammars
+
+    (aspellWithDicts (
+      dicts: with dicts; [
         en
         en-computers
         it
-      ]))
+      ]
+    ))
   ];
 
   home.sessionPath = [
