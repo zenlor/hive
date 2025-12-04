@@ -10,6 +10,12 @@
       "*" = {
         compression = true;
         serverAliveInterval = 60;
+        sendEnv = [
+          "TERM"
+          "COLORTERM"
+          "LANG"
+          "LC_*"
+        ];
       };
       "frenz.click" = {
         hostname = "frenz.click";
