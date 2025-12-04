@@ -1,7 +1,9 @@
-{ config
-, pkgs
-, ...
-}: {
+{
+  config,
+  pkgs,
+  ...
+}:
+{
   environment.systemPackages = with pkgs; [
     nvtopPackages.full
   ];
@@ -44,4 +46,47 @@
   #     Environment="SYSTEMD_SLEEP_FREEZE_USER_SESSIONS=false"
   #   '';
   # };
+
+  # INFO:
+  # - https://yalter.github.io/niri/Nvidia.html
+  # - https://github.com/NVIDIA/egl-wayland/issues/126#issuecomment-2379945259
+  environment.etc."nvidia/nvidia-application-profiles-rc.d/50-limit-free-buffer-pool-in-wayland-compositors.json" =
+    {
+      text = builtins.toJSON {
+        rules = [
+          {
+            pattern = {
+              feature = "procname";
+              matches = "niri";
+            };
+            profile = "Limit Free Buffer Pool On Wayland Compositors";
+          }
+          {
+            pattern = {
+              feature = "procname";
+              matches = "kwin_wayland";
+            };
+            profile = "Limit Free Buffer Pool On Wayland Compositors";
+          }
+          {
+            pattern = {
+              feature = "procname";
+              matches = "gnome-shell";
+            };
+            profile = "Limit Free Buffer Pool On Wayland Compositors";
+          }
+        ];
+        profiles = [
+          {
+            name = "Limit Free Buffer Pool On Wayland Compositors";
+            settings = [
+              {
+                key = "GLVidHeapReuseRatio";
+                value = 1;
+              }
+            ];
+          }
+        ];
+      };
+    };
 }
