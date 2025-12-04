@@ -127,8 +127,13 @@ window-rule {
 }
 
 window-rule {
-    match title="wiremix"
-    open-floating true
+    match app-id="org.telegram.desktop"
+    default-column-width { fixed 600; }
+}
+
+window-rule {
+    match app-id=".blueman-manager-wrapped"
+    default-column-width { fixed 600; }
 }
 
 window-rule {
