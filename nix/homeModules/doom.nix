@@ -11,7 +11,6 @@
     texliveMedium
 
     tree-sitter
-    tree-sitter-grammars
 
     (aspellWithDicts (
       dicts: with dicts; [
