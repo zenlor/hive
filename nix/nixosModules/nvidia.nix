@@ -75,6 +75,13 @@
             };
             profile = "Limit Free Buffer Pool On Wayland Compositors";
           }
+          {
+            pattern = {
+              feature = "procname";
+              matches = "RimWorldLinux";
+            };
+            profile = "Limit Free Buffer Pool On Wayland Compositors";
+          }
         ];
         profiles = [
           {
