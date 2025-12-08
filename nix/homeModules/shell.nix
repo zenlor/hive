@@ -141,4 +141,9 @@
   };
 
   programs.ripgrep-all.enable = true;
+
+  home.shellAliases = {
+    e = "emacsclient -n -c";
+    l = "ls -l";
+  };
 }

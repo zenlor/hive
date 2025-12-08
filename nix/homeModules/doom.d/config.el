@@ -50,6 +50,7 @@
 (with-eval-after-load 'eglot
   (add-to-list 'eglot-server-programs
                '(terraform-mode . ("terraform-ls" "serve"))
+               '(hcl-mode . ("terraform-ls" "serve"))
                '(nix-mode . ("nil"))))
 ;; apheleia
 (after! apheleia
