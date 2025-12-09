@@ -2,7 +2,6 @@
 {
   home.packages = with pkgs; [
     emacs
-    emacs-lsp-booster
     emacs-all-the-icons-fonts
 
     # ssh passwords
