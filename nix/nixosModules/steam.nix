@@ -52,6 +52,8 @@
     protonup-qt
     piper # mouse configuration
 
+    steamtinkerlaunch
+
     # Heroic game launcher + gog integration
     heroic
     gogdl

@@ -26,6 +26,7 @@
     bitwarden-cli
     bitwarden-desktop
     bws
+    flare-signal
   ];
 
   services.udisks2.enable = true;
