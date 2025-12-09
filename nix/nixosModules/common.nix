@@ -184,20 +184,13 @@ in
     generateCompletions = true;
   };
 
-  services.sshguard = {
+  services.fail2ban = {
     enable = true;
-    services = [ "sshd" ];
-    blacklist_threshold = 120;
-    attack_threshold = 60;
-    whitelist = [
-      "10.69.0.1"
-      "10.69.0.2"
-      "10.69.0.3"
-      "10.69.0.4"
-      "10.69.0.5"
-      "192.168.1.2"
-      "192.168.1.136"
-      "82.169.232.124"
+    bantime = "10m";
+    maxretry = 5;
+    ignoreIP = [
+      "10.69.0.0/24"
+      "192.168.0.0/16"
     ];
   };
 
@@ -208,15 +201,15 @@ in
       "it_IT.UTF-8/UTF-8"
     ];
     extraLocaleSettings = {
-      LC_ADDRESS = "it_IT.UTF-8";
-      LC_IDENTIFICATION = "it_IT.UTF-8";
-      LC_MEASUREMENT = "it_IT.UTF-8";
-      LC_MONETARY = "it_IT.UTF-8";
-      LC_NAME = "it_IT.UTF-8";
-      LC_NUMERIC = "it_IT.UTF-8";
-      LC_PAPER = "it_IT.UTF-8";
-      LC_TELEPHONE = "it_IT.UTF-8";
-      LC_TIME = "it_IT.UTF-8";
+      LC_ADDRESS = "en_GB.UTF-8";
+      LC_IDENTIFICATION = "en_GB.UTF-8";
+      LC_MEASUREMENT = "en_GB.UTF-8";
+      LC_MONETARY = "en_GB.UTF-8";
+      LC_NAME = "en_GB.UTF-8";
+      LC_NUMERIC = "en_GB.UTF-8";
+      LC_PAPER = "en_GB.UTF-8";
+      LC_TELEPHONE = "en_GB.UTF-8";
+      LC_TIME = "en_GB.UTF-8";
     };
   };
 }
