@@ -17,6 +17,7 @@
     swaylock
     dunst
     swayidle
+    swaylock
     swaybg
     blueman
     xwayland-satellite

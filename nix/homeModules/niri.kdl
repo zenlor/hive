@@ -99,7 +99,7 @@ layout {
 spawn-at-startup "blueman-applet"
 // spawn-at-startup "waybar"
 // spawn-at-startup "dunst" // started as service
-// spawn-at-startup "swayidle" "-w" "timeout" "601" "niri msg action power-off-monitors" "timeout" "600" "swaylock -f" "before-sleep" "swaylock -f" 
+spawn-at-startup "swayidle" "-w" "timeout" "600" "niri msg action power-off-monitors" "timeout" "800" "swaylock -f" "timeout" "1200" "loginctl suspend" "before-sleep" "swaylock -f" 
 spawn-at-startup "xwayland-satellite"
 
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
