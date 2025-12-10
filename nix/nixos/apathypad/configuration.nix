@@ -39,7 +39,7 @@ in
 
   # avoid waiting for networking while booting ... it's laptop!
   systemd.network.wait-online = false;
-  boot.initrd.systemd.network.wait-online = false;
+  # boot.initrd.systemd.network.wait-online = false;
 
   networking = {
     hostName = "apathypad";
