@@ -38,8 +38,8 @@ in
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   # avoid waiting for networking while booting ... it's laptop!
-  systemd.network.wait-online = false;
-  # boot.initrd.systemd.network.wait-online = false;
+  systemd.network.wait-online.enable = false;
+  boot.initrd.systemd.network.wait-online.enable = false;
 
   networking = {
     hostName = "apathypad";
