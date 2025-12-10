@@ -1,8 +1,10 @@
-{ modulesPath
-, lib
-, config
-, ...
-}: {
+{
+  modulesPath,
+  lib,
+  config,
+  ...
+}:
+{
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
   boot.initrd.availableKernelModules = [
@@ -51,17 +53,16 @@
 
   services.hardware.bolt.enable = true;
 
+  # Thunderbolt NVIDIA eGPU
+  #
   # hardware.nvidia = {
   #   open = true;
-
   #   # config.boot.kernelPackages.nvidiaPackages.nvidia_x11_vulkan_beta;
   #   package = config.boot.kernelPackages.nvidiaPackages.stable;
-
   #   powerManagement = {
   #     enable = false;
   #     finegrained = false;
   #   };
-
   #   nvidiaSettings = true;
   #   modesetting.enable = true;
   #   prime = {

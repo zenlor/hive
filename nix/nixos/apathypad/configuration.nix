@@ -1,7 +1,8 @@
-{ inputs
-, config
-, lib
-, ...
+{
+  inputs,
+  config,
+  lib,
+  ...
 }:
 let
   secrets = import ../../secrets.nix;
@@ -36,8 +37,12 @@ in
   systemd.enableEmergencyMode = false;
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
+  # avoid waiting for networking while booting ... it's laptop!
+  systemd.network.wait-online = false;
+  boot.initrd.systemd.network.wait-online = false;
+
   networking = {
-    hostName = "pad";
+    hostName = "apathypad";
     search = [ "local" ];
     useDHCP = lib.mkForce false;
 
@@ -54,29 +59,11 @@ in
 
     hostId = "AAFE4A7E";
   };
-  services.resolved.enable = lib.mkForce false;
 
+  services.resolved.enable = lib.mkForce false;
   networking.networkmanager.enable = true;
 
-  # Select internationalisation properties.
-  i18n = {
-    defaultLocale = "en_US.UTF-8";
-
-    extraLocaleSettings = {
-      LC_ADDRESS = "it_IT.UTF-8";
-      LC_IDENTIFICATION = "it_IT.UTF-8";
-      LC_MEASUREMENT = "it_IT.UTF-8";
-      LC_MONETARY = "it_IT.UTF-8";
-      LC_NAME = "it_IT.UTF-8";
-      LC_NUMERIC = "it_IT.UTF-8";
-      LC_PAPER = "it_IT.UTF-8";
-      LC_TELEPHONE = "it_IT.UTF-8";
-      LC_TIME = "it_IT.UTF-8";
-    };
-  };
-
   services.flatpak.enable = true;
-
   services.avahi = {
     enable = true;
     openFirewall = true;
