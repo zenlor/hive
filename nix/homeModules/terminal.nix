@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   programs.ghostty = {
     enable = false; # !pkgs.stdenv.hostPlatform.isDarwin; # FIXME broken in darwin
@@ -27,6 +27,7 @@
 
   programs.kitty = {
     enable = true;
+    package = null;
     settings = {
       kitty_mod = "meta+ctrl";
 

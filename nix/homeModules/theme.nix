@@ -36,4 +36,5 @@
   };
 
   home.file.".icons/default".source = "${pkgs.vanilla-dmz}/share/icons/Vanilla-DMZ";
+  # home.file.".gitkrc-2.0".force = true;
 }
