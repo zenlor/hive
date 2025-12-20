@@ -6,7 +6,11 @@ in
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
-      monitor = ",2560x1440@120,auto,1"; # FIXME hardcoded value
+      # monitor = ",2560x1440@120,auto,1"; # FIXME hardcoded value
+      monitor = [
+        "DP-1,2560x1440@120,2560x0,1"
+        "DP-2,2560x1440@120,0x0,1"
+      ];
 
       exec-once = [
         "${pkgs.blueman}/bin/blueman-applet"

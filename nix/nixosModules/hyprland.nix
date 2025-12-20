@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   environment.systemPackages = with pkgs; [
     overskride # bluetooth frontend
     shotman # screenshots
@@ -10,7 +11,14 @@
     wlr-randr
     wl-screenrec
 
+    swaybg
+    swayidle
+    swayimg
+    swaylock
+    swaylock
+
     fuzzel
+
     hyprpicker
     hyprcursor
     hyprlock
@@ -18,10 +26,8 @@
     hyprsunset
     hyprpolkitagent
     hyprnotify
-    mako
-    cava
+
     waybar
-    wttrbar
 
     pwvucontrol
     xwayland-satellite

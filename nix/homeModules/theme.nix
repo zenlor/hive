@@ -18,7 +18,7 @@
       };
       monospace = {
         package = pkgs.iosevka;
-        name = "Iosevka Etoile";
+        name = "Iosevka";
       };
       emoji = {
         package = pkgs.noto-fonts-color-emoji;

@@ -20,9 +20,11 @@
   };
 
   environment.systemPackages = with pkgs; [
+    deluge
     vlc
     kitty
     ungoogled-chromium
+    firefox
     bitwarden-cli
     bitwarden-desktop
     bws

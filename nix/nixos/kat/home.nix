@@ -1,14 +1,10 @@
-{ inputs, config, ... }:
+{ inputs, ... }:
 {
-  system = "x86_64-linux";
-  modules =
-    with inputs.self.homeModules;
-    let
-      homeDirectory = "/home/lor";
-    in
-    [
-      { home.stateVersion = "25.05"; }
-      { home.homeDirectory = homeDirectory; }
+  home-manager.backupFileExtension = "backup";
+  home-manager.useGlobalPkgs = true;
+  home-manager.users.lor = {
+    imports = with inputs.self.homeModules; [
+      { home.stateVersion = "25.11"; }
 
       inputs.stylix.homeModules.stylix
 
@@ -30,10 +26,11 @@
       theme
 
       {
-        programs.git.settings.user.signingkey = "${homeDirectory}/.ssh/id_ed25519.pub";
+        programs.git.settings.user.signingkey = "~/.ssh/id_ed25519.pub";
         # "key::ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPEjb3xZe7wZ7JezbXApLdLhMeTnO2c2J8FJrpr7nWCr";
         programs.git.settings.user.name = "Lorenzo Giuliani";
         programs.git.settings.user.email = "lorenzo@frenzart.com";
       }
     ];
+  };
 }

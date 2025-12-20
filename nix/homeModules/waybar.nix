@@ -9,8 +9,7 @@ let
   width = 45;
 
   output = [
-    "DP-1"
-    "eDP-0"
+    "DP-2"
   ];
 
   barDirection = if (position == "left") || (position == "right") then "vertical" else "horizontal";

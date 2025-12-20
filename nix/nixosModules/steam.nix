@@ -54,6 +54,9 @@
 
     steamtinkerlaunch
 
+    vulkan-tools
+    gpu-viewer
+
     # Heroic game launcher + gog integration
     heroic
     gogdl

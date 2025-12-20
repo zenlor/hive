@@ -72,7 +72,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
-    nix-darwin.url = "github:nix-darwin/nix-darwin/master";
+    nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-25.11";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
@@ -102,7 +102,16 @@
     stylix.url = "github:nix-community/stylix/release-25.11";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
 
-    nixgl.url = "github:nix-community/nixGL";
-    nixgl.inputs.nixpkgs.follows = "nixpkgs";
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel";
+    # nix-cachyos-kernel.inputs.nixpkgs.follows = "nixpkgs"; # NOTE: don't follow nixpkgs, stop compiling the kernel!
   };
+
+  nixConfig.extra-substituters = [
+    "https://attic.xuyh0120.win/lantian"
+    "https://cache.garnix.io"
+  ];
+  nixConfig.extra-trusted-public-keys = [
+    "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
+    "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+  ];
 }
