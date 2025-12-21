@@ -1,10 +1,19 @@
-{ inputs
-, config
-, lib
-, ...
+{
+  config,
+  lib,
+  ...
 }:
 let
   secrets = import ../../secrets.nix;
+  protection = x: ''
+    @unverified not header Cookie *${x}*
+    handle @unverified {
+      header Content-Type text/html
+      respond <<EOF
+        <script>document.cookie = '${x}=1;Path=/;';window.location.reload();</script>
+      EOF 418
+    }
+  '';
 in
 {
   services.caddy = {
@@ -46,6 +55,10 @@ in
       };
       "frenz.click" = {
         extraConfig = ''
+          ${protection "verify-frenz"}
+
+          encode zstd gzip
+
           header {
             Content-Type text/html;utf-8
             Cache-Control max-age=31536000
@@ -82,9 +95,12 @@ in
       };
       "marrani.lol" = {
         extraConfig = ''
+          ${protection "verify-marrans"}
           redir /.well-known/host-meta* https://social.marrani.lol{uri} permanent  # host
           redir /.well-known/webfinger* https://social.marrani.lol{uri} permanent  # host
           redir /.well-known/nodeinfo* https://social.marrani.lol{uri} permanent   # host
+
+          encode zstd gzip
 
           # respond / 200 {
           #   body ""
@@ -96,6 +112,8 @@ in
       };
       "social.marrani.lol" = {
         extraConfig = ''
+          ${protection "verify-socialmarrans"}
+
           encode zstd gzip
           respond /metrics 404
           reverse_proxy http://127.0.0.1:10006 {
@@ -105,18 +123,34 @@ in
       };
       "rpg.marrani.lol" = {
         extraConfig = ''
+          ${protection "verify-rpgmarrans"}
+
           encode zstd gzip
           reverse_proxy http://127.0.0.1:30000
         '';
       };
       "stats.frenz.click" = {
         extraConfig = ''
+          ${protection "verify-statsmarrans"}
+
+          encode zstd gzip
           reverse_proxy http://127.0.0.1:59123
         '';
       };
       "prometheus.frenz.click" = {
         extraConfig = ''
+          ${protection "verify-statsmarrans"}
+
+          encode zstd gzip
           reverse_proxy http://127.0.0.1:9163
+        '';
+      };
+      "git.frenz.click" = {
+        extraConfig = ''
+          ${protection "verify-programmingmarrans"}
+
+          encode zstd gzip
+          reverse_proxy http://127.0.0.1:30005
         '';
       };
     };
@@ -170,7 +204,12 @@ in
       port = 10006;
       protocol = "https";
       storage-local-base-path = "/var/lib/gotosocial/storage";
-      instance-language = [ "it" "en-us" "en-gb" "ru" ];
+      instance-language = [
+        "it"
+        "en-us"
+        "en-gb"
+        "ru"
+      ];
       instance-inject-mastodon-version = true;
       accounts-registration-open = true;
       accounts-reason-required = true;
@@ -223,5 +262,14 @@ in
     enable = true;
     hostName = "bot.marrani.lol";
     logLevel = "debug";
+  };
+
+  services.forgejo = {
+    enable = false;
+    settings = {
+      log.LEVEL = "Warn";
+      server.DOMAIN = "git.frenz.click";
+      server.HTTP_PORT = 30005;
+    };
   };
 }
