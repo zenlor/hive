@@ -33,8 +33,16 @@
     };
 
     targets.fontconfig.enable = true;
+    targets.fzf.enable = true;
   };
 
   home.file.".icons/default".source = "${pkgs.vanilla-dmz}/share/icons/Vanilla-DMZ";
   # home.file.".gitkrc-2.0".force = true;
+
+  gtk.iconTheme = {
+    # name = "Adwaita";
+    # package = pkgs.adwaita-icon-theme;
+    name = "WhiteSur";
+    package = pkgs.whitesur-icon-theme;
+  };
 }
