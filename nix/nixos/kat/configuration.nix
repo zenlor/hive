@@ -19,6 +19,8 @@
     ./home.nix
   ];
 
+  networking.hostName = "kat";
+
   # boot.kernelPackages = pkgs.linuxPackages_zen;
   boot.kernelPackages =
     inputs.nix-cachyos-kernel.legacyPackages.x86_64-linux.linuxPackages-cachyos-latest;
@@ -43,7 +45,8 @@
     systemd-boot = {
       enable = true;
       configurationLimit = 2;
-      consoleMode = "max";
+      consoleMode = "keep";
+      editor = true;
     };
   };
   boot.initrd.verbose = false;
