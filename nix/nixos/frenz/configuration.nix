@@ -1,8 +1,9 @@
-{ inputs
-, pkgs
-, lib
-, config
-, ...
+{
+  inputs,
+  pkgs,
+  lib,
+  config,
+  ...
 }:
 let
   secrets = import ../../secrets.nix;
@@ -45,10 +46,19 @@ in
   networking.hostId = "cda31f1b";
   networking.useDHCP = true;
   networking.hostName = "frenz";
-  networking.nameservers = [ "1.1.1.1" "1.0.0.1" ];
+  networking.nameservers = [
+    "1.1.1.1"
+    "1.0.0.1"
+  ];
 
   networking.firewall.enable = true;
-  networking.firewall.allowedTCPPorts = [ 22 80 443 25565 35565 ];
+  networking.firewall.allowedTCPPorts = [
+    22
+    80
+    443
+    25565
+    35565
+  ];
   networking.firewall.allowPing = false;
   networking.firewall.trustedInterfaces = [ "wg0" ];
 

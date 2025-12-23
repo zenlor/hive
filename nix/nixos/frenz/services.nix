@@ -94,20 +94,27 @@ in
         '';
       };
       "marrani.lol" = {
+        # extraConfig = ''
+        #   ${protection "verify-marrans"}
+        #   redir /.well-known/host-meta* https://social.marrani.lol{uri} permanent  # host
+        #   redir /.well-known/webfinger* https://social.marrani.lol{uri} permanent  # host
+        #   redir /.well-known/nodeinfo* https://social.marrani.lol{uri} permanent   # host
+
+        #   encode zstd gzip
+
+        #   # respond / 200 {
+        #   #   body ""
+        #   # }
+        #   reverse_proxy http://127.0.0.1:10006 {
+        #     flush_interval -1
+        #   }
+        # '';
+
         extraConfig = ''
           ${protection "verify-marrans"}
-          redir /.well-known/host-meta* https://social.marrani.lol{uri} permanent  # host
-          redir /.well-known/webfinger* https://social.marrani.lol{uri} permanent  # host
-          redir /.well-known/nodeinfo* https://social.marrani.lol{uri} permanent   # host
 
           encode zstd gzip
-
-          # respond / 200 {
-          #   body ""
-          # }
-          reverse_proxy http://127.0.0.1:10006 {
-            flush_interval -1
-          }
+          reverse_proxy http://127.0.0.1:10007
         '';
       };
       "social.marrani.lol" = {
@@ -265,11 +272,37 @@ in
   };
 
   services.forgejo = {
-    enable = false;
+    enable = true;
     settings = {
       log.LEVEL = "Warn";
+      server.ROOT_URL = "https://git.frenz.click";
       server.DOMAIN = "git.frenz.click";
       server.HTTP_PORT = 30005;
     };
   };
+
+  services.writefreely = {
+    enable = true;
+    host = "marrani.lol";
+    nginx.enable = false;
+    acme.enable = false;
+    settings = {
+      server = {
+        port = 10007;
+        gopher_port = 10008;
+      };
+      app = {
+        site_name = "marrans at lazing";
+        site_description = "Resistance is futile! All your pixels belong to us!";
+      };
+    };
+    database.type = "sqlite3";
+  };
+
+  # owamp device testing
+  services.owamp.enable = true;
+  networking.firewall.allowedTCPPorts = [ 861 ];
+  networking.firewall.allowedUDPPorts = [ 861 ];
+  # systemd.services.owamp.environment = {
+  # };
 }
