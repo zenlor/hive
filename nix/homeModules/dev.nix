@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   home.packages = with pkgs; [
     # LSP Servers I usually need
@@ -16,6 +16,6 @@
 
   programs.go = {
     enable = true;
-    env.GOPATH = "lib";
+    env.GOPATH = "${config.home.homeDirectory}/lib";
   };
 }
