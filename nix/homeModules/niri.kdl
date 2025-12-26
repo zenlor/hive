@@ -145,6 +145,12 @@ window-rule {
 }
 
 window-rule {
+    match app-id=r#"^steam_app_"#
+    open-fullscreen true
+    open-on-output "PNP(AOC) AG271QG #ASPfKgF2Tlrd"
+}
+
+window-rule {
     geometry-corner-radius 6
     clip-to-geometry true
 }
