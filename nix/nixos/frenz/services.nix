@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 let
@@ -48,11 +49,6 @@ in
       #     redir https://frenz.click
       #   '';
       # };
-      "www.frenz.click" = {
-        extraConfig = ''
-          redir https://frenz.click
-        '';
-      };
       "frenz.click" = {
         extraConfig = ''
           ${protection "verify-frenz"}
@@ -88,44 +84,10 @@ in
           respond "{http.request.remote.host}" 200
         '';
       };
-      "www.marrani.lol" = {
-        extraConfig = ''
-          redir https://marrani.lol
-        '';
-      };
       "marrani.lol" = {
-        # extraConfig = ''
-        #   ${protection "verify-marrans"}
-        #   redir /.well-known/host-meta* https://social.marrani.lol{uri} permanent  # host
-        #   redir /.well-known/webfinger* https://social.marrani.lol{uri} permanent  # host
-        #   redir /.well-known/nodeinfo* https://social.marrani.lol{uri} permanent   # host
-
-        #   encode zstd gzip
-
-        #   # respond / 200 {
-        #   #   body ""
-        #   # }
-        #   reverse_proxy http://127.0.0.1:10006 {
-        #     flush_interval -1
-        #   }
-        # '';
-
         extraConfig = ''
-          ${protection "verify-marrans"}
-
           encode zstd gzip
           reverse_proxy http://127.0.0.1:10007
-        '';
-      };
-      "social.marrani.lol" = {
-        extraConfig = ''
-          ${protection "verify-socialmarrans"}
-
-          encode zstd gzip
-          respond /metrics 404
-          reverse_proxy http://127.0.0.1:10006 {
-            flush_interval -1
-          }
         '';
       };
       "rpg.marrani.lol" = {
@@ -197,37 +159,6 @@ in
       Timeout = 60;
     };
   };
-
-  services.gotosocial = {
-    enable = true;
-    openFirewall = true;
-    settings = {
-      host = "social.marrani.lol";
-      account-domain = "marrani.lol";
-      application-name = "social.marrani.lol";
-      bind-address = "127.0.0.1";
-      db-address = "/var/lib/gotosocial/database.sqlite";
-      db-type = "sqlite";
-      port = 10006;
-      protocol = "https";
-      storage-local-base-path = "/var/lib/gotosocial/storage";
-      instance-language = [
-        "it"
-        "en-us"
-        "en-gb"
-        "ru"
-      ];
-      instance-inject-mastodon-version = true;
-      accounts-registration-open = true;
-      accounts-reason-required = true;
-      accounts-allow-custom-css = true;
-      letsencrypt-enabled = false;
-
-      metrics-enabled = true;
-      metrics-auth-enabled = false;
-    };
-  };
-
   services.prometheus.enable = true;
   services.prometheus.exporters.node.openFirewall = lib.mkForce false;
   services.prometheus.exporters.wireguard.openFirewall = lib.mkForce false;
@@ -251,15 +182,6 @@ in
           regex = "go_.*";
           action = "drop";
         }
-      ];
-    }
-    {
-      job_name = "gotosocial";
-      metrics_path = "/metrics";
-      scrape_interval = "15s";
-      scrape_timeout = "10s";
-      static_configs = [
-        { targets = [ "127.0.0.1:10006" ]; }
       ];
     }
   ];
@@ -286,6 +208,7 @@ in
     host = "marrani.lol";
     nginx.enable = false;
     acme.enable = false;
+    admin.name = "zenlor";
     settings = {
       server = {
         port = 10007;
@@ -294,15 +217,89 @@ in
       app = {
         site_name = "marrans at lazing";
         site_description = "Resistance is futile! All your pixels belong to us!";
+        wf_modesty = true;
+        monetization = true;
+        federation = true;
+        min_username_len = 3;
+        editor = "pad";
+        public_stats = true;
       };
     };
     database.type = "sqlite3";
   };
 
-  # owamp device testing
-  services.owamp.enable = true;
-  networking.firewall.allowedTCPPorts = [ 861 ];
-  networking.firewall.allowedUDPPorts = [ 861 ];
-  # systemd.services.owamp.environment = {
-  # };
+  services.webdav = {
+    enable = true;
+    settings = {
+      address = "127.0.0.1";
+      port = 10009;
+      behindProxy = true;
+      prefix = "/";
+      directory = "/srv/public";
+      modify = true;
+      auth = true;
+      users = [
+        {
+          # FIXME: temporary
+          username = "admin";
+          password = "admin123";
+          permissions = "CRUD";
+        }
+      ];
+      cors = {
+        enabled = true;
+        credentials = true;
+        allowed_headers = [ "Depth" ];
+        allowed_hosts = [ "https://marrani.lol" ];
+        allowed_methods = [ "GET" ];
+        exposed_headers = [
+          "Content-Length"
+          "Content-Range"
+        ];
+      };
+    };
+  };
+
+  users.groups.marrano-warez = { };
+  users.users = {
+    marrano-warez = {
+      group = "marrano-warez";
+      home = "/var/lib/marrano-warez";
+      isSystemUser = true;
+      description = "marrano-warez daemon user";
+    };
+  };
+
+  system.activationScripts.marrano-warez = ''
+    mkdir -m 1700 -p /var/lib/marrano-warez
+    chown -R marrano-warez:marrano-warez /var/lib/marrano-warez
+  '';
+
+  services.caddy.virtualHosts."warez.marrani.lol" = {
+    extraConfig = ''
+      encode zstd gzip
+      reverse_proxy http://127.0.0.1:10008
+    '';
+  };
+
+  systemd.services.marrano-warez = {
+    description = "A very marrano bot";
+    wantedBy = [ "multi-user.target" ];
+    after = [ "network.target" ];
+    path = [ pkgs.marrano-warez ];
+
+    environment = {
+      USERNAME = "warez";
+      PASSWORD = "marrani";
+    };
+
+    serviceConfig = {
+      User = "marrano-warez";
+      Group = "marrano-warez";
+      Type = "simple";
+      Restart = "on-failure";
+      WorkingDirectory = "/var/lib/marrano-warez";
+      ExecStart = "${pkgs.marrano-warez}/bin/marrano-warez -addr 127.0.0.1:10008";
+    };
+  };
 }

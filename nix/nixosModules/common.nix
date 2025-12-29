@@ -184,16 +184,6 @@ in
     generateCompletions = true;
   };
 
-  services.fail2ban = {
-    enable = true;
-    bantime = "10m";
-    maxretry = 5;
-    ignoreIP = [
-      "10.69.0.0/24"
-      "192.168.0.0/16"
-    ];
-  };
-
   i18n = {
     defaultLocale = "en_US.UTF-8";
     extraLocales = [

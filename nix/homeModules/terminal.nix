@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 {
   programs.ghostty = {
     enable = false; # !pkgs.stdenv.hostPlatform.isDarwin; # FIXME broken in darwin
@@ -43,6 +43,9 @@
       # remove useless crap
       "ctrl+h" = "no_op";
       "ctrl+shift+t" = "no_op";
+
+      "ctrl+shift+v" = "paste_from_clipboard";
+      "ctrl+shift+c" = "copy_to_clipboard";
 
       # actual bindings
       "ctrl+s>c" = "new_tab";

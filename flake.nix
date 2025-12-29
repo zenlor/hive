@@ -93,6 +93,9 @@
     marrano-bot.url = "github:moolite/bot";
     marrano-bot.inputs.nixpkgs.follows = "nixpkgs";
 
+    marrano-warez.url = "sourcehut:~zenlor/marrano-warez.git";
+    marrano-warez.inputs.nixpkgs.follows = "nixpkgs";
+
     deploy-rs.url = "github:serokell/deploy-rs";
     deploy-rs.inputs.nixpkgs.follows = "nixpkgs";
 

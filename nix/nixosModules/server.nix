@@ -2,8 +2,18 @@
 {
   services.fail2ban = {
     enable = true;
+    ignoreIP = [
+      "10.0.0.0/8"
+      "172.16.0.0/12"
+      "192.168.0.0/16"
+      "2001:1c00:3406:7b00:6cf7:7adb:c2d:741f"
+      "31.151.68.106"
+    ];
+    bantime = "5m";
+    maxretry = 5;
   };
-  services.openssh.settings.LogLevel = "VERBOSE";
+
+  # services.openssh.settings.LogLevel = "VERBOSE";
 
   environment.systemPackages = with pkgs; [
     neovim
