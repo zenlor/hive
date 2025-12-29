@@ -6,26 +6,67 @@ let
   pad = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFqg48dF7t3LV4qsliz1r59wP53TtCdhcfO5+XJ6lJ+M";
   meila = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKqBzr95wQhhIDxbg92W7mC+UvJLDB/9/7XIJu3HhvsC";
 
-  all = [ lor frenz nasferatu horus pad ];
+  all = [
+    lor
+    frenz
+    nasferatu
+    horus
+    pad
+  ];
 in
 {
   # wireguard
-  "secrets/wireguard/wg-frenz.age".publicKeys = [ lor frenz ];
-  "secrets/wireguard/wg-nasferatu.age".publicKeys = [ lor nasferatu ];
-  "secrets/wireguard/wg-pad.age".publicKeys = [ lor pad ];
-  "secrets/wireguard/wg-horus.age".publicKeys = [ lor horus ];
-  "secrets/wireguard/wg-meila.age".publicKeys = [ lor meila ];
-  "secrets/wireguard/wg-deck.age".publicKeys = [ pad lor horus ];
-  "secrets/wireguard/marrani-suppah.age".publicKeys = [ lor horus ];
-  "secrets/wireguard/marrani-lukke.age".publicKeys = [ lor horus ];
-  "secrets/wireguard/marrani-krs.age".publicKeys = [ lor horus ];
-  "secrets/proton/nasferatu.age".publicKeys = [ lor nasferatu ];
+  "secrets/wireguard/wg-frenz.age".publicKeys = [
+    lor
+    frenz
+  ];
+  "secrets/wireguard/wg-nasferatu.age".publicKeys = [
+    lor
+    nasferatu
+  ];
+  "secrets/wireguard/wg-pad.age".publicKeys = [
+    lor
+    pad
+  ];
+  "secrets/wireguard/wg-horus.age".publicKeys = [
+    lor
+    horus
+  ];
+  "secrets/wireguard/wg-meila.age".publicKeys = [
+    lor
+    meila
+  ];
+  "secrets/wireguard/wg-deck.age".publicKeys = [
+    pad
+    lor
+    horus
+  ];
+  "secrets/wireguard/marrani-suppah.age".publicKeys = [
+    lor
+    horus
+  ];
+  "secrets/wireguard/marrani-lukke.age".publicKeys = [
+    lor
+    horus
+  ];
+  "secrets/wireguard/marrani-krs.age".publicKeys = [
+    lor
+    horus
+  ];
+  "secrets/proton/nasferatu.age".publicKeys = [
+    lor
+    nasferatu
+  ];
 
   # grafana
-  "secrets/services/grafana.age".publicKeys = [ lor frenz ];
+  "secrets/services/grafana.age".publicKeys = [
+    lor
+    frenz
+  ];
 
   # bot secrets
   "secrets/services/marrano-bot.age".publicKeys = all;
+  "secrets/services/marrano-warez.age".publicKeys = all;
 
   # user secrets
   "secrets/users/lor.age".publicKeys = all;

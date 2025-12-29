@@ -228,6 +228,10 @@ in
     database.type = "sqlite3";
   };
 
+  age.secrets.marrano-warez = {
+    file = secrets.services.marrano-warez;
+    owner = "marrano-warez";
+  };
   users.groups.marrano-warez = { };
   users.users = {
     marrano-warez = {
@@ -263,16 +267,12 @@ in
     after = [ "network.target" ];
     path = [ pkgs.marrano-warez ];
 
-    environment = {
-      USERNAME = "warez";
-      PASSWORD = "marrani";
-    };
-
     serviceConfig = {
       User = "marrano-warez";
       Group = "marrano-warez";
       Type = "simple";
       Restart = "on-failure";
+      EnvironmentFile = config.age.secrets.marrano-warez.path;
       WorkingDirectory = "/var/lib/marrano-warez";
       ExecStart = "${pkgs.marrano-warez}/bin/marrano-warez -addr 127.0.0.1:10009";
     };

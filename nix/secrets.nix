@@ -69,5 +69,6 @@
   services = {
     grafana = ../secrets/services/grafana.age;
     marrano-bot = ../secrets/services/marrano-bot.age;
+    marrano-warez = ../secrets/services/marrano-warez.age;
   };
 }
