@@ -42,6 +42,9 @@ in
     sudo.wheelNeedsPassword = false;
   };
 
+  # we have a nice IPv6 address, enable it!
+  networking.enableIPv6 = true;
+
   networking.useNetworkd = true;
   networking.hostId = "cda31f1b";
   networking.useDHCP = true;
