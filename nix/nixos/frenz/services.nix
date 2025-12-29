@@ -228,38 +228,6 @@ in
     database.type = "sqlite3";
   };
 
-  services.webdav = {
-    enable = true;
-    settings = {
-      address = "127.0.0.1";
-      port = 10009;
-      behindProxy = true;
-      prefix = "/";
-      directory = "/srv/public";
-      modify = true;
-      auth = true;
-      users = [
-        {
-          # FIXME: temporary
-          username = "admin";
-          password = "admin123";
-          permissions = "CRUD";
-        }
-      ];
-      cors = {
-        enabled = true;
-        credentials = true;
-        allowed_headers = [ "Depth" ];
-        allowed_hosts = [ "https://marrani.lol" ];
-        allowed_methods = [ "GET" ];
-        exposed_headers = [
-          "Content-Length"
-          "Content-Range"
-        ];
-      };
-    };
-  };
-
   users.groups.marrano-warez = { };
   users.users = {
     marrano-warez = {
@@ -275,10 +243,17 @@ in
     chown -R marrano-warez:marrano-warez /var/lib/marrano-warez
   '';
 
+  services.caddy.virtualHosts."i.marrani.lol" = {
+    extraConfig = ''
+      encode zstd gzip
+      reverse_proxy http://127.0.0.1:10009
+    '';
+  };
+
   services.caddy.virtualHosts."warez.marrani.lol" = {
     extraConfig = ''
       encode zstd gzip
-      reverse_proxy http://127.0.0.1:10008
+      reverse_proxy http://127.0.0.1:10009
     '';
   };
 
@@ -299,7 +274,7 @@ in
       Type = "simple";
       Restart = "on-failure";
       WorkingDirectory = "/var/lib/marrano-warez";
-      ExecStart = "${pkgs.marrano-warez}/bin/marrano-warez -addr 127.0.0.1:10008";
+      ExecStart = "${pkgs.marrano-warez}/bin/marrano-warez -addr 127.0.0.1:10009";
     };
   };
 }
