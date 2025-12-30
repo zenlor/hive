@@ -516,11 +516,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1767113512,
-        "narHash": "sha256-mt3P3VjDTF0VYrFOaqESWVlbeRDXgEotgjRbj+Vl5TE=",
+        "lastModified": 1767120232,
+        "narHash": "sha256-ztQNJskwvaELjZKJ7iXl9D9CVY2H+d7Vg5A27HQzOnE=",
         "owner": "~zenlor",
         "repo": "marrano-warez.git",
-        "rev": "a8a02b7c5856b58d0483c68cf4f37ddbda9887bf",
+        "rev": "180aa3e48a7a060c6585df8face72c55e072c766",
         "type": "sourcehut"
       },
       "original": {

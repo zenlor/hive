@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 let
@@ -84,12 +83,6 @@ in
           respond "{http.request.remote.host}" 200
         '';
       };
-      "marrani.lol" = {
-        extraConfig = ''
-          encode zstd gzip
-          reverse_proxy http://127.0.0.1:10007
-        '';
-      };
       "rpg.marrani.lol" = {
         extraConfig = ''
           ${protection "verify-rpgmarrans"}
@@ -145,10 +138,6 @@ in
     };
   };
 
-  # services.marrano-bot.hostName = "bot.marrani.lol";
-  # services.marrano-bot.logLevel = "debug";
-  # services.marrano-bot.logLevel = "error";
-
   # tinyproxy
   services.tinyproxy = {
     enable = false;
@@ -190,7 +179,7 @@ in
   services.marrano-bot = {
     enable = true;
     hostName = "bot.marrani.lol";
-    logLevel = "debug";
+    logLevel = "info";
   };
 
   services.forgejo = {
@@ -200,81 +189,6 @@ in
       server.ROOT_URL = "https://git.frenz.click";
       server.DOMAIN = "git.frenz.click";
       server.HTTP_PORT = 30005;
-    };
-  };
-
-  services.writefreely = {
-    enable = true;
-    host = "marrani.lol";
-    nginx.enable = false;
-    acme.enable = false;
-    admin.name = "zenlor";
-    settings = {
-      server = {
-        port = 10007;
-        gopher_port = 10008;
-      };
-      app = {
-        site_name = "marrans at lazing";
-        site_description = "Resistance is futile! All your pixels belong to us!";
-        wf_modesty = true;
-        monetization = true;
-        federation = true;
-        min_username_len = 3;
-        editor = "pad";
-        public_stats = true;
-      };
-    };
-    database.type = "sqlite3";
-  };
-
-  age.secrets.marrano-warez = {
-    file = secrets.services.marrano-warez;
-    owner = "marrano-warez";
-  };
-  users.groups.marrano-warez = { };
-  users.users = {
-    marrano-warez = {
-      group = "marrano-warez";
-      home = "/var/lib/marrano-warez";
-      isSystemUser = true;
-      description = "marrano-warez daemon user";
-    };
-  };
-
-  system.activationScripts.marrano-warez = ''
-    mkdir -m 1700 -p /var/lib/marrano-warez
-    chown -R marrano-warez:marrano-warez /var/lib/marrano-warez
-  '';
-
-  services.caddy.virtualHosts."i.marrani.lol" = {
-    extraConfig = ''
-      encode zstd gzip
-      reverse_proxy http://127.0.0.1:10009
-    '';
-  };
-
-  services.caddy.virtualHosts."warez.marrani.lol" = {
-    extraConfig = ''
-      encode zstd gzip
-      reverse_proxy http://127.0.0.1:10009
-    '';
-  };
-
-  systemd.services.marrano-warez = {
-    description = "A very marrano bot";
-    wantedBy = [ "multi-user.target" ];
-    after = [ "network.target" ];
-    path = [ pkgs.marrano-warez ];
-
-    serviceConfig = {
-      User = "marrano-warez";
-      Group = "marrano-warez";
-      Type = "simple";
-      Restart = "on-failure";
-      EnvironmentFile = config.age.secrets.marrano-warez.path;
-      WorkingDirectory = "/var/lib/marrano-warez";
-      ExecStart = "${pkgs.marrano-warez}/bin/marrano-warez -addr 127.0.0.1:10009";
     };
   };
 }

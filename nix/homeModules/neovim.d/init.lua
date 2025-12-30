@@ -428,6 +428,7 @@ do -- [[ LSP ]]
   vim.lsp.enable('luals') -- lua
   vim.lsp.enable('ols')   -- odin
   vim.lsp.enable('gopls') -- go
+  vim.lsp.enable('nixd') -- nix
 
   vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('hive-lsp-attach', { clear = true }),

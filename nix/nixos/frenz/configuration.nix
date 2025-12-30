@@ -18,6 +18,10 @@ in
 
     ./hardware.nix
     ./services.nix
+
+    # services
+    ./marrano-warez.nix
+    ./marrani.lol.nix
   ];
 
   time.timeZone = "Europe/Amsterdam";
@@ -165,8 +169,18 @@ in
           "2001:41d0:401:3000::241f/128"
         ];
         routes = [
-          { routeConfig = { Gateway = "149.202.48.1"; GatewayOnLink = true; }; }
-          { routeConfig = { Gateway = "2001:41d0:401:3000::1"; GatewayOnLink = true; }; }
+          {
+            routeConfig = {
+              Gateway = "149.202.48.1";
+              GatewayOnLink = true;
+            };
+          }
+          {
+            routeConfig = {
+              Gateway = "2001:41d0:401:3000::1";
+              GatewayOnLink = true;
+            };
+          }
         ];
       };
     };
