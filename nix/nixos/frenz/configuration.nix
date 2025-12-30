@@ -66,7 +66,7 @@ in
   networking.firewall.trustedInterfaces = [ "wg0" ];
 
   # for some reason fails most of the times
-  services.resolved.enable = false;
+  services.resolved.enable = true;
 
   # VPS needs quemu guest agent
   environment.systemPackages = [ pkgs.qemu-utils ];

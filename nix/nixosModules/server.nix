@@ -1,5 +1,12 @@
 { pkgs, ... }:
 {
+
+  environment.etc."fail2ban/filter.d/caddy-unauthorized.local".text = ''
+    [Definition]
+    failregex = ^.*"remote_ip":"<HOST>",.*?"status":(?:401|403|502),.*$
+    ignoreregex =
+    datepattern = LongEpoch
+  '';
   services.fail2ban = {
     enable = true;
     ignoreIP = [
@@ -11,12 +18,31 @@
     ];
     bantime = "5m";
     maxretry = 5;
+
+    jails = {
+      caddy-unauthorized = {
+        settings = {
+          enabled = true;
+          filter = "caddy-unauthorized";
+          port = "http,https";
+          logpath = "/var/log/caddy/*.access.log";
+          maxretry = 10;
+        };
+        filter = {
+        };
+      };
+    };
   };
 
   # services.openssh.settings.LogLevel = "VERBOSE";
 
   environment.systemPackages = with pkgs; [
-    neovim
     lnav
   ];
+
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+    viAlias = true;
+  };
 }
