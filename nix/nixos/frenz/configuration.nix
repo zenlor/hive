@@ -47,7 +47,7 @@ in
 
   networking.useNetworkd = true;
   networking.hostId = "cda31f1b";
-  networking.useDHCP = true;
+  networking.useDHCP = false;
   networking.hostName = "frenz";
   networking.nameservers = [
     "1.1.1.1"
@@ -144,18 +144,30 @@ in
         address = [ "10.69.0.1/24" ];
         networkConfig = {
           IPv4Forwarding = true;
-          IPMasquerade = "ipv4";
-          IPv6AcceptRA = "yes";
+          IPv6Forwarding = true;
+          IPMasquerade = "both";
+          IPv6AcceptRA = true;
         };
       };
       "10-enp0s3" = {
         enable = true;
         matchConfig.Name = "enp0s3";
         networkConfig = {
-          Description = "Internet";
-          DHCP = "yes";
-          IPv6AcceptRA = "yes";
+          # DHCP = true;
+          DHCP = "no";
+          IPv4Forwarding = true;
+          IPv6Forwarding = true;
+          IPMasquerade = "both";
+          IPv6AcceptRA = true;
         };
+        address = [
+          "149.202.50.93/32"
+          "2001:41d0:401:3000::241f/128"
+        ];
+        routes = [
+          { routeConfig = { Gateway = "149.202.48.1"; GatewayOnLink = true; }; }
+          { routeConfig = { Gateway = "2001:41d0:401:3000::1"; GatewayOnLink = true; }; }
+        ];
       };
     };
   };
