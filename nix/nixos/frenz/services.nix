@@ -151,7 +151,7 @@ in
 
   # tinyproxy
   services.tinyproxy = {
-    enable = true;
+    enable = false;
     settings = {
       Port = 8888;
       Listen = "10.69.0.1";
