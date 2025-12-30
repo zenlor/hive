@@ -145,6 +145,16 @@ in
         networkConfig = {
           IPv4Forwarding = true;
           IPMasquerade = "ipv4";
+          IPv6AcceptRA = "yes";
+        };
+      };
+      "10-enp0s3" = {
+        enable = true;
+        matchConfig.Name = "enp0s3";
+        networkConfig = {
+          Description = "Internet";
+          DHCP = "yes";
+          IPv6AcceptRA = "yes";
         };
       };
     };
