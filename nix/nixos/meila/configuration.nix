@@ -1,18 +1,20 @@
-{ inputs
-, pkgs
-, ...
-}: {
+{
+  inputs,
+  pkgs,
+  ...
+}:
+{
   imports = [
     inputs.self.nixosModules.common
     inputs.self.nixosModules.workstation
-    inputs.self.nixosModules.desktop
+    # inputs.self.nixosModules.desktop
     inputs.self.nixosModules.nvidia
-    inputs.self.nixosModules.steam
+    # inputs.self.nixosModules.steam
 
-    inputs.self.nixosModules.gnome
+    # inputs.self.nixosModules.gnome
     # inputs.self.nixosModules.kde
     # inputs.self.nixosModules.hyprland
-    inputs.self.nixosModules.niri
+    # inputs.self.nixosModules.niri
 
     ./disks.nix
     ./home.nix

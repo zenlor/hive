@@ -36,7 +36,7 @@
       (family-variable  "Iosevka Etoile")) ;; IBM Plex Sans
   (if (or (equal (system-name) "horus")
           (equal (system-name) "meila")
-          (equal (system-name) "nixos"))
+          (equal (system-name) "kat"))
     (setq fontsize 17))
   (setq doom-font (font-spec :family family :size fontsize)
         doom-variable-font (font-spec :family family-variable)

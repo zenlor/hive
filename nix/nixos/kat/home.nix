@@ -1,7 +1,6 @@
 { inputs, config, ... }:
 {
   home-manager.backupFileExtension = "backup";
-  home-manager.useGlobalPkgs = true;
   home-manager.users.lor = {
     imports =
       with inputs.self.homeModules;

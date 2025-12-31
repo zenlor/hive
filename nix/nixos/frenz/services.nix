@@ -37,17 +37,16 @@ in
           redir https://frenz.click
         '';
       };
-      # lost in time and space
-      # "www.frenzart.com" = {
-      #   extraConfig = ''
-      #     redir https://frenz.click
-      #   '';
-      # };
-      # "frenzart.com" = {
-      #   extraConfig = ''
-      #     redir https://frenz.click
-      #   '';
-      # };
+      "www.frenzart.com" = {
+        extraConfig = ''
+          redir https://frenz.click
+        '';
+      };
+      "frenzart.com" = {
+        extraConfig = ''
+          redir https://frenz.click
+        '';
+      };
       "frenz.click" = {
         extraConfig = ''
           ${protection "verify-frenz"}
