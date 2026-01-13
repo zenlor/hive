@@ -47,11 +47,10 @@
 (setq org-directory "~/Documents/notes")
 
 ;; eglot
-(with-eval-after-load 'eglot
-  (add-to-list 'eglot-server-programs
-               '(terraform-mode . ("terraform-ls" "serve"))
-               '(hcl-mode . ("terraform-ls" "serve"))
-               '(nix-mode . ("nil"))))
+(set-eglot-client! '(terraform-mode :language-id "opentofu") '("tofu-ls" "serve"))
+(set-eglot-client! '(nix-mode :language-id "nix") '("nil"))
+(set-eglot-client! '(nix-mode :language-id "nix") '("nixd"))
+
 ;; apheleia
 (after! apheleia
         (setf (alist-get 'opentofu apheleia-formatters)

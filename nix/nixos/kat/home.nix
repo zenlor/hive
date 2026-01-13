@@ -1,4 +1,9 @@
-{ inputs, config, ... }:
+{
+  inputs,
+  config,
+  pkgs,
+  ...
+}:
 {
   home-manager.backupFileExtension = "backup";
   home-manager.users.lor = {

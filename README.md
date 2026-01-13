@@ -1,6 +1,6 @@
 # nix void spaceport
 
-## Cheat sheet
+  * [ ] #php# Cheat sheet
 
 - apply
   - locally: `sudo nixos-rebuild switch --flake .#<host>`

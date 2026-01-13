@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   programs.neovim = {
     enable = true;
     vimAlias = true;
@@ -10,6 +11,14 @@
       ast-grep
       ripgrep
     ];
+  };
+
+  stylix.targets.neovide.enable = true;
+  stylix.targets.neovim = {
+    enable = true;
+    plugin = "mini.base16";
+    transparentBackground.main = true;
+    transparentBackground.numberLine = true;
   };
 
   # neovim shall be the pager of my man

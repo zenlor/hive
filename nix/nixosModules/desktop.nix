@@ -112,14 +112,18 @@
     fontDir.enable = true;
     enableDefaultPackages = true;
     packages = with pkgs; [
+      iosevka
+
       dina-font
-      fira-code-symbols
       ibm-plex
-      iosevka-bin
       liberation_ttf
       noto-fonts
       noto-fonts-color-emoji
       comic-neue
+
+      nerd-fonts.iosevka
+      nerd-fonts.liberation
+      nerd-fonts.noto
     ];
 
     fontconfig = {

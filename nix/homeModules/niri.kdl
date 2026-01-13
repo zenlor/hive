@@ -21,7 +21,7 @@ input {
         scroll-method "on-button-down"
         scroll-button 273
     }
-    warp-mouse-to-focus
+    // warp-mouse-to-focus
     focus-follows-mouse max-scroll-amount="0%"
 }
 
@@ -32,7 +32,7 @@ cursor {
 
 output "PNP(AOC) AG271QG #ASNH7z62UjXd" { // DP-1
     mode "2560x1440@119.998"
-    variable-refresh-rate on-demand=true
+    variable-refresh-rate on-demand=false
     scale 1
     position x=0 y=0
     layout {
@@ -44,7 +44,7 @@ output "PNP(AOC) AG271QG #ASNH7z62UjXd" { // DP-1
 
 output "PNP(AOC) AG271QG #ASPfKgF2Tlrd" { // DP-2
     mode "2560x1440@119.998"
-    variable-refresh-rate on-demand=true
+    variable-refresh-rate on-demand=false
     scale 1
     position x=2560 y=0
 }

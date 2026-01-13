@@ -1,8 +1,9 @@
-{ inputs
-, config
-, pkgs
-, lib
-, ...
+{
+  inputs,
+  config,
+  pkgs,
+  lib,
+  ...
 }:
 let
   secrets = import ../../secrets.nix;
@@ -11,17 +12,21 @@ in
   imports = [
     inputs.self.nixosModules.common
     inputs.self.nixosModules.server
+    inputs.self.nixosModules.amd
 
     ./disks.nix
     ./file_sharing.nix
     ./services.nix
     ./users.nix
   ];
+  networking.hostName = "nasferatu";
 
   time.timeZone = "Europe/Amsterdam";
 
   boot.loader = {
-    efi = { efiSysMountPoint = "/boot"; };
+    efi = {
+      efiSysMountPoint = "/boot";
+    };
     systemd-boot = {
       enable = true;
       configurationLimit = 5;
@@ -30,15 +35,6 @@ in
 
   systemd.enableEmergencyMode = false;
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
-
-  hardware.graphics.enable32Bit = true;
-  hardware.graphics.extraPackages = with pkgs; [
-    amdvlk
-  ];
-  # For 32 bit applications
-  hardware.graphics.extraPackages32 = with pkgs; [
-    driversi686Linux.amdvlk
-  ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
@@ -69,9 +65,12 @@ in
 
   services.resolved = {
     enable = true;
-    dnssec = "true";
+    dnssec = "allow-downgrade";
     domains = [ "~." ];
-    fallbackDns = [ "1.1.1.1" "1.0.0.1" ];
+    fallbackDns = [
+      "1.1.1.1"
+      "1.0.0.1"
+    ];
     extraConfig = ''
       DNSOverTLS=yes
     '';
@@ -90,7 +89,6 @@ in
   };
 
   networking = {
-    hostName = "nasferatu";
     search = [ "local" ];
     # defaultGateway = lib.mkDefault "192.168.178.1";
     defaultGateway = {
@@ -98,7 +96,10 @@ in
       interface = "enp4s0";
     };
 
-    nameservers = lib.mkDefault [ "1.1.1.1" "1.0.0.1" ];
+    nameservers = lib.mkDefault [
+      "1.1.1.1"
+      "1.0.0.1"
+    ];
 
     firewall = {
       enable = true;
@@ -114,6 +115,8 @@ in
         548 # netatalk
 
         9163 # prometheus
+
+        58846 # deluged
       ];
       allowedUDPPorts = [
         3702 # wsdd
@@ -207,7 +210,10 @@ in
         {
           PublicKey = "afmlPt2O8Y+u4ykaOpMoO6q1JkbArZsaoFcpNXudXCg=";
           Endpoint = "46.29.25.3:51820";
-          AllowedIPs = [ "0.0.0.0/0" "::0/0" ];
+          AllowedIPs = [
+            "0.0.0.0/0"
+            "::0/0"
+          ];
           PersistentKeepalive = 25;
           RouteTable = 110;
         }
@@ -241,6 +247,24 @@ in
         }
         {
           User = "transmission";
+          Table = "main";
+          To = "10.69.0.0/24";
+          Priority = 1;
+        }
+
+        {
+          User = "deluge";
+          Table = 110;
+          Priority = 5;
+        }
+        {
+          User = "deluge";
+          Table = "main";
+          To = "192.168.178.0/24";
+          Priority = 1;
+        }
+        {
+          User = "deluge";
           Table = "main";
           To = "10.69.0.0/24";
           Priority = 1;

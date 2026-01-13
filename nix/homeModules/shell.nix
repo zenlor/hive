@@ -21,14 +21,6 @@
       # delete erroneous commands at shell exit
       set sponge_purge_only_on_exit true
 
-      # hydro prompt settings
-      set --global hydro_multiline false
-      set --global hydro_color_pwd $fish_color_cwd
-      set --global hydro_color_error $fish_color_error
-      set --global hydro_color_prompt $fish_color_operator
-      set --global hydro_color_git $fish_color_redirection
-      set --global hydro_cmd_duration_threshold 10000
-
       fish_vi_key_bindings
     '';
     plugins = [
@@ -39,10 +31,6 @@
       {
         name = "sponge";
         src = pkgs.fishPlugins.sponge.src;
-      }
-      {
-        name = "prompt";
-        src = pkgs.fishPlugins.hydro.src;
       }
     ];
   };
@@ -146,7 +134,6 @@
   programs.ripgrep-all.enable = true;
 
   home.shellAliases = {
-    e = "emacsclient -n -c";
     l = "ls -l";
   };
 }

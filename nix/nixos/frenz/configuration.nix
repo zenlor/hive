@@ -66,6 +66,12 @@ in
     25565
     35565
   ];
+  networking.firewall.allowedTCPPortRanges = [
+    {
+      from = 24240;
+      to = 24420;
+    }
+  ];
   networking.firewall.allowPing = false;
   networking.firewall.trustedInterfaces = [ "wg0" ];
 

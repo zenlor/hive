@@ -1,8 +1,8 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    emacs
-    emacs-all-the-icons-fonts
+    # emacs + vterm
+    ((emacsPackagesFor emacs-pgtk).emacsWithPackages (epkgs: [ epkgs.vterm ]))
 
     # ssh passwords
     pinentry-emacs
@@ -26,6 +26,10 @@
     "$HOME/.config/emacs/bin"
     "$HOME/.config/doom/bin"
   ];
+
+  home.shellAliases = {
+    e = "emacsclient -n -c";
+  };
 
   xdg.configFile = {
     "doom" = {
