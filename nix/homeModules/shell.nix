@@ -22,6 +22,10 @@
       set sponge_purge_only_on_exit true
 
       fish_vi_key_bindings
+
+      # set pure to one line output, two lines are a stupid waste of precious vertical
+      # space
+      set --univesal pure_enable_single_line_prompt true
     '';
     plugins = [
       {
@@ -31,6 +35,10 @@
       {
         name = "sponge";
         src = pkgs.fishPlugins.sponge.src;
+      }
+      {
+        name = "pure";
+        src = pkgs.fishPlugins.pure.src;
       }
     ];
   };
