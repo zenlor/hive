@@ -30,11 +30,16 @@
         sha256 = "sha256-Hpc8YaJeAzJoEi7aJ6DntH2VLkoR6ToP6tPYn3llR7k=";
       })
       + "/plugins";
-    extraPackages = with pkgs; [
-      ffmpegthumbnailer
-      mediainfo
-      sxiv
-    ];
+    extraPackages =
+      with pkgs;
+      [
+        ffmpegthumbnailer
+        mediainfo
+      ]
+      ++ lib.optionals (!pkgs.stdenv.isDarwin) [
+        # FIXME sxiv not supported under osx
+        sxiv
+      ];
     bookmarks = {
       d = "~/Documents";
       D = "~/Downloads";

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   stylix = {
     enable = true;
@@ -39,7 +39,7 @@
   home.file.".icons/default".source = "${pkgs.vanilla-dmz}/share/icons/Vanilla-DMZ";
   # home.file.".gitkrc-2.0".force = true;
 
-  gtk.iconTheme = {
+  gtk.iconTheme = lib.mkIf (!pkgs.stdenv.isDarwin) {
     # name = "Adwaita";
     # package = pkgs.adwaita-icon-theme;
     name = "WhiteSur";
