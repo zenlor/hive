@@ -23,9 +23,14 @@
 
       fish_vi_key_bindings
 
-      # set pure to one line output, two lines are a stupid waste of precious vertical
-      # space
-      set --univesal pure_enable_single_line_prompt true
+      set --global fish_transient_prompt 1
+
+      set --global hydro_color_pwd $fish_color_cwd
+      set --global hydro_color_git $fish_color_host
+      set --global hydro_color_start $fish_color_normal
+      set --global hydro_color_error $fish_color_error
+      set --global hydro_color_prompt $fish_color_normal
+      set --global hydro_color_duration $fish_color_normal
     '';
     plugins = [
       {
@@ -37,8 +42,8 @@
         src = pkgs.fishPlugins.sponge.src;
       }
       {
-        name = "pure";
-        src = pkgs.fishPlugins.pure.src;
+        name = "hydro";
+        src = pkgs.fishPlugins.hydro.src;
       }
     ];
   };
