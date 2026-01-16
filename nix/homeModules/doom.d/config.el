@@ -125,3 +125,10 @@
 )
 
 (add-hook 'c++-mode-hook 'vlad-cc-style)
+
+;; LLM crap
+(!after gptel
+  (gptel-make-ollama "ollama"
+   :host "localhost:11434"
+   :stream t
+   :models '(mistral:8b)))
